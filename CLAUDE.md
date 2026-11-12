@@ -89,6 +89,9 @@ Palette :
 10. Communication de lancement
 11. Démarches administratives (indépendante en Belgique)
 
+## Rappels
+- **Avant le départ de Kontnu (janvier 2027)** : Julie demandera un « prompt mémoire » pour basculer sur son compte Claude perso. Le générer à partir de ce fichier + journal à jour, et vérifier que tout le travail est poussé sur GitHub. Ensuite : connecter son GitHub perso au nouveau compte Claude.
+
 ## Journal des décisions
 - 2026-11-12 : création du contexte projet et du dépôt privé GitHub `mordantjulie-eng/SAGE-creative-studio` (compte perso, accessible après Kontnu).
 - 2026-11-12 : site → vibe codé ensemble. Piste recommandée : Astro + hébergement gratuit (Netlify / Cloudflare Pages), bilingue FR/EN, nom et logo interchangeables tant que la recherche juridique n'est pas faite.
