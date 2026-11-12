@@ -9,18 +9,20 @@
   --sage-light: #c5d0be; /* vert sauge clair (validé) */
   --cream: #f4f1ea; /* blanc cassé (validé) */
   --sand: #ebe3d8; /* sable */
-  --ochre: #c49a54; /* ocre (validé) */
+  --ochre: #b8965e; /* ocre doré antique, sans orange */
+  --fir: #173a33; /* vert sapin noble (vert anglais profond) */
+  --fir-deep: #102a25;
   --champagne: var(--ochre);
   --blush: #ead9cf; /* rose poudré */
-  --clay: #b15e3d; /* terracotta du brand book */
-  --terracotta: #b15e3d;
+  --clay: #7d8c78; /* sauge profond (remplace la terracotta) */
+  --terracotta: var(--ochre); /* plus de terracotta : redirigée vers l'ocre */
   --taupe: #b6ada1; /* taupe (formes) */
   --sage: #a3ae9c;
 
   /* Accents vifs : uniquement pour les infos importantes */
   --pers: #3e7c80; /* bleu-vert « pers » */
   --cobalt: #2448c8; /* bleu primaire */
-  --vermilion: #e04a2f; /* rouge primaire */
+  --vermilion: #8a6a2e; /* ocre foncé (plus de rouge-orange) */
 
   --glass: rgb(255 255 255 / 0.42);
   --glass-strong: rgb(255 255 255 / 0.62);
@@ -412,11 +414,21 @@ p {
 
 /* Fond de page qui change de couleur selon la section visible (piloté par Base.astro) */
 body[data-theme='cream'] { background-color: var(--cream); }
-body[data-theme='sage'] { background-color: var(--sage-light); }
+body[data-theme='sage'] { background-color: var(--fir); }
 body[data-theme='taupe'] { background-color: #e6ded3; }
-body[data-theme='charcoal'] { background-color: var(--ink); }
-body[data-theme='sage'] h1 em,
-body[data-theme='sage'] h2 em { color: var(--terracotta); }
+body[data-theme='charcoal'] { background-color: var(--fir-deep); }
+/* Sections vert sapin : texte crème, accents ocre */
+:not(body)[data-theme='sage'] {
+  --ink: #f4f1ea;
+  --eucalyptus: #b9c6b4;
+  --hair: rgb(244 241 234 / 0.16);
+  color: #f4f1ea;
+}
+:not(body)[data-theme='sage'] .lead { color: rgb(244 241 234 / 0.78); }
+:not(body)[data-theme='sage'] .btn--primary { background: #f4f1ea; color: var(--fir); }
+:not(body)[data-theme='sage'] .btn--primary:hover { background: #fff; }
+:not(body)[data-theme='sage'] .glass { background: rgb(255 255 255 / 0.07); border-color: rgb(255 255 255 / 0.14); }
+:not(body)[data-theme='sage'] .bubble { background: rgb(255 255 255 / 0.12); color: #f4f1ea; }
 
 /* Aplats francs : plus de halos flous */
 .orb { display: none; }
@@ -427,3 +439,7 @@ body[data-theme='sage'] h2 em { color: var(--terracotta); }
 .is-in .w > span, .w.is-in > span { transform: none; }
 .split-done.reveal { opacity: 1; filter: none; transform: none; }
 @media (prefers-reduced-motion: reduce) { .w > span { transform: none; } }
+
+[data-theme='sage'] .form .btn--primary { background: var(--fir); color: #f4f1ea; }
+[data-theme='sage'] .form .need span { color: #1a1a1a; }
+:not(body)[data-theme='sage'] .form.glass { background: rgb(244 241 234 / 0.95); border-color: rgb(255 255 255 / 0.6); color: #1a1a1a; }

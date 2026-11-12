@@ -92,8 +92,8 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
   }
   .card__back {
     transform: rotateY(180deg);
-    background: rgb(197 208 190 / 0.88);
-    color: var(--ink);
+    background: var(--ochre);
+    color: #1a1a1a;
     border-color: rgb(255 255 255 / 0.2);
   }
   .card__shape {
@@ -131,14 +131,14 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     text-decoration: none;
   }
   .card__short {
-    color: rgb(43 52 47 / 0.75);
+    color: color-mix(in srgb, var(--ink) 75%, transparent);
   }
   .card__foot {
     margin-top: auto;
     display: grid;
     gap: 1rem;
     padding-top: 1.1rem;
-    border-top: 1px solid rgb(43 52 47 / 0.1);
+    border-top: 1px solid var(--hair);
   }
   .card__back .card__foot {
     border-color: rgb(255 255 255 / 0.25);
