@@ -1,83 +1,94 @@
 ---
 import Base from '../layouts/Base.astro';
-import Tickers from '../components/Tickers.astro';
 import { brand, partners, journey, steps } from '../config/site';
 
 const traits = [
-  { word: 'Créative', text: 'Des idées qui sortent du lot, toujours au service de votre objectif.', tone: 'ochre' },
-  { word: 'Organisée', text: 'Des plannings tenus, des process clairs, des livrables à l’heure.', tone: 'soft' },
-  { word: 'Curieuse', text: 'Toujours en train de tester un format, un outil, une plateforme.', tone: 'rust' },
-  { word: 'Entreprenante', text: 'Je comprends les enjeux business, pas seulement les likes.', tone: 'ivory' },
+  { word: 'Créative', text: 'Des idées qui sortent du lot, toujours au service de votre objectif.' },
+  { word: 'Organisée', text: 'Des plannings tenus, des process clairs, des livrables à l’heure.' },
+  { word: 'Curieuse', text: 'Toujours en train de tester un format, un outil, une plateforme.' },
+  { word: 'Entreprenante', text: 'Je comprends les enjeux business, pas seulement les likes.' },
 ];
 const how = [
   { t: 'Je sélectionne', d: 'Des partenaires que je connais, dont je maîtrise le travail et les délais.' },
   { t: 'Je dirige', d: 'Je garde la stratégie et la direction artistique de bout en bout.' },
   { t: 'Je coordonne', d: 'Un seul interlocuteur, un seul planning, une seule facture.' },
 ];
-const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const shots = [
+  { img: 'julie-filming', alt: 'Julie en tournage en extérieur, micro à la main', cap: 'En tournage' },
+  { img: 'julie-studio', alt: 'Julie en séance photo en studio', cap: 'Shooting studio' },
+  { img: 'julie-filming-2', alt: 'Julie face caméra pour un contenu vidéo', cap: 'Face caméra' },
+  { img: 'julie-mirror', alt: 'Julie en selfie miroir', cap: 'Off duty' },
+];
 ---
 
 <Base title="Le studio — SAGE Creative Studio" description="SAGE Creative Studio, c'est Julie : un studio créatif indépendant en Belgique, entouré de partenaires de confiance.">
-  <section class="st-hero on-dark">
-    <div class="container st-hero__grid">
+  <section class="st-hero">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--sage" style="width:700px;height:700px;left:-220px;top:-180px;--d:26s"></span>
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:-120px;top:60px;--d:30s"></span>
+      <span class="orb orb--blush" style="width:500px;height:500px;left:40%;bottom:-260px;--d:34s"></span>
+    </div>
+    <div class="container st-hero__grid rel">
       <div class="st-hero__text">
-        <p class="label">Le studio</p>
-        <h1>Hello,<br />moi c'est <span class="u-ochre">{brand.founder}</span>.</h1>
-        <p class="st-lead">
-          Fondatrice de {brand.name}. Belge, 25 ans, formée au marketing international et passionnée par tout ce
-          qui fait qu'une marque se remarque : la stratégie, l'image, le contenu, et les nouveaux outils qui changent
-          notre façon de travailler.
+        <p class="eyebrow reveal">Le studio</p>
+        <h1 class="reveal" style="--rd:.08s">Hello,<br />moi c'est <em>{brand.founder}.</em></h1>
+        <p class="lead reveal" style="--rd:.16s">
+          Fondatrice de {brand.name}. Belge, 25 ans, formée au marketing international et passionnée par tout ce qui
+          fait qu'une marque se remarque&nbsp;: la stratégie, l'image, le contenu, et les nouveaux outils qui
+          changent notre façon de travailler.
         </p>
-        <p class="hand st-hand">↓ un peu plus sur moi</p>
       </div>
-      <div class="st-hero__visual">
-        <figure class="polaroid float" style="--r:4deg;--d:8s;--fy:-8px">
-          <span class="tape" style="top:-14px;left:50%;translate:-50% 0;rotate:4deg"></span>
-          <img class="polaroid__img" src="/media/julie-portrait.jpg" alt="Portrait de Julie, fondatrice de SAGE Creative Studio" />
-          <figcaption class="hand">Julie, fondatrice</figcaption>
-        </figure>
-        <div class="st-wink float" style="--r:-8deg;--d:7s;--delay:-2s"><img src="/media/julie-wink.jpg" alt="" /><span class="hand">version off ✌</span></div>
-        <span class="chip chip--ochre st-s1 float" style="--r:-8deg;--d:6s">Think. Create.</span>
-        <span class="chip chip--rust st-s2 float" style="--r:6deg;--d:7s;--delay:-2s">Grow. Evolve.</span>
+      <div class="st-hero__visual reveal" style="--rd:.1s">
+        <div class="st-portrait arch"><img src="/media/julie-portrait.jpg" alt="Portrait de Julie, fondatrice de SAGE Creative Studio" /></div>
+        <div class="st-wink float" style="--d:7s"><img src="/media/julie-wink.jpg" alt="" /></div>
+        <div class="st-quote glass float" style="--d:8s;--delay:-2s"><em>Think. Create.</em><br />Grow. Evolve.</div>
       </div>
     </div>
   </section>
 
-  <Tickers words={['Créative', 'Organisée', 'Curieuse', 'Entreprenante']} />
-
   <section class="section">
     <div class="container st-why">
-      <p class="label reveal">Pourquoi SAGE</p>
-      <p class="st-big reveal">
-        J'ai vu des marques avec de super produits rester invisibles, et des comptes très actifs qui ne
-        vendaient rien. <span class="u-rust">SAGE existe pour relier les deux</span> : une vraie réflexion,
-        une image forte, et une présence qui sert vos objectifs.
+      <p class="eyebrow reveal">Pourquoi SAGE</p>
+      <p class="st-big reveal" style="--rd:.08s">
+        J'ai vu des marques avec de super produits rester invisibles, et des comptes très actifs qui ne vendaient
+        rien. <em>SAGE existe pour relier les deux</em>&nbsp;: une vraie réflexion, une image forte, et une présence
+        qui sert vos objectifs.
       </p>
     </div>
   </section>
 
   <section class="st-bts" aria-label="Dans les coulisses">
     <div class="container">
-      <p class="label reveal">Dans les coulisses</p>
+      <p class="eyebrow reveal">Dans les coulisses</p>
       <div class="st-bts__row">
-        <figure class="st-shot reveal" style="--r:-3deg"><img src="/media/julie-filming.jpg" alt="Julie en tournage en extérieur, micro à la main" /><figcaption class="hand">en tournage</figcaption></figure>
-        <figure class="st-shot st-shot--mid reveal" style="--r:2deg;--rd:.1s"><img src="/media/julie-studio.jpg" alt="Julie en séance photo en studio" /><figcaption class="hand">shooting studio</figcaption></figure>
-        <figure class="st-shot reveal" style="--r:-1.5deg;--rd:.2s"><img src="/media/julie-filming-2.jpg" alt="Julie face caméra pour un contenu vidéo" /><figcaption class="hand">face cam'</figcaption></figure>
-        <figure class="st-shot st-shot--small reveal" style="--r:4deg;--rd:.3s"><img src="/media/julie-mirror.jpg" alt="Julie en selfie miroir" /><figcaption class="hand">off duty</figcaption></figure>
+        {
+          shots.map((s, i) => (
+            <figure class="st-shot reveal" style={`--rd:${i * 0.08}s`}>
+              <div class="st-shot__img">
+                <img src={`/media/${s.img}.jpg`} alt={s.alt} />
+              </div>
+              <figcaption class="glass">{s.cap}</figcaption>
+            </figure>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section st-traits-wrap">
-    <div class="container">
-      <div class="st-head reveal">
-        <p class="label">Ma façon de travailler</p>
-        <h2>Quatre mots qui me résument.</h2>
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;top:0;--d:26s"></span>
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;bottom:-160px;opacity:.5;--d:30s"></span>
+    </div>
+    <div class="container rel">
+      <div class="st-head">
+        <p class="eyebrow reveal">Ma façon de travailler</p>
+        <h2 class="reveal" style="--rd:.08s">Quatre mots <em>qui me résument.</em></h2>
       </div>
       <ul class="st-traits">
         {
           traits.map((t, i) => (
-            <li class={`st-trait st-trait--${t.tone} reveal`} style={`--rd:${i * 0.08}s;--r:${[-2, 1.5, -1.5, 2][i]}deg`}>
+            <li class="st-trait glass reveal" style={`--rd:${i * 0.08}s`}>
               <span class="st-trait__w">{t.word}</span>
               <p>{t.text}</p>
             </li>
@@ -88,17 +99,17 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   </section>
 
   <section class="section">
-    <div class="container st-journey">
-      <div class="st-head reveal">
-        <p class="label">Mon parcours</p>
-        <h2>D'où je viens.</h2>
+    <div class="container">
+      <div class="st-head">
+        <p class="eyebrow reveal">Mon parcours</p>
+        <h2 class="reveal" style="--rd:.08s">D'où <em>je viens.</em></h2>
       </div>
       <ol class="st-line">
         {
           journey.map((j, i) => (
             <li class="st-stop reveal" style={`--rd:${i * 0.1}s`}>
               <span class="st-stop__when">{j.when}</span>
-              <div class="st-stop__card">
+              <div>
                 <strong>{j.what}</strong>
                 <span>{j.where}</span>
               </div>
@@ -110,23 +121,26 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   </section>
 
   <section class="st-crew on-dark">
-    <div class="container st-crew__grid">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--champagne" style="width:560px;height:560px;right:-140px;top:-160px;opacity:.35;--d:26s"></span>
+    </div>
+    <div class="container st-crew__grid rel">
       <div>
-        <p class="label reveal">Le réseau</p>
-        <h2 class="reveal">Seule aux commandes.<br /><span class="u-ochre">Jamais seule</span> au travail.</h2>
-        <p class="reveal" style="--rd:.1s">
-          {brand.name} est un studio indépendant : c'est moi que vous rencontrez, moi qui pense votre projet et moi
-          qui le suis. Quand il faut une caméra, un studio photo ou un coup de crayon expert, je fais appel à des
+        <p class="eyebrow reveal">Le réseau</p>
+        <h2 class="reveal" style="--rd:.08s">Seule aux commandes,<br /><em>jamais seule au travail.</em></h2>
+        <p class="lead reveal" style="--rd:.16s">
+          {brand.name} est un studio indépendant&nbsp;: c'est moi que vous rencontrez, moi qui pense votre projet et
+          moi qui le suis. Quand il faut une caméra, un studio photo ou un coup de crayon expert, je fais appel à des
           partenaires de confiance.
         </p>
-        <ul class="st-partners reveal" style="--rd:.15s">
-          {partners.map((p, i) => <li class={`chip chip--${p.sticker}`} style={`--r:${[-4, 3, -2, 4][i]}deg`}>{p.label}</li>)}
+        <ul class="st-partners reveal" style="--rd:.2s">
+          {partners.map((p) => <li>{p.label}</li>)}
         </ul>
       </div>
       <ol class="st-how">
         {
           how.map((h, i) => (
-            <li class="st-how__item reveal" style={`--rd:${i * 0.1}s;--r:${[-1.5, 1.5, -1][i]}deg`}>
+            <li class="st-how__item glass reveal" style={`--rd:${i * 0.1}s`}>
               <span class="st-how__n">0{i + 1}</span>
               <div>
                 <h3>{h.t}</h3>
@@ -141,15 +155,15 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
 
   <section class="section">
     <div class="container">
-      <div class="st-head reveal">
-        <p class="label">Travailler ensemble</p>
-        <h2>Comment ça se passe.</h2>
+      <div class="st-head">
+        <p class="eyebrow reveal">Travailler ensemble</p>
+        <h2 class="reveal" style="--rd:.08s">Comment <em>ça se passe.</em></h2>
       </div>
       <ol class="st-steps">
         {
           steps.map((s, i) => (
-            <li class="st-step reveal" style={`--rd:${i * 0.08}s;--r:${[-1.5, 1, -1, 1.5][i]}deg`}>
-              <span class="st-step__n">{s.num}</span>
+            <li class="reveal" style={`--rd:${i * 0.08}s`}>
+              <span class="st-steps__n">{s.num}</span>
               <h3>{s.title}</h3>
               <p>{s.text}</p>
             </li>
@@ -160,110 +174,99 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   </section>
 
   <section class="st-cta">
-    <div class="container st-cta__inner reveal">
-      <p class="hand">alors, on se lance ?</p>
-      <h2>Parlons de votre projet.</h2>
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--sage" style="width:600px;height:600px;left:10%;top:-200px;--d:24s"></span>
+      <span class="orb orb--blush" style="width:520px;height:520px;right:5%;bottom:-220px;--d:28s"></span>
+    </div>
+    <div class="container st-cta__inner rel reveal">
+      <h2>Parlons de <em>votre projet.</em></h2>
       <div class="st-cta__btns">
-        <a href="/#contact" class="btn btn--primary">Remplir mon ticket projet <span class="arrow"><Fragment set:html={arrow} /></span></a>
-        <a href="/#services" class="btn btn--ghost">Voir les services</a>
+        <a href="/#contact" class="btn btn--primary">Écrire au studio <span aria-hidden="true">→</span></a>
+        <a href="/#services" class="btn btn--glass">Voir les services</a>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  .u-ochre { color: var(--sage-ochre); }
-  .u-rust { color: var(--sage-rust); }
-  .st-head { display: grid; gap: 1rem; margin-bottom: clamp(32px, 5vw, 64px); }
-  .st-head h2 { font-size: var(--h2); color: var(--sage-forest); }
+  .rel { position: relative; z-index: 1; }
+  .st-head { display: grid; gap: 1.2rem; margin-bottom: clamp(36px, 5vw, 72px); }
+  .st-head h2, .st-crew h2 { font-size: var(--h2); }
 
-  .st-hero { background: var(--sage-forest); color: var(--sage-ivory); padding: 140px 0 clamp(80px, 10vw, 130px); border-radius: 0 0 var(--radius-l) var(--radius-l); overflow: hidden; }
-  .st-hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
-  .st-hero__text { display: grid; gap: 1.4rem; }
-  .st-hero h1 { font-size: clamp(3.4rem, 9vw, 8rem); }
-  .st-lead { max-width: 36rem; font-size: clamp(1.05rem, 1.4vw, 1.25rem); opacity: 0.92; }
-  .st-hand { color: var(--sage-ochre); rotate: -3deg; }
-  .st-hero__visual { position: relative; display: grid; place-items: center; padding: 2rem 0; }
-  .st-s1 { position: absolute; left: -4%; top: 12%; }
-  .st-s2 { position: absolute; right: -2%; bottom: 14%; }
-
-  .polaroid { position: relative; margin: 0; width: min(100%, 360px); padding: 14px 14px 0; background: #fffdf8; box-shadow: var(--shadow); border-radius: 6px; }
-  .polaroid__photo { display: grid; place-items: center; aspect-ratio: 4 / 5; border-radius: 3px; background: repeating-linear-gradient(-45deg, var(--sage-forest-2) 0 14px, #34574a 14px 28px); color: var(--sage-ivory); }
-  .polaroid__photo .hand { font-size: 2rem; rotate: -6deg; }
-  .polaroid__img { width: 100%; aspect-ratio: 4 / 5; border-radius: 3px; }
-  .st-wink { position: absolute; left: -6%; bottom: 2%; width: 170px; padding: 8px 8px 0; background: #fffdf8; border-radius: 6px; box-shadow: var(--shadow); z-index: 2; }
-  .st-wink img { width: 100%; aspect-ratio: 1; border-radius: 3px; object-position: 30% 30%; }
-  .st-wink .hand { display: block; text-align: center; padding: 0.3rem 0 0.5rem; color: var(--sage-forest); font-size: 1.2rem; }
-  .st-bts { padding-block: clamp(40px, 6vw, 80px) clamp(64px, 8vw, 110px); overflow: hidden; }
-  .st-bts__row { display: grid; grid-template-columns: 1fr 1.2fr 1fr 0.8fr; gap: 1.4rem; align-items: center; margin-top: 1.6rem; }
-  .st-shot { margin: 0; padding: 10px 10px 0; background: #fffdf8; border-radius: 6px; box-shadow: var(--shadow); rotate: var(--r); transition: rotate .45s var(--spring), scale .45s var(--spring); }
-  .st-shot:hover { rotate: 0deg; scale: 1.04; z-index: 2; }
-  .st-shot img { width: 100%; aspect-ratio: 3 / 4; border-radius: 3px; }
-  .st-shot--mid img { aspect-ratio: 4 / 5; }
-  .st-shot--small img { aspect-ratio: 4 / 5; }
-  .st-shot figcaption { text-align: center; padding: 0.5rem 0 0.7rem; font-size: 1.3rem; color: var(--sage-forest); }
-  .polaroid figcaption { padding: 0.8rem 0 1rem; text-align: center; font-size: 1.7rem; color: var(--sage-forest); }
+  .st-hero { position: relative; overflow: hidden; background: var(--grad-soft); padding: 150px 0 clamp(80px, 10vw, 130px); }
+  .st-hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .st-hero__text { display: grid; gap: 1.6rem; }
+  .st-hero h1 { font-size: clamp(3.4rem, 8vw, 7rem); font-weight: 300; }
+  .st-hero__visual { position: relative; padding: 0 0 2rem 2rem; }
+  .st-portrait { aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
+  .st-portrait img { width: 100%; height: 100%; }
+  .st-wink { position: absolute; left: -4%; bottom: 0; width: 36%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid rgb(255 255 255 / 0.7); box-shadow: var(--shadow); }
+  .st-wink img { width: 100%; height: 100%; object-position: 30% 30%; }
+  .st-quote { position: absolute; right: -4%; top: 18%; padding: 1rem 1.4rem; border-radius: var(--r-s); font: 300 1.3rem/1.2 var(--font-serif); }
+  .st-quote em { color: var(--eucalyptus); }
 
   .st-why { display: grid; gap: 1.4rem; }
-  .st-big { font: 700 clamp(1.6rem, 3.4vw, 3rem)/1.18 var(--font-display); letter-spacing: -0.02em; color: var(--sage-forest); max-width: 28ch; }
+  .st-big { font: 300 clamp(1.8rem, 3.6vw, 3.2rem)/1.18 var(--font-serif); letter-spacing: -0.015em; max-width: 30ch; }
+  .st-big em { color: var(--eucalyptus); }
 
-  .st-traits-wrap { background: var(--sage-ivory); border-radius: var(--radius-l); margin-inline: clamp(0px, 1.5vw, 20px); }
-  .st-traits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-  .st-trait { display: grid; gap: 0.8rem; align-content: space-between; min-height: 240px; padding: 1.5rem; border-radius: var(--radius); rotate: var(--r); transition: rotate .45s var(--spring), translate .45s var(--spring); }
-  .st-trait:hover { rotate: 0deg; translate: 0 -8px; }
-  .st-trait--ochre { background: var(--sage-ochre); }
-  .st-trait--soft { background: var(--sage-soft); color: var(--sage-forest); }
-  .st-trait--rust { background: var(--sage-rust); color: var(--sage-ivory); }
-  .st-trait--ivory { background: var(--sage-paper); color: var(--sage-forest); }
-  .st-trait__w { font: 800 clamp(1.8rem, 2.6vw, 2.4rem)/1 var(--font-display); letter-spacing: -0.03em; }
+  .st-bts { padding-bottom: clamp(72px, 9vw, 120px); }
+  .st-bts__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 1.8rem; }
+  .st-shot { position: relative; margin: 0; }
+  .st-shot:nth-child(even) { margin-top: 48px; }
+  .st-shot__img { aspect-ratio: 3 / 4; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
+  .st-shot__img img { width: 100%; height: 100%; transition: transform 1.4s var(--ease-out); }
+  .st-shot:hover img { transform: scale(1.05); }
+  .st-shot figcaption { position: absolute; left: 12px; bottom: 12px; padding: 0.45rem 0.9rem; border-radius: var(--pill); font-size: 0.82rem; }
 
-  .st-line { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; position: relative; }
-  .st-line::before { content: ''; position: absolute; left: 150px; top: 10px; bottom: 10px; border-left: 2px dashed rgb(31 58 46 / .3); }
-  .st-stop { display: grid; grid-template-columns: 150px 1fr; gap: 2rem; align-items: center; }
-  .st-stop__when { font-family: var(--font-hand); font-size: 1.7rem; color: var(--sage-rust); }
-  .st-stop__card { display: grid; gap: 0.25rem; padding: 1.1rem 1.4rem; border-radius: 18px; background: var(--sage-ivory); transition: translate .4s var(--spring); }
-  .st-stop__card:hover { translate: 8px 0; }
-  .st-stop__card strong { font-size: 1.1rem; color: var(--sage-forest); }
-  .st-stop__card span { font-size: 0.9rem; opacity: 0.8; }
+  .st-traits-wrap { overflow: hidden; background: var(--grad-soft); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .st-traits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
+  .st-trait { display: grid; gap: 1rem; align-content: space-between; min-height: 230px; padding: 1.8rem; border-radius: var(--r); transition: transform 0.7s var(--ease-out); }
+  .st-trait:hover { transform: translateY(-6px); }
+  .st-trait__w { font: italic 300 2.2rem/1 var(--font-serif); color: var(--moss); }
+  .st-trait p { color: rgb(43 52 47 / 0.75); }
 
-  .st-crew { background: var(--sage-forest); color: var(--sage-ivory); padding-block: var(--section-y); border-radius: var(--radius-l); margin-inline: clamp(0px, 1.5vw, 20px); }
-  .st-crew__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
-  .st-crew__grid > div { display: grid; gap: 1.4rem; }
-  .st-crew h2 { font-size: var(--h2); }
-  .st-crew p { opacity: 0.9; max-width: 34rem; }
-  .st-partners { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .st-partners .chip { rotate: var(--r); font-size: 1rem; padding: 0.7em 1.3em; transition: rotate .4s var(--spring); }
-  .st-partners .chip:hover { rotate: 0deg; }
+  .st-line { list-style: none; margin: 0; padding: 0; display: grid; }
+  .st-stop { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: baseline; padding-block: 1.5rem; border-top: 1px solid var(--hair); }
+  .st-stop:last-child { border-bottom: 1px solid var(--hair); }
+  .st-stop__when { font: italic 300 1.4rem var(--font-serif); color: var(--eucalyptus); }
+  .st-stop div { display: grid; gap: 0.2rem; }
+  .st-stop strong { font: 400 1.35rem var(--font-serif); }
+  .st-stop span:not(.st-stop__when) { color: rgb(43 52 47 / 0.65); font-size: 0.92rem; }
+
+  .st-crew { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .st-crew__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
+  .st-crew__grid > div { display: grid; gap: 1.5rem; }
+  .st-partners { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .st-partners li { padding: 0.55rem 1.1rem; border-radius: var(--pill); border: 1px solid rgb(255 255 255 / 0.3); background: rgb(255 255 255 / 0.06); font-size: 0.9rem; }
   .st-how { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
-  .st-how__item { display: flex; gap: 1.2rem; align-items: center; padding: 1.3rem 1.5rem; border-radius: 22px; background: var(--sage-paper); color: var(--sage-forest); rotate: var(--r); }
-  .st-how__n { font: 800 2.4rem/1 var(--font-display); color: var(--sage-rust); }
-  .st-how__item h3 { font-size: 1.5rem; }
-  .st-how__item p { font-size: 0.95rem; color: var(--sage-ink); opacity: 1; }
+  .st-how__item { display: flex; gap: 1.3rem; align-items: baseline; padding: 1.5rem 1.7rem; border-radius: var(--r); }
+  .st-how__n { font: italic 300 1.6rem var(--font-serif); color: var(--champagne); }
+  .st-how__item h3 { font-size: 1.5rem; font-weight: 340; margin-bottom: 0.3rem; }
+  .st-how__item p { font-size: 0.95rem; opacity: 0.8; }
 
-  .st-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-  .st-step { display: grid; gap: 0.6rem; align-content: start; padding: 1.4rem; border-radius: var(--radius); background: var(--sage-ivory); rotate: var(--r); transition: rotate .4s var(--spring); }
-  .st-step:hover { rotate: 0deg; }
-  .st-step__n { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--sage-forest); color: var(--sage-ivory); font: 800 1rem var(--font-display); }
-  .st-step h3 { font-size: 1.5rem; color: var(--sage-forest); }
-  .st-step p { font-size: 0.95rem; }
+  .st-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .st-steps li { display: grid; gap: 0.6rem; align-content: start; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
+  .st-steps__n { font: italic 300 1.4rem var(--font-serif); color: var(--eucalyptus); }
+  .st-steps h3 { font-size: 1.6rem; font-weight: 340; }
+  .st-steps p { font-size: 0.95rem; color: rgb(43 52 47 / 0.75); }
 
-  .st-cta { background: var(--sage-ochre); padding-block: clamp(80px, 10vw, 140px); border-radius: var(--radius-l) var(--radius-l) 0 0; margin-top: var(--section-y); }
-  .st-cta__inner { display: grid; justify-items: center; text-align: center; gap: 1.2rem; }
-  .st-cta .hand { font-size: 2.2rem; color: var(--sage-forest); rotate: -3deg; }
-  .st-cta h2 { font-size: clamp(2.6rem, 7vw, 6rem); color: var(--sage-forest); }
-  .st-cta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+  .st-cta { position: relative; overflow: hidden; background: var(--grad-soft); padding-block: clamp(100px, 12vw, 170px); }
+  .st-cta__inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }
+  .st-cta h2 { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 300; }
+  .st-cta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
 
   @media (max-width: 1000px) {
     .st-traits, .st-steps, .st-bts__row { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 800px) {
     .st-hero__grid, .st-crew__grid { grid-template-columns: 1fr; }
-    .st-line::before { left: 8px; }
-    .st-stop { grid-template-columns: 1fr; gap: 0.4rem; padding-left: 28px; }
+    .st-hero__visual { max-width: 440px; }
+    .st-stop { grid-template-columns: 1fr; gap: 0.3rem; }
   }
   @media (max-width: 560px) {
     .st-traits, .st-steps { grid-template-columns: 1fr; }
     .st-trait { min-height: 0; }
-    .st-cta__btns .btn { width: 100%; justify-content: center; }
+    .st-quote { right: 0; }
+    .st-cta__btns .btn { width: 100%; }
   }
 </style>

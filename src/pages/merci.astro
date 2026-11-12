@@ -3,19 +3,22 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Merci — SAGE Creative Studio">
-  <section class="thanks on-dark">
-    <div class="container thanks__inner">
-      <p class="hand">ticket bien reçu ✦</p>
-      <h1>Merci !</h1>
-      <p>Je lis votre message et je reviens vers vous sous 48 h ouvrées.</p>
+  <section class="thanks">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--sage" style="width:700px;height:700px;left:-200px;top:-200px;--d:24s"></span>
+      <span class="orb orb--champagne" style="width:560px;height:560px;right:-140px;bottom:-200px;--d:28s"></span>
+    </div>
+    <div class="container thanks__inner glass">
+      <p class="eyebrow">Message bien reçu</p>
+      <h1>Merci, <em>à très vite.</em></h1>
+      <p class="lead">Je lis votre message et je reviens vers vous sous 48 h ouvrées.</p>
       <a href="/" class="btn btn--primary">Retour à l'accueil</a>
     </div>
   </section>
 </Base>
 
 <style>
-  .thanks { min-height: 100svh; display: grid; place-items: center; background: var(--sage-forest); color: var(--sage-ivory); text-align: center; }
-  .thanks__inner { display: grid; justify-items: center; gap: 1.4rem; }
-  .thanks h1 { font-size: clamp(4rem, 14vw, 11rem); }
-  .thanks .hand { color: var(--sage-ochre); font-size: 2.2rem; rotate: -4deg; }
+  .thanks { position: relative; overflow: hidden; min-height: 100svh; display: grid; place-items: center; background: var(--grad-soft); padding: 120px var(--gutter) 80px; }
+  .thanks__inner { position: relative; z-index: 1; display: grid; justify-items: center; text-align: center; gap: 1.4rem; max-width: 720px; padding: clamp(2.4rem, 6vw, 4.5rem); border-radius: var(--r-l); }
+  .thanks h1 { font-size: clamp(3rem, 8vw, 5.6rem); font-weight: 300; }
 </style>

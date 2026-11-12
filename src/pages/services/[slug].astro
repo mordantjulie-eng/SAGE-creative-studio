@@ -12,63 +12,69 @@ const idx = services.findIndex((x) => x.slug === s.slug);
 const prev = services[(idx - 1 + services.length) % services.length];
 const next = services[(idx + 1) % services.length];
 const related = pillars.filter((p) => s.pillars.includes(p.letter));
-const others = services.filter((x) => x.slug !== s.slug).slice(0, 3);
-const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
+const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 ---
 
 <Base title={`${s.title} — SAGE Creative Studio`} description={`${s.title} : ${s.promise}`}>
-  <section class={`sv-hero sv-hero--${s.tone}`}>
-    <div class="container sv-hero__grid">
+  <section class="sv-hero">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--sage" style="width:700px;height:700px;left:-220px;top:-200px;--d:26s"></span>
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:-140px;top:80px;--d:30s"></span>
+      <span class="orb orb--blush" style="width:500px;height:500px;left:35%;bottom:-260px;--d:34s"></span>
+    </div>
+    <div class="container sv-hero__grid rel">
       <div class="sv-hero__text">
-        <a href="/#services" class="chip chip--line sv-back">← Tous les services</a>
-        <p class="label">Service {s.num} / 06</p>
-        <h1>{s.title}</h1>
-        <p class="sv-hero__promise">{s.promise}</p>
-        <div class="sv-hero__ctas">
-          <a href={`/?service=${s.slug}#contact`} class="btn btn--primary">Discuter de ce service <span class="arrow"><Fragment set:html={arrow} /></span></a>
+        <a href="/#services" class="sv-back link">← Tous les services</a>
+        <p class="eyebrow reveal">Service N° {s.num}</p>
+        <h1 class="reveal" style="--rd:.08s">{s.title}</h1>
+        <p class="lead reveal" style="--rd:.16s">{s.promise}</p>
+        <div class="reveal" style="--rd:.24s">
+          <a href={`/?service=${s.slug}#contact`} class="btn btn--primary">Discuter de ce service <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <div class="sv-hero__visual">
-        <div class="sv-photo float" style="--r:3deg;--d:8s">
-          <img class="photo" src={`/media/${s.img}.jpg`} alt="" />
+      <div class="sv-hero__visual reveal" style="--rd:.1s">
+        <div class="sv-photo arch"><img class="photo" src={`/media/${s.img}.jpg`} alt="" /></div>
+        <div class="sv-tag glass float" style="--d:8s">
+          <span>N° {s.num}</span>
+          <em>{s.highlights.join(' · ')}</em>
         </div>
-        <span class="sv-num" aria-hidden="true">{s.num}</span>
-        <span class="chip chip--ochre sv-sticker float" style="--r:-8deg;--d:6s">{s.highlights[0]}</span>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container sv-body">
-      <div class="sv-intro reveal">
-        <p class="label">Le service</p>
-        <p class="sv-intro__text">{s.intro}</p>
-        {s.note && <p class="sv-note">{s.note}</p>}
+      <div class="sv-intro">
+        <p class="eyebrow reveal">Le service</p>
+        <p class="sv-intro__text reveal" style="--rd:.08s">{s.intro}</p>
+        {s.note && <p class="sv-note glass reveal">{s.note}</p>}
       </div>
-
       <div class="sv-items">
-        <p class="label reveal">Ce que ça comprend</p>
-        <ul class="sv-list">
+        <p class="eyebrow reveal">Ce que ça comprend</p>
+        <ol class="sv-list">
           {
             s.items.map((it, i) => (
-              <li class="sv-item reveal" style={`--rd:${i * 0.05}s;--r:${[-1.2, 0.8, -0.6, 1.1, -0.9, 0.6, -1, 0.9][i]}deg`}>
-                <span class="sv-item__n">{String(i + 1).padStart(2, '0')}</span>
-                <span class="sv-item__t">{it}</span>
+              <li class="reveal" style={`--rd:${i * 0.05}s`}>
+                <span class="sv-list__n">{String(i + 1).padStart(2, '0')}</span>
+                <span>{it}</span>
               </li>
             ))
           }
-        </ul>
+        </ol>
       </div>
     </div>
   </section>
 
   <section class="sv-pillars on-dark">
-    <div class="container">
-      <p class="label reveal">Le Mindset derrière ce service</p>
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:-140px;top:-180px;opacity:.35;--d:26s"></span>
+    </div>
+    <div class="container rel">
+      <p class="eyebrow reveal">Le mindset derrière ce service</p>
       <div class="sv-pillars__row">
         {
           related.map((p, i) => (
-            <div class="sv-pillar reveal" style={`--rd:${i * 0.1}s`}>
+            <div class="sv-pillar glass reveal" style={`--rd:${i * 0.1}s`}>
               <span class="sv-pillar__l">{p.letter}</span>
               <div>
                 <h2>{p.name}</h2>
@@ -83,109 +89,104 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
 
   <section class="section">
     <div class="container">
-      <div class="sv-head reveal">
-        <p class="label">Comment on travaille ensemble</p>
-        <h2>Simple, cadré, sans surprise.</h2>
+      <div class="sv-head">
+        <p class="eyebrow reveal">Comment on travaille ensemble</p>
+        <h2 class="reveal" style="--rd:.08s">Simple, cadré, <em>sans surprise.</em></h2>
       </div>
       <ol class="sv-steps">
         {
           steps.map((st, i) => (
-            <li class="sv-step reveal" style={`--rd:${i * 0.08}s;--r:${[-1.5, 1, -1, 1.5][i]}deg`}>
-              <span class="sv-step__n">{st.num}</span>
+            <li class="reveal" style={`--rd:${i * 0.08}s`}>
+              <span class="sv-steps__n">{st.num}</span>
               <h3>{st.title}</h3>
               <p>{st.text}</p>
             </li>
           ))
         }
       </ol>
-      <p class="sv-formats reveal">
-        <span class="hand">Formats possibles :</span>
-        <span class="chip">Mission ponctuelle</span><span class="chip">Accompagnement mensuel</span><span class="chip">Sur mesure</span>
-      </p>
+      <p class="sv-formats reveal">Formats possibles&nbsp;: <span>Mission ponctuelle</span><span>Accompagnement mensuel</span><span>Sur mesure</span></p>
     </div>
   </section>
 
   <section class="section sv-more">
-    <div class="container">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;top:0;--d:26s"></span>
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;bottom:-160px;opacity:.5;--d:30s"></span>
+    </div>
+    <div class="container rel">
       <div class="sv-nav">
-        <a href={`/services/${prev.slug}`} class="sv-nav__link">← {prev.num} {prev.title}</a>
-        <a href={`/services/${next.slug}`} class="sv-nav__link">{next.num} {next.title} →</a>
+        <a href={`/services/${prev.slug}`}>← {prev.title}</a>
+        <a href={`/services/${next.slug}`}>{next.title} →</a>
       </div>
-      <p class="label reveal" style="margin-bottom:2rem">Ça peut aussi vous intéresser</p>
+      <p class="eyebrow reveal" style="margin-bottom:2rem">Les autres expertises</p>
       <div class="sv-others">
-        {others.map((o, i) => <Ticket service={o} rot={[-1.5, 1.2, -1][i]} delay={i * 0.08} />)}
+        {others.map((o, i) => <Ticket service={o} delay={i * 0.1} />)}
       </div>
     </div>
   </section>
 
   <section class="sv-cta on-dark">
-    <div class="container sv-cta__inner reveal">
-      <h2>Un projet en {s.title.toLowerCase()} ?</h2>
-      <a href={`/?service=${s.slug}#contact`} class="btn btn--primary">Remplir mon ticket projet <span class="arrow"><Fragment set:html={arrow} /></span></a>
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--champagne" style="width:520px;height:520px;right:10%;top:-220px;opacity:.35;--d:26s"></span>
+    </div>
+    <div class="container sv-cta__inner rel reveal">
+      <h2>Un projet en <em>{s.title.toLowerCase()}</em>&nbsp;?</h2>
+      <a href={`/?service=${s.slug}#contact`} class="btn btn--primary">Parlons-en <span aria-hidden="true">→</span></a>
     </div>
   </section>
 </Base>
 
 <style>
-  .sv-hero { --bg: var(--sage-forest); --fg: var(--sage-ivory); background: var(--bg); color: var(--fg); padding: 140px 0 clamp(60px, 8vw, 110px); border-radius: 0 0 var(--radius-l) var(--radius-l); overflow: hidden; }
-  .sv-hero--ivory { --bg: var(--sage-ivory); --fg: var(--sage-forest); }
-  .sv-hero--ochre { --bg: var(--sage-ochre); --fg: var(--sage-ink); }
-  .sv-hero--soft { --bg: var(--sage-soft); --fg: var(--sage-forest); }
-  .sv-hero--rust { --bg: var(--sage-rust); --fg: var(--sage-ivory); }
-  .sv-hero--taupe { --bg: var(--sage-taupe); --fg: var(--sage-ink); }
-  .sv-hero__grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 3rem; align-items: center; }
-  .sv-hero__text { display: grid; gap: 1.3rem; justify-items: start; }
-  .sv-back { font-size: 0.85rem; color: inherit; }
-  .sv-hero h1 { font-size: clamp(3rem, 7vw, 6.4rem); }
-  .sv-hero__promise { font-size: clamp(1.1rem, 1.6vw, 1.4rem); max-width: 34rem; font-weight: 500; }
-  .sv-hero .btn--primary { background: var(--fg); color: var(--bg); border-color: var(--fg); }
-  .sv-hero .btn--primary .arrow svg { color: var(--fg); }
-  .sv-hero .btn--primary .arrow { background: var(--bg); }
-  .sv-hero__visual { position: relative; min-height: 380px; }
-  .sv-photo { position: absolute; right: 0; top: 0; width: 82%; aspect-ratio: 4 / 5; border-radius: 160px 160px var(--radius) var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .rel { position: relative; z-index: 1; }
+  .sv-hero { position: relative; overflow: hidden; background: var(--grad-soft); padding: 150px 0 clamp(70px, 9vw, 120px); }
+  .sv-hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .sv-hero__text { display: grid; gap: 1.5rem; justify-items: start; }
+  .sv-back { font-size: 0.88rem; color: rgb(43 52 47 / 0.7); }
+  .sv-hero h1 { font-size: clamp(3rem, 6.6vw, 6rem); font-weight: 300; }
+  .sv-hero__visual { position: relative; padding-left: 2rem; }
+  .sv-photo { aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
   .sv-photo img { width: 100%; height: 100%; }
-  .sv-num { position: absolute; left: -10px; bottom: -30px; font: 800 clamp(7rem, 14vw, 12rem)/1 var(--font-display); letter-spacing: -0.05em; color: var(--fg); opacity: 0.9; }
-  .sv-sticker { position: absolute; right: -6px; bottom: 16%; }
+  .sv-tag { position: absolute; left: 0; bottom: 10%; display: grid; gap: 0.2rem; padding: 1rem 1.3rem; border-radius: var(--r-s); }
+  .sv-tag span { font: italic 300 1.3rem var(--font-serif); color: var(--eucalyptus); }
+  .sv-tag em { font-style: normal; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-  .sv-body { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: start; }
-  .sv-intro { display: grid; gap: 1.2rem; position: sticky; top: 110px; }
-  .sv-intro__text { font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.5; color: var(--sage-forest); font-weight: 500; }
-  .sv-note { padding: 1rem 1.2rem; border-radius: 16px; border: 2px dashed var(--sage-rust); font-size: 0.92rem; font-weight: 600; }
+  .sv-body { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
+  .sv-intro { display: grid; gap: 1.4rem; position: sticky; top: 120px; }
+  .sv-intro__text { font: 300 clamp(1.4rem, 2.2vw, 1.9rem)/1.35 var(--font-serif); }
+  .sv-note { padding: 1.1rem 1.3rem; border-radius: var(--r-s); font-size: 0.92rem; }
   .sv-items { display: grid; gap: 1.2rem; }
-  .sv-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; }
-  .sv-item { display: flex; gap: 1.1rem; align-items: center; padding: 1.1rem 1.3rem; border-radius: 18px; background: var(--sage-ivory); rotate: var(--r); transition: rotate .4s var(--spring), background .3s var(--ease), color .3s var(--ease), translate .4s var(--spring); }
-  .sv-item:hover { rotate: 0deg; translate: 8px 0; background: var(--sage-forest); color: var(--sage-ivory); }
-  .sv-item__n { flex: none; font-family: var(--font-hand); font-size: 1.6rem; color: var(--sage-rust); }
-  .sv-item:hover .sv-item__n { color: var(--sage-ochre); }
-  .sv-item__t { font-weight: 700; font-size: 1.05rem; }
+  .sv-list { list-style: none; margin: 0; padding: 0; }
+  .sv-list li { display: flex; gap: 1.4rem; align-items: baseline; padding-block: 1.15rem; border-top: 1px solid var(--hair); font-size: 1.08rem; transition: padding 0.5s var(--ease-out), color 0.4s var(--ease); }
+  .sv-list li:last-child { border-bottom: 1px solid var(--hair); }
+  .sv-list li:hover { padding-left: 0.6rem; color: var(--moss); }
+  .sv-list__n { font: italic 300 1.15rem var(--font-serif); color: var(--eucalyptus); min-width: 2ch; }
 
-  .sv-pillars { background: var(--sage-forest); color: var(--sage-ivory); padding-block: clamp(56px, 7vw, 96px); border-radius: var(--radius-l); margin-inline: clamp(0px, 1.5vw, 20px); }
-  .sv-pillars__row { display: flex; flex-wrap: wrap; gap: 1.5rem 4rem; margin-top: 1.6rem; }
-  .sv-pillar { display: flex; gap: 1.2rem; align-items: center; }
-  .sv-pillar__l { font: 400 6rem/0.85 var(--font-serif); color: var(--sage-ochre); }
-  .sv-pillar h2 { font-size: 2rem; }
-  .sv-pillar p { opacity: 0.85; max-width: 22rem; }
+  .sv-pillars { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: clamp(64px, 8vw, 110px); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .sv-pillars__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 1.8rem; }
+  .sv-pillar { display: flex; gap: 1.6rem; align-items: center; padding: 1.6rem 1.8rem; border-radius: var(--r); }
+  .sv-pillar__l { font: italic 300 5rem/0.85 var(--font-serif); color: var(--champagne); }
+  .sv-pillar h2 { font-size: 1.9rem; font-weight: 340; }
+  .sv-pillar p { opacity: 0.8; }
 
-  .sv-head { display: grid; gap: 1rem; margin-bottom: 2.5rem; }
-  .sv-head h2 { font-size: var(--h2); color: var(--sage-forest); }
-  .sv-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-  .sv-step { display: grid; gap: 0.6rem; align-content: start; padding: 1.4rem; border-radius: var(--radius); background: var(--sage-ivory); rotate: var(--r); transition: rotate .4s var(--spring); }
-  .sv-step:hover { rotate: 0deg; }
-  .sv-step__n { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 50%; background: var(--sage-forest); color: var(--sage-ivory); font: 800 1rem var(--font-display); }
-  .sv-step h3 { font-size: 1.5rem; color: var(--sage-forest); }
-  .sv-step p { font-size: 0.95rem; }
-  .sv-formats { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 2rem; }
-  .sv-formats .hand { color: var(--sage-rust); margin-right: 0.5rem; }
+  .sv-head { display: grid; gap: 1.2rem; margin-bottom: clamp(36px, 5vw, 64px); }
+  .sv-head h2 { font-size: var(--h2); }
+  .sv-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .sv-steps li { display: grid; gap: 0.6rem; align-content: start; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
+  .sv-steps__n { font: italic 300 1.4rem var(--font-serif); color: var(--eucalyptus); }
+  .sv-steps h3 { font-size: 1.6rem; font-weight: 340; }
+  .sv-steps p { font-size: 0.95rem; color: rgb(43 52 47 / 0.75); }
+  .sv-formats { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 2.6rem; color: rgb(43 52 47 / 0.7); }
+  .sv-formats span { padding: 0.5rem 1rem; border-radius: var(--pill); border: 1px solid var(--hair); background: rgb(255 255 255 / 0.5); color: var(--ink); font-size: 0.9rem; }
 
-  .sv-more { background: var(--sage-ivory); border-radius: var(--radius-l) var(--radius-l) 0 0; }
-  .sv-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: clamp(48px, 6vw, 80px); padding-bottom: 1.5rem; border-bottom: 2px dashed rgb(31 58 46 / .25); }
-  .sv-nav__link { font: 800 clamp(1.1rem, 2vw, 1.6rem) var(--font-display); text-decoration: none; color: var(--sage-forest); transition: color .2s var(--ease); }
-  .sv-nav__link:hover { color: var(--sage-rust); }
-  .sv-others { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .sv-more { overflow: hidden; background: var(--grad-soft); border-radius: var(--r-l) var(--r-l) 0 0; }
+  .sv-nav { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: clamp(48px, 6vw, 80px); padding-bottom: 1.5rem; border-bottom: 1px solid var(--hair); }
+  .sv-nav a { font: 300 clamp(1.2rem, 2vw, 1.7rem) var(--font-serif); text-decoration: none; transition: color 0.3s var(--ease); }
+  .sv-nav a:hover { color: var(--eucalyptus); }
+  .sv-others { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
 
-  .sv-cta { background: var(--sage-forest); color: var(--sage-ivory); padding-block: clamp(70px, 9vw, 120px); }
-  .sv-cta__inner { display: grid; justify-items: center; text-align: center; gap: 1.6rem; }
-  .sv-cta h2 { font-size: clamp(2.2rem, 5vw, 4.4rem); max-width: 16ch; }
+  .sv-cta { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: clamp(80px, 10vw, 140px); }
+  .sv-cta__inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }
+  .sv-cta h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); font-weight: 300; max-width: 18ch; }
 
   @media (max-width: 1000px) {
     .sv-others { grid-template-columns: 1fr 1fr; }
@@ -195,11 +196,11 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   @media (max-width: 800px) {
     .sv-hero__grid, .sv-body { grid-template-columns: 1fr; }
     .sv-intro { position: static; }
-    .sv-hero__visual { min-height: 320px; max-width: 360px; justify-self: center; width: 100%; }
+    .sv-hero__visual { max-width: 420px; }
   }
   @media (max-width: 600px) {
     .sv-others, .sv-steps { grid-template-columns: 1fr; }
     .sv-others > :global(:nth-child(3)) { display: block; }
-    .sv-hero .btn { width: 100%; justify-content: center; }
+    .sv-hero .btn { width: 100%; }
   }
 </style>

@@ -51,7 +51,8 @@ Palette :
 - **À éviter** : générique, trop féminin, trop végétal, look cosmétique/bougie/déco. Doit se lire immédiatement comme studio créatif & digital.
 - **Référence à jour : Brand Book v1.0 (`docs/brand/SAGE_Brand_Book_v1.0.pdf`, nov. 2026)** — concept « BOLD WITH PURPOSE ».
 - Palette étendue (propositions à valider) : Terracotta `#A65332`, Blanc cassé `#F6F1E8`. Répartition guide : 55 % ivoire/papier, 30 % sapin, 10 % neutres, 5 % accent (un seul accent dominant par section).
-- Typos web (V2.1, demande de Julie : éviter les typos « vues partout » sur les sites générés par IA) : **Funnel Display** (titres, logo provisoire) · **Funnel Sans** (texte/UI) · **Gloock** (lettres S.A.G.E.) · **Gochi Hand** (annotations manuscrites). Abandonnées : Space Grotesk, Archivo, Bricolage, Manrope, Fraunces, Caveat.
+- **Direction V3 « soft premium » (actuelle)** : chic, classe, verre dépoli, dégradés, halos flottants. Palette : encre `#2B342F`, mousse `#46564C` (remplace le vert sapin), eucalyptus `#6F8574`, sauge `#9AAB9A`, brume `#DFE6DC`, crème `#F6F3EE`, sable `#EBE3D8`, champagne `#C6AE86`, poudré `#EAD9CF`. Typos : **Newsreader** (serif titres, italique pour les mots-clés) · **Funnel Sans** (texte/UI). Logo provisoire : SAGE en serif espacé + « creative studio » italique.
+- **À bannir (jugé « trop Claude Code » par Julie)** : étiquettes numérotées « 01 — », bandeaux défilants, stickers penchés, écriture manuscrite, soulignements dessinés, badge rotatif, curseur bulle, emojis/symboles ✦ ✺ ↻, couleurs saturées vert sapin/terracotta, polices bold condensées.
 - Logo : direction approuvée = « SAGE. » capitales bold légèrement obliques + point final, « CREATIVE STUDIO » espacé dessous ; symbole « S. ». **Lettrage final à dessiner en vectoriel** (les visuels IA = explorations, pas des fichiers maîtres).
 - Système de logos : principal, secondaire, monogramme, horizontal, signature, emblème circulaire.
 - Goût pour les logos typographiques à lettres entrelacées/superposées formant un symbole. Référence montrée → s'en inspirer **sans copier**.
@@ -108,4 +109,5 @@ Palette :
 - Contenus à valider par Julie : bio (âge, parcours, noms d'employeurs), texte « Pourquoi SAGE », photo perso (placeholder polaroid), e-mail pro, fourchettes de budget du formulaire.
 - 2026-11-12 : **Photos de Julie** ajoutées (`public/media/julie-*.jpg` : studio, portrait, 2 tournages face cam, selfie miroir, selfie clin d'œil pull damier vert). Utilisées : About (polaroid + bulle), page Studio (hero + « Dans les coulisses »), téléphone du hero, service Content Creation. Selfie dans les toilettes d'un bar (IMG_2642) volontairement non utilisée.
 - Aperçu : script `scripts/make-preview.py` (liens relatifs pour l'artifact). L'artifact est partagé « toute personne ayant le lien ».
+- 2026-11-12 : **V3 « soft premium »** : refonte visuelle complète à la demande de Julie (« trop Claude Code »). Services en cartes de verre recto/verso (ligne pointillée en rappel du ticket), Mindset en onglets de verre sur dégradé vert doux, projets en arches, photos de Julie en arche + bulle ronde, formulaire en verre.
 

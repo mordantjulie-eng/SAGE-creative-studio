@@ -1,28 +1,15 @@
 ---
-// Logo PROVISOIRE : lettrage en Bricolage Grotesque condensée + point ocre vivant.
-// Le lettrage sur mesure (lettres personnalisées) reste à dessiner en vectoriel avec un·e graphiste.
-import { brand } from '../config/site';
-
+// Logo PROVISOIRE (lettrage final à dessiner avec un·e graphiste).
 interface Props {
   withDescriptor?: boolean;
-  orbit?: boolean;
-  size?: 'sm' | 'md' | 'xl';
+  size?: 'sm' | 'xl';
 }
-const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
+const { withDescriptor = false, size = 'sm' } = Astro.props;
 ---
 
-<span class:list={['logo', `logo--${size}`]} role="img" aria-label={`${brand.name} ${brand.descriptor}`}>
-  <span class="logo__word" aria-hidden="true">
-    {
-      orbit && (
-        <svg class="logo__orbit" viewBox="0 0 300 80" aria-hidden="true">
-          <path d="M40 52 C 20 30, 120 8, 230 14 C 300 18, 290 42, 200 52 C 140 58, 80 56, 110 44 C 130 36, 190 30, 250 34" />
-        </svg>
-      )
-    }
-    <span class="logo__s">S</span>AGE<span class="logo__dot"></span>
-  </span>
-  {withDescriptor && <span class="logo__descriptor" aria-hidden="true">{brand.descriptor}</span>}
+<span class:list={['logo', `logo--${size}`]} role="img" aria-label="SAGE Creative Studio">
+  <span class="logo__word" aria-hidden="true">SAGE</span>
+  {withDescriptor && <span class="logo__descriptor" aria-hidden="true">creative studio</span>}
 </span>
 
 <style>
@@ -31,74 +18,29 @@ const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
     flex-direction: column;
     align-items: center;
     line-height: 1;
-    color: currentColor;
   }
   .logo__word {
-    position: relative;
-    display: inline-flex;
-    align-items: baseline;
-    font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.05em;
-  }
-  .logo__s {
-    display: inline-block;
-    transform: rotate(-6deg) translateY(-0.02em);
-  }
-  .logo__dot {
-    display: inline-block;
-    width: 0.2em;
-    height: 0.2em;
-    margin-left: 0.05em;
-    border-radius: 50%;
-    background: var(--sage-ochre);
-    transition: transform 0.45s var(--spring);
-  }
-  a:hover .logo__dot,
-  .logo:hover .logo__dot {
-    transform: translateY(-0.35em) scale(1.15);
-  }
-  .logo__orbit {
-    position: absolute;
-    left: 44%;
-    top: -0.32em;
-    width: 44%;
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-dasharray: 900;
-    stroke-dashoffset: 900;
-    animation: draw 1.4s 0.5s var(--ease) forwards;
-  }
-  @keyframes draw {
-    to {
-      stroke-dashoffset: 0;
-    }
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    padding-left: 0.22em;
   }
   .logo__descriptor {
-    font-family: var(--font-ui);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5em;
-    margin-top: 0.8em;
-    padding-left: 0.5em;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    margin-top: 0.5em;
+    opacity: 0.8;
   }
   .logo--sm .logo__word {
-    font-size: 1.75rem;
-  }
-  .logo--md .logo__word {
-    font-size: 3.4rem;
+    font-size: 1.35rem;
   }
   .logo--xl .logo__word {
-    font-size: clamp(5rem, 19vw, 17rem);
+    font-size: clamp(4.2rem, 15vw, 13rem);
+    font-weight: 300;
   }
   .logo--xl .logo__descriptor {
-    font-size: clamp(0.72rem, 1.5vw, 1.15rem);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .logo__orbit {
-      stroke-dashoffset: 0;
-    }
+    font-size: clamp(1.1rem, 2.2vw, 1.8rem);
   }
 </style>
