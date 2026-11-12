@@ -90,4 +90,5 @@ Palette :
 11. Démarches administratives (indépendante en Belgique)
 
 ## Journal des décisions
-- 2026-11-12 : création du dossier projet `sage-studio/` et de ce contexte.
+- 2026-11-12 : création du contexte projet et du dépôt privé GitHub `mordantjulie-eng/SAGE-creative-studio` (compte perso, accessible après Kontnu).
+- 2026-11-12 : site → vibe codé ensemble. Piste recommandée : Astro + hébergement gratuit (Netlify / Cloudflare Pages), bilingue FR/EN, nom et logo interchangeables tant que la recherche juridique n'est pas faite.
