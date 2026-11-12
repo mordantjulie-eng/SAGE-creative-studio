@@ -1,0 +1,56 @@
+---
+// Logo PROVISOIRE : lettrage composé en police web en attendant le dessin vectoriel final.
+// Remplacer par le SVG définitif dès qu'il existe (même API : size, withDescriptor).
+import { brand } from '../config/site';
+
+interface Props {
+  withDescriptor?: boolean;
+  size?: 'sm' | 'md' | 'xl';
+}
+const { withDescriptor = false, size = 'sm' } = Astro.props;
+---
+
+<span class:list={['logo', `logo--${size}`]} aria-label={`${brand.name} ${brand.descriptor}`}>
+  <span class="logo__word" aria-hidden="true">{brand.name}<span class="logo__dot">{brand.mark}</span></span>
+  {withDescriptor && <span class="logo__descriptor" aria-hidden="true">{brand.descriptor}</span>}
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1;
+    color: currentColor;
+  }
+  .logo__word {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.06em;
+    transform: skewX(-9deg);
+    display: inline-block;
+  }
+  .logo__dot {
+    color: inherit;
+  }
+  .logo__descriptor {
+    font-family: var(--font-ui);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    margin-top: 0.9em;
+    padding-left: 0.42em; /* compense le dernier espacement */
+  }
+  .logo--sm .logo__word {
+    font-size: 1.6rem;
+  }
+  .logo--md .logo__word {
+    font-size: 3rem;
+  }
+  .logo--xl .logo__word {
+    font-size: clamp(5rem, 22vw, 17rem);
+  }
+  .logo--xl .logo__descriptor {
+    font-size: clamp(0.7rem, 1.4vw, 1.05rem);
+  }
+</style>

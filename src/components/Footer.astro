@@ -1,0 +1,79 @@
+---
+import Logo from './Logo.astro';
+import { brand, nav } from '../config/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer on-dark">
+  <div class="container footer__grid">
+    <div>
+      <Logo size="md" withDescriptor />
+    </div>
+    <ul class="footer__nav">
+      {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      <li><a href="/#contact">Contact</a></li>
+    </ul>
+    <div class="footer__meta">
+      <a href={`mailto:${brand.email}`}>{brand.email}</a>
+      <span>{brand.location}</span>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© {year} {brand.name} {brand.descriptor}</span>
+    <span>{brand.manifesto.join(' ')}</span>
+    <!-- À ajouter avant mise en ligne : mentions légales (n° BCE), confidentialité, cookies -->
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--sage-forest);
+    color: var(--sage-ivory);
+    padding-top: clamp(56px, 8vw, 96px);
+  }
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .footer__grid > div:first-child {
+    justify-self: start;
+  }
+  .footer__nav {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .footer a {
+    text-decoration: none;
+  }
+  .footer a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .footer__meta {
+    display: grid;
+    gap: 0.5rem;
+    opacity: 0.85;
+  }
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: clamp(48px, 6vw, 80px);
+    padding-block: 1.5rem;
+    border-top: 1px solid rgb(231 226 216 / 0.15);
+    font-size: 0.8rem;
+    opacity: 0.7;
+  }
+  @media (max-width: 720px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

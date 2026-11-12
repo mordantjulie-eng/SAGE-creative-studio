@@ -49,7 +49,10 @@ Palette :
 
 - Mix : élégance premium, créativité audacieuse, minimalisme moderne, nature/matières organiques, design éditorial, caractère.
 - **À éviter** : générique, trop féminin, trop végétal, look cosmétique/bougie/déco. Doit se lire immédiatement comme studio créatif & digital.
-- Typos (pistes, non définitives) : Cormorant Garamond (titres), Manrope (texte), Montserrat (petites capitales).
+- **Référence à jour : Brand Book v1.0 (`docs/brand/SAGE_Brand_Book_v1.0.pdf`, nov. 2026)** — concept « BOLD WITH PURPOSE ».
+- Palette étendue (propositions à valider) : Terracotta `#A65332`, Blanc cassé `#F6F1E8`. Répartition guide : 55 % ivoire/papier, 30 % sapin, 10 % neutres, 5 % accent (un seul accent dominant par section).
+- Typos web : display Space Grotesk Bold (ou Manrope ExtraBold Italic, à tester) · texte/UI Manrope · Cormorant Garamond Italic seulement en accent éditorial optionnel. Montserrat abandonnée.
+- Logo : direction approuvée = « SAGE. » capitales bold légèrement obliques + point final, « CREATIVE STUDIO » espacé dessous ; symbole « S. ». **Lettrage final à dessiner en vectoriel** (les visuels IA = explorations, pas des fichiers maîtres).
 - Système de logos : principal, secondaire, monogramme, horizontal, signature, emblème circulaire.
 - Goût pour les logos typographiques à lettres entrelacées/superposées formant un symbole. Référence montrée → s'en inspirer **sans copier**.
 - Les propositions précédentes se ressemblaient trop : explorer des **directions vraiment distinctes**, dessin des lettres soigné, exploitable pro.
@@ -95,3 +98,5 @@ Palette :
 ## Journal des décisions
 - 2026-11-12 : création du contexte projet et du dépôt privé GitHub `mordantjulie-eng/SAGE-creative-studio` (compte perso, accessible après Kontnu).
 - 2026-11-12 : site → vibe codé ensemble. Piste recommandée : Astro + hébergement gratuit (Netlify / Cloudflare Pages), bilingue FR/EN, nom et logo interchangeables tant que la recherche juridique n'est pas faite.
+- 2026-11-12 : Brand Book v1.0 reçu (direction bold/éditoriale, abandon des lettres entrelacées au profit de « SAGE. »). Site : Astro 5, polices auto-hébergées (@fontsource, pas d'appel à Google Fonts → plus simple côté RGPD), tokens du brand book, logo provisoire en police web configurable dans `src/config/site.ts`, `noindex` tant que le nom n'est pas validé juridiquement.
+- À décider : tutoiement/vouvoiement sur le site (v0 en vouvoiement), domaine, hébergeur.
