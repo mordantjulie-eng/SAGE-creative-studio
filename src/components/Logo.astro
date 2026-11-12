@@ -1,46 +1,40 @@
 ---
-// Logo PROVISOIRE (lettrage final à dessiner avec un graphiste).
+// Logo SAGE repris tel quel du brand book (vectorisé), couleur héritée du texte.
+// full = orbite + « SAGE. » + « CREATIVE STUDIO » ; sinon le mot seul.
+import word from '../assets/logo-word.svg?raw';
+import full from '../assets/logo-full.svg?raw';
+
 interface Props {
   withDescriptor?: boolean;
-  size?: 'sm' | 'xl';
+  orbit?: boolean;
+  size?: 'sm' | 'md' | 'xl';
 }
-const { withDescriptor = false, size = 'sm' } = Astro.props;
+const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
+const svg = withDescriptor || orbit ? full : word;
 ---
 
-<span class:list={['logo', `logo--${size}`]} role="img" aria-label="SAGE Creative Studio">
-  <span class="logo__word" aria-hidden="true">SAGE</span>
-  {withDescriptor && <span class="logo__descriptor" aria-hidden="true">creative studio</span>}
+<span class:list={['logo', `logo--${size}`, { 'logo--full': withDescriptor || orbit }]} role="img" aria-label="SAGE Creative Studio">
+  <Fragment set:html={svg} />
 </span>
 
 <style>
   .logo {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    line-height: 1;
+    display: inline-block;
+    line-height: 0;
+    color: currentColor;
   }
-  .logo__word {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    letter-spacing: 0.22em;
-    padding-left: 0.22em;
+  .logo :global(svg) {
+    width: 100%;
+    height: auto;
+    display: block;
   }
-  .logo__descriptor {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: 300;
-    letter-spacing: 0.06em;
-    margin-top: 0.5em;
-    opacity: 0.8;
+  .logo--sm {
+    width: 104px;
   }
-  .logo--sm .logo__word {
-    font-size: 1.35rem;
+  .logo--md {
+    width: 220px;
   }
-  .logo--xl .logo__word {
-    font-size: clamp(4.2rem, 15vw, 13rem);
-    font-weight: 300;
-  }
-  .logo--xl .logo__descriptor {
-    font-size: clamp(1.1rem, 2.2vw, 1.8rem);
+  .logo--xl {
+    width: min(78vw, 820px);
   }
 </style>

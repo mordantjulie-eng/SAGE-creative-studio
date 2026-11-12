@@ -196,17 +196,17 @@ const shots = [
   .st-hero { position: relative; overflow: hidden; background: var(--grad-soft); padding: 150px 0 clamp(80px, 10vw, 130px); }
   .st-hero__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
   .st-hero__text { display: grid; gap: 1.6rem; }
-  .st-hero h1 { font-size: clamp(3.4rem, 8vw, 7rem); font-weight: 300; }
+  .st-hero h1 { font-size: clamp(3.4rem, 8vw, 7rem); font-weight: 850; }
   .st-hero__visual { position: relative; padding: 0 0 2rem 2rem; }
   .st-portrait { aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
   .st-portrait img { width: 100%; height: 100%; }
   .st-wink { position: absolute; left: -4%; bottom: 0; width: 36%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid rgb(255 255 255 / 0.7); box-shadow: var(--shadow); }
   .st-wink img { width: 100%; height: 100%; object-position: 30% 30%; }
-  .st-quote { position: absolute; right: -4%; top: 18%; padding: 1rem 1.4rem; border-radius: var(--r-s); font: 300 1.3rem/1.2 var(--font-serif); }
+  .st-quote { position: absolute; right: -4%; top: 18%; padding: 1rem 1.4rem; border-radius: var(--r-s); font: italic 850 1.3rem/1.2 var(--font-display); }
   .st-quote em { color: var(--eucalyptus); }
 
   .st-why { display: grid; gap: 1.4rem; }
-  .st-big { font: 300 clamp(1.8rem, 3.6vw, 3.2rem)/1.18 var(--font-serif); letter-spacing: -0.015em; max-width: 30ch; }
+  .st-big { font: italic 850 clamp(1.8rem, 3.6vw, 3.2rem)/1.18 var(--font-display); letter-spacing: -0.015em; max-width: 30ch; }
   .st-big em { color: var(--eucalyptus); }
 
   .st-bts { padding-bottom: clamp(72px, 9vw, 120px); }
@@ -222,37 +222,37 @@ const shots = [
   .st-traits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
   .st-trait { display: grid; gap: 1rem; align-content: space-between; min-height: 230px; padding: 1.8rem; border-radius: var(--r); transition: transform 0.7s var(--ease-out); }
   .st-trait:hover { transform: translateY(-6px); }
-  .st-trait__w { font: italic 300 2.2rem/1 var(--font-serif); color: var(--moss); }
+  .st-trait__w { font: italic 700 2.2rem/1 var(--font-display); color: var(--moss); }
   .st-trait p { color: rgb(43 52 47 / 0.75); }
 
   .st-line { list-style: none; margin: 0; padding: 0; display: grid; }
   .st-stop { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: baseline; padding-block: 1.5rem; border-top: 1px solid var(--hair); }
   .st-stop:last-child { border-bottom: 1px solid var(--hair); }
-  .st-stop__when { font: italic 300 1.4rem var(--font-serif); color: var(--eucalyptus); }
+  .st-stop__when { font: italic 700 1.4rem var(--font-display); color: var(--eucalyptus); }
   .st-stop div { display: grid; gap: 0.2rem; }
-  .st-stop strong { font: 400 1.35rem var(--font-serif); }
+  .st-stop strong { font: 750 1.35rem var(--font-display); }
   .st-stop span:not(.st-stop__when) { color: rgb(43 52 47 / 0.65); font-size: 0.92rem; }
 
-  .st-crew { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .st-crew { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
   .st-crew__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
   .st-crew__grid > div { display: grid; gap: 1.5rem; }
   .st-partners { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .st-partners li { padding: 0.6rem 1.2rem; border-radius: var(--pill); font-weight: 500; font-size: 0.9rem; background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35); }
   .st-how { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
   .st-how__item { display: flex; gap: 1.3rem; align-items: baseline; padding: 1.5rem 1.7rem; border-radius: var(--r); }
-  .st-how__n { font: italic 300 1.6rem var(--font-serif); color: var(--champagne); }
-  .st-how__item h3 { font-size: 1.5rem; font-weight: 340; margin-bottom: 0.3rem; }
+  .st-how__n { font: italic 700 1.6rem var(--font-display); color: var(--champagne); }
+  .st-how__item h3 { font-size: 1.5rem; font-weight: 850; margin-bottom: 0.3rem; }
   .st-how__item p { font-size: 0.95rem; opacity: 0.8; }
 
   .st-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
   .st-steps li { display: grid; gap: 0.6rem; align-content: start; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
-  .st-steps__n { font: italic 300 1.4rem var(--font-serif); color: var(--eucalyptus); }
-  .st-steps h3 { font-size: 1.6rem; font-weight: 340; }
+  .st-steps__n { font: italic 700 1.4rem var(--font-display); color: var(--eucalyptus); }
+  .st-steps h3 { font-size: 1.6rem; font-weight: 850; }
   .st-steps p { font-size: 0.95rem; color: rgb(43 52 47 / 0.75); }
 
   .st-cta { position: relative; overflow: hidden; background: var(--grad-soft); padding-block: clamp(100px, 12vw, 170px); }
   .st-cta__inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }
-  .st-cta h2 { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 300; }
+  .st-cta h2 { font-size: clamp(2.8rem, 7vw, 6rem); font-weight: 850; }
   .st-cta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
 
   @media (max-width: 1000px) {

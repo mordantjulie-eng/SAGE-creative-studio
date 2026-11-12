@@ -1,10 +1,10 @@
 /* SAGE, design system V3 « soft premium » : verre dépoli, dégradés, éléments flottants. */
 :root {
   /* Palette */
-  --ink: #2b342f; /* texte principal, vert-anthracite */
-  --moss: #46564c; /* vert profond doux (remplace le vert sapin) */
-  --eucalyptus: #6f8574; /* vert moyen */
-  --sage: #9aab9a; /* sauge */
+  --ink: #1a1a1a; /* charbon */
+  --moss: #1a1a1a; /* boutons et textes forts : charbon (plus de vert foncé) */
+  --eucalyptus: #6c7a67; /* sauge soutenu, petits textes */
+  --sage: #a3ae9c; /* sauge */
   --mist: #dfe6dc; /* brume verte */
   --sage-light: #c5d0be; /* vert sauge clair (validé) */
   --cream: #f4f1ea; /* blanc cassé (validé) */
@@ -12,9 +12,10 @@
   --ochre: #c49a54; /* ocre (validé) */
   --champagne: var(--ochre);
   --blush: #ead9cf; /* rose poudré */
-  --clay: #c98b6e; /* terre cuite douce (formes) */
+  --clay: #b15e3d; /* terracotta du brand book */
+  --terracotta: #b15e3d;
   --taupe: #b6ada1; /* taupe (formes) */
-  --sage: #9aab9a;
+  --sage: #a3ae9c;
 
   /* Accents vifs : uniquement pour les infos importantes */
   --pers: #3e7c80; /* bleu-vert « pers » */
@@ -27,11 +28,13 @@
   --glass-line: rgb(255 255 255 / 0.65);
   --hair: rgb(43 52 47 / 0.12);
 
-  --grad-dark: linear-gradient(150deg, #3b4841 0%, #536559 45%, #7f9483 100%);
+  --grad-dark: linear-gradient(150deg, #d3dccd 0%, #c5d0be 45%, #b3bfab 100%); /* sauge clair (remplace le vert foncé) */
   --grad-soft: linear-gradient(160deg, #f4f1ea 0%, #e6ece2 45%, #efe5d6 100%);
 
   --font-ui: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
-  --font-serif: 'Newsreader Variable', 'Newsreader', Georgia, serif;
+  --font-display: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, sans-serif;
+  --font-serif: var(--font-display);
+  --font-letter: 'Newsreader Variable', 'Newsreader', Georgia, serif;
 
   --container: 1280px;
   --gutter: clamp(18px, 4vw, 48px);
@@ -95,23 +98,28 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-family: var(--font-serif);
-  font-optical-sizing: auto;
-  font-weight: 340;
-  line-height: 1.02;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+h3 {
+  font-weight: 750;
+  font-style: normal;
+  letter-spacing: -0.025em;
 }
 h1 em,
 h2 em,
 h3 em {
   font-style: italic;
-  font-weight: 300;
+  font-weight: inherit;
   color: var(--ochre);
 }
 .on-dark h1 em,
 .on-dark h2 em,
 .on-dark h3 em {
-  color: var(--champagne);
+  color: var(--terracotta);
 }
 
 p {
@@ -136,7 +144,7 @@ p {
   transition: background 0.3s var(--ease), transform 0.4s var(--ease-out);
 }
 .on-dark .bubble {
-  background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
+  background: rgb(255 255 255 / 0.5); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
 }
 
 .container {
@@ -166,7 +174,7 @@ p {
   column-gap: 1.1em;
 }
 .on-dark .eyebrow {
-  color: var(--mist);
+  color: rgb(26 26 26 / 0.6);
 }
 
 .lead {
@@ -175,7 +183,7 @@ p {
   max-width: 36rem;
 }
 .on-dark .lead {
-  color: rgb(246 243 238 / 0.82);
+  color: rgb(26 26 26 / 0.72);
 }
 
 /* Verre dépoli */
@@ -188,8 +196,8 @@ p {
 }
 .on-dark .glass,
 .glass--dark {
-  background: var(--glass-dark);
-  border-color: rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.38);
+  border-color: rgb(255 255 255 / 0.55);
   box-shadow: 0 30px 60px -35px rgb(0 0 0 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.18);
 }
 
@@ -276,11 +284,11 @@ p {
   transform: translateY(-2px);
 }
 .on-dark .btn--primary {
-  background: var(--cream);
-  color: var(--moss);
+  background: var(--ink);
+  color: var(--cream);
 }
 .on-dark .btn--primary:hover {
-  background: #fff;
+  background: #000;
 }
 .on-dark .btn--glass {
   color: var(--cream);

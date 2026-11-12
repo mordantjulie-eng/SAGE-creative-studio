@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
       </div>
     </div>
   </div>
-  <div class="footer__logo"><Logo size="xl" withDescriptor /></div>
+  <div class="footer__logo"><Logo size="xl" withDescriptor orbit /></div>
   <div class="container footer__bottom">
     <span>© {year} {brand.name} {brand.descriptor}</span>
     <span>Think. Create. Grow. Evolve.</span>
@@ -35,7 +35,7 @@ const year = new Date().getFullYear();
     position: relative;
     overflow: hidden;
     background: var(--grad-dark);
-    color: var(--cream);
+    color: var(--ink);
     padding-top: clamp(72px, 9vw, 120px);
     border-radius: var(--r-l) var(--r-l) 0 0;
   }
@@ -50,11 +50,11 @@ const year = new Date().getFullYear();
     gap: 3rem;
   }
   .footer__claim {
-    font: 300 clamp(2rem, 4vw, 3.2rem) / 1.05 var(--font-serif);
+    font: italic 850 clamp(2rem, 4vw, 3.2rem) / 1.05 var(--font-display);
     letter-spacing: -0.02em;
   }
   .footer__claim em {
-    color: var(--champagne);
+    color: var(--terracotta);
   }
   .footer__cols {
     display: flex;
@@ -85,7 +85,7 @@ const year = new Date().getFullYear();
     display: flex;
     justify-content: center;
     padding-block: clamp(56px, 8vw, 110px) clamp(32px, 4vw, 56px);
-    color: rgb(246 243 238 / 0.92);
+    color: rgb(26 26 26 / 0.9);
   }
   .footer__bottom {
     display: flex;
