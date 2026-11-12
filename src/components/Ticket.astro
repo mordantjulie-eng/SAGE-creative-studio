@@ -167,8 +167,8 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    border: 1px solid var(--hair);
     font-size: 1.1rem;
+    background: rgb(255 255 255 / 0.62); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); border: 0; box-shadow: 0 1px 1px rgb(0 0 0 / 0.03), 0 10px 24px -14px rgb(43 52 47 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
     transition: transform 0.5s var(--ease-out), background 0.3s var(--ease);
   }
   .card__flip:hover span {
@@ -179,8 +179,7 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    border: 1px solid rgb(255 255 255 / 0.3);
-    background: none;
+    background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
     color: inherit;
     font-size: 1.3rem;
     line-height: 1;
