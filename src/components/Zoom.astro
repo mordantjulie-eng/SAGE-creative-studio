@@ -1,0 +1,235 @@
+---
+// Voyage en zoom, du général au particulier.
+// Chaque niveau apparaît dans une arche au centre du niveau précédent, grandit jusqu'au plein écran,
+// puis on « plonge » dedans pendant que le niveau suivant s'ouvre à son tour.
+const levels = [
+  { img: 'flatlay', kicker: 'Le monde', title: 'Chaque jour, des milliers de marques', em: 'prennent la parole.' },
+  { img: 'social-apps', kicker: 'Les réseaux', title: "L'attention se gagne", em: 'en une seconde.' },
+  { img: 'swatches', kicker: 'Votre marque', title: 'Elle mérite une image', em: 'qui se reconnaît.' },
+  { img: 'julie-studio', kicker: 'SAGE', title: "Et quelqu'un qui s'en occupe", em: 'vraiment.', cta: true },
+];
+---
+
+<section class="scene zoom" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Du général au particulier">
+  <div class="scene__sticky zoom__sticky">
+    <p class="zoom__word zoom__word--l" aria-hidden="true">Creative</p>
+    <p class="zoom__word zoom__word--r" aria-hidden="true"><em>thinking.</em></p>
+
+    {
+      levels.map((l, i) => (
+        <div class="zl" data-level style={`z-index:${i + 1}`}>
+          <img class="zl__img photo" src={`/media/${l.img}.jpg`} alt="" />
+          <div class="zl__veil" />
+          <div class="zl__text">
+            <p class="zl__kicker">{l.kicker}</p>
+            <p class="zl__title">
+              {l.title}
+              <br />
+              <em>{l.em}</em>
+            </p>
+            {l.cta && (
+              <a href="#services" class="btn btn--primary zl__cta">
+                Voir les services <span aria-hidden="true">→</span>
+              </a>
+            )}
+          </div>
+        </div>
+      ))
+    }
+
+    <ol class="zoom__steps" aria-hidden="true">
+      {levels.map((l) => <li>{l.kicker}</li>)}
+    </ol>
+  </div>
+</section>
+
+<script>
+  const scene = document.querySelector<HTMLElement>('[data-zoom]');
+  if (scene) {
+    const layers = [...scene.querySelectorAll<HTMLElement>('[data-level]')];
+    const steps = [...scene.querySelectorAll<HTMLElement>('.zoom__steps li')];
+    const n = layers.length;
+    const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+    const ease = (x: number) => 1 - Math.pow(1 - x, 3);
+    const render = (p: number) => {
+      // t va de -1 (première arche encore petite) à n - 1 (dernier niveau plein écran).
+      // Chaque étape : 65 % de transition puis un palier pour lire le niveau.
+      const u = Math.min(p * n, n - 0.0001);
+      const seg = Math.floor(u);
+      const t = seg - 1 + Math.min((u - seg) / 0.65, 1);
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const small = vw < 760;
+      const w0 = small ? vw * 0.62 : Math.min(vw * 0.26, 420);
+      const h0 = small ? vh * 0.5 : vh * 0.58;
+      scene.style.setProperty('--t', String(t));
+      layers.forEach((el, i) => {
+        const d = t - i;
+        const img = el.firstElementChild as HTMLElement;
+        const text = el.querySelector<HTMLElement>('.zl__text')!;
+        const veil = el.querySelector<HTMLElement>('.zl__veil')!;
+        if (d <= (i === 0 ? -1.01 : -0.995) || d > 1.05) {
+          el.style.visibility = 'hidden';
+          return;
+        }
+        el.style.visibility = 'visible';
+        if (d <= 0) {
+          // l'arche grandit jusqu'au plein écran
+          const e = ease(d + 1);
+          // le premier niveau part de l'arche, les suivants naissent d'un point au centre
+          const ws = i === 0 ? w0 : w0 * 0.12;
+          const hs = i === 0 ? h0 : h0 * 0.12;
+          const w = ws + (vw - ws) * e;
+          const h = hs + (vh - hs) * e;
+          const ix = (vw - w) / 2;
+          const iy = (vh - h) / 2;
+          const r = (w / 2) * (1 - e);
+          const rb = 28 * (1 - e);
+          el.style.clipPath = `inset(${iy}px ${ix}px round ${r}px ${r}px ${rb}px ${rb}px)`;
+          el.style.transform = 'none';
+          el.style.opacity = '1';
+          img.style.transform = `scale(${1.3 - 0.3 * e})`;
+          text.style.opacity = String(clamp((d + 0.25) * 4));
+          veil.style.opacity = String(0.25 + 0.75 * e);
+        } else {
+          // on plonge dedans : zoom avant et fondu
+          el.style.clipPath = 'none';
+          el.style.transform = `scale(${1 + d * 1.8})`;
+          el.style.opacity = String(clamp(1 - d * 0.9));
+          img.style.transform = 'scale(1)';
+          text.style.opacity = String(clamp(1 - d * 4));
+          veil.style.opacity = '1';
+        }
+      });
+      const cur = Math.round(clamp(t, 0, n - 1));
+      steps.forEach((s, i) => s.classList.toggle('is-on', i === cur && t > -0.3));
+    };
+    render(0);
+    scene.addEventListener('scene', (e) => render((e as CustomEvent<number>).detail));
+    window.addEventListener('resize', () => render(Number(getComputedStyle(scene).getPropertyValue('--p')) || 0));
+  }
+</script>
+
+<style>
+  .zoom {
+    height: calc((var(--n) + 1) * 100vh + 60vh);
+    background: var(--cream);
+  }
+  .zoom__sticky {
+    background: var(--cream);
+  }
+  .zoom__word {
+    position: absolute;
+    top: 50%;
+    z-index: 0;
+    font: 300 clamp(4rem, 13vw, 13rem) / 1 var(--font-serif);
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    white-space: nowrap;
+    opacity: calc(1 - (var(--t, -1) + 1) * 1.6);
+  }
+  .zoom__word em {
+    color: var(--ochre);
+  }
+  .zoom__word--l {
+    right: 53%;
+    transform: translate(calc((var(--t, -1) + 1) * -40vw), -50%);
+  }
+  .zoom__word--r {
+    left: 53%;
+    transform: translate(calc((var(--t, -1) + 1) * 40vw), -50%);
+  }
+  .zl {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transform-origin: 50% 50%;
+    will-change: transform, clip-path, opacity;
+  }
+  .zl__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+  .zl__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgb(43 52 47 / 0) 30%, rgb(43 52 47 / 0.45) 62%, rgb(43 52 47 / 0.8));
+  }
+  .zl__text {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: grid;
+    justify-items: center;
+    gap: 1.2rem;
+    padding: 0 var(--gutter) clamp(72px, 12vh, 130px);
+    text-align: center;
+    color: var(--cream);
+  }
+  .zl__kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sage-light);
+  }
+  .zl__title {
+    font: 300 clamp(2.3rem, 5.4vw, 5.2rem) / 1.04 var(--font-serif);
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+  }
+  .zl__title em {
+    color: var(--ochre);
+  }
+  .zl__cta {
+    background: var(--cream) !important;
+    color: var(--moss) !important;
+  }
+  .zoom__steps {
+    position: absolute;
+    z-index: 20;
+    right: var(--gutter);
+    top: 50%;
+    translate: 0 -50%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.9rem;
+    text-align: right;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(246 243 238 / 0.45);
+    opacity: calc((var(--t, -1) + 0.4) * 3);
+  }
+  .zoom__steps li {
+    transition: color 0.4s var(--ease), transform 0.5s var(--ease-out);
+  }
+  .zoom__steps li.is-on {
+    color: var(--cream);
+    transform: translateX(-6px);
+  }
+  @media (max-width: 760px) {
+    .zoom__word {
+      font-size: 17vw;
+    }
+    .zoom__word--l {
+      right: auto;
+      left: 6vw;
+      top: 13svh;
+      transform: translateX(calc((var(--t, -1) + 1) * -60vw));
+    }
+    .zoom__word--r {
+      left: auto;
+      right: 6vw;
+      top: auto;
+      bottom: 10svh;
+      transform: translateX(calc((var(--t, -1) + 1) * 60vw));
+    }
+    .zoom__steps {
+      display: none;
+    }
+  }
+</style>
