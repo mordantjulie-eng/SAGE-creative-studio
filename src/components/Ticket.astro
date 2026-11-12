@@ -1,13 +1,15 @@
 ---
 // Carte service en verre dépoli.
 // Se retourne pour afficher toutes les prestations.
-import type { Service } from '../config/site';
+import { pillars, type Service } from '../config/site';
+import Shape from './Shape.astro';
 
 interface Props {
   service: Service;
   delay?: number;
 }
 const { service: s, delay = 0 } = Astro.props;
+const pil = pillars.find((p) => p.letter === s.pillars[0])!;
 ---
 
 <article class="card reveal" style={`--rd:${delay}s`} data-ticket>
@@ -15,6 +17,7 @@ const { service: s, delay = 0 } = Astro.props;
     <div class="card__face card__front glass" data-face="front">
       <div class="card__top">
         <span class="card__no">N° {s.num}</span>
+        <span class="card__shape"><Shape name={pil.shape as any} color={pil.color} /></span>
       </div>
       <h3 class="card__title"><a href={`/services/${s.slug}`}>{s.title}</a></h3>
       <p class="card__short">{s.short}</p>
@@ -92,6 +95,20 @@ const { service: s, delay = 0 } = Astro.props;
     background: rgb(70 86 76 / 0.82);
     color: var(--cream);
     border-color: rgb(255 255 255 / 0.2);
+  }
+  .card__shape {
+    width: 40px;
+    display: grid;
+    place-items: center;
+    transition: transform 0.8s var(--ease-out);
+  }
+  .card__shape :global(.shape) {
+    width: 100%;
+    height: auto;
+    max-height: 40px;
+  }
+  .card:hover .card__shape {
+    transform: rotate(-18deg) scale(1.2);
   }
   .card__top {
     display: flex;

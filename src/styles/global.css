@@ -12,6 +12,9 @@
   --ochre: #c49a54; /* ocre (validé) */
   --champagne: var(--ochre);
   --blush: #ead9cf; /* rose poudré */
+  --clay: #c98b6e; /* terre cuite douce (formes) */
+  --taupe: #b6ada1; /* taupe (formes) */
+  --sage: #9aab9a;
 
   /* Accents vifs : uniquement pour les infos importantes */
   --pers: #3e7c80; /* bleu-vert « pers » */

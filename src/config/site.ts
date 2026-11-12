@@ -178,7 +178,7 @@ export const pillars = [
     verbs: 'Penser, analyser, structurer et positionner.',
     text: "Chaque projet commence par comprendre : votre marché, votre public, ce qui vous rend différent. On ne produit rien sans savoir pourquoi.",
     shape: 'leaf',
-    color: 'var(--sage-soft)',
+    color: 'var(--sage)',
   },
   {
     letter: 'A',
@@ -186,7 +186,7 @@ export const pillars = [
     verbs: 'Imaginer, créer et donner une identité forte.',
     text: "Une marque se reconnaît avant même d'être lue. La direction artistique donne une forme cohérente et singulière à tout ce que vous montrez.",
     shape: 'half',
-    color: 'var(--sage-ochre)',
+    color: 'var(--ochre)',
   },
   {
     letter: 'G',
@@ -194,15 +194,15 @@ export const pillars = [
     verbs: "Développer la visibilité, l'engagement et la croissance.",
     text: 'Être vu ne suffit pas : il faut être choisi. Contenus, communauté et collaborations servent des objectifs concrets.',
     shape: 'arch',
-    color: 'var(--sage-rust)',
+    color: 'var(--clay)',
   },
   {
     letter: 'E',
     name: 'Evolution',
     verbs: 'Innover, optimiser et accompagner la transformation des méthodes de travail.',
     text: "Les outils changent vite. L'IA et l'optimisation des process permettent de gagner du temps sur ce qui se répète, pour en garder sur ce qui compte.",
-    shape: 'dot',
-    color: 'var(--sage-taupe)',
+    shape: 'circle',
+    color: 'var(--taupe)',
   },
 ];
 

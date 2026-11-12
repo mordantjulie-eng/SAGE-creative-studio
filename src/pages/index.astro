@@ -5,6 +5,7 @@ import ContactForm from '../components/ContactForm.astro';
 import Morph from '../components/Morph.astro';
 import Phones from '../components/Phones.astro';
 import Book from '../components/Book.astro';
+import Shape from '../components/Shape.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -39,11 +40,11 @@ const work = [
       </div>
 
       <div class="hero__visual" aria-hidden="true">
+        <div class="hs hs--leaf float" data-depth="40" style="--d:10s"><Shape name="leaf" color="var(--sage-light)" /></div>
+        <div class="hs hs--half float" data-depth="55" style="--d:8s;--delay:-3s"><Shape name="half" color="var(--ochre)" /></div>
+        <div class="hs hs--circle float" data-depth="24" style="--d:9s;--delay:-5s"><Shape name="circle" color="var(--clay)" /></div>
         <div class="hv hv--main float" data-depth="14" style="--d:9s">
           <img class="photo" src={m('julie-filming')} alt="" />
-        </div>
-        <div class="hv hv--small float" data-depth="28" style="--d:7s;--delay:-2s">
-          <img class="photo" src={m('moodboard')} alt="" />
         </div>
         <div class="hv-card glass float" data-depth="22" style="--d:8s;--delay:-3s">
           <p class="hv-card__q">Creative thinking.<br /><em>Digital impact.</em></p>
@@ -60,6 +61,9 @@ const work = [
   <!-- SERVICES -->
   <section id="services" class="section services">
     <div class="orbs" aria-hidden="true">
+      <span class="bgshape" style="width:340px;left:18%;top:34%;--d:14s"><Shape name="arch" color="var(--sage-light)" /></span>
+      <span class="bgshape" style="width:300px;right:14%;top:58%;--d:12s;--delay:-4s"><Shape name="half" color="var(--ochre)" style="opacity:.55" /></span>
+      <span class="bgshape" style="width:220px;left:52%;top:22%;--d:16s;--delay:-7s"><Shape name="leaf" color="var(--sage)" style="opacity:.5" /></span>
       <span class="orb orb--mist" style="width:700px;height:700px;left:-220px;top:10%;--d:26s"></span>
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;top:45%;opacity:.55;--d:30s"></span>
       <span class="orb orb--sage" style="width:600px;height:600px;left:35%;bottom:-200px;opacity:.5;--d:34s"></span>
@@ -118,7 +122,10 @@ const work = [
                 aria-selected={i === 0 ? 'true' : 'false'}
                 tabindex={i === 0 ? 0 : -1}
               >
-                <span class="sage__letter">{p.letter}</span>
+                <span class="sage__glyph">
+                  <Shape name={p.shape as any} color={p.color} class="sage__shape" />
+                  <span class="sage__letter">{p.letter}</span>
+                </span>
                 <span class="sage__name">{p.name}</span>
               </button>
             ))
@@ -127,7 +134,10 @@ const work = [
         {
           pillars.map((p, i) => (
             <div class="sage__panel glass" role="tabpanel" id={`panel-${p.letter}`} aria-labelledby={`tab-${p.letter}`} hidden={i !== 0}>
-              <p class="sage__big" aria-hidden="true">{p.letter}</p>
+              <p class="sage__big" aria-hidden="true">
+                <Shape name={p.shape as any} color={p.color} class="sage__bigshape" />
+                <span>{p.letter}</span>
+              </p>
               <div class="sage__content">
                 <h3>{p.verbs}</h3>
                 <p>{p.text}</p>
@@ -219,6 +229,8 @@ const work = [
   <!-- CONTACT -->
   <section id="contact" class="contact on-dark">
     <div class="orbs" aria-hidden="true">
+      <span class="bgshape" style="width:300px;right:30%;top:16%;--d:14s"><Shape name="arch" color="var(--ochre)" style="opacity:.55" /></span>
+      <span class="bgshape" style="width:240px;right:4%;bottom:10%;--d:12s;--delay:-5s"><Shape name="circle" color="var(--sage-light)" style="opacity:.45" /></span>
       <span class="orb orb--champagne" style="width:600px;height:600px;right:-160px;top:-120px;opacity:.4;--d:26s"></span>
       <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;bottom:-260px;opacity:.3;--d:30s"></span>
     </div>
@@ -311,6 +323,13 @@ const work = [
   .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
 
   .hero__visual { position: relative; height: min(640px, 70vh); min-height: 520px; }
+  .bgshape { position: absolute; display: block; animation: float var(--d, 12s) ease-in-out infinite; animation-delay: var(--delay, 0s); --fy: -24px; }
+  .bgshape :global(.shape) { width: 100%; height: auto; }
+  .hs { position: absolute; z-index: 0; }
+  .hs :global(.shape) { width: 100%; height: auto; }
+  .hs--leaf { width: 46%; right: 34%; top: -4%; opacity: 0.9; }
+  .hs--half { width: 30%; right: -2%; top: 46%; z-index: 2; }
+  .hs--circle { width: 13%; left: 20%; bottom: 26%; z-index: 2; }
   .hv { position: absolute; overflow: hidden; box-shadow: var(--shadow); }
   .hv img { width: 100%; height: 100%; }
   .hv--main { right: 6%; top: 0; width: 62%; height: 88%; border-radius: 999px 999px var(--r-l) var(--r-l); }
@@ -332,13 +351,19 @@ const work = [
   .sage__tab { display: grid; justify-items: start; gap: 0.3rem; padding: 1.4rem 1.6rem 1.3rem; border-radius: var(--r); border: 1px solid rgb(255 255 255 / 0.16); background: rgb(255 255 255 / 0.04); color: var(--cream); cursor: pointer; text-align: left; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background 0.5s var(--ease), border-color 0.5s var(--ease), transform 0.6s var(--ease-out); }
   .sage__tab:hover { transform: translateY(-4px); border-color: rgb(255 255 255 / 0.4); }
   .sage__tab[aria-selected='true'] { background: rgb(255 255 255 / 0.16); border-color: rgb(255 255 255 / 0.5); }
-  .sage__letter { font: 300 clamp(4rem, 8vw, 7rem)/0.9 var(--font-serif); }
+  .sage__glyph { position: relative; display: inline-block; padding: 0.6rem 1.6rem 0 0; }
+  .sage__glyph :global(.sage__shape) { position: absolute; right: 0; bottom: 0; width: clamp(56px, 6vw, 84px); height: auto; opacity: 0.85; transition: transform 0.8s var(--ease-out); }
+  .sage__tab:hover .sage__glyph :global(.sage__shape), .sage__tab[aria-selected='true'] .sage__glyph :global(.sage__shape) { transform: rotate(-12deg) scale(1.12); }
+  .sage__letter { position: relative; font: 300 clamp(4rem, 8vw, 7rem)/0.9 var(--font-serif); }
   .sage__tab[aria-selected='true'] .sage__letter { font-style: italic; color: var(--champagne); }
   .sage__name { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
   .sage__panel { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.8rem, 4vw, 3.4rem); border-radius: var(--r-l); animation: fade 0.8s var(--ease-out); }
   .sage__panel[hidden] { display: none; }
   @keyframes fade { from { opacity: 0; transform: translateY(10px); } }
-  .sage__big { font: italic 300 clamp(7rem, 15vw, 13rem)/0.8 var(--font-serif); color: var(--champagne); }
+  .sage__big { position: relative; display: grid; place-items: center; font: italic 300 clamp(7rem, 15vw, 13rem)/0.8 var(--font-serif); color: var(--cream); }
+  .sage__big span { position: relative; }
+  .sage__big :global(.sage__bigshape) { position: absolute; width: 78%; height: auto; right: -12%; bottom: -8%; opacity: 0.9; animation: shapein 1s var(--ease-out); }
+  @keyframes shapein { from { transform: rotate(-30deg) scale(0.6); opacity: 0; } }
   .sage__content { display: grid; gap: 1.1rem; }
   .sage__content h3 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 300; }
   .sage__content > p:not(.sage__in) { max-width: 38rem; opacity: 0.85; }
@@ -409,6 +434,8 @@ const work = [
     .hero__visual { height: 440px; }
     .hv--main { width: 72%; right: 0; }
     .hv--small { width: 100px; height: 100px; left: 0; }
+    .hs--leaf { width: 52%; right: 30%; }
+    .hs--half { width: 34%; }
     .hv-card { padding: 1rem 1.2rem; }
     .hv-card__q { font-size: 1.25rem; }
     .hv-pill { bottom: 30%; font-size: 0.78rem; }
