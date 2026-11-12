@@ -45,7 +45,7 @@ const work = [
 
       <div class="fl phone fl--phone float" style="--d:7.5s;--r:6deg;--delay:-1s" data-depth="12" aria-hidden="true">
         <div class="phone__screen">
-          <div class="feed">{['creator-red', 'flatlay', 'creator-hoodie', 'swatches', 'creator-red'].map((f) => <img class="photo" src={m(f)} alt="" />)}</div>
+          <div class="feed">{['julie-filming', 'flatlay', 'julie-filming-2', 'swatches', 'julie-filming'].map((f) => <img class="photo" src={m(f)} alt="" />)}</div>
           <div class="phone__ui"><span class="heart">♥</span><span class="heart">♥</span><span class="heart">♥</span></div>
         </div>
       </div>
@@ -205,11 +205,10 @@ const work = [
       <div class="about__visual reveal">
         <figure class="polaroid float" style="--r:-4deg;--d:8s;--fy:-8px">
           <span class="tape" style="top:-14px;left:50%;translate:-50% 0;rotate:-3deg"></span>
-          <div class="polaroid__photo">
-            <span class="hand">ta photo ici ✦</span>
-          </div>
+          <img class="polaroid__img" src={m('julie-studio')} alt="Julie, fondatrice de SAGE Creative Studio" />
           <figcaption class="hand">Julie, fondatrice</figcaption>
         </figure>
+        <div class="about__wink float" style="--r:7deg;--d:7s;--delay:-3s"><img src={m('julie-wink')} alt="" /></div>
         <span class="chip chip--ochre about__sticker float" style="--r:8deg;--d:6s">100 % indépendante</span>
         <span class="chip chip--rust about__sticker about__sticker--2 float" style="--r:-6deg;--d:7s;--delay:-2s">basée en Belgique</span>
       </div>
@@ -422,11 +421,11 @@ const work = [
   .sage__tab[aria-selected='true'] { background: var(--sage-ivory); color: var(--sage-forest); border-color: var(--sage-ivory); }
   .sage__shape { position: absolute; right: 14px; top: 18px; width: 92px; height: 92px; transition: transform .6s var(--spring); }
   .sage__tab:hover .sage__shape, .sage__tab[aria-selected='true'] .sage__shape { transform: rotate(-14deg) scale(1.15) translate(-6px, 6px); }
-  .sage__letter { position: relative; font: italic 900 clamp(5rem, 9vw, 8.5rem)/0.85 var(--font-serif); letter-spacing: -0.04em; }
+  .sage__letter { position: relative; font: 400 clamp(5rem, 9vw, 8.5rem)/0.85 var(--font-serif); letter-spacing: -0.04em; }
   .sage__name { position: relative; font-weight: 800; font-size: 0.95rem; margin-top: 0.4rem; }
   .sage__card { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: clamp(1.6rem, 4vw, 3rem); border-radius: var(--radius-l); background: var(--sage-forest-2); animation: pop .5s var(--spring); }
   @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.98); } }
-  .sage__big { font: italic 900 clamp(7rem, 16vw, 14rem)/0.8 var(--font-serif); color: var(--sage-ochre); }
+  .sage__big { font: 400 clamp(7rem, 16vw, 14rem)/0.8 var(--font-serif); color: var(--sage-ochre); }
   .sage__content { display: grid; gap: 1rem; }
   .sage__content h3 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
   .sage__content > p:not(.label) { max-width: 40rem; opacity: 0.9; }
@@ -463,6 +462,9 @@ const work = [
   .polaroid { position: relative; margin: 0; width: min(100%, 360px); padding: 14px 14px 0; background: #fffdf8; box-shadow: var(--shadow); border-radius: 6px; }
   .polaroid__photo { display: grid; place-items: center; aspect-ratio: 4 / 5; border-radius: 3px; background: repeating-linear-gradient(-45deg, var(--sage-forest) 0 14px, var(--sage-forest-2) 14px 28px); color: var(--sage-ivory); }
   .polaroid__photo .hand { font-size: 2rem; rotate: -6deg; }
+  .polaroid__img { width: 100%; aspect-ratio: 4 / 5; border-radius: 3px; }
+  .about__wink { position: absolute; right: -2%; bottom: 4%; width: 150px; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid #fffdf8; box-shadow: var(--shadow); }
+  .about__wink img { width: 100%; height: 100%; object-position: 30% 30%; }
   .polaroid figcaption { padding: 0.8rem 0 1rem; text-align: center; font-size: 1.8rem; color: var(--sage-forest); }
   .about__sticker { position: absolute; left: 0; bottom: 14%; }
   .about__sticker--2 { left: auto; right: 0; top: 10%; bottom: auto; }

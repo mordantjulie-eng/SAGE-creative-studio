@@ -51,7 +51,7 @@ Palette :
 - **À éviter** : générique, trop féminin, trop végétal, look cosmétique/bougie/déco. Doit se lire immédiatement comme studio créatif & digital.
 - **Référence à jour : Brand Book v1.0 (`docs/brand/SAGE_Brand_Book_v1.0.pdf`, nov. 2026)** — concept « BOLD WITH PURPOSE ».
 - Palette étendue (propositions à valider) : Terracotta `#A65332`, Blanc cassé `#F6F1E8`. Répartition guide : 55 % ivoire/papier, 30 % sapin, 10 % neutres, 5 % accent (un seul accent dominant par section).
-- Typos web (V2) : Bricolage Grotesque condensée (titres, logo provisoire) · Manrope (texte/UI) · Fraunces italique (lettres S.A.G.E.) · Caveat (micro-annotations manuscrites). Pas de bold italic générique.
+- Typos web (V2.1, demande de Julie : éviter les typos « vues partout » sur les sites générés par IA) : **Funnel Display** (titres, logo provisoire) · **Funnel Sans** (texte/UI) · **Gloock** (lettres S.A.G.E.) · **Gochi Hand** (annotations manuscrites). Abandonnées : Space Grotesk, Archivo, Bricolage, Manrope, Fraunces, Caveat.
 - Logo : direction approuvée = « SAGE. » capitales bold légèrement obliques + point final, « CREATIVE STUDIO » espacé dessous ; symbole « S. ». **Lettrage final à dessiner en vectoriel** (les visuels IA = explorations, pas des fichiers maîtres).
 - Système de logos : principal, secondaire, monogramme, horizontal, signature, emblème circulaire.
 - Goût pour les logos typographiques à lettres entrelacées/superposées formant un symbole. Référence montrée → s'en inspirer **sans copier**.
@@ -106,4 +106,6 @@ Palette :
 - 2026-11-12 : **Julie est seule derrière SAGE** et travaille avec des partenaires de confiance (graphic designers, vidéastes, studios photo, créateurs UGC) → page Studio + section About : « Seule aux commandes. Jamais seule au travail. », un seul interlocuteur.
 - 2026-11-12 : **V2 du site** (audit : `docs/v2-audit.md`). 6 services = offre commerciale (01 Community Management, 02 Content Creation, 03 Strategy & Consulting, 04 Branding & Art Direction, 05 Influence & Campaigns, 06 AI Training & Optimization) présentés en **tickets** recto/verso + 1 page par service (`/services/[slug]`). Les 4 piliers S.A.G.E. = philosophie (section Mindset, onglets), **jamais confondus avec les services**. **Pas de création de sites web pour les clients** ; l'IA = formation/conseil/optimisation (équipes marketing, sales, RH, admin). Contact = formulaire « ticket projet » (Netlify Forms) + page /merci. Terracotta = `#B15E3D`.
 - Contenus à valider par Julie : bio (âge, parcours, noms d'employeurs), texte « Pourquoi SAGE », photo perso (placeholder polaroid), e-mail pro, fourchettes de budget du formulaire.
+- 2026-11-12 : **Photos de Julie** ajoutées (`public/media/julie-*.jpg` : studio, portrait, 2 tournages face cam, selfie miroir, selfie clin d'œil pull damier vert). Utilisées : About (polaroid + bulle), page Studio (hero + « Dans les coulisses »), téléphone du hero, service Content Creation. Selfie dans les toilettes d'un bar (IMG_2642) volontairement non utilisée.
+- Aperçu : script `scripts/make-preview.py` (liens relatifs pour l'artifact). L'artifact est partagé « toute personne ayant le lien ».
 

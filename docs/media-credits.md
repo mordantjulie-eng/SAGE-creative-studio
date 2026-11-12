@@ -18,3 +18,6 @@ Elles servent à visualiser la maquette ; elles seront remplacées par de vraies
 | public/media/creator-hoodie.jpg | https://images.unsplash.com/photo-1517841905240-472988babdf9 |
 | public/media/creator-blue.jpg | https://images.unsplash.com/photo-1534528741775-53994a69daeb |
 | public/media/duo-work.jpg | https://images.unsplash.com/photo-1551434678-e076c223a692 |
+
+## Photos de Julie (propriété de Julie Mordant)
+`public/media/julie-*.jpg` — fournies par Julie, droits à vérifier auprès des photographes pour les photos studio.

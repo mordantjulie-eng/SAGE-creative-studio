@@ -10,10 +10,10 @@
   --sage-rust: #b15e3d;
   --sage-ink: #1a1a1a;
 
-  --font-ui: 'Manrope Variable', 'Manrope', system-ui, sans-serif;
-  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
-  --font-serif: 'Fraunces Variable', Georgia, serif;
-  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
+  --font-ui: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
+  --font-display: 'Funnel Display Variable', 'Funnel Display', system-ui, sans-serif;
+  --font-serif: 'Gloock', Georgia, serif;
+  --font-hand: 'Gochi Hand', 'Comic Sans MS', cursive;
 
   --container: 1320px;
   --gutter: clamp(16px, 4vw, 48px);
@@ -78,9 +78,8 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 800;
-  font-stretch: 84%;
-  line-height: 0.94;
-  letter-spacing: -0.035em;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
 }
 
 p {
@@ -113,8 +112,8 @@ p {
 /* Annotation manuscrite */
 .hand {
   font-family: var(--font-hand);
-  font-weight: 600;
-  font-size: 1.6rem;
+  font-weight: 400;
+  font-size: 1.45rem;
   line-height: 1;
   letter-spacing: 0;
 }

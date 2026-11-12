@@ -78,7 +78,7 @@ export const services: Service[] = [
     highlights: ['Reels & TikTok', 'Photo', 'UGC'],
     pillars: ['A', 'G'],
     tone: 'ochre',
-    img: 'creator-tee',
+    img: 'julie-filming',
   },
   {
     slug: 'strategy-consulting',

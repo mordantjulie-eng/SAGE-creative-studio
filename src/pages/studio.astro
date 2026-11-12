@@ -33,9 +33,10 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
       <div class="st-hero__visual">
         <figure class="polaroid float" style="--r:4deg;--d:8s;--fy:-8px">
           <span class="tape" style="top:-14px;left:50%;translate:-50% 0;rotate:4deg"></span>
-          <div class="polaroid__photo"><span class="hand">ta photo ici ✦</span></div>
-          <figcaption class="hand">en plein brainstorming</figcaption>
+          <img class="polaroid__img" src="/media/julie-portrait.jpg" alt="Portrait de Julie, fondatrice de SAGE Creative Studio" />
+          <figcaption class="hand">Julie, fondatrice</figcaption>
         </figure>
+        <div class="st-wink float" style="--r:-8deg;--d:7s;--delay:-2s"><img src="/media/julie-wink.jpg" alt="" /><span class="hand">version off ✌</span></div>
         <span class="chip chip--ochre st-s1 float" style="--r:-8deg;--d:6s">Think. Create.</span>
         <span class="chip chip--rust st-s2 float" style="--r:6deg;--d:7s;--delay:-2s">Grow. Evolve.</span>
       </div>
@@ -52,6 +53,18 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
         vendaient rien. <span class="u-rust">SAGE existe pour relier les deux</span> : une vraie réflexion,
         une image forte, et une présence qui sert vos objectifs.
       </p>
+    </div>
+  </section>
+
+  <section class="st-bts" aria-label="Dans les coulisses">
+    <div class="container">
+      <p class="label reveal">Dans les coulisses</p>
+      <div class="st-bts__row">
+        <figure class="st-shot reveal" style="--r:-3deg"><img src="/media/julie-filming.jpg" alt="Julie en tournage en extérieur, micro à la main" /><figcaption class="hand">en tournage</figcaption></figure>
+        <figure class="st-shot st-shot--mid reveal" style="--r:2deg;--rd:.1s"><img src="/media/julie-studio.jpg" alt="Julie en séance photo en studio" /><figcaption class="hand">shooting studio</figcaption></figure>
+        <figure class="st-shot reveal" style="--r:-1.5deg;--rd:.2s"><img src="/media/julie-filming-2.jpg" alt="Julie face caméra pour un contenu vidéo" /><figcaption class="hand">face cam'</figcaption></figure>
+        <figure class="st-shot st-shot--small reveal" style="--r:4deg;--rd:.3s"><img src="/media/julie-mirror.jpg" alt="Julie en selfie miroir" /><figcaption class="hand">off duty</figcaption></figure>
+      </div>
     </div>
   </section>
 
@@ -177,10 +190,22 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   .polaroid { position: relative; margin: 0; width: min(100%, 360px); padding: 14px 14px 0; background: #fffdf8; box-shadow: var(--shadow); border-radius: 6px; }
   .polaroid__photo { display: grid; place-items: center; aspect-ratio: 4 / 5; border-radius: 3px; background: repeating-linear-gradient(-45deg, var(--sage-forest-2) 0 14px, #34574a 14px 28px); color: var(--sage-ivory); }
   .polaroid__photo .hand { font-size: 2rem; rotate: -6deg; }
+  .polaroid__img { width: 100%; aspect-ratio: 4 / 5; border-radius: 3px; }
+  .st-wink { position: absolute; left: -6%; bottom: 2%; width: 170px; padding: 8px 8px 0; background: #fffdf8; border-radius: 6px; box-shadow: var(--shadow); z-index: 2; }
+  .st-wink img { width: 100%; aspect-ratio: 1; border-radius: 3px; object-position: 30% 30%; }
+  .st-wink .hand { display: block; text-align: center; padding: 0.3rem 0 0.5rem; color: var(--sage-forest); font-size: 1.2rem; }
+  .st-bts { padding-block: clamp(40px, 6vw, 80px) clamp(64px, 8vw, 110px); overflow: hidden; }
+  .st-bts__row { display: grid; grid-template-columns: 1fr 1.2fr 1fr 0.8fr; gap: 1.4rem; align-items: center; margin-top: 1.6rem; }
+  .st-shot { margin: 0; padding: 10px 10px 0; background: #fffdf8; border-radius: 6px; box-shadow: var(--shadow); rotate: var(--r); transition: rotate .45s var(--spring), scale .45s var(--spring); }
+  .st-shot:hover { rotate: 0deg; scale: 1.04; z-index: 2; }
+  .st-shot img { width: 100%; aspect-ratio: 3 / 4; border-radius: 3px; }
+  .st-shot--mid img { aspect-ratio: 4 / 5; }
+  .st-shot--small img { aspect-ratio: 4 / 5; }
+  .st-shot figcaption { text-align: center; padding: 0.5rem 0 0.7rem; font-size: 1.3rem; color: var(--sage-forest); }
   .polaroid figcaption { padding: 0.8rem 0 1rem; text-align: center; font-size: 1.7rem; color: var(--sage-forest); }
 
   .st-why { display: grid; gap: 1.4rem; }
-  .st-big { font: 700 clamp(1.6rem, 3.4vw, 3rem)/1.18 var(--font-display); font-stretch: 88%; letter-spacing: -0.02em; color: var(--sage-forest); max-width: 28ch; }
+  .st-big { font: 700 clamp(1.6rem, 3.4vw, 3rem)/1.18 var(--font-display); letter-spacing: -0.02em; color: var(--sage-forest); max-width: 28ch; }
 
   .st-traits-wrap { background: var(--sage-ivory); border-radius: var(--radius-l); margin-inline: clamp(0px, 1.5vw, 20px); }
   .st-traits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
@@ -190,7 +215,7 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   .st-trait--soft { background: var(--sage-soft); color: var(--sage-forest); }
   .st-trait--rust { background: var(--sage-rust); color: var(--sage-ivory); }
   .st-trait--ivory { background: var(--sage-paper); color: var(--sage-forest); }
-  .st-trait__w { font: 800 clamp(1.8rem, 2.6vw, 2.4rem)/1 var(--font-display); font-stretch: 80%; letter-spacing: -0.03em; }
+  .st-trait__w { font: 800 clamp(1.8rem, 2.6vw, 2.4rem)/1 var(--font-display); letter-spacing: -0.03em; }
 
   .st-line { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; position: relative; }
   .st-line::before { content: ''; position: absolute; left: 150px; top: 10px; bottom: 10px; border-left: 2px dashed rgb(31 58 46 / .3); }
@@ -211,7 +236,7 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   .st-partners .chip:hover { rotate: 0deg; }
   .st-how { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
   .st-how__item { display: flex; gap: 1.2rem; align-items: center; padding: 1.3rem 1.5rem; border-radius: 22px; background: var(--sage-paper); color: var(--sage-forest); rotate: var(--r); }
-  .st-how__n { font: 800 2.4rem/1 var(--font-display); font-stretch: 75%; color: var(--sage-rust); }
+  .st-how__n { font: 800 2.4rem/1 var(--font-display); color: var(--sage-rust); }
   .st-how__item h3 { font-size: 1.5rem; }
   .st-how__item p { font-size: 0.95rem; color: var(--sage-ink); opacity: 1; }
 
@@ -229,7 +254,7 @@ const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true
   .st-cta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
 
   @media (max-width: 1000px) {
-    .st-traits, .st-steps { grid-template-columns: 1fr 1fr; }
+    .st-traits, .st-steps, .st-bts__row { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 800px) {
     .st-hero__grid, .st-crew__grid { grid-template-columns: 1fr; }
