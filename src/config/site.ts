@@ -55,7 +55,7 @@ export const services: Service[] = [
     highlights: ['Calendrier éditorial', 'Modération', 'Reporting'],
     pillars: ['G', 'S'],
     tone: 'forest',
-    img: 'social-apps',
+    img: 'work-masterclass',
   },
   {
     slug: 'content-creation',
@@ -100,7 +100,7 @@ export const services: Service[] = [
     highlights: ['Audit', 'Positionnement', 'Ligne éditoriale'],
     pillars: ['S'],
     tone: 'ivory',
-    img: 'duo-work',
+    img: 'julie-kiehls',
   },
   {
     slug: 'branding-art-direction',
@@ -122,7 +122,7 @@ export const services: Service[] = [
     highlights: ['Identité', 'DA', 'Templates'],
     pillars: ['A', 'S'],
     tone: 'soft',
-    img: 'swatches',
+    img: 'work-welcome-spring',
   },
   {
     slug: 'influence-campaigns',
@@ -144,7 +144,7 @@ export const services: Service[] = [
     highlights: ['Créateurs', 'Briefs', 'UGC'],
     pillars: ['G', 'S'],
     tone: 'rust',
-    img: 'creator-red',
+    img: 'work-rhode',
   },
   {
     slug: 'ai-training-optimization',
@@ -166,7 +166,7 @@ export const services: Service[] = [
     highlights: ['Ateliers', 'Prompting', 'Process'],
     pillars: ['E'],
     tone: 'taupe',
-    img: 'design-system',
+    img: 'julie-bw',
     note: 'Formation et conseil uniquement : je ne développe pas de sites ni de logiciels pour mes clients.',
   },
 ];

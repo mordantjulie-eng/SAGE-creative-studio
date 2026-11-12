@@ -10,9 +10,9 @@ import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
 const work = [
-  { img: 'team-laugh', cat: 'Strategy & Consulting' },
-  { img: 'swatches', cat: 'Branding & Art Direction' },
-  { img: 'creator-tee', cat: 'Content Creation' },
+  { img: 'work-rhode', cat: 'Photographie produit', tag: 'Content Creation' },
+  { img: 'work-masterclass', cat: 'Visuel événement', tag: 'Art Direction' },
+  { img: 'work-welcome-spring', cat: 'Affiche festival', tag: 'Graphisme' },
 ];
 ---
 
@@ -155,11 +155,11 @@ const work = [
       <div class="head">
         <div>
           <p class="eyebrow reveal">Selected work</p>
-          <h2 class="reveal" style="--rd:.08s">La vitrine <em>se prépare</em></h2>
+          <h2 class="reveal" style="--rd:.08s">Quelques <em>réalisations</em></h2>
         </div>
         <p class="lead reveal" style="--rd:.16s">
-          Les premières études de cas du studio arriveront ici, avec le contexte, la démarche et les résultats,
-          validés par les clients.
+          Photo, graphisme, visuels d'événements : un aperçu de ce que je crée. Les études de cas complètes
+          arrivent avec les premiers clients du studio.
         </p>
       </div>
       <div class="works">
@@ -171,7 +171,7 @@ const work = [
               </div>
               <div class="workcard__label glass">
                 <span>{w.cat}</span>
-                <em>En préparation</em>
+                <em>{w.tag}</em>
               </div>
             </article>
           ))
@@ -188,8 +188,8 @@ const work = [
     </div>
     <div class="container about__grid rel">
       <div class="about__visual reveal">
-        <div class="about__photo arch"><img src={m('julie-studio')} alt="Julie, fondatrice de SAGE Creative Studio" /></div>
-        <div class="about__wink float" style="--d:7s"><img src={m('julie-wink')} alt="" /></div>
+        <div class="about__photo arch"><img src={m('julie-bw')} alt="Julie, fondatrice de SAGE Creative Studio" /></div>
+        <div class="about__wink float" style="--d:7s"><img src={m('julie-dots')} alt="" /></div>
         <div class="about__tag glass float" style="--d:8s;--delay:-2s">
           <strong>Julie</strong>
           <span>Fondatrice</span>
@@ -399,7 +399,7 @@ const work = [
   .workcard { position: relative; }
   .workcard:nth-child(2) { margin-top: 60px; }
   .workcard__img { aspect-ratio: 3 / 4; box-shadow: var(--shadow); }
-  .workcard__img img { width: 100%; height: 100%; transition: transform 1.4s var(--ease-out); }
+  .workcard__img img { width: 100%; height: 100%; object-position: 50% 12%; transition: transform 1.4s var(--ease-out); }
   .workcard:hover .workcard__img img { transform: scale(1.05); }
   .workcard__label { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-radius: var(--r-s); font-size: 0.88rem; }
   .workcard__label em { font: italic 700 1rem var(--font-display); color: var(--eucalyptus); }
