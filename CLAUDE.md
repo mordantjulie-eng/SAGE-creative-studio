@@ -1,0 +1,93 @@
+# SAGE — CREATIVE STUDIO · Contexte projet
+
+> Projet personnel de Julie Mordant, **indépendant de Kontnu**. Ne jamais mélanger avec les skills/outils Kontnu.
+> Ce fichier est la base de travail : ne pas refaire les réflexions déjà actées (§9), avancer étape par étape avec des livrables exploitables.
+
+## Façon de travailler (attentes de Julie)
+- Rôle : partenaire stratégique, créatif et opérationnel — réflexion ET exécution.
+- Réponses en **français**, naturelles, directes, chaleureuses, pro sans être formelles.
+- Concret, argumenté, sans phrases creuses ni clichés entrepreneuriaux.
+- **Challenger** quand c'est pertinent, ne pas valider par défaut. Ambitieux mais réaliste financièrement.
+- L'aider à structurer, prioriser, ne pas se disperser (elle explore beaucoup de pistes).
+
+## 1. Qui est Julie
+- 25 ans, belge, vit en Belgique.
+- Bachelier Marketing – International Business, EPHEC (2020-2024). Intérêts : marketing digital, UX/UI, communication, business international.
+- Compétences : social media management, stratégie marketing & com, employer branding, création de contenu & storytelling, direction artistique, branding, influence/UGC, prospection & business dev, analyse de marché & acquisition, recrutement, IA & automatisation, vibe coding.
+- Parcours : YourStory, ENEON/Idweaver, Socialsky, Kontnu (oct. 2025 business dev/sales → mai 2026 digital marketing management).
+- **Fin chez Kontnu : janvier 2027.** Objectif : devenir indépendante, ne plus retourner au salariat.
+
+## 2. Projet
+- Studio créatif et digital : **SAGE — CREATIVE STUDIO**. Pas « community manager freelance ».
+- Démarrage en **personne physique** (Belgique), SRL plus tard quand l'activité le justifie.
+- À terme : équipe, studio qui dépasse sa seule personne.
+
+## 3. Nom
+- Forme : `sage [creative studio]` — SAGE dominant, « creative studio » en signature secondaire.
+- Raisons : court, mémorisable, éditorial, sagesse/justesse/discernement, référence à la plante (sauge), marque détachable de sa personne.
+
+## 4. Les quatre piliers (S-A-G-E)
+- **S — Strategy** : positionnement, stratégie marketing, audit de com, conseil, plan de com, analyse de marché.
+- **A — Art Direction** : branding, identité visuelle, DA, storytelling, design graphique, campagnes créatives.
+- **G — Growth** : social media management, content creation, influence, UGC, acquisition, communauté, visibilité.
+- **E — Evolution** : IA, automatisation, vibe coding, optimisation des process, solutions digitales, intégration d'outils.
+
+Philosophie : **Think. Create. Grow. Evolve.**
+Signature commerciale : **Creative thinking. Digital impact.**
+Pistes secondaires : Good ideas grow here · Strategy meets creativity · Make brands matter · Des idées justes. Des marques vivantes. · Du sens. Des idées. De l'impact.
+
+## 5. Identité visuelle
+Palette :
+| Nom | Hex |
+|---|---|
+| Vert sapin | `#1F3A2E` |
+| Vert sauge | `#A3AE9C` |
+| Taupe | `#B6ADA1` |
+| Beige / ivoire | `#E7E2D8` |
+| Ocre | `#C49A54` |
+| Noir | `#1A1A1A` |
+
+- Mix : élégance premium, créativité audacieuse, minimalisme moderne, nature/matières organiques, design éditorial, caractère.
+- **À éviter** : générique, trop féminin, trop végétal, look cosmétique/bougie/déco. Doit se lire immédiatement comme studio créatif & digital.
+- Typos (pistes, non définitives) : Cormorant Garamond (titres), Manrope (texte), Montserrat (petites capitales).
+- Système de logos : principal, secondaire, monogramme, horizontal, signature, emblème circulaire.
+- Goût pour les logos typographiques à lettres entrelacées/superposées formant un symbole. Référence montrée → s'en inspirer **sans copier**.
+- Les propositions précédentes se ressemblaient trop : explorer des **directions vraiment distinctes**, dessin des lettres soigné, exploitable pro.
+
+## 6. Positionnement commercial
+- Accompagnement global (entreprises, marques, entrepreneurs), pas une agence de CM.
+- À construire : prestations, livrables, tarifs, forfaits mensuels, missions ponctuelles, accompagnements stratégiques, conditions, cibles, différenciation vs agences.
+- **Ne pas vendre du temps** : valoriser expertise, réflexion stratégique, résultats.
+
+## 7. Juridique — disponibilité du nom
+- Distinguer : nom commercial / dénomination sociale / marque déposée.
+- Recherche web préliminaire : usages « Sage Studio » à l'international, dépôts US dans divers secteurs, **aucune confirmation Benelux**.
+- Registres : BOIP https://www.boip.int/fr/registre-des-marques · TMview https://www.tmdn.org/tmview/ · BCE https://kbopub.economie.fgov.be/kbopub/zoeknaamform.html?lang=fr
+- Requêtes : SAGE STUDIO, SAGE, SAGE CREATIVE STUDIO, SAGE DIGITAL STUDIO + variantes phonétiques/graphiques.
+- Classes : 35 (pub, marketing, stratégie), 42 (design, services tech), 41 (contenu, production, formation).
+- Idée : dépôt en nom propre au lancement, transfert à la SRL ensuite.
+- ⚠️ **Ne jamais présenter la marque comme juridiquement disponible sans vérification officielle.**
+
+## 9. Décisions actées
+- Nom envisagé : Sage Studio · Signature : Creative Studio
+- Positionnement : premium + créativité + modernité
+- Studio indépendant pouvant évoluer vers une équipe
+- 4 piliers : Strategy, Art Direction, Growth, Evolution
+- Palette : sapin, sauge, taupe, beige/ivoire, noir, ocre
+- Signature de marque : Creative thinking. Digital impact.
+
+## Chantiers ouverts
+1. Recherche juridique complète du nom
+2. Identité visuelle finale & logo original
+3. Brand book
+4. Positionnement commercial précis
+5. Catalogue de prestations & tarifs
+6. Business plan & prévisionnel
+7. **Site web professionnel** ← chantier qu'on construit ensemble
+8. Portfolio & études de cas
+9. Stratégie de prospection
+10. Communication de lancement
+11. Démarches administratives (indépendante en Belgique)
+
+## Journal des décisions
+- 2026-11-12 : création du dossier projet `sage-studio/` et de ce contexte.
