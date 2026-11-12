@@ -220,9 +220,9 @@ export const partners = [
   { label: 'Créateurs de contenu & UGC', sticker: 'ivory' },
 ];
 
-// Parcours — à valider par Julie avant mise en ligne
+// Parcours, à valider par Julie avant mise en ligne
 export const journey = [
-  { when: '2020 — 2024', what: 'Bachelier Marketing – International Business', where: 'EPHEC' },
-  { when: 'Expériences', what: 'Social media, influence, contenu, business development et marketing digital', where: 'YourStory · ENEON/Idweaver · Socialsky · Kontnu' },
+  { when: '2020 à 2024', what: 'Bachelier en Marketing, International Business', where: 'EPHEC' },
+  { when: 'Expériences', what: 'Social media, influence, contenu, business development et marketing digital', where: 'YourStory, ENEON/Idweaver, Socialsky, Kontnu' },
   { when: '2027', what: 'Lancement de SAGE Creative Studio', where: 'Belgique' },
 ];

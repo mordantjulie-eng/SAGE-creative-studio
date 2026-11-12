@@ -1,4 +1,4 @@
-/* SAGE — design system V3 « soft premium » : verre dépoli, dégradés, éléments flottants. */
+/* SAGE, design system V3 « soft premium » : verre dépoli, dégradés, éléments flottants. */
 :root {
   /* Palette */
   --ink: #2b342f; /* texte principal, vert-anthracite */
@@ -327,7 +327,6 @@ p {
 .flag {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
   padding: 0.4rem 0.9rem;
   border-radius: var(--pill);
   font-size: 0.8rem;
@@ -336,26 +335,13 @@ p {
   color: #fff;
   background: var(--pers);
 }
-.flag::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: pulse 2.4s ease-in-out infinite;
-}
+
 .flag--cobalt {
   background: var(--cobalt);
 }
 .flag--vermilion {
   background: var(--vermilion);
 }
-@keyframes pulse {
-  50% {
-    opacity: 0.3;
-  }
-}
-
 /* Scènes pilotées par le défilement : --p va de 0 à 1 */
 .scene {
   position: relative;

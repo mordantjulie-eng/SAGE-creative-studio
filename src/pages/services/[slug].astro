@@ -15,7 +15,7 @@ const related = pillars.filter((p) => s.pillars.includes(p.letter));
 const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 ---
 
-<Base title={`${s.title} — SAGE Creative Studio`} description={`${s.title} : ${s.promise}`}>
+<Base title={`${s.title} | SAGE Creative Studio`} description={`${s.title} : ${s.promise}`}>
   <section class="sv-hero">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" style="width:700px;height:700px;left:-220px;top:-200px;--d:26s"></span>
@@ -36,7 +36,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
         <div class="sv-photo arch"><img class="photo" src={`/media/${s.img}.jpg`} alt="" /></div>
         <div class="sv-tag glass float" style="--d:8s">
           <span>N° {s.num}</span>
-          <em>{s.highlights.join(' · ')}</em>
+          <em>{s.highlights.join(', ')}</em>
         </div>
       </div>
     </div>

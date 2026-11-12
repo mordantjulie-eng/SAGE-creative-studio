@@ -15,12 +15,11 @@ const { service: s, delay = 0 } = Astro.props;
     <div class="card__face card__front glass" data-face="front">
       <div class="card__top">
         <span class="card__no">N° {s.num}</span>
-        <span class="card__dot" aria-hidden="true"></span>
       </div>
       <h3 class="card__title"><a href={`/services/${s.slug}`}>{s.title}</a></h3>
       <p class="card__short">{s.short}</p>
       <div class="card__foot">
-        <p class="card__tags">{s.highlights.join(' · ')}</p>
+        <p class="card__tags">{s.highlights.join(', ')}</p>
         <button type="button" class="card__flip" data-flip aria-label={`Voir les prestations ${s.title}`}>
           Voir les prestations <span aria-hidden="true">+</span>
         </button>
@@ -107,13 +106,6 @@ const { service: s, delay = 0 } = Astro.props;
   .card__back .card__no {
     color: var(--champagne);
   }
-  .card__dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--champagne);
-    box-shadow: 0 0 0 6px rgb(198 174 134 / 0.18);
-  }
   .card__title {
     font-size: clamp(1.8rem, 2.4vw, 2.2rem);
     margin-top: 1.4rem;
@@ -187,18 +179,8 @@ const { service: s, delay = 0 } = Astro.props;
     line-height: 1.4;
   }
   .card__list li {
-    padding-left: 1.1rem;
-    position: relative;
-  }
-  .card__list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.6em;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--champagne);
+    padding-bottom: 0.45rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.12);
   }
   .card__back .link {
     color: var(--cream);
