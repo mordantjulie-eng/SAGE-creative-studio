@@ -1,5 +1,6 @@
 ---
-// Logo PROVISOIRE : lettrage composé en police web + orbite dessinée, en attendant le SVG final.
+// Logo PROVISOIRE : lettrage en Bricolage Grotesque condensée + point ocre vivant.
+// Le lettrage sur mesure (lettres personnalisées) reste à dessiner en vectoriel avec un·e graphiste.
 import { brand } from '../config/site';
 
 interface Props {
@@ -19,7 +20,7 @@ const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
         </svg>
       )
     }
-    {brand.name}<span class="logo__dot">{brand.mark}</span>
+    <span class="logo__s">S</span>AGE<span class="logo__dot"></span>
   </span>
   {withDescriptor && <span class="logo__descriptor" aria-hidden="true">{brand.descriptor}</span>}
 </span>
@@ -34,18 +35,35 @@ const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
   }
   .logo__word {
     position: relative;
+    display: inline-flex;
+    align-items: baseline;
     font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 900;
-    font-stretch: 118%;
-    letter-spacing: -0.07em;
-    padding-right: 0.06em;
+    font-weight: 800;
+    font-stretch: 78%;
+    letter-spacing: -0.05em;
+  }
+  .logo__s {
+    display: inline-block;
+    transform: rotate(-6deg) translateY(-0.02em);
+  }
+  .logo__dot {
+    display: inline-block;
+    width: 0.2em;
+    height: 0.2em;
+    margin-left: 0.05em;
+    border-radius: 50%;
+    background: var(--sage-ochre);
+    transition: transform 0.45s var(--spring);
+  }
+  a:hover .logo__dot,
+  .logo:hover .logo__dot {
+    transform: translateY(-0.35em) scale(1.15);
   }
   .logo__orbit {
     position: absolute;
-    left: 46%;
-    top: -0.3em;
-    width: 40%;
+    left: 44%;
+    top: -0.32em;
+    width: 44%;
     fill: none;
     stroke: currentColor;
     stroke-width: 3;
@@ -68,13 +86,13 @@ const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
     padding-left: 0.5em;
   }
   .logo--sm .logo__word {
-    font-size: 1.55rem;
+    font-size: 1.75rem;
   }
   .logo--md .logo__word {
     font-size: 3.4rem;
   }
   .logo--xl .logo__word {
-    font-size: clamp(4.6rem, 15vw, 14rem);
+    font-size: clamp(5rem, 19vw, 17rem);
   }
   .logo--xl .logo__descriptor {
     font-size: clamp(0.72rem, 1.5vw, 1.15rem);

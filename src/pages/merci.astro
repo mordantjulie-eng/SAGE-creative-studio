@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Merci — SAGE Creative Studio">
+  <section class="thanks on-dark">
+    <div class="container thanks__inner">
+      <p class="hand">ticket bien reçu ✦</p>
+      <h1>Merci !</h1>
+      <p>Je lis votre message et je reviens vers vous sous 48 h ouvrées.</p>
+      <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks { min-height: 100svh; display: grid; place-items: center; background: var(--sage-forest); color: var(--sage-ivory); text-align: center; }
+  .thanks__inner { display: grid; justify-items: center; gap: 1.4rem; }
+  .thanks h1 { font-size: clamp(4rem, 14vw, 11rem); }
+  .thanks .hand { color: var(--sage-ochre); font-size: 2.2rem; rotate: -4deg; }
+</style>

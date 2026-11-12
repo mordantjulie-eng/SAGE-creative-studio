@@ -1,253 +1,264 @@
 ---
 import Base from '../layouts/Base.astro';
-import Logo from '../components/Logo.astro';
-import { brand, pillars, method } from '../config/site';
+import Ticket from '../components/Ticket.astro';
+import Tickers from '../components/Tickers.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { brand, services, pillars, steps, partners } from '../config/site';
 
-// Photos Unsplash (licence Unsplash) = illustrations provisoires, à remplacer par de vraies photos du studio.
-const m = (n: string) => `media/${n}.jpg`;
-
+// Photos Unsplash = illustrations provisoires (aucune ne représente Julie).
+const m = (n: string) => `/media/${n}.jpg`;
 const shapes: Record<string, string> = {
   leaf: 'M0 100 V45 A55 55 0 0 1 55 -10 H100 V45 A55 55 0 0 1 45 100 Z',
   half: 'M0 30 H100 A50 50 0 0 1 0 30 Z',
   arch: 'M0 100 V50 A50 50 0 0 1 100 50 V100 Z',
   dot: 'M50 18 A32 32 0 1 1 49.9 18 Z',
 };
-const pillarPhotos = ['moodboard', 'swatches', 'social-apps', 'design-system'];
-const feeds = [
-  ['creator-red', 'flatlay', 'creator-tee', 'swatches', 'creator-red'],
-  ['creator-hoodie', 'design-screen', 'creator-blue', 'moodboard', 'creator-hoodie'],
-  ['portrait-orange', 'social-apps', 'team-laugh', 'design-system', 'portrait-orange'],
-];
-const projects = [
-  { img: 'team-laugh', cat: 'Strategy · Growth', title: 'Repositionner une marque locale', tag: 'Exemple' },
-  { img: 'swatches', cat: 'Art Direction', title: 'Identité visuelle complète', tag: 'Exemple' },
-  { img: 'creator-tee', cat: 'Growth · UGC', title: 'Campagne créateurs & UGC', tag: 'Exemple' },
-  { img: 'design-screen', cat: 'Evolution', title: 'Site & automatisations sur mesure', tag: 'Exemple' },
-  { img: 'duo-work', cat: 'Strategy', title: 'Audit & plan de communication', tag: 'Exemple' },
-];
+const rots = [-2.2, 1.6, -1.2, 2, -1.6, 1.1];
 const arrow = '<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 10 10 2M4 2h6v6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>';
-const ticker = [...brand.manifesto, ...brand.manifesto, ...brand.manifesto];
-const tags = ['Stratégie', 'Branding', 'Social media', 'Contenu', 'UGC', 'Influence', 'IA', 'Automatisation', 'Direction artistique', 'Vibe coding'];
+const under = '<svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M4 16 C 80 6, 170 4, 296 10 M 40 21 C 120 13, 200 13, 270 17"/></svg>';
+const circle = '<svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><path d="M150 8 C 60 6, 8 30, 10 62 C 12 98, 90 114, 170 110 C 250 106, 296 82, 290 52 C 284 20, 210 4, 120 12"/></svg>';
+const work = [
+  { img: 'team-laugh', cat: 'Strategy & Consulting', n: '01' },
+  { img: 'swatches', cat: 'Branding & Art Direction', n: '02' },
+  { img: 'creator-tee', cat: 'Content Creation', n: '03' },
+  { img: 'social-apps', cat: 'Community Management', n: '04' },
+];
 ---
 
 <Base>
-  <!-- ============ HERO ============ -->
+  <!-- ================= 01 HERO ================= -->
   <section class="hero on-dark" data-parallax-root>
     <div class="hero__stage">
-      <!-- bulles flottantes -->
-      <div class="fl fl--portrait float" style="--d:7s;--r:-4deg" data-depth="18">
-        <img class="photo" src={m('portrait-orange')} alt="" />
-      </div>
-      <div class="fl fl--flatlay float" style="--d:8s;--r:5deg;--delay:-2s" data-depth="10">
-        <img class="photo" src={m('flatlay')} alt="" />
-      </div>
-      <div class="fl fl--swatch float" style="--d:6s;--r:-8deg;--delay:-1s" data-depth="26">
-        <img class="photo" src={m('swatches')} alt="" />
-      </div>
+      <div class="fl fl--a float" style="--d:7s;--r:-5deg" data-depth="18"><img class="photo" src={m('moodboard')} alt="" /></div>
+      <div class="fl fl--b float" style="--d:8s;--r:5deg;--delay:-2s" data-depth="10"><img class="photo" src={m('flatlay')} alt="" /></div>
+      <div class="fl fl--c float" style="--d:6s;--r:-8deg;--delay:-1s" data-depth="26"><img class="photo" src={m('swatches')} alt="" /></div>
 
-      <span class="fl chip fl--c1 float" style="--d:5s;--r:-6deg" data-depth="30">✦ Stratégie</span>
-      <span class="fl chip chip--ochre fl--c2 float" style="--d:6.5s;--r:5deg;--delay:-3s" data-depth="22">Branding</span>
-      <span class="fl chip chip--rust fl--c3 float" style="--d:5.5s;--r:-3deg;--delay:-1.5s" data-depth="34">Social media</span>
-      <span class="fl chip chip--soft fl--c4 float" style="--d:7s;--r:4deg;--delay:-4s" data-depth="16">IA & automatisation</span>
+      <a href="#services" class="fl chip fl--s1 float" style="--d:5s;--r:-6deg" data-depth="30">01 Community</a>
+      <a href="#services" class="fl chip chip--ochre fl--s2 float" style="--d:6.5s;--r:5deg;--delay:-3s" data-depth="22">02 Content</a>
+      <a href="#services" class="fl chip chip--rust fl--s3 float" style="--d:5.5s;--r:-3deg;--delay:-1.5s" data-depth="34">05 Influence</a>
+      <a href="#services" class="fl chip chip--soft fl--s4 float" style="--d:7s;--r:4deg;--delay:-4s" data-depth="16">06 IA</a>
 
-      <div class="fl notif fl--notif float" style="--d:6s;--delay:-2.5s" data-depth="20">
+      <div class="fl notif fl--notif float" style="--d:6s;--delay:-2.5s" data-depth="20" aria-hidden="true">
         <span class="notif__dot"></span>
         <div><strong>Nouveau brief</strong><br /><span>« On veut une marque qui se remarque. »</span></div>
       </div>
 
       <div class="fl phone fl--phone float" style="--d:7.5s;--r:6deg;--delay:-1s" data-depth="12" aria-hidden="true">
         <div class="phone__screen">
-          <div class="feed">
-            {feeds[0].map((f) => <img class="photo" src={m(f)} alt="" />)}
-          </div>
+          <div class="feed">{['creator-red', 'flatlay', 'creator-hoodie', 'swatches', 'creator-red'].map((f) => <img class="photo" src={m(f)} alt="" />)}</div>
           <div class="phone__ui"><span class="heart">♥</span><span class="heart">♥</span><span class="heart">♥</span></div>
         </div>
       </div>
 
-      <a href="#studio" class="badge fl fl--badge" data-depth="8" aria-label="Découvrir le studio">
+      <a href="#services" class="badge fl fl--badge" data-depth="8" aria-label="Voir les services">
         <svg viewBox="0 0 120 120" class="badge__ring" aria-hidden="true">
           <defs><path id="circ" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"></path></defs>
-          <text><textPath href="#circ">CREATIVE THINKING • DIGITAL IMPACT • </textPath></text>
+          <text><textPath href="#circ">THINK • CREATE • GROW • EVOLVE • </textPath></text>
         </svg>
         <span class="badge__arrow">↓</span>
       </a>
 
-      <!-- centre -->
       <div class="hero__center">
-        <p class="label hero__kicker">Studio créatif & digital · {brand.location}</p>
-        <h1 class="sr-only">{brand.name} {brand.descriptor} — {brand.signature}</h1>
-        <Logo size="xl" withDescriptor orbit />
+        <p class="label hero__kicker">{brand.name}. {brand.descriptor} · {brand.location}</p>
+        <h1 class="hero__title">
+          Le studio créatif qui fait <span class="mark mark--under">grandir<Fragment set:html={under} /></span> les marques.
+        </h1>
         <p class="hero__lead">
-          On fait rencontrer <strong>stratégie</strong>, <strong>identité</strong> et <strong>croissance</strong>.
-          Pour les marques qui veulent être choisies, pas seulement vues.
+          Community management, création de contenu, stratégie, branding, influence et formation à l'IA :
+          tout ce qu'il faut pour que votre marque se voie, se comprenne et se choisisse.
         </p>
         <div class="hero__ctas">
-          <a href="#contact" class="btn btn--primary">Parlons de votre projet <span class="arrow"><Fragment set:html={arrow} /></span></a>
-          <a href="#expertises" class="btn btn--ghost">Nos expertises</a>
+          <a href="#services" class="btn btn--primary">Découvrir les services <span class="arrow"><Fragment set:html={arrow} /></span></a>
+          <a href="#contact" class="btn btn--ghost">Parlons de votre projet</a>
         </div>
+        <p class="hand hero__hand" aria-hidden="true">Creative thinking. Digital impact.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============ TICKERS ============ -->
-  <div class="tickers" aria-hidden="true">
-    <div class="ticker ticker--ochre">
-      <div class="ticker__track">
-        {[0, 1].map(() => <div class="ticker__group">{ticker.map((w) => <span>{w} <i>✺</i></span>)}</div>)}
-      </div>
-    </div>
-    <div class="ticker ticker--forest">
-      <div class="ticker__track ticker__track--rev">
-        {[0, 1].map(() => <div class="ticker__group">{tags.map((w) => <span class="ticker__tag">{w}</span>)}</div>)}
-      </div>
-    </div>
-  </div>
+  <Tickers />
 
-  <!-- ============ STUDIO ============ -->
-  <section id="studio" class="section">
-    <div class="container studio">
-      <div class="studio__text">
-        <p class="label reveal">01 — Le studio</p>
-        <h2 class="reveal">Du beau, oui.<br /><span class="u-rust">Du sens,</span> surtout.</h2>
-        <p class="reveal" style="--rd:.1s">
-          {brand.name} n'est pas une agence de community management de plus. On part de votre business avant
-          de parler de posts : où vous voulez aller, ce qui vous rend différent, et comment le montrer.
-        </p>
-        <p class="reveal" style="--rd:.15s">
-          Stratégie, direction artistique, visibilité et outils digitaux sont pensés ensemble. Moins
-          d'intermédiaires, plus de cohérence.
-        </p>
-        <div class="studio__chips reveal" style="--rd:.2s">
-          <span class="chip">Indépendant</span><span class="chip">Bilingue FR / EN</span><span class="chip">Belgique & Europe</span>
-        </div>
-      </div>
-      <div class="studio__collage" data-scroll-parallax>
-        <div class="col col--big reveal" data-speed="-0.06"><img class="photo" src={m('team-laugh')} alt="Illustration : une équipe en atelier créatif" /></div>
-        <div class="col col--round reveal" style="--rd:.15s" data-speed="0.08"><img class="photo" src={m('design-screen')} alt="" /></div>
-        <div class="col col--sticker float" style="--r:-10deg;--d:5s">Made<br />with<br />purpose.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ EXPERTISES ============ -->
-  <section id="expertises" class="section section--ivory rounded-top">
+  <!-- ================= 02 SERVICES ================= -->
+  <section id="services" class="section services">
     <div class="container">
-      <div class="head reveal">
-        <p class="label">02 — Expertises</p>
-        <h2>Quatre lettres.<br />Une seule approche.</h2>
+      <div class="head head--row">
+        <div class="reveal">
+          <p class="label">02 — Services</p>
+          <h2>Six façons de faire<br />avancer votre <span class="mark mark--circle" style="--mark:var(--sage-rust)">marque<Fragment set:html={circle} /></span>.</h2>
+        </div>
+        <div class="head__aside reveal" style="--rd:.1s">
+          <p>Chaque service peut être pris seul, en mission ponctuelle ou en accompagnement mensuel. Retournez un ticket pour voir ce qu'il contient.</p>
+          <p class="hand head__hand" aria-hidden="true">↻ retournez-moi !</p>
+        </div>
       </div>
-      <ul class="pillars">
-        {
-          pillars.map((p, i) => (
-            <li class="pillar reveal" style={`--rd:${i * 0.08}s`} data-cursor="Découvrir">
-              <img class="pillar__bg photo" src={m(pillarPhotos[i])} alt="" />
-              <div class="pillar__visual" aria-hidden="true">
-                <svg class="pillar__shape" viewBox="0 0 100 100" style={`color:${p.color}`}>
+      <div class="tickets">
+        {services.map((s, i) => <Ticket service={s} rot={rots[i]} delay={(i % 3) * 0.08} />)}
+      </div>
+      <div class="services__note reveal">
+        <span class="chip chip--forest">Un besoin hybride ?</span>
+        <p>Les services se combinent. On compose ensemble l'accompagnement qui colle à votre réalité et à votre budget.</p>
+        <a href="#contact" class="services__link">En parler →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 MINDSET ================= -->
+  <section id="mindset" class="mindset on-dark">
+    <div class="container">
+      <div class="head head--row">
+        <div class="reveal">
+          <p class="label">03 — The SAGE Mindset</p>
+          <h2>Quatre lettres.<br />Une façon de penser.</h2>
+        </div>
+        <p class="head__aside reveal" style="--rd:.1s">
+          S.A.G.E. n'est pas une liste de services : c'est la méthode qui guide chacun d'eux. Cliquez sur une lettre.
+        </p>
+      </div>
+
+      <div class="sage" data-tabs>
+        <div class="sage__letters" role="tablist" aria-label="Les quatre piliers S.A.G.E.">
+          {
+            pillars.map((p, i) => (
+              <button
+                class="sage__tab reveal"
+                style={`--rd:${i * 0.1}s`}
+                role="tab"
+                id={`tab-${p.letter}`}
+                aria-controls={`panel-${p.letter}`}
+                aria-selected={i === 0 ? 'true' : 'false'}
+                tabindex={i === 0 ? 0 : -1}
+              >
+                <svg class="sage__shape" viewBox="0 0 100 100" style={`color:${p.color}`} aria-hidden="true">
                   <path d={shapes[p.shape]} fill="currentColor" />
                 </svg>
-                <span class="pillar__letter">{p.letter}</span>
-              </div>
-              <h3 class="pillar__name">{p.name}</h3>
-              <p class="pillar__verbs">{p.verbs}</p>
-              <p class="pillar__text">{p.text}</p>
-              <span class="pillar__more">{p.fr} →</span>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
-
-  <!-- ============ CONTENU / REELS ============ -->
-  <section class="reels on-dark">
-    <div class="container reels__inner">
-      <div class="reels__text">
-        <p class="label reveal">Growth</p>
-        <h2 class="reveal">Du contenu pensé pour être vu.<br /><span class="u-ochre">Et pour faire avancer.</span></h2>
-        <p class="reveal" style="--rd:.1s">
-          Reels, carrousels, créateurs, UGC : chaque contenu sert un objectif clair, sur la bonne
-          plateforme, avec une direction artistique qui reste la vôtre.
-        </p>
-        <a href="#contact" class="btn btn--primary reveal" style="--rd:.15s">Booster ma visibilité <span class="arrow"><Fragment set:html={arrow} /></span></a>
-      </div>
-      <div class="reels__phones" aria-hidden="true">
+                <span class="sage__letter">{p.letter}</span>
+                <span class="sage__name">{p.name}</span>
+              </button>
+            ))
+          }
+        </div>
         {
-          feeds.map((feed, i) => (
-            <div class={`phone phone--${i} float`} style={`--d:${6 + i}s;--delay:-${i * 1.5}s;--r:${[-6, 3, 8][i]}deg`}>
-              <div class="phone__screen">
-                <div class="feed" style={`--fd:${12 + i * 3}s`}>
-                  {feed.map((f) => <img class="photo" src={m(f)} alt="" />)}
+          pillars.map((p, i) => (
+            <div class="sage__panel" role="tabpanel" id={`panel-${p.letter}`} aria-labelledby={`tab-${p.letter}`} hidden={i !== 0}>
+              <div class="sage__card">
+                <p class="sage__big" aria-hidden="true">{p.letter}</p>
+                <div class="sage__content">
+                  <p class="label">{p.letter} — {p.name}</p>
+                  <h3>{p.verbs}</h3>
+                  <p>{p.text}</p>
+                  <div class="sage__in">
+                    <span class="sage__inlabel">Au cœur de :</span>
+                    {services
+                      .filter((s) => s.pillars.includes(p.letter))
+                      .map((s) => (
+                        <a class="chip" href={`/services/${s.slug}`}>
+                          {s.num} {s.title}
+                        </a>
+                      ))}
+                  </div>
                 </div>
-                <div class="phone__ui"><span class="heart">♥</span><span class="heart">♥</span><span class="heart">♥</span></div>
               </div>
             </div>
           ))
         }
-        <span class="chip chip--ochre reels__bubble float" style="--r:-6deg;--d:5s">Reels ▶</span>
-        <span class="chip reels__bubble reels__bubble--2 float" style="--r:5deg;--d:6s;--delay:-2s">UGC ✦</span>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROJETS ============ -->
+  <!-- ================= 04 WORK ================= -->
   <section id="projets" class="section">
-    <div class="container head head--row reveal">
-      <div>
-        <p class="label">03 — Projets</p>
-        <h2>Ce qu'on<br />fabrique.</h2>
+    <div class="container head head--row">
+      <div class="reveal">
+        <p class="label">04 — Selected Work</p>
+        <h2>La vitrine<br />se prépare.</h2>
       </div>
-      <p class="head__note">Visuels d'illustration : les études de cas réelles arrivent avec les premiers clients.</p>
+      <p class="head__aside reveal" style="--rd:.1s">
+        Les premières études de cas du studio arriveront ici, avec le contexte, la démarche et les résultats, validés par les clients.
+      </p>
     </div>
     <div class="slider" data-slider>
       {
-        projects.map((p, i) => (
-          <article class="card reveal" style={`--rd:${i * 0.06}s`} data-cursor="Voir ↗">
-            <div class="card__img">
-              <img class="photo" src={m(p.img)} alt="" loading="lazy" />
-              <span class="chip card__tag">{p.tag}</span>
+        work.map((w, i) => (
+          <article class="case reveal" style={`--rd:${i * 0.06}s;--r:${[-2, 1.5, -1, 2][i]}deg`} data-cursor="Bientôt ✦">
+            <div class="case__img">
+              <img class="photo" src={m(w.img)} alt="" />
+              <span class="case__stamp">En préparation</span>
             </div>
-            <p class="label card__cat">{p.cat}</p>
-            <h3 class="card__title">{p.title}</h3>
+            <div class="case__label">
+              <span class="label">{w.cat}</span>
+              <span class="case__n">Case #{w.n}</span>
+            </div>
           </article>
         ))
       }
+      <article class="case case--cta reveal" style="--r:-1deg">
+        <p class="hand">et si le prochain, c'était le vôtre ?</p>
+        <a href="#contact" class="btn btn--primary">Proposer un projet <span class="arrow"><Fragment set:html={arrow} /></span></a>
+      </article>
     </div>
+    <p class="container work__credit">Visuels d'illustration (Unsplash).</p>
   </section>
 
-  <!-- ============ METHODE ============ -->
-  <section id="methode" class="section section--ivory rounded-top">
-    <div class="container">
-      <div class="head reveal">
-        <p class="label">04 — Méthode</p>
-        <h2>Pas de production<br />sans direction.</h2>
+  <!-- ================= 05 ABOUT ================= -->
+  <section id="studio" class="section about">
+    <div class="container about__grid">
+      <div class="about__visual reveal">
+        <figure class="polaroid float" style="--r:-4deg;--d:8s;--fy:-8px">
+          <span class="tape" style="top:-14px;left:50%;translate:-50% 0;rotate:-3deg"></span>
+          <div class="polaroid__photo">
+            <span class="hand">ta photo ici ✦</span>
+          </div>
+          <figcaption class="hand">Julie, fondatrice</figcaption>
+        </figure>
+        <span class="chip chip--ochre about__sticker float" style="--r:8deg;--d:6s">100 % indépendante</span>
+        <span class="chip chip--rust about__sticker about__sticker--2 float" style="--r:-6deg;--d:7s;--delay:-2s">basée en Belgique</span>
       </div>
-      <ol class="steps">
-        {
-          method.map((s, i) => (
-            <li class="step reveal" style={`--rd:${i * 0.1}s`}>
-              <span class="step__num">{s.step}</span>
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-            </li>
-          ))
-        }
-      </ol>
+      <div class="about__text">
+        <p class="label reveal">05 — About the Studio</p>
+        <h2 class="reveal">Derrière SAGE,<br />il y a <span class="mark mark--under">Julie<Fragment set:html={under} /></span>.</h2>
+        <p class="reveal" style="--rd:.1s">
+          Marketing, réseaux sociaux, contenu, influence, business et IA : j'ai passé ces dernières années à voir
+          de l'intérieur ce qui fait avancer une marque, et ce qui la freine. SAGE est né de l'envie de réunir
+          tout ça au même endroit, avec plus de sens et moins de jargon.
+        </p>
+        <div class="crew reveal" style="--rd:.15s">
+          <h3>Seule aux commandes. Jamais seule au travail.</h3>
+          <p>
+            Pour les tournages, les shootings et le design graphique, je m'entoure de partenaires de confiance.
+            Vous gardez un seul interlocuteur : moi.
+          </p>
+          <ul class="crew__list">
+            {partners.map((p, i) => <li class={`chip chip--${p.sticker}`} style={`--r:${[-3, 2, -2, 3][i]}deg`}>{p.label}</li>)}
+          </ul>
+        </div>
+        <a href="/studio" class="btn btn--primary reveal" style="--rd:.2s">Découvrir le studio <span class="arrow"><Fragment set:html={arrow} /></span></a>
+      </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section id="contact" class="cta">
-    <div class="container cta__inner">
-      <span class="chip chip--rust cta__f1 float" style="--r:-8deg;--d:5s">Allons-y !</span>
-      <span class="chip chip--soft cta__f2 float" style="--r:6deg;--d:6s;--delay:-2s">48 h pour vous répondre</span>
-      <img class="photo cta__f3 float" style="--r:8deg;--d:7s" src={m('portrait-orange')} alt="" />
-      <p class="label reveal">05 — Contact</p>
-      <h2 class="cta__title reveal">Créons quelque chose<br />qui <span class="u-rust">compte.</span></h2>
-      <p class="cta__lead reveal" style="--rd:.1s">
-        Un projet, une marque à clarifier, une idée encore floue : racontez-moi en quelques lignes.
-      </p>
+  <!-- ================= 06 CONTACT ================= -->
+  <section id="contact" class="contact on-dark">
+    <span class="chip chip--ochre contact__f1 float" style="--r:-8deg;--d:5s" aria-hidden="true">Allons-y !</span>
+    <div class="container contact__grid">
+      <div class="contact__intro">
+        <p class="label reveal">06 — Let's work together</p>
+        <h2 class="reveal">Créons quelque chose<br />qui <span class="u-ochre">compte.</span></h2>
+        <p class="reveal" style="--rd:.1s">Un projet, une marque à clarifier, une idée encore floue : racontez-moi en quelques lignes. Je vous réponds sous 48 h ouvrées.</p>
+        <ol class="mini-steps">
+          {
+            steps.map((s, i) => (
+              <li class="mini reveal" style={`--rd:${0.1 + i * 0.07}s;--r:${[-1.5, 1, -1, 1.5][i]}deg`}>
+                <span class="mini__num">{s.num}</span>
+                <span>
+                  <strong>{s.title}</strong> {s.text}
+                </span>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
       <div class="reveal" style="--rd:.15s">
-        <a href={`mailto:${brand.email}`} class="btn btn--primary btn--xl">Écrire au studio <span class="arrow"><Fragment set:html={arrow} /></span></a>
+        <ContactForm />
       </div>
     </div>
   </section>
@@ -259,7 +270,7 @@ const tags = ['Stratégie', 'Branding', 'Social media', 'Contenu', 'UGC', 'Influ
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const fine = window.matchMedia('(pointer: fine)').matches;
 
-  // Parallaxe à la souris dans le hero
+  // Parallaxe souris (hero)
   const root = document.querySelector<HTMLElement>('[data-parallax-root]');
   if (root && fine && !reduce) {
     const items = root.querySelectorAll<HTMLElement>('[data-depth]');
@@ -267,38 +278,39 @@ const tags = ['Stratégie', 'Branding', 'Social media', 'Contenu', 'UGC', 'Influ
       const r = root.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
-      items.forEach((el) => {
-        const d = Number(el.dataset.depth);
-        el.style.translate = `${-x * d}px ${-y * d}px`;
-      });
+      items.forEach((el) => (el.style.translate = `${-x * Number(el.dataset.depth)}px ${-y * Number(el.dataset.depth)}px`));
     });
   }
 
-  // Parallaxe au défilement (collage)
-  const speedEls = document.querySelectorAll<HTMLElement>('[data-speed]');
-  if (!reduce && speedEls.length) {
-    const onScroll = () => {
-      speedEls.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        const c = r.top + r.height / 2 - window.innerHeight / 2;
-        el.style.translate = `0 ${c * Number(el.dataset.speed)}px`;
-      });
-    };
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-  }
+  // Onglets S.A.G.E. (clic + flèches clavier)
+  const tabs = [...document.querySelectorAll<HTMLButtonElement>('.sage__tab')];
+  const select = (t: HTMLButtonElement) => {
+    tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on));
+      x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')!)!.hidden = !on;
+    });
+  };
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => select(t));
+    t.addEventListener('keydown', (e) => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      const n = tabs[(i + d + tabs.length) % tabs.length];
+      select(n);
+      n.focus();
+    });
+  });
 
-  // Curseur « bulle »
+  // Curseur bulle
   const cursor = document.querySelector<HTMLElement>('.cursor');
   if (cursor && fine && !reduce) {
     const label = cursor.querySelector('span')!;
     let x = 0, y = 0, cx = 0, cy = 0;
     window.addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; });
-    const loop = () => {
-      cx += (x - cx) * 0.18; cy += (y - cy) * 0.18;
-      cursor.style.transform = `translate(${cx}px, ${cy}px)`;
-      requestAnimationFrame(loop);
-    };
+    const loop = () => { cx += (x - cx) * 0.18; cy += (y - cy) * 0.18; cursor.style.transform = `translate(${cx}px, ${cy}px)`; requestAnimationFrame(loop); };
     loop();
     document.querySelectorAll<HTMLElement>('[data-cursor]').forEach((el) => {
       el.addEventListener('pointerenter', () => { label.textContent = el.dataset.cursor!; cursor.classList.add('is-on'); });
@@ -317,83 +329,54 @@ const tags = ['Stratégie', 'Branding', 'Social media', 'Contenu', 'UGC', 'Influ
 </script>
 
 <style>
-  /* ---------- utilitaires ---------- */
-  .u-rust { color: var(--sage-rust); }
   .u-ochre { color: var(--sage-ochre); }
-  .section--ivory { background: var(--sage-ivory); }
-  .rounded-top { border-radius: var(--radius-l) var(--radius-l) 0 0; }
   .head { display: grid; gap: 1.1rem; margin-bottom: clamp(40px, 6vw, 80px); }
-  .head h2, .studio h2, .reels h2, .cta__title { font-size: var(--h2); color: inherit; }
-  .head--row { display: flex; justify-content: space-between; align-items: end; gap: 2rem; flex-wrap: wrap; }
-  .head__note { max-width: 22rem; font-size: 0.9rem; opacity: 0.7; }
-  .chip--ochre { background: var(--sage-ochre); color: var(--sage-ink); }
-  .chip--rust { background: var(--sage-rust); color: var(--sage-ivory); }
-  .chip--soft { background: var(--sage-soft); color: var(--sage-forest); }
+  .head--row { display: flex; justify-content: space-between; align-items: end; gap: 2rem 4rem; flex-wrap: wrap; }
+  .head h2, .about h2, .contact h2 { font-size: var(--h2); }
+  .head .label { margin-bottom: 1.1rem; }
+  .head__aside { max-width: 25rem; }
+  .head__hand { color: var(--sage-rust); margin-top: 0.6rem; rotate: -4deg; }
 
   /* ---------- HERO ---------- */
   .hero {
     position: relative;
-    background:
-      radial-gradient(60% 50% at 50% 45%, rgb(196 154 84 / 0.12), transparent 70%),
-      var(--sage-forest);
+    background: radial-gradient(60% 50% at 50% 45%, rgb(196 154 84 / 0.12), transparent 70%), var(--sage-forest);
     color: var(--sage-ivory);
     border-radius: 0 0 var(--radius-l) var(--radius-l);
     overflow: hidden;
   }
-  .hero__stage {
-    position: relative;
-    min-height: max(100svh, 760px);
-    display: grid;
-    place-items: center;
-    padding: 120px var(--gutter) 80px;
-  }
-  .hero__center {
-    position: relative;
-    z-index: 2;
-    display: grid;
-    justify-items: center;
-    text-align: center;
-    gap: 1.6rem;
-  }
-  .hero__kicker { opacity: 0.75; margin-bottom: 2.6rem; }
-  .hero__lead { max-width: 34rem; font-size: clamp(1.05rem, 1.4vw, 1.25rem); opacity: 0.92; }
-  .hero__lead strong { color: var(--sage-ochre); font-weight: 700; }
+  .hero__stage { position: relative; min-height: max(100svh, 780px); display: grid; place-items: center; padding: 130px var(--gutter) 90px; }
+  .hero__center { position: relative; z-index: 2; display: grid; justify-items: center; text-align: center; gap: 1.5rem; max-width: 980px; }
+  .hero__kicker { opacity: 0.75; }
+  .hero__title { font-size: var(--h1); }
+  .hero__title .mark svg { --mark: var(--sage-ochre); stroke-width: 4; }
+  .hero__lead { max-width: 40rem; font-size: clamp(1.02rem, 1.35vw, 1.22rem); opacity: 0.92; }
   .hero__ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+  .hero__hand { color: var(--sage-ochre); rotate: -3deg; font-size: 1.7rem; }
 
   .fl { position: absolute; z-index: 3; transition: translate 0.6s var(--ease); }
   .fl img { width: 100%; height: 100%; }
-  .fl--portrait { left: 6%; top: 18%; width: 190px; height: 190px; border-radius: 50%; overflow: hidden; border: 6px solid var(--sage-ivory); box-shadow: var(--shadow); }
-  .fl--flatlay { left: 9%; bottom: 10%; width: 250px; height: 170px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-  .fl--swatch { right: 5%; bottom: 7%; width: 120px; height: 120px; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
-  .fl--c1 { left: 22%; top: 16%; }
-  .fl--c2 { right: 22%; top: 24%; }
-  .fl--c3 { left: 20%; bottom: 28%; }
-  .fl--c4 { right: 13%; bottom: 33%; }
-  .fl--notif { left: 2.5%; top: 52%; }
-  .fl--phone { right: 3.5%; top: 17%; }
-  .fl--badge { right: 21%; bottom: 7%; }
+  .fl--a { left: 5%; top: 17%; width: 170px; height: 170px; border-radius: 50%; overflow: hidden; border: 6px solid var(--sage-ivory); box-shadow: var(--shadow); }
+  .fl--b { left: 7%; bottom: 9%; width: 230px; height: 160px; border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .fl--c { right: 5%; bottom: 8%; width: 115px; height: 115px; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
+  .fl--s1 { left: 19%; top: 15%; }
+  .fl--s2 { right: 20%; top: 14%; }
+  .fl--s3 { left: 19%; bottom: 31%; }
+  .fl--s4 { right: 15%; bottom: 31%; }
+  .fl--notif { left: 2%; top: 50%; }
+  .fl--phone { right: 3.5%; top: 18%; }
+  .fl--badge { right: 21%; bottom: 6%; }
+  a.fl.chip { transition: translate .6s var(--ease), scale .3s var(--spring); }
+  a.fl.chip:hover { scale: 1.08; }
 
-  .notif {
-    display: flex; gap: 0.7rem; align-items: center;
-    max-width: 250px; padding: 0.8rem 1rem;
-    border-radius: 20px;
-    background: rgb(244 239 230 / 0.95); color: var(--sage-ink);
-    font-size: 0.8rem; line-height: 1.35;
-    box-shadow: var(--shadow);
-  }
+  .notif { display: flex; gap: 0.7rem; align-items: center; max-width: 240px; padding: 0.8rem 1rem; border-radius: 20px; background: rgb(244 239 230 / 0.95); color: var(--sage-ink); font-size: 0.8rem; line-height: 1.35; box-shadow: var(--shadow); }
   .notif strong { font-size: 0.85rem; }
   .notif span { opacity: 0.75; }
   .notif__dot { flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--sage-rust); box-shadow: inset 0 0 0 9px var(--sage-ochre); }
 
-  /* téléphone */
-  .phone {
-    width: 200px; aspect-ratio: 9 / 18.5;
-    padding: 9px; border-radius: 34px;
-    background: var(--sage-ink);
-    box-shadow: var(--shadow), inset 0 0 0 1.5px rgb(255 255 255 / 0.12);
-  }
+  .phone { width: 190px; aspect-ratio: 9 / 18.5; padding: 9px; border-radius: 34px; background: var(--sage-ink); box-shadow: var(--shadow), inset 0 0 0 1.5px rgb(255 255 255 / 0.12); }
   .phone__screen { position: relative; height: 100%; border-radius: 26px; overflow: hidden; background: var(--sage-forest-2); }
-  .feed { display: grid; height: 500%; animation: feed var(--fd, 12s) cubic-bezier(.7,0,.3,1) infinite; }
+  .feed { display: grid; height: 500%; animation: feed 12s cubic-bezier(.7,0,.3,1) infinite; }
   .feed img { width: 100%; height: 100%; }
   @keyframes feed {
     0%, 20% { transform: translateY(0); }
@@ -406,180 +389,137 @@ const tags = ['Stratégie', 'Branding', 'Social media', 'Contenu', 'UGC', 'Influ
   .heart { color: #fff; font-size: 14px; opacity: 0; animation: heart 3s ease-out infinite; text-shadow: 0 2px 6px rgb(0 0 0 / .4); }
   .heart:nth-child(2) { animation-delay: 1s; color: var(--sage-ochre); }
   .heart:nth-child(3) { animation-delay: 2s; color: #f4b6a0; }
-  @keyframes heart {
-    0% { transform: translateY(10px) scale(.6); opacity: 0; }
-    20% { opacity: 1; }
-    100% { transform: translateY(-90px) translateX(-10px) scale(1.2); opacity: 0; }
-  }
+  @keyframes heart { 0% { transform: translateY(10px) scale(.6); opacity: 0; } 20% { opacity: 1; } 100% { transform: translateY(-90px) translateX(-10px) scale(1.2); opacity: 0; } }
 
-  /* badge rotatif */
   .badge { display: grid; place-items: center; width: 118px; height: 118px; border-radius: 50%; background: var(--sage-ochre); color: var(--sage-ink); text-decoration: none; }
   .badge__ring { position: absolute; inset: 0; width: 100%; height: 100%; animation: spin 14s linear infinite; }
-  .badge__ring text { font: 800 9.6px var(--font-ui); letter-spacing: 0.16em; fill: currentColor; }
+  .badge__ring text { font: 800 10.4px var(--font-ui); letter-spacing: 0.2em; fill: currentColor; }
   .badge__arrow { font-size: 1.6rem; font-weight: 800; transition: transform .35s var(--spring); }
   .badge:hover .badge__arrow { transform: translateY(4px) scale(1.2); }
 
-  /* ---------- TICKERS ---------- */
-  .tickers { position: relative; height: clamp(150px, 16vw, 210px); margin-top: -40px; z-index: 3; overflow: hidden; }
-  .ticker { position: absolute; left: -5%; right: -5%; overflow: hidden; padding-block: 1rem; }
-  .ticker--ochre { top: 30px; background: var(--sage-ochre); transform: rotate(-2.5deg); z-index: 2; box-shadow: var(--shadow); }
-  .ticker--forest { top: 80px; background: var(--sage-rust); color: var(--sage-ivory); transform: rotate(2deg); }
-  .ticker__track { display: flex; width: max-content; animation: marquee 30s linear infinite; }
-  .ticker__track--rev { animation-direction: reverse; animation-duration: 40s; }
-  .ticker__group { display: flex; align-items: center; gap: 1.5rem; padding-right: 1.5rem; }
-  .ticker--ochre span { font: italic 900 clamp(1.8rem, 3.6vw, 3rem)/1 var(--font-display); font-stretch: 115%; letter-spacing: -0.04em; color: var(--sage-forest); white-space: nowrap; }
-  .ticker--ochre i { font-style: normal; color: var(--sage-ivory); margin-left: 1rem; }
-  .ticker__tag { padding: 0.35em 1em; border: 1.5px solid rgb(231 226 216 / .6); border-radius: var(--pill); font-weight: 700; white-space: nowrap; }
-  @keyframes marquee { to { transform: translateX(-50%); } }
+  :global(.tickers) { margin-top: -40px; }
 
-  /* ---------- STUDIO ---------- */
-  .studio { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
-  .studio__text { display: grid; gap: 1.4rem; }
-  .studio h2 { color: var(--sage-forest); }
-  .studio__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .studio__collage { position: relative; height: clamp(420px, 46vw, 600px); }
-  .col { position: absolute; overflow: hidden; box-shadow: var(--shadow); }
-  .col img { width: 100%; height: 100%; }
-  .col--big { left: 0; top: 0; width: 78%; height: 80%; border-radius: var(--radius-l); }
-  .col--round { right: 0; bottom: 0; width: 46%; aspect-ratio: 1; border-radius: 50%; border: 8px solid var(--sage-paper); }
-  .col--sticker {
-    left: 4%; bottom: 4%;
-    display: grid; place-items: center;
-    width: 130px; height: 130px; border-radius: 50%;
-    background: var(--sage-rust); color: var(--sage-ivory);
-    font: italic 900 1.05rem/1 var(--font-display); text-align: center; letter-spacing: -0.02em;
-    overflow: visible;
+  /* ---------- SERVICES ---------- */
+  .tickets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem 1.6rem; }
+  .tickets > :global(.ticket:nth-child(3n + 2)) { margin-top: 48px; }
+  .tickets > :global(.ticket:nth-child(3n + 3)) { margin-top: 18px; }
+  .services__note { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.4rem; margin-top: clamp(48px, 6vw, 80px); padding: 1.2rem 1.6rem; border-radius: var(--pill); border: 2px dashed rgb(31 58 46 / 0.3); }
+  .services__note p { flex: 1 1 20rem; }
+  .services__link { font-weight: 800; text-decoration: none; border-bottom: 2px solid var(--sage-rust); }
+
+  /* ---------- MINDSET ---------- */
+  .mindset { background: var(--sage-forest); color: var(--sage-ivory); padding-block: var(--section-y); border-radius: var(--radius-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .mindset .head__aside { opacity: 0.85; }
+  .sage__letters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .sage__tab {
+    position: relative; display: grid; justify-items: start; align-content: end;
+    min-height: 230px; padding: 1.2rem 1.4rem;
+    border: 1.5px solid rgb(231 226 216 / 0.2); border-radius: var(--radius);
+    background: rgb(231 226 216 / 0.04); color: var(--sage-ivory); cursor: pointer; text-align: left; overflow: hidden;
+    transition: background .3s var(--ease), border-color .3s var(--ease), transform .45s var(--spring);
   }
+  .sage__tab:hover { transform: translateY(-6px) rotate(-1deg); border-color: rgb(231 226 216 / 0.5); }
+  .sage__tab[aria-selected='true'] { background: var(--sage-ivory); color: var(--sage-forest); border-color: var(--sage-ivory); }
+  .sage__shape { position: absolute; right: 14px; top: 18px; width: 92px; height: 92px; transition: transform .6s var(--spring); }
+  .sage__tab:hover .sage__shape, .sage__tab[aria-selected='true'] .sage__shape { transform: rotate(-14deg) scale(1.15) translate(-6px, 6px); }
+  .sage__letter { position: relative; font: italic 900 clamp(5rem, 9vw, 8.5rem)/0.85 var(--font-serif); letter-spacing: -0.04em; }
+  .sage__name { position: relative; font-weight: 800; font-size: 0.95rem; margin-top: 0.4rem; }
+  .sage__card { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: clamp(1.6rem, 4vw, 3rem); border-radius: var(--radius-l); background: var(--sage-forest-2); animation: pop .5s var(--spring); }
+  @keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.98); } }
+  .sage__big { font: italic 900 clamp(7rem, 16vw, 14rem)/0.8 var(--font-serif); color: var(--sage-ochre); }
+  .sage__content { display: grid; gap: 1rem; }
+  .sage__content h3 { font-size: clamp(1.8rem, 3.4vw, 3rem); }
+  .sage__content > p:not(.label) { max-width: 40rem; opacity: 0.9; }
+  .sage__in { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.4rem; }
+  .sage__inlabel { font-family: var(--font-hand); font-size: 1.5rem; color: var(--sage-ochre); margin-right: 0.3rem; }
+  .sage__in .chip { transition: transform .3s var(--spring); }
+  .sage__in .chip:hover { transform: rotate(-3deg) scale(1.05); }
 
-  /* ---------- PILIERS ---------- */
-  .pillars { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-  .pillar {
-    position: relative; overflow: hidden; isolation: isolate;
-    display: grid; align-content: start; gap: 0.6rem;
-    min-height: 470px; padding: 1.6rem 1.5rem 1.8rem;
-    border-radius: var(--radius);
-    background: var(--sage-paper);
-    transition: transform .5s var(--spring), color .3s var(--ease), box-shadow .3s var(--ease);
-  }
-  .pillar__bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; opacity: 0; transform: scale(1.1); transition: opacity .45s var(--ease), transform .8s var(--ease); }
-  .pillar::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgb(31 58 46 / .55), rgb(31 58 46 / .92)); opacity: 0; transition: opacity .45s var(--ease); }
-  .pillar:hover { transform: translateY(-10px) rotate(-1deg); color: var(--sage-ivory); box-shadow: var(--shadow); }
-  .pillar:hover .pillar__bg { opacity: 1; transform: scale(1); }
-  .pillar:hover::after { opacity: 1; }
-  .pillar__visual { position: relative; height: 160px; margin-bottom: 0.6rem; }
-  .pillar__shape { position: absolute; left: 50px; bottom: 6px; width: 100px; height: 100px; transition: transform .6s var(--spring); }
-  .pillar:hover .pillar__shape { transform: translate(14px, -10px) rotate(-14deg) scale(1.1); }
-  .pillar__letter { position: relative; font: italic 900 9.5rem/1 var(--font-serif); letter-spacing: -0.04em; color: var(--sage-forest); transition: color .3s var(--ease); }
-  .pillar:hover .pillar__letter { color: var(--sage-ivory); }
-  .pillar__name { font-size: var(--h3); }
-  .pillar__verbs { font-weight: 700; }
-  .pillar__text { font-size: 0.93rem; opacity: 0.85; }
-  .pillar__more { margin-top: auto; padding-top: 0.6rem; font-weight: 800; font-size: 0.9rem; }
-
-  /* ---------- REELS ---------- */
-  .reels { background: var(--sage-forest); color: var(--sage-ivory); padding-block: var(--section-y); overflow: hidden; }
-  .reels__inner { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: center; }
-  .reels__text { display: grid; gap: 1.4rem; justify-items: start; }
-  .reels__text p:not(.label) { max-width: 30rem; opacity: 0.9; }
-  .reels__phones { position: relative; height: 560px; }
-  .reels__phones .phone { position: absolute; width: 210px; }
-  .phone--0 { left: 2%; top: 60px; }
-  .phone--1 { left: 34%; top: 0; z-index: 2; width: 230px !important; }
-  .phone--2 { right: 2%; top: 90px; }
-  .reels__bubble { position: absolute; left: 30%; bottom: 20px; z-index: 3; }
-  .reels__bubble--2 { left: auto; right: 6%; top: 40px; bottom: auto; }
-
-  /* ---------- PROJETS ---------- */
+  /* ---------- WORK ---------- */
   .slider {
-    display: flex; gap: 1.25rem;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    padding: 0.5rem max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))) 2rem;
+    display: flex; gap: 1.6rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    padding: 1rem max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))) 2.4rem;
     scroll-padding-inline: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
     scrollbar-width: none; cursor: grab;
   }
   .slider::-webkit-scrollbar { display: none; }
   .slider.is-drag { cursor: grabbing; scroll-snap-type: none; }
-  .card { flex: 0 0 clamp(270px, 32vw, 420px); scroll-snap-align: start; user-select: none; }
-  .card__img { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; }
-  .card__img img { width: 100%; height: 100%; transition: transform .8s var(--ease); pointer-events: none; }
-  .card:hover .card__img img { transform: scale(1.07); }
-  .card__tag { position: absolute; top: 14px; left: 14px; font-size: 0.75rem; }
-  .card:nth-child(even) .card__img { border-radius: 160px 160px var(--radius) var(--radius); }
-  .card__cat { opacity: 0.65; margin-bottom: 0.3rem; }
-  .card__title { font-size: 1.5rem; color: var(--sage-forest); }
+  .case { flex: 0 0 clamp(260px, 28vw, 380px); scroll-snap-align: start; user-select: none; padding: 12px 12px 18px; background: #fffdf8; border-radius: 10px; box-shadow: var(--shadow); rotate: var(--r); transition: rotate .45s var(--spring); }
+  .case:hover { rotate: 0deg; }
+  .case__img { position: relative; aspect-ratio: 4 / 5; border-radius: 6px; overflow: hidden; }
+  .case__img img { width: 100%; height: 100%; pointer-events: none; transition: transform .8s var(--ease); }
+  .case:hover .case__img img { transform: scale(1.06); }
+  .case__stamp { position: absolute; right: 12px; top: 14px; padding: 0.4em 0.8em; border: 2px solid var(--sage-ivory); border-radius: 8px; color: var(--sage-ivory); font: 800 0.8rem var(--font-ui); letter-spacing: 0.12em; text-transform: uppercase; rotate: 8deg; background: rgb(31 58 46 / .45); }
+  .case__label { display: flex; justify-content: space-between; align-items: baseline; gap: 0.6rem; padding-top: 0.9rem; }
+  .case__n { font-family: var(--font-hand); font-size: 1.4rem; color: var(--sage-rust); }
+  .case--cta { display: grid; place-content: center; justify-items: center; gap: 1.2rem; text-align: center; background: var(--sage-ochre); }
+  .case--cta .hand { font-size: 2.2rem; color: var(--sage-forest); max-width: 14rem; }
+  .work__credit { font-size: 0.75rem; opacity: 0.55; }
 
-  /* ---------- METHODE ---------- */
-  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; position: relative; }
-  .step { display: grid; gap: 0.7rem; align-content: start; padding: 1.6rem; border-radius: var(--radius); background: var(--sage-paper); transition: transform .5s var(--spring); }
-  .step:hover { transform: translateY(-8px) rotate(1deg); }
-  .step__num { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--sage-forest); color: var(--sage-ivory); font: italic 900 1.1rem var(--font-display); }
-  .step:nth-child(2) .step__num { background: var(--sage-ochre); color: var(--sage-ink); }
-  .step:nth-child(3) .step__num { background: var(--sage-rust); }
-  .step:nth-child(4) .step__num { background: var(--sage-soft); color: var(--sage-forest); }
-  .step h3 { font-size: var(--h3); color: var(--sage-forest); }
-  .step p { font-size: 0.95rem; }
+  /* ---------- ABOUT ---------- */
+  .about { background: var(--sage-ivory); border-radius: var(--radius-l); margin: var(--section-y) clamp(0px, 1.5vw, 20px) 0; }
+  .about__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .about__visual { position: relative; display: grid; place-items: center; padding: 2rem 0; }
+  .polaroid { position: relative; margin: 0; width: min(100%, 360px); padding: 14px 14px 0; background: #fffdf8; box-shadow: var(--shadow); border-radius: 6px; }
+  .polaroid__photo { display: grid; place-items: center; aspect-ratio: 4 / 5; border-radius: 3px; background: repeating-linear-gradient(-45deg, var(--sage-forest) 0 14px, var(--sage-forest-2) 14px 28px); color: var(--sage-ivory); }
+  .polaroid__photo .hand { font-size: 2rem; rotate: -6deg; }
+  .polaroid figcaption { padding: 0.8rem 0 1rem; text-align: center; font-size: 1.8rem; color: var(--sage-forest); }
+  .about__sticker { position: absolute; left: 0; bottom: 14%; }
+  .about__sticker--2 { left: auto; right: 0; top: 10%; bottom: auto; }
+  .about__text { display: grid; gap: 1.4rem; justify-items: start; }
+  .about h2 { color: var(--sage-forest); }
+  .crew { display: grid; gap: 0.8rem; padding: 1.4rem; border-radius: var(--radius); background: var(--sage-paper); }
+  .crew h3 { font-size: 1.6rem; color: var(--sage-forest); }
+  .crew__list { list-style: none; margin: 0.4rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .crew__list .chip { rotate: var(--r); transition: rotate .4s var(--spring); }
+  .crew__list .chip:hover { rotate: 0deg; }
 
-  /* ---------- CTA ---------- */
-  .cta { background: var(--sage-ivory); padding-block: clamp(90px, 13vw, 180px); overflow: hidden; }
-  .cta__inner { position: relative; display: grid; justify-items: center; text-align: center; gap: 1.6rem; }
-  .cta__title { color: var(--sage-forest); font-size: clamp(2.6rem, 8vw, 7rem); }
-  .cta__lead { max-width: 32rem; }
-  .btn--xl { min-height: 64px; padding-inline: 2.2rem; font-size: 1.05rem; }
-  .cta__f1, .cta__f2, .cta__f3 { position: absolute; }
-  .cta__f1 { left: 6%; top: 8%; }
-  .cta__f2 { right: 6%; bottom: 6%; }
-  .cta__f3 { right: 8%; top: -4%; width: 130px; height: 130px; border-radius: 50%; border: 6px solid var(--sage-paper); box-shadow: var(--shadow); }
+  /* ---------- CONTACT ---------- */
+  .contact { position: relative; background: var(--sage-forest); color: var(--sage-ivory); padding-block: var(--section-y); margin-top: var(--section-y); border-radius: var(--radius-l) var(--radius-l) 0 0; overflow: hidden; }
+  .contact__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .contact__intro { display: grid; gap: 1.4rem; }
+  .contact__intro > p:not(.label) { opacity: 0.9; max-width: 30rem; }
+  .contact__f1 { position: absolute; right: 6%; top: 50px; }
+  .mini-steps { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; gap: 0.7rem; }
+  .mini { display: flex; gap: 0.9rem; align-items: center; padding: 0.8rem 1rem; border-radius: 16px; background: rgb(231 226 216 / 0.07); border: 1.5px dashed rgb(231 226 216 / 0.25); font-size: 0.92rem; rotate: var(--r); }
+  .mini strong { color: var(--sage-ochre); }
+  .mini__num { flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--sage-ivory); color: var(--sage-forest); font: 800 0.95rem var(--font-display); }
 
   /* ---------- curseur ---------- */
   .cursor { position: fixed; left: 0; top: 0; z-index: 100; pointer-events: none; }
-  .cursor span {
-    position: absolute; left: -48px; top: -48px;
-    display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%;
-    background: var(--sage-ochre); color: var(--sage-ink); font-weight: 800; font-size: 0.85rem;
-    transform: scale(0); transition: transform .35s var(--spring);
-  }
+  .cursor span { position: absolute; left: -48px; top: -48px; display: grid; place-items: center; width: 96px; height: 96px; border-radius: 50%; background: var(--sage-ochre); color: var(--sage-ink); font-weight: 800; font-size: 0.85rem; transform: scale(0); transition: transform .35s var(--spring); }
   .cursor.is-on span { transform: scale(1); }
 
   /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 1100px) {
-    .pillars { grid-template-columns: repeat(2, 1fr); }
-    .steps { grid-template-columns: repeat(2, 1fr); }
-    .fl--notif, .fl--c4 { display: none; }
-    .fl--phone { right: 3%; }
-    .fl--badge { right: 30%; }
+  @media (max-width: 1150px) {
+    .tickets { grid-template-columns: repeat(2, 1fr); }
+    .tickets > :global(.ticket:nth-child(n)) { margin-top: 0; }
+    .tickets > :global(.ticket:nth-child(even)) { margin-top: 40px; }
+    .fl--notif, .fl--s4 { display: none; }
   }
-  @media (max-width: 860px) {
-    .studio, .reels__inner { grid-template-columns: 1fr; }
-    .fl--flatlay, .fl--swatch, .fl--c3 { display: none; }
-    .fl--portrait { left: -30px; top: 90px; width: 120px; height: 120px; }
-    .fl--phone { right: -40px; top: auto; bottom: 30px; width: 140px; }
-    .fl--c1 { left: 6%; top: auto; bottom: 22%; }
-    .fl--c2 { right: 8%; top: 110px; }
-    .fl--badge { right: auto; left: 6%; bottom: 3%; width: 92px; height: 92px; }
-    .reels__phones { height: 470px; }
-    .reels__phones .phone { width: 160px; }
-    .phone--1 { width: 180px !important; left: 30%; }
-    .cta__f3 { display: none; }
+  @media (max-width: 900px) {
+    .sage__letters { grid-template-columns: repeat(2, 1fr); }
+    .sage__tab { min-height: 170px; }
+    .sage__card { grid-template-columns: 1fr; }
+    .about__grid, .contact__grid { grid-template-columns: 1fr; }
+    .fl--b, .fl--c, .fl--s3 { display: none; }
+    .fl--a { left: -24px; top: 96px; width: 110px; height: 110px; border-width: 4px; }
+    .fl--phone { right: -30px; top: auto; bottom: 30px; width: 130px; padding: 6px; border-radius: 24px; }
+    .fl--s1 { left: 6%; top: auto; bottom: 22%; }
+    .fl--s2 { right: 6%; top: 112px; }
+    .fl--badge { right: auto; left: 5%; bottom: 3%; width: 92px; height: 92px; }
   }
-  @media (max-width: 560px) {
-    .pillars, .steps { grid-template-columns: 1fr; }
-    .pillar { min-height: 0; }
-    .hero__stage { padding-top: 190px; padding-bottom: 240px; }
+  @media (max-width: 640px) {
+    .tickets { grid-template-columns: 1fr; gap: 1.6rem; }
+    .tickets > :global(.ticket:nth-child(even)) { margin-top: 0; }
+    .hero__stage { padding-top: 200px; padding-bottom: 230px; }
     .hero__ctas .btn { width: 100%; justify-content: center; }
     .fl { z-index: 1; }
-    .fl--portrait { left: -20px; top: 92px; width: 104px; height: 104px; border-width: 4px; }
-    .fl--c2 { right: 7%; top: 118px; }
-    .fl--phone { right: -18px; bottom: 26px; width: 118px; padding: 6px; border-radius: 24px; }
-    .fl--phone .phone__screen { border-radius: 19px; }
-    .fl--c1 { bottom: 70px; left: auto; right: 36%; }
-    .fl--badge { left: 5%; bottom: 40px; }
-    .reels__phones { height: 400px; }
-    .reels__phones .phone { width: 130px; }
-    .phone--0 { left: -2%; }
-    .phone--1 { width: 150px !important; left: 29%; }
-    .phone--2 { right: -2%; }
-    .cta__f1 { top: -20px; }
-    .cta__f2 { bottom: -30px; }
-    .studio__collage { height: 380px; }
+    .fl--s1 { bottom: 70px; left: auto; right: 36%; }
+    .fl--badge { bottom: 40px; }
+    .sage__tab { min-height: 140px; padding: 1rem; }
+    .sage__shape { width: 64px; height: 64px; }
+    .services__note { border-radius: var(--radius); }
+    .contact__f1 { display: none; }
   }
 </style>

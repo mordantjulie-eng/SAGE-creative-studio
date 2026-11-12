@@ -1,4 +1,4 @@
-/* Design tokens — Brand Book v1.0, version « bulles / floating » (v1). */
+/* SAGE — design system V2 */
 :root {
   --sage-forest: #1f3a2e;
   --sage-forest-2: #2a4a3b;
@@ -7,27 +7,29 @@
   --sage-soft: #a3ae9c;
   --sage-taupe: #b6ada1;
   --sage-ochre: #c49a54;
-  --sage-rust: #a65332;
+  --sage-rust: #b15e3d;
   --sage-ink: #1a1a1a;
 
   --font-ui: 'Manrope Variable', 'Manrope', system-ui, sans-serif;
-  --font-display: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
   --font-serif: 'Fraunces Variable', Georgia, serif;
+  --font-hand: 'Caveat', 'Comic Sans MS', cursive;
 
   --container: 1320px;
   --gutter: clamp(16px, 4vw, 48px);
   --radius-s: 14px;
-  --radius: 28px;
+  --radius: 26px;
   --radius-l: 44px;
   --pill: 999px;
-  --section-y: clamp(64px, 10vw, 140px);
+  --section-y: clamp(72px, 10vw, 140px);
 
-  --h2: clamp(2.4rem, 6vw, 5.6rem);
-  --h3: clamp(1.4rem, 2.2vw, 2rem);
+  --h1: clamp(2.9rem, 7.4vw, 7rem);
+  --h2: clamp(2.4rem, 5.6vw, 5.2rem);
+  --h3: clamp(1.35rem, 2vw, 1.85rem);
 
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --shadow: 0 20px 50px -20px rgb(20 35 28 / 0.35);
+  --shadow: 0 22px 50px -22px rgb(20 35 28 / 0.45);
 }
 
 *,
@@ -38,6 +40,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -49,7 +52,7 @@ body {
   font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img,
@@ -58,12 +61,9 @@ video {
   display: block;
   max-width: 100%;
 }
-
 img {
   object-fit: cover;
 }
-
-/* Harmonise les photos libres de droits avec la palette */
 .photo {
   filter: saturate(0.82) sepia(0.12) contrast(1.02);
 }
@@ -77,11 +77,10 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 850;
-  font-stretch: 112%;
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-weight: 800;
+  font-stretch: 84%;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
 }
 
 p {
@@ -99,7 +98,6 @@ p {
   margin-inline: auto;
   padding-inline: var(--gutter);
 }
-
 .section {
   padding-block: var(--section-y);
 }
@@ -112,7 +110,51 @@ p {
   text-transform: uppercase;
 }
 
-/* Pastilles / bulles */
+/* Annotation manuscrite */
+.hand {
+  font-family: var(--font-hand);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+/* Mot souligné / entouré à la main */
+.mark {
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+.mark svg {
+  position: absolute;
+  pointer-events: none;
+  fill: none;
+  stroke: var(--mark, var(--sage-ochre));
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.2s var(--ease) 0.3s;
+}
+.mark--under svg {
+  left: -2%;
+  width: 104%;
+  bottom: -0.16em;
+  height: 0.3em;
+}
+.mark--circle svg {
+  left: -10%;
+  top: -18%;
+  width: 120%;
+  height: 136%;
+}
+.is-in .mark svg,
+.mark.is-in svg,
+.hero .mark svg {
+  stroke-dashoffset: 0;
+}
+
+/* Pastilles / stickers */
 .chip {
   display: inline-flex;
   align-items: center;
@@ -124,6 +166,27 @@ p {
   font-weight: 700;
   font-size: 0.9rem;
   white-space: nowrap;
+  text-decoration: none;
+}
+.chip--ochre {
+  background: var(--sage-ochre);
+  color: var(--sage-ink);
+}
+.chip--rust {
+  background: var(--sage-rust);
+  color: var(--sage-ivory);
+}
+.chip--soft {
+  background: var(--sage-soft);
+  color: var(--sage-forest);
+}
+.chip--forest {
+  background: var(--sage-forest);
+  color: var(--sage-ivory);
+}
+.chip--line {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px currentColor;
 }
 
 /* Boutons */
@@ -158,9 +221,6 @@ p {
   margin-right: -0.9rem;
   transition: transform 0.35s var(--spring);
 }
-.btn .arrow svg {
-  color: var(--sage-forest);
-}
 .btn:hover .arrow {
   transform: rotate(45deg);
 }
@@ -175,6 +235,9 @@ p {
   background: transparent;
   color: var(--sage-forest);
 }
+.btn--ghost .arrow svg {
+  color: var(--sage-paper);
+}
 .on-dark .btn--primary {
   background: var(--sage-ivory);
   color: var(--sage-forest);
@@ -186,6 +249,76 @@ p {
 .on-dark .btn--ghost {
   color: var(--sage-ivory);
   border-color: rgb(231 226 216 / 0.5);
+}
+
+/* Bandeaux défilants */
+.tickers {
+  position: relative;
+  height: clamp(150px, 15vw, 200px);
+  overflow: hidden;
+  z-index: 3;
+}
+.ticker {
+  position: absolute;
+  left: -5%;
+  right: -5%;
+  overflow: hidden;
+  padding-block: 0.9rem;
+}
+.ticker--a {
+  top: 30px;
+  background: var(--sage-ochre);
+  transform: rotate(-2.5deg);
+  z-index: 2;
+  box-shadow: var(--shadow);
+}
+.ticker--b {
+  top: 82px;
+  background: var(--sage-rust);
+  color: var(--sage-ivory);
+  transform: rotate(2deg);
+}
+.ticker__track {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+.ticker--b .ticker__track {
+  animation-direction: reverse;
+  animation-duration: 42s;
+}
+.tickers:hover .ticker__track {
+  animation-play-state: paused;
+}
+.ticker__group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 1.5rem;
+}
+.ticker__word {
+  font: 800 clamp(1.8rem, 3.6vw, 3rem) / 1 var(--font-display);
+  font-stretch: 80%;
+  letter-spacing: -0.03em;
+  color: var(--sage-forest);
+  white-space: nowrap;
+}
+.ticker__star {
+  color: var(--sage-paper);
+  font-size: 1.6rem;
+}
+.ticker__tag {
+  padding: 0.35em 1em;
+  border: 1.5px solid rgb(231 226 216 / 0.6);
+  border-radius: var(--pill);
+  font-weight: 700;
+  white-space: nowrap;
+  text-decoration: none;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* Flottement */
@@ -202,7 +335,6 @@ p {
   animation: float var(--d, 6s) ease-in-out infinite;
   animation-delay: var(--delay, 0s);
 }
-
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -223,6 +355,16 @@ p {
   transform: none;
 }
 
+/* Ruban adhésif (polaroids, photos) */
+.tape {
+  position: absolute;
+  width: 110px;
+  height: 30px;
+  background: rgb(231 226 216 / 0.75);
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+  backdrop-filter: blur(2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -230,6 +372,9 @@ p {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+  .mark svg {
+    stroke-dashoffset: 0;
   }
   *,
   *::before,

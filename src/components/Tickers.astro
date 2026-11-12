@@ -1,0 +1,40 @@
+---
+import { brand, services } from '../config/site';
+interface Props {
+  words?: string[];
+}
+const { words = brand.manifesto } = Astro.props;
+const a = [...words, ...words, ...words];
+---
+
+<div class="tickers" aria-hidden="true">
+  <div class="ticker ticker--a">
+    <div class="ticker__track">
+      {
+        [0, 1].map(() => (
+          <div class="ticker__group">
+            {a.map((w) => (
+              <>
+                <span class="ticker__word">{w}</span>
+                <span class="ticker__star">✺</span>
+              </>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+  <div class="ticker ticker--b">
+    <div class="ticker__track">
+      {
+        [0, 1].map(() => (
+          <div class="ticker__group">
+            {[...services, ...services].map((s) => (
+              <span class="ticker__tag">{s.num} {s.title}</span>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>

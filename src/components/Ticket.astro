@@ -1,0 +1,263 @@
+---
+// Ticket de service : objet imprimé (talon numéroté, perforation) qui se retourne
+// pour montrer toutes les prestations, avec un lien vers la page détaillée.
+import type { Service } from '../config/site';
+
+interface Props {
+  service: Service;
+  rot?: number;
+  delay?: number;
+}
+const { service: s, rot = 0, delay = 0 } = Astro.props;
+const bars = Array.from({ length: 18 }, (_, i) => ((i * 7 + Number(s.num) * 3) % 4) + 1);
+---
+
+<article class:list={['ticket', `ticket--${s.tone}`, 'reveal']} style={`--rot:${rot}deg;--rd:${delay}s`} data-ticket>
+  <div class="ticket__inner">
+    <!-- RECTO -->
+    <div class="ticket__face ticket__front" data-face="front">
+      <div class="ticket__stub" aria-hidden="true">
+        <span class="ticket__no">N°{s.num}</span>
+        <span class="ticket__bars">{bars.map((w) => <i style={`width:${w}px`}></i>)}</span>
+        <span class="ticket__brand">SAGE.</span>
+      </div>
+      <div class="ticket__body">
+        <p class="label ticket__kicker">Service {s.num}</p>
+        <h3 class="ticket__title"><a href={`/services/${s.slug}`}>{s.title}</a></h3>
+        <p class="ticket__short">{s.short}</p>
+        <ul class="ticket__tags" aria-label="En bref">
+          {s.highlights.map((h) => <li>{h}</li>)}
+        </ul>
+        <div class="ticket__actions">
+          <button type="button" class="ticket__flip" data-flip aria-label={`Voir les prestations ${s.title}`}>
+            Voir les prestations <span aria-hidden="true">↻</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERSO -->
+    <div class="ticket__face ticket__back" data-face="back" inert>
+      <div class="ticket__stub" aria-hidden="true">
+        <span class="ticket__no">N°{s.num}</span>
+        <span class="ticket__bars">{bars.map((w) => <i style={`width:${w}px`}></i>)}</span>
+        <span class="ticket__brand">SAGE.</span>
+      </div>
+      <div class="ticket__body">
+        <p class="label ticket__kicker">{s.title} · ce qui est inclus</p>
+        <ul class="ticket__list">
+          {s.items.map((i) => <li>{i}</li>)}
+        </ul>
+        <div class="ticket__actions">
+          <a class="ticket__more" href={`/services/${s.slug}`}>Tout savoir <span aria-hidden="true">→</span></a>
+          <button type="button" class="ticket__flip" data-flip aria-label="Revenir au recto">↺</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ticket]').forEach((t) => {
+    const front = t.querySelector<HTMLElement>('[data-face="front"]')!;
+    const back = t.querySelector<HTMLElement>('[data-face="back"]')!;
+    t.querySelectorAll<HTMLButtonElement>('[data-flip]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const flipped = t.classList.toggle('is-flipped');
+        front.inert = flipped;
+        back.inert = !flipped;
+        (flipped ? back : front).querySelector<HTMLElement>('[data-flip]')?.focus({ preventScroll: true });
+      }),
+    );
+  });
+</script>
+
+<style>
+  .ticket {
+    --stub: 66px;
+    --notch: 13px;
+    --bg: var(--sage-ivory);
+    --fg: var(--sage-forest);
+    --accent: var(--sage-rust);
+    perspective: 1400px;
+    rotate: var(--rot);
+    filter: drop-shadow(0 18px 22px rgb(20 35 28 / 0.22));
+    transition: rotate 0.5s var(--spring), translate 0.5s var(--spring);
+  }
+  .ticket:hover,
+  .ticket:focus-within {
+    rotate: 0deg;
+    translate: 0 -8px;
+    z-index: 2;
+  }
+  .ticket--forest { --bg: var(--sage-forest); --fg: var(--sage-ivory); --accent: var(--sage-ochre); }
+  .ticket--ivory { --bg: var(--sage-ivory); --fg: var(--sage-forest); --accent: var(--sage-rust); }
+  .ticket--ochre { --bg: var(--sage-ochre); --fg: var(--sage-ink); --accent: var(--sage-forest); }
+  .ticket--soft { --bg: var(--sage-soft); --fg: var(--sage-forest); --accent: var(--sage-paper); }
+  .ticket--rust { --bg: var(--sage-rust); --fg: var(--sage-ivory); --accent: var(--sage-ochre); }
+  .ticket--taupe { --bg: var(--sage-taupe); --fg: var(--sage-ink); --accent: var(--sage-forest); }
+
+  .ticket__inner {
+    display: grid;
+    transform-style: preserve-3d;
+    transition: transform 0.8s var(--spring);
+  }
+  .ticket.is-flipped .ticket__inner {
+    transform: rotateY(180deg);
+  }
+  .ticket__face {
+    grid-area: 1 / 1;
+    display: grid;
+    grid-template-columns: var(--stub) 1fr;
+    min-height: 330px;
+    background: var(--bg);
+    color: var(--fg);
+    border-radius: 20px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-mask:
+      radial-gradient(circle var(--notch) at var(--stub) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at var(--stub) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle var(--notch) at var(--stub) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at var(--stub) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+  }
+  .ticket__back {
+    transform: rotateY(180deg);
+  }
+
+  /* talon */
+  .ticket__stub {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 0;
+    border-right: 2px dashed color-mix(in srgb, var(--fg) 35%, transparent);
+  }
+  .ticket__no {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font: 800 1.5rem/1 var(--font-display);
+    font-stretch: 75%;
+    letter-spacing: -0.02em;
+  }
+  .ticket__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    align-items: center;
+  }
+  .ticket__bars i {
+    display: block;
+    height: 2px;
+    width: 26px !important;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  .ticket__bars i:nth-child(3n) { height: 4px; }
+  .ticket__bars i:nth-child(4n) { height: 1px; }
+  .ticket__brand {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font: 800 0.8rem var(--font-display);
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+  }
+
+  /* corps */
+  .ticket__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.4rem 1.4rem 1.2rem;
+    min-width: 0;
+  }
+  .ticket__kicker {
+    opacity: 0.75;
+  }
+  .ticket__title {
+    font-size: clamp(1.7rem, 2.6vw, 2.3rem);
+  }
+  .ticket__title a {
+    text-decoration: none;
+  }
+  .ticket__title a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+  }
+  .ticket__short {
+    font-size: 0.98rem;
+    font-weight: 500;
+  }
+  .ticket__tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .ticket__tags li {
+    padding: 0.3em 0.8em;
+    border-radius: var(--pill);
+    border: 1.5px solid color-mix(in srgb, var(--fg) 45%, transparent);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .ticket__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .ticket__list li {
+    display: flex;
+    gap: 0.55rem;
+  }
+  .ticket__list li::before {
+    content: '✦';
+    color: var(--accent);
+    flex: none;
+  }
+  .ticket__actions {
+    margin-top: auto;
+    padding-top: 0.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+  .ticket__flip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 1.1rem;
+    border-radius: var(--pill);
+    border: 0;
+    background: var(--fg);
+    color: var(--bg);
+    font: 700 0.88rem var(--font-ui);
+    cursor: pointer;
+    transition: transform 0.35s var(--spring);
+  }
+  .ticket__flip:hover {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  .ticket__more {
+    font-weight: 800;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ticket__inner { transition: none; }
+  }
+</style>
