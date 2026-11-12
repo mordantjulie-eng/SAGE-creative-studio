@@ -1,17 +1,26 @@
 ---
-// Logo PROVISOIRE : lettrage composé en police web en attendant le dessin vectoriel final.
-// Remplacer par le SVG définitif dès qu'il existe (même API : size, withDescriptor).
+// Logo PROVISOIRE : lettrage composé en police web + orbite dessinée, en attendant le SVG final.
 import { brand } from '../config/site';
 
 interface Props {
   withDescriptor?: boolean;
+  orbit?: boolean;
   size?: 'sm' | 'md' | 'xl';
 }
-const { withDescriptor = false, size = 'sm' } = Astro.props;
+const { withDescriptor = false, orbit = false, size = 'sm' } = Astro.props;
 ---
 
-<span class:list={['logo', `logo--${size}`]} aria-label={`${brand.name} ${brand.descriptor}`}>
-  <span class="logo__word" aria-hidden="true">{brand.name}<span class="logo__dot">{brand.mark}</span></span>
+<span class:list={['logo', `logo--${size}`]} role="img" aria-label={`${brand.name} ${brand.descriptor}`}>
+  <span class="logo__word" aria-hidden="true">
+    {
+      orbit && (
+        <svg class="logo__orbit" viewBox="0 0 300 80" aria-hidden="true">
+          <path d="M40 52 C 20 30, 120 8, 230 14 C 300 18, 290 42, 200 52 C 140 58, 80 56, 110 44 C 130 36, 190 30, 250 34" />
+        </svg>
+      )
+    }
+    {brand.name}<span class="logo__dot">{brand.mark}</span>
+  </span>
   {withDescriptor && <span class="logo__descriptor" aria-hidden="true">{brand.descriptor}</span>}
 </span>
 
@@ -24,33 +33,55 @@ const { withDescriptor = false, size = 'sm' } = Astro.props;
     color: currentColor;
   }
   .logo__word {
+    position: relative;
     font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: -0.06em;
-    transform: skewX(-9deg);
-    display: inline-block;
+    font-style: italic;
+    font-weight: 900;
+    font-stretch: 118%;
+    letter-spacing: -0.07em;
+    padding-right: 0.06em;
   }
-  .logo__dot {
-    color: inherit;
+  .logo__orbit {
+    position: absolute;
+    left: 46%;
+    top: -0.3em;
+    width: 40%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-dasharray: 900;
+    stroke-dashoffset: 900;
+    animation: draw 1.4s 0.5s var(--ease) forwards;
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
   }
   .logo__descriptor {
     font-family: var(--font-ui);
-    font-weight: 500;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.42em;
-    margin-top: 0.9em;
-    padding-left: 0.42em; /* compense le dernier espacement */
+    letter-spacing: 0.5em;
+    margin-top: 0.8em;
+    padding-left: 0.5em;
   }
   .logo--sm .logo__word {
-    font-size: 1.6rem;
+    font-size: 1.55rem;
   }
   .logo--md .logo__word {
-    font-size: 3rem;
+    font-size: 3.4rem;
   }
   .logo--xl .logo__word {
-    font-size: clamp(5rem, 22vw, 17rem);
+    font-size: clamp(4.6rem, 15vw, 14rem);
   }
   .logo--xl .logo__descriptor {
-    font-size: clamp(0.7rem, 1.4vw, 1.05rem);
+    font-size: clamp(0.72rem, 1.5vw, 1.15rem);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .logo__orbit {
+      stroke-dashoffset: 0;
+    }
   }
 </style>

@@ -13,10 +13,10 @@ export const brand = {
 };
 
 export const nav = [
-  { label: 'Studio', href: '/#studio' },
-  { label: 'Expertises', href: '/#expertises' },
-  { label: 'Projets', href: '/#projets' },
-  { label: 'Méthode', href: '/#methode' },
+  { label: 'Studio', href: '#studio' },
+  { label: 'Expertises', href: '#expertises' },
+  { label: 'Projets', href: '#projets' },
+  { label: 'Méthode', href: '#methode' },
 ];
 
 export const pillars = [
