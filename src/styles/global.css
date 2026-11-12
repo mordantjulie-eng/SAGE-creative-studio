@@ -141,12 +141,10 @@ p {
   text-transform: uppercase;
   color: var(--eucalyptus);
 }
-.eyebrow::before {
-  content: '';
-  width: 28px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
+.split {
+  display: inline-flex;
+  flex-wrap: wrap;
+  column-gap: 1.1em;
 }
 .on-dark .eyebrow {
   color: var(--mist);

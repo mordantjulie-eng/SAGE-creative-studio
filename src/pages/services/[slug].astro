@@ -36,7 +36,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
         <div class="sv-photo arch"><img class="photo" src={`/media/${s.img}.jpg`} alt="" /></div>
         <div class="sv-tag glass float" style="--d:8s">
           <span>N° {s.num}</span>
-          <em>{s.highlights.join(', ')}</em>
+          <em class="split">{s.highlights.map((h) => <span>{h}</span>)}</em>
         </div>
       </div>
     </div>
