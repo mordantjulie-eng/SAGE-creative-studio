@@ -67,6 +67,53 @@ const {
         window.addEventListener('resize', onScroll);
       }
 
+      // Titres découpés en mots pour une apparition mot par mot
+      document.querySelectorAll<HTMLElement>('main h2.reveal').forEach((h) => {
+        let i = 0;
+        const wrap = (node: Node) => {
+          [...node.childNodes].forEach((c) => {
+            if (c.nodeType === 3) {
+              const frag = document.createDocumentFragment();
+              (c.textContent || '').split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+                const w = document.createElement('span'); w.className = 'w';
+                const inner = document.createElement('span'); inner.textContent = part; inner.style.setProperty('--wi', String(i++));
+                w.appendChild(inner); frag.appendChild(w);
+              });
+              c.replaceWith(frag);
+            } else if (c.nodeType === 1 && (c as Element).tagName !== 'BR') wrap(c);
+          });
+        };
+        wrap(h);
+        h.classList.add('split-done');
+      });
+
+      // Couleur de fond selon la section au centre de l'écran
+      const themed = [...document.querySelectorAll<HTMLElement>('[data-theme]')];
+      if (themed.length) {
+        document.body.dataset.theme = themed[0].dataset.theme;
+        const tio = new IntersectionObserver(
+          (entries) => entries.forEach((e) => { if (e.isIntersecting) document.body.dataset.theme = (e.target as HTMLElement).dataset.theme; }),
+          { rootMargin: '-50% 0px -50% 0px' },
+        );
+        themed.forEach((el) => tio.observe(el));
+      }
+
+      // Défilement fluide
+      if (!still) {
+        import('lenis').then(({ default: Lenis }) => {
+          const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+          const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
+          requestAnimationFrame(raf);
+          document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach((a) => {
+            const url = new URL(a.href, location.href);
+            if (url.pathname !== location.pathname || !url.hash) return;
+            a.addEventListener('click', (ev) => { const t = document.querySelector(url.hash); if (t) { ev.preventDefault(); lenis.scrollTo(t as HTMLElement, { offset: -90 }); } });
+          });
+        });
+      }
+
       const els = document.querySelectorAll('.reveal');
       if ('IntersectionObserver' in window) {
         const io = new IntersectionObserver(

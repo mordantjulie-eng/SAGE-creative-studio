@@ -12,7 +12,7 @@ const clips = [
 ];
 ---
 
-<section class="scene phones on-dark" data-scene aria-label="Content in motion">
+<section class="scene phones" data-theme="charcoal" data-scene aria-label="Content in motion">
   <div class="scene__sticky phones__sticky">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--champagne" style="width:620px;height:620px;right:-120px;top:-200px;opacity:.35;--d:26s"></span>
@@ -64,8 +64,7 @@ const clips = [
 <style>
   .phones {
     height: 320vh;
-    background: var(--grad-dark);
-    color: var(--ink);
+    color: var(--cream);
   }
   .phones__sticky {
     display: flex;
@@ -157,4 +156,8 @@ const clips = [
       display: none;
     }
   }
+  .phones :global(.eyebrow) { color: rgb(244 241 234 / 0.6); }
+  .phones :global(.lead) { color: rgb(244 241 234 / 0.75); }
+  .phones h2 :global(em) { color: var(--ochre); }
+  .phones .iphone figcaption { color: rgb(244 241 234 / 0.75); }
 </style>

@@ -18,7 +18,7 @@ const work = [
 
 <Base>
   <!-- HERO -->
-  <section class="hero" data-parallax-root>
+  <section class="hero" data-parallax-root data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" data-depth="30" style="width:720px;height:720px;left:-200px;top:-160px;--d:24s"></span>
       <span class="orb orb--champagne" data-depth="45" style="width:560px;height:560px;right:-120px;top:40px;--d:28s;--dx:-60px"></span>
@@ -58,34 +58,26 @@ const work = [
 
   <Zoom />
 
-  <!-- SERVICES -->
-  <section id="services" class="section services">
-    <div class="orbs" aria-hidden="true">
-      <span class="bgshape" style="width:340px;left:18%;top:34%;--d:14s"><Shape name="arch" color="var(--sage-light)" /></span>
-      <span class="bgshape" style="width:300px;right:14%;top:58%;--d:12s;--delay:-4s"><Shape name="half" color="var(--ochre)" style="opacity:.55" /></span>
-      <span class="bgshape" style="width:220px;left:52%;top:22%;--d:16s;--delay:-7s"><Shape name="leaf" color="var(--sage)" style="opacity:.5" /></span>
-      <span class="orb orb--mist" style="width:700px;height:700px;left:-220px;top:10%;--d:26s"></span>
-      <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;top:45%;opacity:.55;--d:30s"></span>
-      <span class="orb orb--sage" style="width:600px;height:600px;left:35%;bottom:-200px;opacity:.5;--d:34s"></span>
-    </div>
-    <div class="container rel">
-      <div class="head">
+  <!-- SERVICES : défilement horizontal épinglé -->
+  <section id="services" class="scene hscroll" data-scene data-theme="sage" data-hs style={`--n:${services.length}`}>
+    <div class="scene__sticky hscroll__sticky">
+      <div class="container hscroll__head">
         <div>
           <p class="hero__flags reveal"><span class="flag flag--cobalt">6 expertises, 1 interlocutrice</span></p>
-          <p class="eyebrow reveal">Services</p>
-          <h2 class="reveal" style="--rd:.08s">Six expertises,<br /><em>une même exigence.</em></h2>
+          <h2 class="reveal">Six <em>expertises</em></h2>
         </div>
-        <p class="lead reveal" style="--rd:.16s">
-          En mission ponctuelle ou en accompagnement mensuel. Chaque carte se retourne pour révéler ce qu'elle
-          contient.
-        </p>
+        <div class="hscroll__side">
+          <p class="lead reveal">En mission ponctuelle ou en accompagnement mensuel. Retournez une carte pour voir ce qu'elle contient.</p>
+          <p class="hscroll__count" aria-hidden="true"><span data-count>1</span> sur {services.length}</p>
+        </div>
       </div>
-      <div class="cards">
-        {services.map((s, i) => <Ticket service={s} delay={(i % 3) * 0.1} />)}
+      <div class="hscroll__track">
+        {services.map((s, i) => <Ticket service={s} delay={0} />)}
+        <div class="hscroll__end">
+          <p>Un besoin qui touche à plusieurs expertises&nbsp;?</p>
+          <a class="btn btn--primary" href="#contact">Composons sur mesure <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-      <p class="services__note reveal">
-        Un besoin qui touche à plusieurs expertises&nbsp;? <a class="link" href="#contact">Composons un accompagnement sur mesure <span aria-hidden="true">→</span></a>
-      </p>
     </div>
   </section>
 
@@ -93,7 +85,7 @@ const work = [
   <Book />
 
   <!-- MINDSET -->
-  <section id="mindset" class="mindset on-dark">
+  <section id="mindset" class="mindset" data-theme="sage">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--champagne" style="width:560px;height:560px;right:-140px;top:-180px;opacity:.35;--d:26s"></span>
       <span class="orb orb--mist" style="width:620px;height:620px;left:-220px;bottom:-240px;opacity:.25;--d:30s"></span>
@@ -102,7 +94,7 @@ const work = [
       <div class="head">
         <div>
           <p class="eyebrow reveal">The SAGE mindset</p>
-          <h2 class="reveal" style="--rd:.08s">Quatre lettres,<br /><em>une façon de penser.</em></h2>
+          <h2 class="reveal" style="--rd:.08s">Quatre lettres, <em>une façon de penser</em></h2>
         </div>
         <p class="lead reveal" style="--rd:.16s">
           S.A.G.E. n'est pas une liste de services&nbsp;: c'est la méthode qui guide chacun d'eux.
@@ -158,12 +150,12 @@ const work = [
   </section>
 
   <!-- WORK -->
-  <section id="projets" class="section work">
+  <section id="projets" class="section work" data-theme="cream">
     <div class="container">
       <div class="head">
         <div>
           <p class="eyebrow reveal">Selected work</p>
-          <h2 class="reveal" style="--rd:.08s">La vitrine<br /><em>se prépare.</em></h2>
+          <h2 class="reveal" style="--rd:.08s">La vitrine <em>se prépare</em></h2>
         </div>
         <p class="lead reveal" style="--rd:.16s">
           Les premières études de cas du studio arriveront ici, avec le contexte, la démarche et les résultats,
@@ -189,7 +181,7 @@ const work = [
   </section>
 
   <!-- ABOUT -->
-  <section id="studio" class="section about">
+  <section id="studio" class="section about" data-theme="taupe">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--blush" style="width:620px;height:620px;left:-180px;top:0;--d:28s"></span>
       <span class="orb orb--mist" style="width:560px;height:560px;right:-120px;bottom:-120px;--d:24s"></span>
@@ -205,7 +197,7 @@ const work = [
       </div>
       <div class="about__text">
         <p class="eyebrow reveal">About the studio</p>
-        <h2 class="reveal" style="--rd:.08s">Derrière SAGE,<br /><em>il y a Julie.</em></h2>
+        <h2 class="reveal" style="--rd:.08s">Derrière SAGE, <em>il y a Julie</em></h2>
         <p class="lead reveal" style="--rd:.16s">
           Marketing, réseaux sociaux, contenu, influence, business et IA&nbsp;: j'ai passé ces dernières années à
           voir de l'intérieur ce qui fait avancer une marque, et ce qui la freine. SAGE est né de l'envie de réunir
@@ -227,7 +219,7 @@ const work = [
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="contact on-dark">
+  <section id="contact" class="contact" data-theme="sage">
     <div class="orbs" aria-hidden="true">
       <span class="bgshape" style="width:300px;right:30%;top:16%;--d:14s"><Shape name="arch" color="var(--ochre)" style="opacity:.55" /></span>
       <span class="bgshape" style="width:240px;right:4%;bottom:10%;--d:12s;--delay:-5s"><Shape name="circle" color="var(--sage-light)" style="opacity:.45" /></span>
@@ -238,11 +230,12 @@ const work = [
       <div class="contact__intro">
         <p class="hero__flags reveal"><span class="flag flag--vermilion">Réponse sous 48 h ouvrées</span></p>
         <p class="eyebrow reveal">Let's work together</p>
-        <h2 class="reveal" style="--rd:.08s">Créons quelque chose<br /><em>qui compte.</em></h2>
+        <h2 class="reveal" style="--rd:.08s">Créons quelque chose <em>qui compte</em></h2>
         <p class="lead reveal" style="--rd:.16s">
           Un projet, une marque à clarifier, une idée encore floue&nbsp;: racontez-moi en quelques lignes. Je vous
           réponds sous 48&nbsp;h ouvrées.
         </p>
+        <a class="round-cta reveal" href={`mailto:${brand.email}`}><span>M'écrire</span></a>
         <ol class="steps">
           {
             steps.map((s, i) => (
@@ -285,6 +278,14 @@ const work = [
     loop();
   }
 
+  // Compteur du défilement horizontal
+  const hs = document.querySelector<HTMLElement>('[data-hs]');
+  if (hs) {
+    const out = hs.querySelector('[data-count]')!;
+    const n = Number(getComputedStyle(hs).getPropertyValue('--n')) || 6;
+    hs.addEventListener('scene', (e) => (out.textContent = String(Math.min(n, Math.round((e as CustomEvent<number>).detail * (n - 1)) + 1))));
+  }
+
   // Onglets S.A.G.E.
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('.sage__tab')];
   const select = (t: HTMLButtonElement) =>
@@ -315,7 +316,7 @@ const work = [
   .head .lead { max-width: 26rem; }
 
   /* HERO */
-  .hero { position: relative; overflow: hidden; background: var(--grad-soft); }
+  .hero { position: relative; overflow: hidden; }
   .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; min-height: max(100svh, 760px); padding-block: 140px 90px; }
   .hero__text { display: grid; gap: 1.7rem; justify-items: start; }
   .hero__title { font-size: var(--h1); font-weight: 850; }
@@ -339,6 +340,27 @@ const work = [
   .hv-card__q em { color: var(--eucalyptus); }
   .hv-pill { position: absolute; right: 0; bottom: 18%; display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.2rem; border-radius: var(--pill); font-size: 0.85rem; }
 
+  /* SERVICES horizontal */
+  .hscroll { height: calc(100vh + var(--n) * 55vh); }
+  .hscroll__sticky { display: flex; flex-direction: column; justify-content: center; gap: clamp(24px, 4vh, 48px); padding-top: clamp(84px, 10vh, 110px); }
+  .hscroll__head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1rem 4rem; }
+  .hscroll__head > div { display: grid; gap: 1rem; }
+  .hscroll__head h2 { font-size: var(--h2); }
+  .hscroll__side { max-width: 26rem; }
+  .hscroll__count { font: italic 400 1.4rem var(--font-letter); margin-top: 1rem; }
+  .hscroll__track { display: flex; align-items: stretch; gap: 1.4rem; width: max-content; padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); padding-right: 6vw; transform: translateX(calc(var(--p) * (-1 * (100% - 100vw)))); will-change: transform; }
+  .hscroll__track > :global(.card) { width: clamp(290px, 30vw, 400px); flex: none; }
+  .hscroll__end { flex: none; width: clamp(260px, 26vw, 340px); display: grid; align-content: center; gap: 1.2rem; padding: 2rem; font: italic 400 clamp(1.4rem, 2vw, 1.8rem)/1.2 var(--font-letter); }
+  @media (max-width: 760px) {
+    .hscroll__sticky { padding-top: 96px; gap: 18px; justify-content: flex-start; }
+    .hscroll__side .lead { display: none; }
+    .hscroll__count { margin-top: 0; }
+    .hscroll__track > :global(.card) { width: 78vw; }
+    .hscroll__end { width: 70vw; }
+  }
+  .round-cta { display: grid; place-items: center; width: 150px; height: 150px; border-radius: 50%; background: var(--ochre); color: var(--ink); font: italic 400 1.35rem var(--font-letter); text-decoration: none; box-shadow: 0 24px 50px -24px rgb(26 26 26 / 0.45); transition: transform 0.6s var(--ease-out), background 0.4s var(--ease); }
+  .round-cta:hover { transform: scale(1.08) rotate(-6deg); background: var(--terracotta); color: var(--cream); }
+
   /* SERVICES */
   .services { overflow: hidden; }
   .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
@@ -346,7 +368,7 @@ const work = [
   .services__note { margin-top: clamp(48px, 6vw, 80px); text-align: center; color: rgb(43 52 47 / 0.75); }
 
   /* MINDSET */
-  .mindset { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: var(--section-y); border-radius: var(--r-l); margin: var(--section-y) clamp(0px, 1.5vw, 20px) 0; }
+  .mindset { position: relative; overflow: hidden; padding-block: var(--section-y); }
   .sage__letters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.2rem; }
   .sage__tab { display: grid; justify-items: start; gap: 0.3rem; padding: 1.4rem 1.6rem 1.3rem; border-radius: var(--r); border: 0; box-shadow: inset 0 0.5px 0 rgb(255 255 255 / 0.2); background: rgb(255 255 255 / 0.3); color: var(--ink); cursor: pointer; text-align: left; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background 0.5s var(--ease), border-color 0.5s var(--ease), transform 0.6s var(--ease-out); }
   .sage__tab:hover { transform: translateY(-4px); background: rgb(255 255 255 / 0.1); }
@@ -402,7 +424,7 @@ const work = [
   .crew__list li { padding: 0.55rem 1.1rem; border-radius: var(--pill); font-weight: 500; font-size: 0.88rem; background: rgb(255 255 255 / 0.62); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); border: 0; box-shadow: 0 1px 1px rgb(0 0 0 / 0.03), 0 10px 24px -14px rgb(43 52 47 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9); }
 
   /* CONTACT */
-  .contact { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: var(--section-y); border-radius: var(--r-l) var(--r-l) 0 0; margin-top: var(--section-y); }
+  .contact { position: relative; overflow: hidden; padding-block: var(--section-y); }
   .contact__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
   .contact__intro { display: grid; gap: 1.5rem; }
   .contact__intro h2 { font-size: var(--h2); }

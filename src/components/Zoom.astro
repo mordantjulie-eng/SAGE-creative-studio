@@ -10,7 +10,7 @@ const levels = [
 ];
 ---
 
-<section class="scene zoom" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Du général au particulier">
+<section class="scene zoom" data-theme="cream" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Du général au particulier">
   <div class="scene__sticky zoom__sticky">
     <p class="zoom__word zoom__word--l" aria-hidden="true">Creative</p>
     <p class="zoom__word zoom__word--r" aria-hidden="true"><em>thinking.</em></p>
@@ -113,10 +113,8 @@ const levels = [
 <style>
   .zoom {
     height: calc((var(--n) + 1) * 100vh + 60vh);
-    background: var(--cream);
   }
   .zoom__sticky {
-    background: var(--cream);
   }
   .zoom__word {
     position: absolute;

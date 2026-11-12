@@ -69,6 +69,7 @@ html {
 body {
   margin: 0;
   background: var(--cream);
+  transition: background-color 0.8s var(--ease), color 0.8s var(--ease);
   color: var(--ink);
   font-family: var(--font-ui);
   font-weight: 400;
@@ -100,7 +101,7 @@ h3 {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 800;
-  font-style: italic;
+  font-style: normal;
   line-height: 0.95;
   letter-spacing: -0.045em;
 }
@@ -112,8 +113,10 @@ h3 {
 h1 em,
 h2 em,
 h3 em {
+  font-family: var(--font-letter);
   font-style: italic;
-  font-weight: inherit;
+  font-weight: 400;
+  letter-spacing: -0.015em;
   color: var(--ochre);
 }
 .on-dark h1 em,
@@ -406,3 +409,21 @@ p {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
+
+/* Fond de page qui change de couleur selon la section visible (piloté par Base.astro) */
+body[data-theme='cream'] { background-color: var(--cream); }
+body[data-theme='sage'] { background-color: var(--sage-light); }
+body[data-theme='taupe'] { background-color: #e6ded3; }
+body[data-theme='charcoal'] { background-color: var(--ink); }
+body[data-theme='sage'] h1 em,
+body[data-theme='sage'] h2 em { color: var(--terracotta); }
+
+/* Aplats francs : plus de halos flous */
+.orb { display: none; }
+
+/* Titres qui apparaissent mot par mot */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.w > span { display: inline-block; transform: translateY(105%); transition: transform 0.9s var(--ease-out); transition-delay: calc(var(--rd, 0s) + var(--wi, 0) * 0.05s); }
+.is-in .w > span, .w.is-in > span { transform: none; }
+.split-done.reveal { opacity: 1; filter: none; transform: none; }
+@media (prefers-reduced-motion: reduce) { .w > span { transform: none; } }
