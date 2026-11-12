@@ -1,0 +1,160 @@
+---
+// Scène « iPhones » : une rangée de téléphones qui défile horizontalement au scroll,
+// chacun lisant une vidéo en boucle.
+const clips = [
+  { v: 'julie-filming', label: 'Reel · face cam' },
+  { v: 'flatlay', label: 'Behind the scenes' },
+  { v: 'julie-studio', label: 'Shooting studio' },
+  { v: 'creator-tee', label: 'UGC' },
+  { v: 'julie-filming-2', label: 'TikTok · conseil' },
+  { v: 'julie-wink', label: 'Story' },
+  { v: 'julie-mirror', label: 'Lifestyle' },
+];
+---
+
+<section class="scene phones on-dark" data-scene aria-label="Content in motion">
+  <div class="scene__sticky phones__sticky">
+    <div class="orbs" aria-hidden="true">
+      <span class="orb orb--champagne" style="width:620px;height:620px;right:-120px;top:-200px;opacity:.35;--d:26s"></span>
+      <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;bottom:-280px;opacity:.25;--d:30s"></span>
+    </div>
+    <div class="container phones__head">
+      <div>
+        <p class="eyebrow">Content in motion</p>
+        <h2>Du contenu qui<br /><em>arrête le scroll.</em></h2>
+      </div>
+      <p class="lead">Reels, TikTok, stories, UGC&nbsp;: des formats pensés pour chaque plateforme, tournés et montés avec soin.</p>
+    </div>
+    <div class="phones__track" aria-hidden="true">
+      {
+        clips.map((c, i) => (
+          <figure class="iphone" style={`--i:${i}`}>
+            <div class="iphone__body">
+              <video src={`/video/${c.v}.mp4`} poster={`/media/${c.v}.jpg`} muted loop playsinline preload="none" data-autoplay />
+              <span class="iphone__island" />
+            </div>
+            <figcaption>{c.label}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Lecture des vidéos uniquement quand elles sont visibles
+  const vids = document.querySelectorAll<HTMLVideoElement>('video[data-autoplay]');
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!still && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          const v = e.target as HTMLVideoElement;
+          if (e.isIntersecting) {
+            v.preload = 'auto';
+            v.play().catch(() => {});
+          } else v.pause();
+        }),
+      { threshold: 0.2 },
+    );
+    vids.forEach((v) => io.observe(v));
+  }
+</script>
+
+<style>
+  .phones {
+    height: 320vh;
+    background: var(--grad-dark);
+    color: var(--cream);
+  }
+  .phones__sticky {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(28px, 5vh, 56px);
+    padding-top: clamp(90px, 11vh, 120px);
+  }
+  .phones__head {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-wrap: wrap;
+    gap: 1rem 4rem;
+  }
+  .phones__head > div {
+    display: grid;
+    gap: 1rem;
+  }
+  .phones__head h2 {
+    font-size: clamp(2.2rem, 4.6vw, 4rem);
+  }
+  .phones__head .lead {
+    max-width: 24rem;
+  }
+  .phones__track {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: clamp(18px, 2.4vw, 36px);
+    width: max-content;
+    padding-left: 8vw;
+    transform: translateX(calc(var(--p) * (-1 * (100% - 84vw))));
+  }
+  .iphone {
+    margin: 0;
+    flex: none;
+    width: clamp(170px, 17vw, 250px);
+    transform: translateY(calc(sin(var(--i) * 1.3) * 26px + (var(--p) - 0.5) * (var(--i) - 3) * 18px)) rotate(calc(sin(var(--i) * 2.1) * 2deg));
+  }
+  .iphone__body {
+    position: relative;
+    aspect-ratio: 9 / 19.5;
+    padding: 9px;
+    border-radius: 44px;
+    background: linear-gradient(145deg, #3a3f3c, #121413 45%, #2a2e2c);
+    box-shadow:
+      0 40px 80px -30px rgb(0 0 0 / 0.6),
+      inset 0 0 0 1.5px rgb(255 255 255 / 0.14);
+  }
+  .iphone__body video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 36px;
+    background: var(--moss);
+    display: block;
+  }
+  .iphone__island {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    translate: -50% 0;
+    width: 32%;
+    height: 22px;
+    border-radius: 999px;
+    background: #0b0c0c;
+  }
+  .iphone figcaption {
+    margin-top: 0.9rem;
+    text-align: center;
+    font: italic 300 1.05rem var(--font-serif);
+    color: rgb(246 243 238 / 0.8);
+  }
+  @media (max-width: 760px) {
+    .phones {
+      height: 300vh;
+    }
+    .phones__track {
+      padding-left: 6vw;
+      transform: translateX(calc(var(--p) * (-1 * (100% - 94vw))));
+    }
+    .iphone {
+      width: 46vw;
+    }
+    .phones__head .lead {
+      display: none;
+    }
+  }
+</style>

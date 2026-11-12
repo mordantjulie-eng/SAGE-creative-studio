@@ -2,6 +2,9 @@
 import Base from '../layouts/Base.astro';
 import Ticket from '../components/Ticket.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Morph from '../components/Morph.astro';
+import Phones from '../components/Phones.astro';
+import Book from '../components/Book.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -23,7 +26,7 @@ const work = [
 
     <div class="container hero__grid">
       <div class="hero__text">
-        <p class="eyebrow reveal">Creative studio · {brand.location}</p>
+        <p class="hero__flags reveal"><span class="flag">Lancement 2027</span><span class="eyebrow">Creative studio · {brand.location}</span></p>
         <h1 class="hero__title reveal" style="--rd:.08s">Le studio créatif qui fait <em>grandir</em> les marques.</h1>
         <p class="lead reveal" style="--rd:.16s">
           Stratégie, contenu, social media, branding, influence et formation à l'IA&nbsp;: tout ce qu'il faut pour
@@ -52,6 +55,8 @@ const work = [
     </div>
   </section>
 
+  <Morph img={m('julie-filming-2')} />
+
   <!-- SERVICES -->
   <section id="services" class="section services">
     <div class="orbs" aria-hidden="true">
@@ -62,6 +67,7 @@ const work = [
     <div class="container rel">
       <div class="head">
         <div>
+          <p class="hero__flags reveal"><span class="flag flag--cobalt">6 expertises · 1 interlocutrice</span></p>
           <p class="eyebrow reveal">Services</p>
           <h2 class="reveal" style="--rd:.08s">Six expertises,<br /><em>une même exigence.</em></h2>
         </div>
@@ -78,6 +84,9 @@ const work = [
       </p>
     </div>
   </section>
+
+  <Phones />
+  <Book />
 
   <!-- MINDSET -->
   <section id="mindset" class="mindset on-dark">
@@ -215,6 +224,7 @@ const work = [
     </div>
     <div class="container contact__grid rel">
       <div class="contact__intro">
+        <p class="hero__flags reveal"><span class="flag flag--vermilion">Réponse sous 48 h ouvrées</span></p>
         <p class="eyebrow reveal">Let's work together</p>
         <h2 class="reveal" style="--rd:.08s">Créons quelque chose<br /><em>qui compte.</em></h2>
         <p class="lead reveal" style="--rd:.16s">
@@ -297,6 +307,7 @@ const work = [
   .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; min-height: max(100svh, 760px); padding-block: 140px 90px; }
   .hero__text { display: grid; gap: 1.7rem; justify-items: start; }
   .hero__title { font-size: var(--h1); font-weight: 300; }
+  .hero__flags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
 
   .hero__visual { position: relative; height: min(640px, 70vh); min-height: 520px; }
@@ -317,7 +328,7 @@ const work = [
   .services__note { margin-top: clamp(48px, 6vw, 80px); text-align: center; color: rgb(43 52 47 / 0.75); }
 
   /* MINDSET */
-  .mindset { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
+  .mindset { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--cream); padding-block: var(--section-y); border-radius: var(--r-l); margin: var(--section-y) clamp(0px, 1.5vw, 20px) 0; }
   .sage__letters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.2rem; }
   .sage__tab { display: grid; justify-items: start; gap: 0.3rem; padding: 1.4rem 1.6rem 1.3rem; border-radius: var(--r); border: 1px solid rgb(255 255 255 / 0.16); background: rgb(255 255 255 / 0.04); color: var(--cream); cursor: pointer; text-align: left; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background 0.5s var(--ease), border-color 0.5s var(--ease), transform 0.6s var(--ease-out); }
   .sage__tab:hover { transform: translateY(-4px); border-color: rgb(255 255 255 / 0.4); }

@@ -6,10 +6,17 @@
   --eucalyptus: #6f8574; /* vert moyen */
   --sage: #9aab9a; /* sauge */
   --mist: #dfe6dc; /* brume verte */
-  --cream: #f6f3ee; /* fond */
+  --sage-light: #c5d0be; /* vert sauge clair (validé) */
+  --cream: #f4f1ea; /* blanc cassé (validé) */
   --sand: #ebe3d8; /* sable */
-  --champagne: #c6ae86; /* accent doré doux */
+  --ochre: #c49a54; /* ocre (validé) */
+  --champagne: var(--ochre);
   --blush: #ead9cf; /* rose poudré */
+
+  /* Accents vifs : uniquement pour les infos importantes */
+  --pers: #3e7c80; /* bleu-vert « pers » */
+  --cobalt: #2448c8; /* bleu primaire */
+  --vermilion: #e04a2f; /* rouge primaire */
 
   --glass: rgb(255 255 255 / 0.42);
   --glass-strong: rgb(255 255 255 / 0.62);
@@ -18,7 +25,7 @@
   --hair: rgb(43 52 47 / 0.12);
 
   --grad-dark: linear-gradient(150deg, #3b4841 0%, #536559 45%, #7f9483 100%);
-  --grad-soft: linear-gradient(160deg, #f6f3ee 0%, #e9eee6 45%, #efe4da 100%);
+  --grad-soft: linear-gradient(160deg, #f4f1ea 0%, #e6ece2 45%, #efe5d6 100%);
 
   --font-ui: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
   --font-serif: 'Newsreader Variable', 'Newsreader', Georgia, serif;
@@ -96,7 +103,7 @@ h2 em,
 h3 em {
   font-style: italic;
   font-weight: 300;
-  color: var(--eucalyptus);
+  color: var(--ochre);
 }
 .on-dark h1 em,
 .on-dark h2 em,
@@ -314,6 +321,51 @@ p {
   opacity: 1;
   transform: none;
   filter: none;
+}
+
+/* Accent vif (infos importantes uniquement) */
+.flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--pill);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #fff;
+  background: var(--pers);
+}
+.flag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.flag--cobalt {
+  background: var(--cobalt);
+}
+.flag--vermilion {
+  background: var(--vermilion);
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Scènes pilotées par le défilement : --p va de 0 à 1 */
+.scene {
+  position: relative;
+  --p: 0;
+}
+.scene__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
 }
 
 /* Cadre en arche */

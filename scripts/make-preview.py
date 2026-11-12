@@ -25,7 +25,7 @@ for d, _, fs in os.walk('.'):
         p = os.path.join(d, f)[2:]
         if p.endswith('.html'):
             s = open(p).read()
-            s = re.sub(r'(href|src|action)="(/[^"]*)"', lambda m: f'{m.group(1)}="{rel(m.group(2), p.count("/"))}"', s)
+            s = re.sub(r'(href|src|action|poster)="(/[^"]*)"', lambda m: f'{m.group(1)}="{rel(m.group(2), p.count("/"))}"', s)
             open(p, 'w').write(s)
         if p != 'index.html': files[p] = os.path.abspath(p)
 json.dump(files, open(os.path.join('..', os.path.basename(out) + '-files.json'), 'w'), indent=0)
