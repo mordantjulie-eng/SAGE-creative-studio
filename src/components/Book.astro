@@ -1,18 +1,74 @@
 ---
 // Scène « livre » : le parcours de Julie, façon CV, qui se feuillette au défilement.
 import SceneNav from './SceneNav.astro';
-type Entry = { when: string; title: string; where: string; text: string; todo?: boolean };
+type Entry = { when: string; title: string; where: string; text?: string; points?: string[]; todo?: boolean };
 const entries: Entry[] = [
   { when: '2020 à 2024', title: 'Bachelier en Marketing', where: 'EPHEC, option International Business', text: 'Marketing digital, communication, UX/UI et business international.' },
-  { when: '2023', title: 'YourStory Agency', where: 'Stage en création de contenu', text: "Contenus pour les réseaux sociaux et animation de communautés. Une maître de stage qui m'a fait confiance : une approche que j'ai reprise en encadrant mon propre stagiaire chez Kontnu." },
-  { when: 'Waterloo', title: 'ENEON / Idweaver', where: 'Marketing Officer', text: "Personal branding de dirigeants, podcasts, emailing et marque employeur pour des acteurs de l'industrie, des matériaux de construction et du conseil IT, de la PME au groupe international." },
-  { when: '2024 à 2025, Bruxelles', title: 'Socialsky', where: 'Community Manager Gen Z, CDD puis CDI', text: "Contenus et communautés pour des enseignes nationales et des groupes internationaux : fitness, chocolat, beauté, restauration rapide, énergie, poids lourds." },
-  { when: '2025 à 2027', title: 'Kontnu', where: 'Business developer puis digital marketing manager', text: 'Ventes et prospection dès octobre 2025, puis pilotage du marketing digital à partir de mai 2026.' },
+  {
+    when: '2023', title: 'YourStory Agency', where: 'Stage en social media',
+    points: [
+      "Création de contenu pour les réseaux sociaux, de l'idée à la publication.",
+      'Production vidéo : tournage et montage de formats courts.',
+      'Community management : animation et modération des communautés.',
+    ],
+  },
+  {
+    when: 'Waterloo', title: 'ENEON / Idweaver', where: 'Marketing Officer',
+    points: [
+      'Personal branding de dirigeants, notamment sur LinkedIn.',
+      'Newsletters et campagnes emailing.',
+      'Production de contenus pour des podcasts.',
+      "Marque employeur : valoriser les équipes et la culture d'entreprise.",
+      'Pour des PME et des groupes internationaux.',
+    ],
+  },
+  {
+    when: '2024 à 2025, Bruxelles', title: 'Socialsky', where: 'Community Manager Gen Z, CDD puis CDI',
+    points: [
+      'Stratégie social media et angles éditoriaux adaptés à chaque marque.',
+      'Calendriers de contenu et temps forts.',
+      'Rédaction et vidéos courtes, du tournage au montage.',
+      'Animation, modération, commentaires et messages.',
+      'Pour des enseignes nationales et des groupes internationaux.',
+    ],
+  },
+  {
+    when: '2025 à 2027', title: 'Kontnu', where: 'Business Development puis Digital Marketing Manager',
+    points: [
+      'Acquisition de commerçants et de créateurs en Belgique et en France.',
+      'Calendrier éditorial Instagram, TikTok et LinkedIn, en FR, EN et NL.',
+      'Reels et TikToks : conception, tournage, montage.',
+      'Campagnes Meta : ciblage et répartition du budget.',
+      'Influence : créateurs ambassadeurs, briefs et suivi.',
+    ],
+  },
+  {
+    when: 'Kontnu, suite', title: 'Business et équipe', where: 'Du terrain au reporting',
+    points: [
+      'Prospection, rendez-vous, signature et onboarding des commerçants.',
+      'Communautés de commerçants et de créateurs sur Instagram et WhatsApp.',
+      'Événement des 15 000 collaborations, puis suivi des retombées et des leads.',
+      "Recrutement et encadrement d'un stagiaire.",
+      "IA générative et vibe coding pour produire plus vite et prototyper des outils.",
+    ],
+  },
+  {
+    when: 'En résumé', title: "Ce que j'apporte", where: 'Agence, startup et terrain',
+    points: [
+      'Stratégie social media et acquisition',
+      'Création de contenu et vidéo courte',
+      'Community management',
+      'Campagnes Meta et marketing d\'influence',
+      'Business development et CRM',
+      'IA et optimisation du travail',
+    ],
+  },
 ];
 const leaves = [
   { front: null, back: entries[0] },
   { front: entries[1], back: entries[2] },
   { front: entries[3], back: entries[4] },
+  { front: entries[5], back: entries[6] },
 ];
 ---
 
@@ -55,7 +111,8 @@ const leaves = [
                     <p class="cv__when">{l.front.when}</p>
                     <h3 class="cv__title">{l.front.title}</h3>
                     <p class="cv__where">{l.front.where}</p>
-                    <p class="cv__text">{l.front.text}</p>
+                    {l.front.text && <p class="cv__text">{l.front.text}</p>}
+                    {l.front.points && <ul class="cv__list">{l.front.points.map((pt) => <li>{pt}</li>)}</ul>}
                     <span class="cv__n">{i * 2}</span>
                   </article>
                 )}
@@ -65,7 +122,8 @@ const leaves = [
                   <p class="cv__when">{l.back.when}</p>
                   <h3 class="cv__title">{l.back.title}</h3>
                   <p class="cv__where">{l.back.where}</p>
-                  <p class="cv__text">{l.back.text}</p>
+                  {l.back.text && <p class="cv__text">{l.back.text}</p>}
+                    {l.back.points && <ul class="cv__list">{l.back.points.map((pt) => <li>{pt}</li>)}</ul>}
                   <span class="cv__n">{i * 2 + 1}</span>
                 </article>
               </div>
@@ -74,7 +132,7 @@ const leaves = [
         }
       </div>
     </div>
-    <SceneNav steps={4} label="Faites défiler pour tourner les pages" />
+    <SceneNav steps={5} label="Faites défiler pour tourner les pages" />
   </div>
 </section>
 
@@ -126,7 +184,7 @@ const leaves = [
 
 <style>
   .book-scene {
-    height: 360vh;
+    height: 440vh;
   }
   .book-scene__sticky {
     display: grid;
@@ -270,26 +328,13 @@ const leaves = [
     font-size: 0.75rem;
     color: rgb(43 52 47 / 0.5);
   }
-  @media (max-width: 760px) {
-    .book {
-      --w: 46vw;
-      height: calc(var(--w) * 2.15);
-    }
-    .cv { padding: 10% 9%; gap: 0.4rem; }
-    .cv__title { font-size: 1.05rem; }
-    .cv__where, .cv__text { font-size: 0.64rem; line-height: 1.32; }
-    .cv__title { font-size: 0.98rem !important; }
-    .cv__n { display: none; }
-    .cv__when { font-size: 0.8rem; }
-    .book__end { padding: 10% 9%; }
-    .book__end p { font-size: 1rem !important; }
-    .cover__title { font-size: 1.4rem; }
-  }
   .cv { position: relative; height: 100%; display: grid; align-content: center; gap: 0.7rem; padding: 12%; color: #1a1a1a; }
   .cv__when { font: italic 400 clamp(1rem, 1.6vw, 1.3rem) var(--font-letter); color: var(--ochre); }
   .cv__title { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: #1a1a1a; }
   .cv__where { font-weight: 600; font-size: 0.92rem; }
   .cv__text { font-size: 0.9rem; color: rgb(26 26 26 / 0.72); line-height: 1.5; }
+  .cv__list { list-style: none; margin: 0.2rem 0 0; padding: 0; display: grid; gap: 0.45rem; font-size: 0.84rem; line-height: 1.4; color: rgb(26 26 26 / 0.74); }
+  .cv__list li { margin: 0; }
   .cv--todo .cv__text { font-style: italic; color: rgb(26 26 26 / 0.45); }
   .cv__n { position: absolute; bottom: 8%; right: 10%; font: italic 400 0.9rem var(--font-letter); color: rgb(26 26 26 / 0.35); }
   .book__end { gap: 0.6rem; padding: 12%; align-content: center; overflow: hidden; }
@@ -297,4 +342,32 @@ const leaves = [
   .book__end p.cv__when { font: italic 400 1.2rem var(--font-letter) !important; color: var(--ochre); }
   .book__end p.cv__text { font: 400 0.9rem/1.5 var(--font-ui) !important; color: rgb(26 26 26 / 0.7); }
   .book__end .cv__text { margin-top: 0.4rem; }
+  @media (max-width: 760px) {
+    .book {
+      --w: 46vw;
+      height: calc(var(--w) * 2.55);
+    }
+    .cv { padding: 10% 9%; gap: 0.4rem; }
+    .cv__title { font-size: 1.05rem; }
+    .cv__where, .cv__text { font-size: 0.74rem; line-height: 1.32; }
+    .cv__list { font-size: 0.71rem; line-height: 1.3; gap: 0.38rem; }
+    .cv__title { font-size: 1.1rem !important; }
+    .cv__n { display: none; }
+    .cv__when { font-size: 0.8rem; }
+    .book__end { padding: 10% 9%; }
+    .book__end p { font-size: 1rem !important; }
+    .cover__title { font-size: 1.4rem; }
+  }
+  @media (min-width: 761px) and (max-width: 1180px) {
+    .book {
+      --w: min(41vw, 44vh, 380px);
+      height: calc(var(--w) * 1.4);
+    }
+    .cv { padding: 9% 9%; gap: 0.45rem; }
+    .cv__title { font-size: 1.3rem; }
+    .cv__when { font-size: 0.95rem; }
+    .cv__where { font-size: 0.8rem; }
+    .cv__list { font-size: 0.74rem; line-height: 1.32; gap: 0.32rem; }
+    .cv__n { display: none; }
+  }
 </style>
