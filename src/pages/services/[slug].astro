@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Ticket from '../../components/Ticket.astro';
+import Phones from '../../components/Phones.astro';
 import { services, pillars, steps, type Service } from '../../config/site';
 
 export function getStaticPaths() {
@@ -64,6 +65,8 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
       </div>
     </div>
   </section>
+
+  {s.slug === 'content-creation' && <Phones />}
 
   <section class="sv-pillars on-dark">
     <div class="orbs" aria-hidden="true">

@@ -9,7 +9,32 @@ import { nav } from '../config/site';
 
     <nav id="menu" class="header__nav" aria-label="Navigation principale">
       <ul>
-        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {
+          nav.map((item) =>
+            item.children && item.children.length ? (
+              <li class="has-sub">
+                <a href={item.href} aria-haspopup="true">
+                  {item.label}
+                  <svg class="chev" viewBox="0 0 12 12" width="10" height="10" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </a>
+                <div class="sub">
+                  <ul>
+                    {item.children.map((c) => (
+                      <li>
+                        <a href={c.href}>
+                          <span class="sub__l">{c.label}</span>
+                          {c.hint && <span class="sub__h">{c.hint}</span>}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ) : (
+              <li><a href={item.href}>{item.label}</a></li>
+            ),
+          )
+        }
       </ul>
     </nav>
 
@@ -96,6 +121,77 @@ import { nav } from '../config/site';
   .header__nav a:hover {
     background: rgb(255 255 255 / 0.6);
   }
+  .header__nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  .has-sub {
+    position: relative;
+  }
+  .chev {
+    transition: transform 0.3s var(--ease);
+  }
+  .has-sub:hover .chev,
+  .has-sub:focus-within .chev {
+    transform: rotate(180deg);
+  }
+  .sub {
+    position: absolute;
+    top: calc(100% + 12px);
+    left: 50%;
+    width: 340px;
+    padding: 0.6rem;
+    border-radius: 22px;
+    background: rgb(244 241 234 / 0.94);
+    backdrop-filter: blur(24px) saturate(1.5);
+    -webkit-backdrop-filter: blur(24px) saturate(1.5);
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.45), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(-50%, -6px);
+    transition: opacity 0.25s var(--ease), transform 0.35s var(--ease-out), visibility 0.25s;
+  }
+  .sub::before {
+    content: '';
+    position: absolute;
+    inset: -14px 0 auto 0;
+    height: 14px;
+  }
+  .has-sub:hover .sub,
+  .has-sub:focus-within .sub {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, 0);
+  }
+  .sub ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2px;
+  }
+  .header__nav .sub a {
+    display: grid;
+    gap: 0.1rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 14px;
+    color: #1a1a1a;
+  }
+  .header__nav .sub a:hover {
+    background: var(--fir);
+    color: #f4f1ea;
+  }
+  .sub__l {
+    font-weight: 600;
+    font-size: 0.92rem;
+    white-space: pre;
+  }
+  .sub__h {
+    font-size: 0.78rem;
+    opacity: 0.65;
+    line-height: 1.35;
+  }
   .header__cta {
     padding: 0.85rem 1.4rem;
     border-radius: var(--pill);
@@ -121,7 +217,9 @@ import { nav } from '../config/site';
       right: var(--gutter);
       padding: 1rem;
       border-radius: var(--r);
-      background: rgb(246 243 238 / 0.85);
+      background: #f4f1ea;
+      isolation: isolate;
+      z-index: 60;
       border: 1px solid rgb(255 255 255 / 0.7);
       backdrop-filter: blur(24px);
       -webkit-backdrop-filter: blur(24px);
@@ -140,6 +238,31 @@ import { nav } from '../config/site';
     }
     .header__nav ul {
       flex-direction: column;
+    }
+    .header__nav {
+      max-height: calc(100svh - 110px);
+      overflow-y: auto;
+    }
+    .sub {
+      position: static;
+      width: auto;
+      padding: 0 0 0.4rem 0.8rem;
+      background: none;
+      box-shadow: none;
+      backdrop-filter: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+    .header__nav .sub a {
+      font-family: var(--font-ui);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+    }
+    .sub__h,
+    .chev {
+      display: none;
     }
     .header__nav a {
       font-family: var(--font-serif);

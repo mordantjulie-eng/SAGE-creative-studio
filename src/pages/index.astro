@@ -3,7 +3,6 @@ import Base from '../layouts/Base.astro';
 import Ticket from '../components/Ticket.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Zoom from '../components/Zoom.astro';
-import Phones from '../components/Phones.astro';
 import Book from '../components/Book.astro';
 import SceneNav from '../components/SceneNav.astro';
 import Shape from '../components/Shape.astro';
@@ -78,7 +77,6 @@ const m = (n: string) => `/media/${n}.jpg`;
     </div>
   </section>
 
-  <Phones />
 
   <!-- MINDSET -->
   <section id="mindset" class="mindset" data-theme="sage">
@@ -137,6 +135,7 @@ const m = (n: string) => `/media/${n}.jpg`;
                       <a href={`/services/${s.slug}`}>{s.title}</a>
                     ))}
                 </p>
+                <a class="sage__more btn btn--primary" href={`/mindset/${p.letter.toLowerCase()}`}>Lire mon point de vue <span aria-hidden="true">→</span></a>
               </div>
             </div>
           ))
@@ -356,6 +355,7 @@ const m = (n: string) => `/media/${n}.jpg`;
   .sage__content { display: grid; gap: 1.1rem; }
   .sage__content h3 { font-size: clamp(1.8rem, 3.2vw, 2.8rem); font-weight: 850; }
   .sage__content > p:not(.sage__in) { max-width: 38rem; opacity: 0.85; }
+  .sage__more { justify-self: start; margin-top: 0.6rem; }
   .sage__in { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.2rem; margin-top: 0.4rem; font-size: 0.92rem; }
   .sage__in span { font: italic 700 1.05rem var(--font-display); color: var(--terracotta); }
   .sage__in a { text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--pill); font-weight: 500; background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35); transition: background 0.3s var(--ease); }

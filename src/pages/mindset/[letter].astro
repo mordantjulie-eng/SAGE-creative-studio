@@ -1,0 +1,89 @@
+---
+import Base from '../../layouts/Base.astro';
+import Shape from '../../components/Shape.astro';
+import { articles, type Article } from '../../config/articles';
+import { pillars, services, brand } from '../../config/site';
+
+export function getStaticPaths() {
+  return articles.map((a) => ({ params: { letter: a.slug }, props: { article: a } }));
+}
+const { article: a } = Astro.props as { article: Article };
+const pil = pillars.find((p) => p.letter === a.letter)!;
+const idx = articles.findIndex((x) => x.slug === a.slug);
+const next = articles[(idx + 1) % articles.length];
+const linked = services.filter((s) => a.services.includes(s.slug));
+---
+
+<Base title={`${a.letter} pour ${a.pillar} | SAGE Creative Studio`} description={`${a.title} ${a.em}`}>
+  <section class="ar-hero" data-theme="sage">
+    <div class="container ar-hero__grid">
+      <div class="ar-hero__text">
+        <p class="eyebrow reveal">The SAGE mindset, {a.pillar}</p>
+        <h1 class="reveal" style="--rd:.08s">{a.title} <em>{a.em}</em></h1>
+        <p class="ar-by reveal" style="--rd:.16s">Par {brand.founder}, fondatrice de SAGE</p>
+      </div>
+      <div class="ar-letter reveal" aria-hidden="true">
+        <Shape name={pil.shape as any} color={pil.color} class="ar-shape" />
+        <span>{a.letter}</span>
+      </div>
+    </div>
+  </section>
+
+  <article class="section ar-body" data-theme="cream">
+    <div class="container ar-col">
+      <p class="ar-intro reveal">{a.intro}</p>
+      {
+        a.sections.map((sec) => (
+          <section class="ar-sec reveal">
+            <h2>{sec.h}</h2>
+            {sec.p.map((t) => <p>{t}</p>)}
+          </section>
+        ))
+      }
+      <p class="ar-take reveal">{a.takeaway}</p>
+
+      <div class="ar-links reveal">
+        <p class="eyebrow">Les services liés</p>
+        <div class="ar-links__row">
+          {linked.map((s) => <a class="btn btn--primary" href={`/services/${s.slug}`}>{s.title} <span aria-hidden="true">→</span></a>)}
+        </div>
+      </div>
+
+      <nav class="ar-next reveal" aria-label="Lettre suivante">
+        <a href={`/mindset/${next.slug}`}>
+          <span class="eyebrow">Lettre suivante</span>
+          <span class="ar-next__t"><b>{next.letter}</b> {next.pillar}</span>
+        </a>
+        <a class="btn btn--glass" href="/#contact">Parlons de votre projet <span aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .ar-hero { padding: 150px 0 clamp(64px, 9vw, 120px); color: #f4f1ea; }
+  .ar-hero__grid { display: grid; grid-template-columns: 1.3fr 0.7fr; gap: 3rem; align-items: center; }
+  .ar-hero__text { display: grid; gap: 1.5rem; }
+  .ar-hero h1 { font-size: clamp(2.4rem, 5.2vw, 4.8rem); max-width: 18ch; }
+  .ar-by { opacity: 0.75; }
+  .ar-letter { position: relative; display: grid; place-items: center; justify-self: center; }
+  .ar-letter span { position: relative; font: italic 800 clamp(9rem, 20vw, 17rem)/0.8 var(--font-letter); color: #f4f1ea; }
+  .ar-letter :global(.ar-shape) { position: absolute; right: -14%; bottom: -6%; width: 70%; height: auto; opacity: 0.9; }
+  .ar-col { max-width: 760px; display: grid; gap: 2.2rem; }
+  .ar-intro { font: italic 400 clamp(1.35rem, 2.2vw, 1.8rem)/1.45 var(--font-letter); color: #1a1a1a; }
+  .ar-sec { display: grid; gap: 0.9rem; }
+  .ar-sec h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); color: #1a1a1a; }
+  .ar-sec p { font-size: 1.08rem; line-height: 1.75; color: rgb(26 26 26 / 0.82); }
+  .ar-take { padding: 1.6rem 1.8rem; border-radius: var(--r); background: var(--fir); color: #f4f1ea; font: italic 400 clamp(1.25rem, 2vw, 1.6rem)/1.35 var(--font-letter); }
+  .ar-links { display: grid; gap: 1rem; }
+  .ar-links__row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .ar-next { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.2rem; padding-top: 2rem; border-top: 1px solid rgb(26 26 26 / 0.12); }
+  .ar-next a:first-child { display: grid; gap: 0.3rem; text-decoration: none; color: #1a1a1a; }
+  .ar-next__t { font-size: 1.6rem; font-weight: 700; }
+  .ar-next__t b { font: italic 800 2rem var(--font-letter); color: var(--ochre); margin-right: 0.4rem; }
+  @media (max-width: 800px) {
+    .ar-hero__grid { grid-template-columns: 1fr; }
+    .ar-letter { order: -1; }
+    .ar-letter span { font-size: 8rem; }
+  }
+</style>

@@ -12,9 +12,10 @@ export const brand = {
   founder: 'Julie',
 };
 
-export const nav = [
-  { label: 'Services', href: '/#services' },
-  { label: 'Mindset', href: '/#mindset' },
+export type NavItem = { label: string; href: string; children?: { label: string; href: string; hint?: string }[] };
+export const nav: NavItem[] = [
+  { label: 'Services', href: '/#services', children: [] },
+  { label: 'Mindset', href: '/#mindset', children: [] },
   { label: 'Parcours', href: '/#parcours' },
   { label: 'Studio', href: '/studio' },
 ];
@@ -226,3 +227,7 @@ export const journey = [
   { when: 'Expériences', what: 'Social media, influence, contenu, business development et marketing digital', where: 'YourStory, ENEON/Idweaver, Socialsky, Kontnu' },
   { when: '2027', what: 'Lancement de SAGE Creative Studio', where: 'Belgique' },
 ];
+
+// Sous-menus de la barre de navigation
+nav[0].children = services.map((s) => ({ label: s.title, href: `/services/${s.slug}`, hint: s.short }));
+nav[1].children = pillars.map((p) => ({ label: `${p.letter}  ${p.name}`, href: `/mindset/${p.letter.toLowerCase()}`, hint: p.verbs }));
