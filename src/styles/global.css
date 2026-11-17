@@ -3,26 +3,26 @@
   /* Palette */
   --ink: #1a1a1a; /* charbon */
   --moss: #1a1a1a; /* boutons et textes forts : charbon (plus de vert foncé) */
-  --eucalyptus: #7e5a48; /* brun doux, petits textes */
-  --sage: #b59684; /* brun rosé (formes) */
-  --mist: #eadcd5; /* brume rosée */
-  --sage-light: #e4d2c8; /* rose poudré chaud */
+  --eucalyptus: #5e6f63; /* vert gris, petits textes */
+  --sage: #7d8c78; /* sauge profond (formes) */
+  --mist: #e3e6dc; /* brume */
+  --sage-light: #d6dccd; /* sauge très clair */
   --cream: #f4f1ea; /* blanc cassé (validé) */
   --sand: #ebe3d8; /* sable */
-  --ochre: #a7774f; /* brun caramel */
-  --fir: #3a1118; /* bordeaux foncé */
-  --fir-deep: #250a0f; /* bordeaux très profond */
+  --ochre: #b8965e; /* ocre doré antique (jamais orange) */
+  --fir: #0c241f; /* vert sapin très foncé */
+  --fir-deep: #071814; /* sapin profond */
   --champagne: var(--ochre);
-  --blush: #ead9cf; /* rose poudré */
-  --clay: #6b4433; /* brun chocolat */
+  --blush: #ece4d4; /* crème */
+  --clay: #8a6a2e; /* ocre foncé */
   --terracotta: var(--ochre); /* plus de terracotta : redirigée vers l'ocre */
   --taupe: #b6ada1; /* taupe (formes) */
-  --sage: #b59684;
+  --sage: #7d8c78;
 
   /* Accents vifs : uniquement pour les infos importantes */
-  --pers: #6b4433; /* brun (pastille lancement) */
-  --cobalt: #a7774f; /* brun caramel (plus de bleu) */
-  --vermilion: #6b4433; /* brun */
+  --pers: #8a6a2e; /* ocre foncé (pastille lancement) */
+  --cobalt: #b8965e; /* ocre (plus de bleu) */
+  --vermilion: #8a6a2e; /* ocre foncé */
 
   --glass: rgb(255 255 255 / 0.42);
   --glass-strong: rgb(255 255 255 / 0.62);
@@ -30,8 +30,8 @@
   --glass-line: rgb(255 255 255 / 0.65);
   --hair: rgb(26 26 26 / 0.12);
 
-  --grad-dark: linear-gradient(150deg, #4a1820 0%, #3a1118 55%, #2c0d12 100%); /* bordeaux */
-  --grad-soft: linear-gradient(160deg, #f4f1ea 0%, #efe4dc 45%, #efe5d6 100%);
+  --grad-dark: linear-gradient(150deg, #13322b 0%, #0c241f 55%, #09201b 100%); /* sapin */
+  --grad-soft: linear-gradient(160deg, #f4f1ea 0%, #ebe9df 45%, #efe5d6 100%);
 
   --font-ui: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
   --font-display: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, sans-serif;
@@ -133,7 +133,7 @@ p {
 
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgb(167 119 79 / 0.35);
+  box-shadow: 0 0 0 4px rgb(184 150 94 / 0.35);
 }
 
 /* Bulles façon Apple : matière translucide, pas de contour */
@@ -231,7 +231,7 @@ p {
   background: radial-gradient(circle, #ead6b4 0%, transparent 70%);
 }
 .orb--blush {
-  background: radial-gradient(circle, #efd8cb 0%, transparent 70%);
+  background: radial-gradient(circle, #e6dcc4 0%, transparent 70%);
 }
 .orb--deep {
   background: radial-gradient(circle, #7f9483 0%, transparent 70%);
@@ -420,7 +420,7 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
 /* Sections vert sapin : texte crème, accents ocre */
 :not(body)[data-theme='sage'] {
   --ink: #f4f1ea;
-  --eucalyptus: #d9bfae;
+  --eucalyptus: #d8c49c;
   --hair: rgb(244 241 234 / 0.16);
   color: #f4f1ea;
 }
@@ -467,7 +467,7 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
 }
 .liquid:hover::before { width: 260%; height: 600%; }
 .liquid:hover { color: #1a1a1a !important; }
-.btn.liquid:hover, .header__cta.liquid:hover { box-shadow: 0 18px 40px -18px rgb(167 119 79 / 0.8); }
+.btn.liquid:hover, .header__cta.liquid:hover { box-shadow: 0 18px 40px -18px rgb(184 150 94 / 0.8); }
 
 /* Survol : effet loupe sur les visuels */
 .loupe { overflow: hidden; }
