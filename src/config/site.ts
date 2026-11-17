@@ -16,8 +16,27 @@ export type NavItem = { label: string; href: string; children?: { label: string;
 export const nav: NavItem[] = [
   { label: 'Services', href: '/#services', children: [] },
   { label: 'Mindset', href: '/#mindset', children: [] },
-  { label: 'Parcours', href: '/#parcours' },
-  { label: 'Studio', href: '/studio' },
+  {
+    label: 'Parcours',
+    href: '/#parcours',
+    children: [
+      { label: 'Études et premiers pas', href: '/#parcours-1', hint: 'EPHEC, YourStory Agency' },
+      { label: 'Les agences', href: '/#parcours-2', hint: 'ENEON / Idweaver, Socialsky' },
+      { label: 'Kontnu, puis SAGE', href: '/#parcours-3', hint: 'De 2025 au lancement du studio en 2027' },
+    ],
+  },
+  {
+    label: 'Studio',
+    href: '/studio',
+    children: [
+      { label: 'Pourquoi SAGE', href: '/studio#pourquoi', hint: "L'envie qui a lancé le studio" },
+      { label: 'Dans les coulisses', href: '/studio#coulisses', hint: 'Tournages, shootings, terrain' },
+      { label: 'Ma façon de travailler', href: '/studio#methode', hint: 'Quatre mots qui me résument' },
+      { label: "D'où je viens", href: '/studio#histoire', hint: 'Mon parcours en bref' },
+      { label: 'Le réseau', href: '/studio#reseau', hint: 'Seule aux commandes, jamais seule au travail' },
+      { label: 'Travailler ensemble', href: '/studio#ensemble', hint: 'Comment ça se passe' },
+    ],
+  },
 ];
 
 export type Service = {

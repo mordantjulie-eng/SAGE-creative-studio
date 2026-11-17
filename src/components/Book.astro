@@ -98,6 +98,27 @@ const leaves = [
       book.style.setProperty('--open', String(open));
     };
     render(0);
+    // Liens « /#parcours-N » (menu) : ouvre le livre à la double page N
+    const goTo = (k: number, smooth = true) => {
+      const span = 0.8 / n;
+      const p = 0.08 + (k - 1) * span + span * 0.97;
+      const y = scene.offsetTop + (scene.offsetHeight - innerHeight) * p;
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.scrollTo(y, { immediate: !smooth, duration: 1.6 });
+      else window.scrollTo({ top: y, behavior: smooth ? 'smooth' : 'auto' });
+    };
+    const fromHash = (h: string) => { const m = /^#parcours-(\d)$/.exec(h); return m ? Number(m[1]) : 0; };
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#parcours-"]');
+      if (!a || a.pathname !== location.pathname) return;
+      const k = fromHash(a.hash);
+      if (!k) return;
+      e.preventDefault();
+      history.replaceState(null, '', a.hash);
+      goTo(k);
+    });
+    const k0 = fromHash(location.hash);
+    if (k0) window.addEventListener('load', () => setTimeout(() => goTo(k0, false), 60));
     scene.addEventListener('scene', (e) => render((e as CustomEvent<number>).detail));
   }
 </script>
