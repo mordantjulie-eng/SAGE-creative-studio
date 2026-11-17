@@ -6,3 +6,6 @@ Elles servent à visualiser la maquette ; elles seront remplacées par de vraies
 ## Photos et réalisations de Julie
 `public/media/julie-*.jpg`, `photo-*.jpg`, `work-*.jpg` : fournies par Julie (nov. 2026). Plus aucune photo Unsplash sur le site.
 À vérifier avant mise en ligne : accord de Kontnu/Lynkr pour le visuel Masterclass (+ personnes visibles), accord des amis visibles (Sala Equis, vendanges), crédit du photographe pour le portrait noir et blanc.
+
+## Formats (iPhones) : Unsplash, licence Unsplash
+`public/media/fmt-*.jpg` : ugc 1620916566398-39f1143ab7be, influence 1600096194534-95cf5ece04cf, facecam 1494790108377-be9c29b29330, trend 1501281668745-f7f57925c3b4, microtrottoir 1478737270239-2f02b77fc618, packshot 1542291026-7eec264c27ff, aftermovie 1533174072545-7a4b6ad7a6c3, educative 1524178232363-1fb2b075b655.

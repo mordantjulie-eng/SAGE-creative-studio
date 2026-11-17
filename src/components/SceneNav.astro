@@ -1,0 +1,155 @@
+---
+// Repère discret pour les scènes qui avancent « de côté » quand on fait défiler :
+// une bulle avec une flèche animée, et deux boutons précédent / suivant
+// pour ceux qui préfèrent cliquer (pratique sur ordinateur et pour les moins habitués).
+interface Props {
+  steps: number;
+  label?: string;
+  dark?: boolean;
+}
+const { steps, label = 'Faites défiler pour avancer', dark = false } = Astro.props;
+---
+
+<div class:list={['snav', { 'snav--dark': dark }]} data-snav data-steps={steps}>
+  <button type="button" class="snav__btn" data-dir="-1" aria-label="Précédent">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+  </button>
+  <p class="snav__hint">
+    <span class="snav__mouse" aria-hidden="true"><span></span></span>
+    <span>{label}</span>
+    <span class="snav__arrow" aria-hidden="true">
+      <svg viewBox="0 0 32 12" width="28" height="12"><path d="M30 6H3M8 1L3 6l5 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </span>
+  </p>
+  <button type="button" class="snav__btn" data-dir="1" aria-label="Suivant">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+  </button>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-snav]').forEach((nav) => {
+    const scene = nav.closest<HTMLElement>('[data-scene]');
+    if (!scene) return;
+    const steps = Number(nav.dataset.steps) || 4;
+    const hint = nav.querySelector<HTMLElement>('.snav__hint')!;
+    const go = (dir: number) => {
+      const top = scene.getBoundingClientRect().top + window.scrollY;
+      const total = scene.offsetHeight - window.innerHeight;
+      const p = Math.min(1, Math.max(0, (window.scrollY - top) / total));
+      const k = Math.round(p * steps) + dir;
+      const target = top + (Math.min(steps, Math.max(0, k)) / steps) * total + (dir > 0 && k > steps ? window.innerHeight : 0);
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.scrollTo(target, { duration: 1.1 });
+      else window.scrollTo({ top: target, behavior: 'smooth' });
+    };
+    nav.querySelectorAll<HTMLButtonElement>('.snav__btn').forEach((b) => b.addEventListener('click', () => go(Number(b.dataset.dir))));
+    scene.addEventListener('scene', (e) => {
+      const p = (e as CustomEvent<number>).detail;
+      hint.classList.toggle('is-quiet', p > 0.15);
+      nav.classList.toggle('is-end', p > 0.97);
+      nav.classList.toggle('is-start', p < 0.02);
+    });
+  });
+</script>
+
+<style>
+  .snav {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(16px, 3.5vh, 32px);
+    translate: -50% 0;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1a1a1a;
+  }
+  .snav--dark {
+    color: #f4f1ea;
+  }
+  .snav__btn,
+  .snav__hint {
+    background: rgb(255 255 255 / 0.62);
+    backdrop-filter: blur(16px) saturate(1.6);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    box-shadow: 0 10px 24px -14px rgb(0 0 0 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
+  }
+  .snav--dark .snav__btn,
+  .snav--dark .snav__hint {
+    background: rgb(255 255 255 / 0.12);
+    box-shadow: 0 10px 24px -14px rgb(0 0 0 / 0.6), inset 0 0.5px 0 rgb(255 255 255 / 0.3);
+  }
+  .snav__btn {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 50%;
+    color: inherit;
+    cursor: pointer;
+    transition: transform 0.4s var(--ease-out), opacity 0.3s var(--ease);
+  }
+  .snav__btn:hover {
+    transform: scale(1.08);
+  }
+  .is-start .snav__btn[data-dir='-1'] {
+    opacity: 0.35;
+  }
+  .snav__hint {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: max-width 0.6s var(--ease-out), padding 0.6s var(--ease-out), opacity 0.4s var(--ease);
+    max-width: 420px;
+    overflow: hidden;
+  }
+  .snav__hint.is-quiet {
+    max-width: 0;
+    padding-inline: 0;
+    opacity: 0;
+  }
+  .snav__mouse {
+    position: relative;
+    flex: none;
+    width: 14px;
+    height: 21px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1.5px currentColor;
+  }
+  .snav__mouse span {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    width: 2px;
+    height: 5px;
+    margin-left: -1px;
+    border-radius: 2px;
+    background: currentColor;
+    animation: snav-wheel 1.8s var(--ease) infinite;
+  }
+  .snav__arrow {
+    display: grid;
+    animation: snav-left 1.8s var(--ease) infinite;
+  }
+  @keyframes snav-wheel {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(7px); opacity: 0; }
+    100% { opacity: 0; }
+  }
+  @keyframes snav-left {
+    0%, 20% { transform: translateX(6px); opacity: 0.2; }
+    60% { transform: translateX(-4px); opacity: 1; }
+    100% { transform: translateX(-6px); opacity: 0; }
+  }
+  @media (max-width: 640px) {
+    .snav__hint { font-size: 0.75rem; padding: 0.5rem 0.8rem; }
+    .snav__mouse { display: none; }
+  }
+</style>

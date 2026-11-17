@@ -104,6 +104,7 @@ const {
       if (!still) {
         import('lenis').then(({ default: Lenis }) => {
           const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+          (window as any).__lenis = lenis;
           const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
           requestAnimationFrame(raf);
           document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach((a) => {

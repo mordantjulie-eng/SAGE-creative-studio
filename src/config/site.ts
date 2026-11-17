@@ -15,7 +15,7 @@ export const brand = {
 export const nav = [
   { label: 'Services', href: '/#services' },
   { label: 'Mindset', href: '/#mindset' },
-  { label: 'Projets', href: '/#projets' },
+  { label: 'Parcours', href: '/#parcours' },
   { label: 'Studio', href: '/studio' },
 ];
 
@@ -55,7 +55,7 @@ export const services: Service[] = [
     highlights: ['Calendrier éditorial', 'Modération', 'Reporting'],
     pillars: ['G', 'S'],
     tone: 'forest',
-    img: 'work-masterclass',
+    img: 'fmt-influence',
   },
   {
     slug: 'content-creation',

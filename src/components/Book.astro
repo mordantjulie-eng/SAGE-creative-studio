@@ -1,13 +1,22 @@
 ---
-// Scène « livre » : un lookbook fermé s'ouvre au défilement, puis ses pages se tournent.
+// Scène « livre » : le parcours de Julie, façon CV, qui se feuillette au défilement.
+import SceneNav from './SceneNav.astro';
+type Entry = { when: string; title: string; where: string; text: string; todo?: boolean };
+const entries: Entry[] = [
+  { when: '2020 à 2024', title: 'Bachelier en Marketing', where: 'EPHEC, option International Business', text: 'Marketing digital, communication, UX/UI et business international.' },
+  { when: 'Expérience', title: 'YourStory', where: 'Agence', text: 'Rôle et missions à compléter.', todo: true },
+  { when: 'Expérience', title: 'ENEON / Idweaver', where: 'Agence', text: 'Rôle et missions à compléter.', todo: true },
+  { when: 'Expérience', title: 'Socialsky', where: 'Agence social media', text: 'Rôle et missions à compléter.', todo: true },
+  { when: '2025 à 2027', title: 'Kontnu', where: 'Business developer puis digital marketing manager', text: 'Ventes et prospection dès octobre 2025, puis pilotage du marketing digital à partir de mai 2026.' },
+];
 const leaves = [
-  { front: { cover: true }, back: { img: 'work-rhode', cap: 'Photographie produit' } },
-  { front: { img: 'photo-pink-house', cap: 'Couleurs du Mexique' }, back: { img: 'photo-sala-equis', cap: 'Argentique, Madrid' } },
-  { front: { img: 'photo-vendanges', cap: 'Vendanges en Provence' }, back: { img: 'julie-kiehls', cap: 'Direction photo' } },
+  { front: null, back: entries[0] },
+  { front: entries[1], back: entries[2] },
+  { front: entries[3], back: entries[4] },
 ];
 ---
 
-<section class="scene book-scene" data-theme="cream" data-scene data-book aria-label="Lookbook">
+<section class="scene book-scene" data-theme="cream" data-scene data-book aria-label="Mon parcours" id="parcours">
   <div class="scene__sticky book-scene__sticky">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" style="width:640px;height:640px;left:-180px;top:-120px;--d:26s"></span>
@@ -15,8 +24,8 @@ const leaves = [
     </div>
 
     <div class="container book-scene__head">
-      <p class="eyebrow">Branding & art direction</p>
-      <h2>Des univers<br /><em>qui se feuillettent.</em></h2>
+      <p class="eyebrow">Mon parcours</p>
+      <h2>Une histoire <em>qui se feuillette.</em></h2>
     </div>
 
     <div class="book-wrap" aria-hidden="true">
@@ -26,38 +35,46 @@ const leaves = [
         </div>
         <div class="book__page book__page--right">
           <div class="book__end">
-            <p>Votre marque,<br /><em>prochaine page.</em></p>
+            <p class="cv__when">2027</p>
+            <p>SAGE<br /><em>creative studio.</em></p>
+            <p class="cv__text">Et la prochaine page, on l'écrit ensemble.</p>
           </div>
         </div>
         {
           leaves.map((l, i) => (
             <div class="leaf" data-leaf style={`z-index:${leaves.length - i}`}>
               <div class="leaf__face leaf__front">
-                {l.front.cover ? (
+                {l.front === null ? (
                   <div class="cover">
                     <span class="cover__brand">SAGE</span>
-                    <span class="cover__title">Lookbook</span>
-                    <span class="cover__sub">creative studio</span>
+                    <span class="cover__title">Mon parcours</span>
+                    <span class="cover__sub">Julie Mordant</span>
                   </div>
                 ) : (
-                  <figure>
-                    <img class="photo" src={`/media/${l.front.img}.jpg`} alt="" />
-                    <figcaption>{l.front.cap}</figcaption>
-                  </figure>
+                  <article class:list={['cv', { 'cv--todo': l.front.todo }]}>
+                    <p class="cv__when">{l.front.when}</p>
+                    <h3 class="cv__title">{l.front.title}</h3>
+                    <p class="cv__where">{l.front.where}</p>
+                    <p class="cv__text">{l.front.text}</p>
+                    <span class="cv__n">{i * 2}</span>
+                  </article>
                 )}
               </div>
               <div class="leaf__face leaf__back">
-                <figure>
-                  <img class="photo" src={`/media/${l.back.img}.jpg`} alt="" />
-                  <figcaption>{l.back.cap}</figcaption>
-                </figure>
+                <article class:list={['cv', { 'cv--todo': l.back.todo }]}>
+                  <p class="cv__when">{l.back.when}</p>
+                  <h3 class="cv__title">{l.back.title}</h3>
+                  <p class="cv__where">{l.back.where}</p>
+                  <p class="cv__text">{l.back.text}</p>
+                  <span class="cv__n">{i * 2 + 1}</span>
+                </article>
               </div>
             </div>
           ))
         }
       </div>
     </div>
-    <p class="book-scene__note">Photos personnelles</p>
+    <SceneNav steps={4} label="Faites défiler pour tourner les pages" />
   </div>
 </section>
 
@@ -233,7 +250,27 @@ const leaves = [
   }
   @media (max-width: 760px) {
     .book {
-      --w: 44vw;
+      --w: 46vw;
+      height: calc(var(--w) * 1.75);
     }
+    .cv { padding: 10% 9%; gap: 0.4rem; }
+    .cv__title { font-size: 1.05rem; }
+    .cv__where, .cv__text { font-size: 0.68rem; line-height: 1.35; }
+    .cv__when { font-size: 0.8rem; }
+    .book__end { padding: 10% 9%; }
+    .book__end p { font-size: 1rem !important; }
+    .cover__title { font-size: 1.4rem; }
   }
+  .cv { position: relative; height: 100%; display: grid; align-content: center; gap: 0.7rem; padding: 12%; color: #1a1a1a; }
+  .cv__when { font: italic 400 clamp(1rem, 1.6vw, 1.3rem) var(--font-letter); color: var(--ochre); }
+  .cv__title { font-size: clamp(1.4rem, 2.4vw, 2.1rem); color: #1a1a1a; }
+  .cv__where { font-weight: 600; font-size: 0.92rem; }
+  .cv__text { font-size: 0.9rem; color: rgb(26 26 26 / 0.72); line-height: 1.5; }
+  .cv--todo .cv__text { font-style: italic; color: rgb(26 26 26 / 0.45); }
+  .cv__n { position: absolute; bottom: 8%; right: 10%; font: italic 400 0.9rem var(--font-letter); color: rgb(26 26 26 / 0.35); }
+  .book__end { gap: 0.6rem; padding: 12%; align-content: center; overflow: hidden; }
+  .book__page { overflow: hidden; }
+  .book__end p.cv__when { font: italic 400 1.2rem var(--font-letter) !important; color: var(--ochre); }
+  .book__end p.cv__text { font: 400 0.9rem/1.5 var(--font-ui) !important; color: rgb(26 26 26 / 0.7); }
+  .book__end .cv__text { margin-top: 0.4rem; }
 </style>

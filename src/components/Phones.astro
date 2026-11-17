@@ -2,14 +2,16 @@
 // Scène « iPhones » : une rangée de téléphones qui défile horizontalement au scroll,
 // chacun lisant une vidéo en boucle.
 const clips = [
-  { v: 'julie-filming', label: 'Reel face cam' },
-  { v: 'work-rhode', label: 'Photo produit' },
-  { v: 'julie-kiehls', label: 'Lifestyle' },
-  { v: 'photo-pink-house', label: 'Voyage' },
-  { v: 'julie-filming-2', label: 'Conseil TikTok' },
-  { v: 'photo-sala-equis', label: 'Argentique' },
-  { v: 'photo-volcano', label: 'Story' },
+  { v: 'fmt-ugc', label: 'UGC' },
+  { v: 'fmt-influence', label: 'Influence' },
+  { v: 'fmt-facecam', label: 'Face cam' },
+  { v: 'fmt-trend', label: 'Trend' },
+  { v: 'fmt-microtrottoir', label: 'Micro trottoir' },
+  { v: 'fmt-packshot', label: 'Packshot' },
+  { v: 'fmt-aftermovie', label: 'Aftermovie' },
+  { v: 'fmt-educative', label: 'Vidéo éducative' },
 ];
+import SceneNav from "./SceneNav.astro";
 ---
 
 <section class="scene phones" data-theme="charcoal" data-scene aria-label="Content in motion">
@@ -21,9 +23,9 @@ const clips = [
     <div class="container phones__head">
       <div>
         <p class="eyebrow">Content in motion</p>
-        <h2>Du contenu qui<br /><em>arrête le scroll.</em></h2>
+        <h2>Les formats <em>qui arrêtent le scroll.</em></h2>
       </div>
-      <p class="lead">Reels, TikTok, stories, UGC&nbsp;: des formats pensés pour chaque plateforme, tournés et montés avec soin.</p>
+      <p class="lead">UGC, face cam, trends, micro trottoir, packshots, aftermovies, vidéos éducatives : le bon format pour chaque objectif.</p>
     </div>
     <div class="phones__track" aria-hidden="true">
       {
@@ -38,6 +40,7 @@ const clips = [
         ))
       }
     </div>
+    <SceneNav steps={7} label="Faites défiler pour voir les formats" dark />
   </div>
 </section>
 

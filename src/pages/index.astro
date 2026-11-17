@@ -5,15 +5,11 @@ import ContactForm from '../components/ContactForm.astro';
 import Zoom from '../components/Zoom.astro';
 import Phones from '../components/Phones.astro';
 import Book from '../components/Book.astro';
+import SceneNav from '../components/SceneNav.astro';
 import Shape from '../components/Shape.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
-const work = [
-  { img: 'work-rhode', cat: 'Photographie produit', tag: 'Content Creation' },
-  { img: 'work-masterclass', cat: 'Visuel événement', tag: 'Art Direction' },
-  { img: 'work-welcome-spring', cat: 'Affiche festival', tag: 'Graphisme' },
-];
 ---
 
 <Base>
@@ -78,11 +74,11 @@ const work = [
           <a class="btn btn--primary" href="#contact">Composons sur mesure <span aria-hidden="true">→</span></a>
         </div>
       </div>
+      <SceneNav steps={6} label="Faites défiler pour voir les 6 services" dark />
     </div>
   </section>
 
   <Phones />
-  <Book />
 
   <!-- MINDSET -->
   <section id="mindset" class="mindset" data-theme="sage">
@@ -149,36 +145,7 @@ const work = [
     </div>
   </section>
 
-  <!-- WORK -->
-  <section id="projets" class="section work" data-theme="cream">
-    <div class="container">
-      <div class="head">
-        <div>
-          <p class="eyebrow reveal">Selected work</p>
-          <h2 class="reveal" style="--rd:.08s">Quelques <em>réalisations</em></h2>
-        </div>
-        <p class="lead reveal" style="--rd:.16s">
-          Photo, graphisme, visuels d'événements : un aperçu de ce que je crée. Les études de cas complètes
-          arrivent avec les premiers clients du studio.
-        </p>
-      </div>
-      <div class="works">
-        {
-          work.map((w, i) => (
-            <article class="workcard reveal" style={`--rd:${i * 0.1}s`}>
-              <div class="workcard__img arch">
-                <img class="photo" src={m(w.img)} alt="" />
-              </div>
-              <div class="workcard__label glass">
-                <span>{w.cat}</span>
-                <em>{w.tag}</em>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </div>
-  </section>
+  <Book />
 
   <!-- ABOUT -->
   <section id="studio" class="section about" data-theme="taupe">
@@ -393,16 +360,6 @@ const work = [
   .sage__in span { font: italic 700 1.05rem var(--font-display); color: var(--terracotta); }
   .sage__in a { text-decoration: none; padding: 0.5rem 1rem; border-radius: var(--pill); font-weight: 500; background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35); transition: background 0.3s var(--ease); }
   .sage__in a:hover { background: rgb(255 255 255 / 0.24); }
-
-  /* WORK */
-  .works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
-  .workcard { position: relative; }
-  .workcard:nth-child(2) { margin-top: 60px; }
-  .workcard__img { aspect-ratio: 3 / 4; box-shadow: var(--shadow); }
-  .workcard__img img { width: 100%; height: 100%; object-position: 50% 12%; transition: transform 1.4s var(--ease-out); }
-  .workcard:hover .workcard__img img { transform: scale(1.05); }
-  .workcard__label { position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.9rem 1.2rem; border-radius: var(--r-s); font-size: 0.88rem; }
-  .workcard__label em { font: italic 700 1rem var(--font-display); color: var(--eucalyptus); }
 
   /* ABOUT */
   .about { overflow: hidden; }
