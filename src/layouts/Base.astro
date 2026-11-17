@@ -100,6 +100,39 @@ const {
         themed.forEach((el) => tio.observe(el));
       }
 
+      // Effets au survol (souris uniquement) : bouton liquide, loupe, halo
+      if (!still && window.matchMedia('(pointer: fine)').matches) {
+        const track = (el: HTMLElement, vx: string, vy: string) =>
+          el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty(vx, `${e.clientX - r.left}px`);
+            el.style.setProperty(vy, `${e.clientY - r.top}px`);
+          });
+        const pct = (el: HTMLElement) =>
+          el.addEventListener('pointermove', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--lx', `${((e.clientX - r.left) / r.width) * 100}%`);
+            el.style.setProperty('--ly', `${((e.clientY - r.top) / r.height) * 100}%`);
+          });
+        document.querySelectorAll<HTMLElement>('.btn, .header__cta, .round-cta, .snav__btn, .sage__in a, .card__flip, .link').forEach((el) => {
+          el.classList.add('liquid');
+          track(el, '--mx', '--my');
+          el.addEventListener('pointerenter', (e) => {
+            const r = el.getBoundingClientRect();
+            el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+            el.style.setProperty('--my', `${e.clientY - r.top}px`);
+          });
+        });
+        document.querySelectorAll<HTMLElement>('.hv--main, .iphone__body, .about__photo, .st-portrait, .st-shot__img, .sv-photo, .about__wink').forEach((el) => {
+          el.classList.add('loupe');
+          pct(el);
+        });
+        document.querySelectorAll<HTMLElement>('.card__front, .sage__tab, .st-trait, .st-how__item').forEach((el) => {
+          el.classList.add('glow');
+          track(el, '--gx', '--gy');
+        });
+      }
+
       // Défilement fluide
       if (!still) {
         import('lenis').then(({ default: Lenis }) => {

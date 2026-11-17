@@ -30,7 +30,7 @@ import SceneNav from "./SceneNav.astro";
     <div class="phones__track" aria-hidden="true">
       {
         clips.map((c, i) => (
-          <figure class="iphone" style={`--i:${i}`}>
+          <figure class="iphone loupe-wrap" style={`--i:${i}`}>
             <div class="iphone__body">
               <video src={`/video/${c.v}.mp4`} poster={`/media/${c.v}.jpg`} muted loop playsinline preload="none" data-autoplay />
               <span class="iphone__island" />
@@ -162,5 +162,6 @@ import SceneNav from "./SceneNav.astro";
   .phones :global(.eyebrow) { color: rgb(244 241 234 / 0.6); }
   .phones :global(.lead) { color: rgb(244 241 234 / 0.75); }
   .phones h2 :global(em) { color: var(--ochre); }
-  .phones .iphone figcaption { color: rgb(244 241 234 / 0.75); }
+  .phones .iphone figcaption { color: #f4f1ea; font-size: 1.15rem; text-shadow: 0 2px 10px rgb(0 0 0 / 0.4); }
+  .phones__sticky { padding-bottom: clamp(80px, 12vh, 120px); }
 </style>

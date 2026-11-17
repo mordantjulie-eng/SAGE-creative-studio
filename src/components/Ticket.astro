@@ -14,7 +14,7 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
 
 <article class="card reveal" style={`--rd:${delay}s`} data-ticket>
   <div class="card__inner">
-    <div class="card__face card__front glass" data-face="front">
+    <div class="card__face card__front glass glow" data-face="front">
       <div class="card__top">
         <span class="card__no">N° {s.num}</span>
         <span class="card__shape"><Shape name={pil.shape as any} color={pil.color} /></span>
@@ -90,10 +90,13 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
   .card:hover .card__front {
     background: var(--glass-strong);
   }
-  .card__back {
+  .card__back,
+  :global(:not(body)[data-theme='sage']) .card__back {
     transform: rotateY(180deg);
-    background: var(--ochre);
+    background: #f4f1ea;
     color: #1a1a1a;
+    --ink: #1a1a1a;
+    --hair: rgb(26 26 26 / 0.12);
     border-color: rgb(255 255 255 / 0.2);
   }
   .card__shape {
@@ -121,7 +124,7 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     color: var(--eucalyptus);
   }
   .card__back .card__no {
-    color: var(--terracotta);
+    color: #8a6a2e;
   }
   .card__title {
     font-size: clamp(1.8rem, 2.4vw, 2.2rem);
@@ -141,7 +144,7 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     border-top: 1px solid var(--hair);
   }
   .card__back .card__foot {
-    border-color: rgb(255 255 255 / 0.25);
+    border-color: rgb(26 26 26 / 0.12);
   }
   .card__tags {
     font-size: 0.82rem;
@@ -179,8 +182,8 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
-    color: inherit;
+    background: var(--fir); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55);
+    color: #f4f1ea;
     font-size: 1.3rem;
     line-height: 1;
     cursor: pointer;
@@ -196,7 +199,7 @@ const pil = pillars.find((p) => p.letter === s.pillars[0])!;
   }
   .card__list li {
     padding-bottom: 0.45rem;
-    border-bottom: 1px solid rgb(255 255 255 / 0.12);
+    border-bottom: 1px solid rgb(26 26 26 / 0.1);
   }
   .card__back .link {
     color: var(--ink);

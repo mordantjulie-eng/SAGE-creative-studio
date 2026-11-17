@@ -10,8 +10,8 @@
   --cream: #f4f1ea; /* blanc cassé (validé) */
   --sand: #ebe3d8; /* sable */
   --ochre: #b8965e; /* ocre doré antique, sans orange */
-  --fir: #173a33; /* vert sapin noble (vert anglais profond) */
-  --fir-deep: #102a25;
+  --fir: #0f2b25; /* vert sapin noble (vert anglais profond) */
+  --fir-deep: #0a1f1b;
   --champagne: var(--ochre);
   --blush: #ead9cf; /* rose poudré */
   --clay: #7d8c78; /* sauge profond (remplace la terracotta) */
@@ -443,3 +443,52 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
 [data-theme='sage'] .form .btn--primary { background: var(--fir); color: #f4f1ea; }
 [data-theme='sage'] .form .need span { color: #1a1a1a; }
 :not(body)[data-theme='sage'] .form.glass { background: rgb(244 241 234 / 0.95); border-color: rgb(255 255 255 / 0.6); color: #1a1a1a; }
+
+/* Chaque section peint sa propre couleur : jamais de texte clair sur fond clair */
+section[data-theme='sage'] { background-color: var(--fir); }
+section[data-theme='charcoal'] { background-color: var(--fir-deep); }
+section[data-theme='taupe'] { background-color: #e6ded3; }
+section[data-theme='cream'] { background-color: var(--cream); }
+
+/* Survol : bouton liquide (remplissage qui part du curseur, couleurs inversées) */
+.liquid { position: relative; overflow: hidden; isolation: isolate; }
+.liquid::before {
+  content: '';
+  position: absolute;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--liquid, var(--ochre));
+  transform: translate(-50%, -50%);
+  transition: width 0.55s var(--ease-out), height 0.55s var(--ease-out);
+  z-index: -1;
+}
+.liquid:hover::before { width: 260%; height: 600%; }
+.liquid:hover { color: #1a1a1a !important; }
+.btn.liquid:hover, .header__cta.liquid:hover { box-shadow: 0 18px 40px -18px rgb(184 150 94 / 0.8); }
+
+/* Survol : effet loupe sur les visuels */
+.loupe { overflow: hidden; }
+.loupe img, .loupe video { transition: transform 0.6s var(--ease-out); transform-origin: var(--lx, 50%) var(--ly, 50%); }
+.loupe:hover img, .loupe:hover video { transform: scale(1.18); }
+
+/* Survol : halo lumineux qui suit le curseur sur les cartes */
+.glow { position: relative; }
+.glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.16), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+  pointer-events: none;
+}
+.glow:hover::after { opacity: 1; }
+
+.round-cta.liquid { --liquid: #f4f1ea; }
+.link.liquid, .card__flip.liquid { overflow: visible; }
+.link.liquid::before, .card__flip.liquid::before { display: none; }
+.link.liquid:hover, .card__flip.liquid:hover { color: inherit !important; }
