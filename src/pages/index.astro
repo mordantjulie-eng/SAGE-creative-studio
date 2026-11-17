@@ -4,12 +4,12 @@ import Ticket from '../components/Ticket.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Zoom from '../components/Zoom.astro';
 import Book from '../components/Book.astro';
-import SceneNav from '../components/SceneNav.astro';
 import Shape from '../components/Shape.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
-import { siInstagram, siTiktok, siBrevo, siMailchimp, siMeta } from 'simple-icons';
+import { siInstagram, siTiktok, siBrevo, siMailchimp, siMeta, siNotion } from 'simple-icons';
+import { canvaPath, openaiPath } from '../assets/extra-icons';
 // Bulles d'outils autour de la photo About (logos monochromes, couleur héritée)
 const tools = [
   { name: 'Instagram', path: siInstagram.path, cls: 't1' },
@@ -18,6 +18,11 @@ const tools = [
   { name: 'Brevo', path: siBrevo.path, cls: 't4' },
   { name: 'Mailchimp', path: siMailchimp.path, cls: 't5' },
   { name: 'Meta', path: siMeta.path, cls: 't6' },
+  { name: 'Canva', path: canvaPath, cls: 't7' },
+  { name: 'CapCut', path: null, word: 'CapCut', cls: 't8' },
+  { name: 'Notion', path: siNotion.path, cls: 't9' },
+  { name: 'ChatGPT', path: openaiPath, cls: 't10' },
+  { name: 'Metricool', path: null, word: 'metricool', cls: 't11' },
 ];
 ---
 
@@ -63,27 +68,16 @@ const tools = [
 
   <Zoom />
 
-  <!-- SERVICES : défilement horizontal épinglé -->
-  <section id="services" class="scene hscroll" data-scene data-theme="sage" data-hs style={`--n:${services.length}`}>
-    <div class="scene__sticky hscroll__sticky">
-      <div class="container hscroll__head">
-        <div>
-          <p class="hero__flags reveal"><span class="flag flag--cobalt">6 expertises, 1 interlocutrice</span></p>
-          <h2 class="reveal">Six <em>expertises</em></h2>
-        </div>
-        <div class="hscroll__side">
-          <p class="lead reveal">En mission ponctuelle ou en accompagnement mensuel. Retournez une carte pour voir ce qu'elle contient.</p>
-          <p class="hscroll__count" aria-hidden="true"><span data-count>1</span> sur {services.length}</p>
-        </div>
+  <!-- SERVICES : grille verticale (le titre est dans l'arche du zoom juste au-dessus) -->
+  <section id="services" class="svc" data-theme="sage" aria-label="Six expertises">
+    <div class="container">
+      <div class="svc__grid">
+        {services.map((s) => <Ticket service={s} delay={0} />)}
       </div>
-      <div class="hscroll__track">
-        {services.map((s, i) => <Ticket service={s} delay={0} />)}
-        <div class="hscroll__end">
-          <p>Un besoin qui touche à plusieurs expertises&nbsp;?</p>
-          <a class="btn btn--primary" href="#contact">Composons sur mesure <span aria-hidden="true">→</span></a>
-        </div>
+      <div class="svc__end reveal">
+        <p>Un besoin qui touche à plusieurs expertises&nbsp;?</p>
+        <a class="btn btn--primary" href="#contact">Composons sur mesure <span aria-hidden="true">→</span></a>
       </div>
-      <SceneNav steps={6} label="Faites défiler pour voir les 6 services" dark />
     </div>
   </section>
 
@@ -169,6 +163,9 @@ const tools = [
           {
             tools.map((t, i) => (
               <li class={`tool bubble float ${t.cls}`} style={`--d:${6 + (i % 3)}s;--delay:${-i * 1.3}s`} title={t.name}>
+                {t.word ? (
+                  <span class="tool__word" aria-hidden="true">{t.word}</span>
+                ) : (
                 <svg viewBox="0 0 24 24" width="100%" height="100%" aria-hidden="true">
                   {t.path ? (
                     <path d={t.path} fill="currentColor" />
@@ -181,6 +178,7 @@ const tools = [
                     </>
                   )}
                 </svg>
+                )}
                 <span class="sr-only">{t.name}</span>
               </li>
             ))
@@ -274,14 +272,6 @@ const tools = [
     loop();
   }
 
-  // Compteur du défilement horizontal
-  const hs = document.querySelector<HTMLElement>('[data-hs]');
-  if (hs) {
-    const out = hs.querySelector('[data-count]')!;
-    const n = Number(getComputedStyle(hs).getPropertyValue('--n')) || 6;
-    hs.addEventListener('scene', (e) => (out.textContent = String(Math.min(n, Math.round((e as CustomEvent<number>).detail * (n - 1)) + 1))));
-  }
-
   // Onglets S.A.G.E.
   const tabs = [...document.querySelectorAll<HTMLButtonElement>('.sage__tab')];
   const select = (t: HTMLButtonElement) =>
@@ -337,23 +327,8 @@ const tools = [
   .hv-pill { position: absolute; right: 0; bottom: 18%; display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.75rem 1.2rem; border-radius: var(--pill); font-size: 0.85rem; }
 
   /* SERVICES horizontal */
-  .hscroll { height: calc(100vh + var(--n) * 55vh); }
-  .hscroll__sticky { display: flex; flex-direction: column; justify-content: center; gap: clamp(24px, 4vh, 48px); padding-top: clamp(84px, 10vh, 110px); }
-  .hscroll__head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1rem 4rem; }
-  .hscroll__head > div { display: grid; gap: 1rem; }
-  .hscroll__head h2 { font-size: var(--h2); }
-  .hscroll__side { max-width: 26rem; }
-  .hscroll__count { font: italic 400 1.4rem var(--font-letter); margin-top: 1rem; }
-  .hscroll__track { display: flex; align-items: stretch; gap: 1.4rem; width: max-content; padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter))); padding-right: 6vw; transform: translateX(calc(var(--p) * (-1 * (100% - 100vw)))); will-change: transform; }
-  .hscroll__track > :global(.card) { width: clamp(290px, 30vw, 400px); flex: none; }
-  .hscroll__end { flex: none; width: clamp(260px, 26vw, 340px); display: grid; align-content: center; gap: 1.2rem; padding: 2rem; font: italic 400 clamp(1.4rem, 2vw, 1.8rem)/1.2 var(--font-letter); }
   @media (max-width: 760px) {
-    .hscroll__sticky { padding-top: 96px; gap: 18px; justify-content: flex-start; }
-    .hscroll__side .lead { display: none; }
-    .hscroll__count { margin-top: 0; }
-    .hscroll__track > :global(.card) { width: 78vw; }
-    .hscroll__end { width: 70vw; }
-  }
+            }
   .round-cta { display: grid; place-items: center; width: 150px; height: 150px; border-radius: 50%; background: var(--ochre); color: var(--ink); font: italic 400 1.35rem var(--font-letter); text-decoration: none; box-shadow: 0 24px 50px -24px rgb(26 26 26 / 0.45); transition: transform 0.6s var(--ease-out), background 0.4s var(--ease); }
   .round-cta:hover { transform: scale(1.08) rotate(-6deg); background: #f4f1ea; color: var(--fir); }
 
@@ -407,6 +382,13 @@ const tools = [
   .tool.t4 { width: 56px; right: 34%; bottom: -6%; }
   .tool.t5 { width: 66px; right: -2%; bottom: -8%; }
   .tool.t6 { width: 50px; right: -14%; bottom: 62%; }
+  .tool.t7 { width: 64px; left: -9%; bottom: 30%; }
+  .tool.t8 { width: 74px; left: -6%; bottom: 6%; }
+  .tool.t9 { width: 52px; left: 12%; bottom: -7%; }
+  .tool.t10 { width: 68px; left: -10%; top: 30%; }
+  .tool.t11 { width: 78px; right: -10%; top: 6%; }
+  .tool__word { font: 700 0.72rem/1 var(--font-display); letter-spacing: -0.01em; }
+  .t8 .tool__word { font-size: 0.78rem; font-style: italic; }
   @media (max-width: 640px) {
     .tool.t1 { width: 68px; right: -3%; }
     .tool.t2 { width: 54px; }
@@ -414,7 +396,19 @@ const tools = [
     .tool.t4 { width: 44px; }
     .tool.t5 { width: 50px; right: 2%; }
     .tool.t6 { width: 40px; right: -4%; }
+    .tool.t7 { width: 48px; left: -3%; }
+    .tool.t8 { width: 58px; left: -3%; }
+    .tool.t9 { width: 42px; }
+    .tool.t10 { width: 50px; left: -3%; }
+    .tool.t11 { width: 62px; right: -3%; }
+    .tool__word { font-size: 0.6rem; }
+    .t8 .tool__word { font-size: 0.64rem; }
   }
+  .svc { padding: clamp(24px, 4vh, 48px) 0 var(--section-y); }
+  .svc__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; }
+  .svc__end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.2rem; margin-top: clamp(2rem, 5vw, 3.5rem); padding-top: 2rem; border-top: 1px solid rgb(244 241 234 / 0.16); font: italic 400 clamp(1.3rem, 2vw, 1.7rem)/1.2 var(--font-letter); }
+  @media (max-width: 1000px) { .svc__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 640px) { .svc__grid { grid-template-columns: 1fr; } }
   .about__wink { position: absolute; right: -6%; bottom: 0; width: 34%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid rgb(255 255 255 / 0.7); box-shadow: var(--shadow); }
   .about__wink img { width: 100%; height: 100%; object-position: 30% 30%; }
   .about__tag { position: absolute; left: -4%; top: 14%; display: grid; padding: 0.9rem 1.3rem; border-radius: var(--r-s); }

@@ -1,9 +1,9 @@
 ---
-// Ouverture : « Creative thinking. » s'écarte pendant qu'une arche grandit jusqu'au plein écran,
-// un seul message, puis on passe directement aux expertises (simplifié à la demande de Julie).
-const levels = [
-  { img: 'zoom-monde', kicker: '', title: 'Chaque jour, des milliers de marques prennent la parole.', em: 'Faites entendre la vôtre.', cta: true },
-];
+// Ouverture : « Creative thinking. » s'écarte pendant qu'une arche vert sapin grandit jusqu'au plein écran.
+// L'arche s'ouvre sur la section des expertises (même fond), dont le titre apparaît dedans.
+const levels = [{ img: null }];
+import { services } from '../config/site';
+import Shape from './Shape.astro';
 ---
 
 <section class="scene zoom" data-theme="cream" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Creative thinking">
@@ -13,21 +13,17 @@ const levels = [
 
     {
       levels.map((l, i) => (
-        <div class="zl" data-level style={`z-index:${i + 1}`}>
-          <img class="zl__img photo" src={`/media/${l.img}.jpg`} alt="" style={l.pos ? `object-position: ${l.pos}` : undefined} />
+        <div class="zl zl--services" data-level style={`z-index:${i + 1}`}>
+          <div class="zl__bg">
+            <span class="zl__sh zl__sh--1"><Shape name="leaf" color="var(--sage)" /></span>
+            <span class="zl__sh zl__sh--2"><Shape name="half" color="var(--ochre)" /></span>
+            <span class="zl__sh zl__sh--3"><Shape name="circle" color="var(--clay)" /></span>
+          </div>
           <div class="zl__veil" />
-          <div class="zl__text">
-            {l.kicker && <p class="zl__kicker">{l.kicker}</p>}
-            <p class="zl__title">
-              {l.title}
-              <br />
-              <em>{l.em}</em>
-            </p>
-            {l.cta && (
-              <a href="#services" class="btn btn--primary zl__cta">
-                Découvrir mes expertises <span aria-hidden="true">→</span>
-              </a>
-            )}
+          <div class="zl__text zl__text--center">
+            <p class="zl__flag">{services.length} expertises, 1 interlocutrice</p>
+            <h2 class="zl__h">Six <em>expertises</em></h2>
+            <p class="zl__lead">En mission ponctuelle ou en accompagnement mensuel. Retournez une carte pour voir ce qu'elle contient.</p>
           </div>
         </div>
       ))
@@ -80,7 +76,7 @@ const levels = [
           el.style.transform = 'none';
           el.style.opacity = '1';
           img.style.transform = `scale(${1.3 - 0.3 * e})`;
-          text.style.opacity = String(clamp((d + 0.25) * 4));
+          text.style.opacity = String(clamp((d + 0.55) * 2.6));
           veil.style.opacity = String(0.25 + 0.75 * e);
         } else {
           // on plonge dedans : zoom avant et fondu
@@ -132,6 +128,44 @@ const levels = [
     overflow: hidden;
     transform-origin: 50% 50%;
     will-change: transform, clip-path, opacity;
+  }
+  .zl__bg {
+    position: absolute;
+    inset: 0;
+    background: var(--fir);
+  }
+  .zl__sh { position: absolute; display: block; opacity: 0.9; }
+  .zl__sh :global(.shape) { width: 100%; height: auto; }
+  .zl__sh--1 { width: clamp(90px, 14vw, 200px); left: 8%; top: 14%; }
+  .zl__sh--2 { width: clamp(80px, 12vw, 170px); right: 9%; top: 22%; }
+  .zl__sh--3 { width: clamp(60px, 8vw, 120px); right: 18%; bottom: 12%; }
+  @media (max-width: 760px) { .zl__sh--3 { bottom: 5%; right: 12%; } }
+  .zl--services .zl__veil {
+    display: none;
+  }
+  .zl__text--center {
+    inset: 0;
+    align-content: center;
+    padding: 0 var(--gutter);
+  }
+  .zl__flag {
+    padding: 0.5em 1.1em;
+    border-radius: 999px;
+    background: var(--ochre);
+    color: #1a1a1a;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .zl__h {
+    font-size: clamp(3rem, 8vw, 7rem);
+    color: #f4f1ea;
+  }
+  .zl__h em {
+    color: var(--ochre);
+  }
+  .zl__lead {
+    max-width: 30rem;
+    color: rgb(244 241 234 / 0.78);
   }
   .zl__img {
     position: absolute;
