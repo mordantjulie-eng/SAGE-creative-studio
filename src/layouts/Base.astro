@@ -133,11 +133,19 @@ const {
         });
       }
 
+      // Chaque nouvelle page s'ouvre en haut (sauf lien vers une section précise) :
+      // évite que le navigateur ou la visionneuse restaure la position de la page précédente
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      const toTop = () => { if (!location.hash) window.scrollTo(0, 0); };
+      toTop();
+      window.addEventListener('pageshow', toTop);
+
       // Défilement fluide
       if (!still) {
         import('lenis').then(({ default: Lenis }) => {
           const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
           (window as any).__lenis = lenis;
+          if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true });
           const raf = (t: number) => { lenis.raf(t); requestAnimationFrame(raf); };
           requestAnimationFrame(raf);
           document.querySelectorAll<HTMLAnchorElement>('a[href*="#"]').forEach((a) => {

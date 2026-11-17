@@ -119,6 +119,7 @@ const leaves = [
     });
     const k0 = fromHash(location.hash);
     if (k0) window.addEventListener('load', () => setTimeout(() => goTo(k0, false), 60));
+    window.addEventListener('hashchange', () => { const k = fromHash(location.hash); if (k) goTo(k); });
     scene.addEventListener('scene', (e) => render((e as CustomEvent<number>).detail));
   }
 </script>
