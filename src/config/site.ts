@@ -224,7 +224,10 @@ export const partners = [
 // Parcours, à valider par Julie avant mise en ligne
 export const journey = [
   { when: '2020 à 2024', what: 'Bachelier en Marketing, International Business', where: 'EPHEC' },
-  { when: 'Expériences', what: 'Social media, influence, contenu, business development et marketing digital', where: 'YourStory, ENEON/Idweaver, Socialsky, Kontnu' },
+  { when: '2023', what: 'Stage en création de contenu et animation de communautés', where: 'YourStory Agency' },
+  { when: 'Waterloo', what: 'Marketing Officer : personal branding, podcasts, emailing, marque employeur', where: 'ENEON / Idweaver' },
+  { when: '2024 à 2025', what: 'Community Manager Gen Z, CDD puis CDI', where: 'Socialsky, Bruxelles' },
+  { when: '2025 à 2027', what: 'Business developer puis digital marketing manager', where: 'Kontnu' },
   { when: '2027', what: 'Lancement de SAGE Creative Studio', where: 'Belgique' },
 ];
 
