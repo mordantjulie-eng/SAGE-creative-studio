@@ -1,16 +1,12 @@
 ---
-// Voyage en zoom, du général au particulier.
-// Chaque niveau apparaît dans une arche au centre du niveau précédent, grandit jusqu'au plein écran,
-// puis on « plonge » dedans pendant que le niveau suivant s'ouvre à son tour.
+// Ouverture : « Creative thinking. » s'écarte pendant qu'une arche grandit jusqu'au plein écran,
+// un seul message, puis on passe directement aux expertises (simplifié à la demande de Julie).
 const levels = [
-  { img: 'zoom-monde', kicker: 'Le monde', title: 'Chaque jour, des milliers de marques', em: 'prennent la parole.' },
-  { img: 'zoom-reseaux', kicker: 'Les réseaux', title: "L'attention se gagne", em: 'en une seconde.' },
-  { img: 'julie-kiehls', kicker: 'Votre marque', title: 'Elle mérite une image', em: 'qui se reconnaît.' },
-  { img: 'julie-portrait', pos: '50% 50%', kicker: 'SAGE', title: "Et quelqu'un qui s'en occupe", em: 'vraiment.', cta: true },
+  { img: 'zoom-monde', kicker: '', title: 'Chaque jour, des milliers de marques prennent la parole.', em: 'Faites entendre la vôtre.', cta: true },
 ];
 ---
 
-<section class="scene zoom" data-theme="cream" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Du général au particulier">
+<section class="scene zoom" data-theme="cream" data-scene data-zoom style={`--n:${levels.length}`} aria-label="Creative thinking">
   <div class="scene__sticky zoom__sticky">
     <p class="zoom__word zoom__word--l" aria-hidden="true">Creative</p>
     <p class="zoom__word zoom__word--r" aria-hidden="true"><em>thinking.</em></p>
@@ -21,7 +17,7 @@ const levels = [
           <img class="zl__img photo" src={`/media/${l.img}.jpg`} alt="" style={l.pos ? `object-position: ${l.pos}` : undefined} />
           <div class="zl__veil" />
           <div class="zl__text">
-            <p class="zl__kicker">{l.kicker}</p>
+            {l.kicker && <p class="zl__kicker">{l.kicker}</p>}
             <p class="zl__title">
               {l.title}
               <br />
@@ -29,17 +25,13 @@ const levels = [
             </p>
             {l.cta && (
               <a href="#services" class="btn btn--primary zl__cta">
-                Voir les services <span aria-hidden="true">→</span>
+                Découvrir mes expertises <span aria-hidden="true">→</span>
               </a>
             )}
           </div>
         </div>
       ))
     }
-
-    <ol class="zoom__steps" aria-hidden="true">
-      {levels.map((l) => <li>{l.kicker}</li>)}
-    </ol>
   </div>
 </section>
 
@@ -47,7 +39,6 @@ const levels = [
   const scene = document.querySelector<HTMLElement>('[data-zoom]');
   if (scene) {
     const layers = [...scene.querySelectorAll<HTMLElement>('[data-level]')];
-    const steps = [...scene.querySelectorAll<HTMLElement>('.zoom__steps li')];
     const n = layers.length;
     const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
     const ease = (x: number) => 1 - Math.pow(1 - x, 3);
@@ -101,8 +92,6 @@ const levels = [
           veil.style.opacity = '1';
         }
       });
-      const cur = Math.round(clamp(t, 0, n - 1));
-      steps.forEach((s, i) => s.classList.toggle('is-on', i === cur && t > -0.3));
     };
     render(0);
     scene.addEventListener('scene', (e) => render((e as CustomEvent<number>).detail));
@@ -175,7 +164,7 @@ const levels = [
   .zl__title {
     font: 300 clamp(2.3rem, 5.4vw, 5.2rem) / 1.04 var(--font-serif);
     letter-spacing: -0.02em;
-    max-width: 18ch;
+    max-width: 20ch;
   }
   .zl__title em {
     color: var(--ochre);
@@ -183,31 +172,6 @@ const levels = [
   .zl__cta {
     background: var(--cream) !important;
     color: var(--moss) !important;
-  }
-  .zoom__steps {
-    position: absolute;
-    z-index: 20;
-    right: var(--gutter);
-    top: 50%;
-    translate: 0 -50%;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 0.9rem;
-    text-align: right;
-    font-size: 0.75rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgb(246 243 238 / 0.45);
-    opacity: calc((var(--t, -1) + 0.4) * 3);
-  }
-  .zoom__steps li {
-    transition: color 0.4s var(--ease), transform 0.5s var(--ease-out);
-  }
-  .zoom__steps li.is-on {
-    color: var(--cream);
-    transform: translateX(-6px);
   }
   @media (max-width: 760px) {
     .zoom__word {
@@ -225,9 +189,6 @@ const levels = [
       top: auto;
       bottom: 10svh;
       transform: translateX(calc((var(--t, -1) + 1) * 60vw));
-    }
-    .zoom__steps {
-      display: none;
     }
   }
 </style>
