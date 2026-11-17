@@ -6,7 +6,7 @@ const levels = [
   { img: 'zoom-monde', kicker: 'Le monde', title: 'Chaque jour, des milliers de marques', em: 'prennent la parole.' },
   { img: 'zoom-reseaux', kicker: 'Les réseaux', title: "L'attention se gagne", em: 'en une seconde.' },
   { img: 'julie-kiehls', kicker: 'Votre marque', title: 'Elle mérite une image', em: 'qui se reconnaît.' },
-  { img: 'julie-bw', kicker: 'SAGE', title: "Et quelqu'un qui s'en occupe", em: 'vraiment.', cta: true },
+  { img: 'julie-filming-2', pos: '50% 18%', kicker: 'SAGE', title: "Et quelqu'un qui s'en occupe", em: 'vraiment.', cta: true },
 ];
 ---
 
@@ -18,7 +18,7 @@ const levels = [
     {
       levels.map((l, i) => (
         <div class="zl" data-level style={`z-index:${i + 1}`}>
-          <img class="zl__img photo" src={`/media/${l.img}.jpg`} alt="" />
+          <img class="zl__img photo" src={`/media/${l.img}.jpg`} alt="" style={l.pos ? `object-position: ${l.pos}` : undefined} />
           <div class="zl__veil" />
           <div class="zl__text">
             <p class="zl__kicker">{l.kicker}</p>

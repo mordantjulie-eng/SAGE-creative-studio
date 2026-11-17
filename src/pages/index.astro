@@ -346,9 +346,10 @@ const m = (n: string) => `/media/${n}.jpg`;
   .sage__tab[aria-selected='true'] .sage__letter { color: var(--ink); }
   .sage__name { font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; }
   .sage__panel { display: grid; grid-template-columns: auto 1fr; gap: clamp(1.5rem, 5vw, 5rem); align-items: center; padding: clamp(1.8rem, 4vw, 3.4rem); border-radius: var(--r-l); animation: fade 0.8s var(--ease-out); }
+  .sage__panel { position: relative; overflow: hidden; isolation: isolate; }
   .sage__panel[hidden] { display: none; }
   @keyframes fade { from { opacity: 0; transform: translateY(10px); } }
-  .sage__big { position: relative; display: grid; place-items: center; font: italic 800 clamp(7rem, 15vw, 13rem)/0.8 var(--font-letter); color: var(--ink); }
+  .sage__big { position: relative; display: grid; place-items: center; justify-self: center; width: max-content; font: italic 800 clamp(7rem, 15vw, 13rem)/0.8 var(--font-letter); color: var(--ink); }
   .sage__big span { position: relative; }
   .sage__big :global(.sage__bigshape) { position: absolute; width: 78%; height: auto; right: -12%; bottom: -8%; opacity: 0.9; animation: shapein 1s var(--ease-out); }
   @keyframes shapein { from { transform: rotate(-30deg) scale(0.6); opacity: 0; } }
