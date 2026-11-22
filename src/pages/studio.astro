@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { brand, partners, journey, steps } from '../config/site';
+import { brand, partners, steps } from '../config/site';
 
 const traits = [
   { word: 'Créative', text: 'Des idées qui sortent du lot, toujours au service de votre objectif.' },
@@ -14,15 +14,15 @@ const how = [
   { t: 'Je coordonne', d: 'Un seul interlocuteur, un seul planning, une seule facture.' },
 ];
 const shots = [
-  { img: 'julie-filming', alt: 'Julie en tournage en extérieur, micro à la main', cap: 'En tournage' },
-  { img: 'julie-kiehls', alt: 'Julie dans une rue colorée', cap: 'En voyage' },
-  { img: 'julie-filming-2', alt: 'Julie face caméra pour un contenu vidéo', cap: 'Face caméra' },
-  { img: 'julie-dots', alt: 'Julie en selfie miroir', cap: 'Off duty' },
+  { img: 'bts-tournage', alt: 'Appareil photo levé vers le ciel pendant un tournage', cap: 'En tournage' },
+  { img: 'bts-montage', alt: 'Timeline de montage vidéo sur un écran', cap: 'Au montage' },
+  { img: 'bts-da', alt: 'Nuanciers de couleurs pour une direction artistique', cap: 'Direction artistique' },
+  { img: 'bts-partenaires', alt: "Une petite équipe qui travaille ensemble autour d'ordinateurs", cap: 'Avec mes partenaires' },
 ];
 ---
 
 <Base title="Le studio | SAGE Creative Studio" description="SAGE Creative Studio, c'est Julie : un studio créatif indépendant en Belgique, entouré de partenaires de confiance.">
-  <section class="st-hero">
+  <section class="st-hero" data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" style="width:700px;height:700px;left:-220px;top:-180px;--d:26s"></span>
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-120px;top:60px;--d:30s"></span>
@@ -46,7 +46,7 @@ const shots = [
     </div>
   </section>
 
-  <section id="pourquoi" class="section">
+  <section id="pourquoi" class="section" data-theme="cream">
     <div class="container st-why">
       <p class="eyebrow reveal">Pourquoi SAGE</p>
       <p class="st-big reveal" style="--rd:.08s">
@@ -57,7 +57,7 @@ const shots = [
     </div>
   </section>
 
-  <section id="coulisses" class="st-bts" aria-label="Dans les coulisses">
+  <section id="coulisses" class="st-bts" data-theme="cream" aria-label="Dans les coulisses">
     <div class="container">
       <p class="eyebrow reveal">Dans les coulisses</p>
       <div class="st-bts__row">
@@ -75,7 +75,7 @@ const shots = [
     </div>
   </section>
 
-  <section id="methode" class="section st-traits-wrap">
+  <section id="methode" class="section st-traits-wrap" data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;top:0;--d:26s"></span>
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;bottom:-160px;opacity:.5;--d:30s"></span>
@@ -98,29 +98,7 @@ const shots = [
     </div>
   </section>
 
-  <section id="histoire" class="section">
-    <div class="container">
-      <div class="st-head">
-        <p class="eyebrow reveal">Mon parcours</p>
-        <h2 class="reveal" style="--rd:.08s">D'où <em>je viens.</em></h2>
-      </div>
-      <ol class="st-line">
-        {
-          journey.map((j, i) => (
-            <li class="st-stop reveal" style={`--rd:${i * 0.1}s`}>
-              <span class="st-stop__when">{j.when}</span>
-              <div>
-                <strong>{j.what}</strong>
-                <span>{j.where}</span>
-              </div>
-            </li>
-          ))
-        }
-      </ol>
-    </div>
-  </section>
-
-  <section id="reseau" class="st-crew on-dark">
+  <section id="reseau" class="st-crew on-dark" data-theme="sage">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--champagne" style="width:560px;height:560px;right:-140px;top:-160px;opacity:.35;--d:26s"></span>
     </div>
@@ -141,7 +119,6 @@ const shots = [
         {
           how.map((h, i) => (
             <li class="st-how__item glass reveal" style={`--rd:${i * 0.1}s`}>
-              <span class="st-how__n">0{i + 1}</span>
               <div>
                 <h3>{h.t}</h3>
                 <p>{h.d}</p>
@@ -153,7 +130,7 @@ const shots = [
     </div>
   </section>
 
-  <section id="ensemble" class="section">
+  <section id="ensemble" class="section" data-theme="cream">
     <div class="container">
       <div class="st-head">
         <p class="eyebrow reveal">Travailler ensemble</p>
@@ -173,7 +150,7 @@ const shots = [
     </div>
   </section>
 
-  <section class="st-cta">
+  <section class="st-cta" data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" style="width:600px;height:600px;left:10%;top:-200px;--d:24s"></span>
       <span class="orb orb--blush" style="width:520px;height:520px;right:5%;bottom:-220px;--d:28s"></span>
@@ -225,13 +202,6 @@ const shots = [
   .st-trait__w { font: italic 700 2.2rem/1 var(--font-display); color: var(--moss); }
   .st-trait p { color: rgb(43 52 47 / 0.75); }
 
-  .st-line { list-style: none; margin: 0; padding: 0; display: grid; }
-  .st-stop { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: baseline; padding-block: 1.5rem; border-top: 1px solid var(--hair); }
-  .st-stop:last-child { border-bottom: 1px solid var(--hair); }
-  .st-stop__when { font: italic 700 1.4rem var(--font-display); color: var(--eucalyptus); }
-  .st-stop div { display: grid; gap: 0.2rem; }
-  .st-stop strong { font: 750 1.35rem var(--font-display); }
-  .st-stop span:not(.st-stop__when) { color: rgb(43 52 47 / 0.65); font-size: 0.92rem; }
 
   .st-crew { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
   .st-crew__grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center; }
@@ -261,7 +231,6 @@ const shots = [
   @media (max-width: 800px) {
     .st-hero__grid, .st-crew__grid { grid-template-columns: 1fr; }
     .st-hero__visual { max-width: 440px; }
-    .st-stop { grid-template-columns: 1fr; gap: 0.3rem; }
   }
   @media (max-width: 560px) {
     .st-traits, .st-steps { grid-template-columns: 1fr; }

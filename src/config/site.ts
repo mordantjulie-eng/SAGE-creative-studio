@@ -33,7 +33,6 @@ export const nav: NavItem[] = [
       { label: 'Pourquoi SAGE', href: '/studio#pourquoi', hint: "L'envie qui a lancé le studio" },
       { label: 'Dans les coulisses', href: '/studio#coulisses', hint: 'Tournages, shootings, terrain' },
       { label: 'Ma façon de travailler', href: '/studio#methode', hint: 'Quatre mots qui me résument' },
-      { label: "D'où je viens", href: '/studio#histoire', hint: 'Mon parcours en bref' },
       { label: 'Le réseau', href: '/studio#reseau', hint: 'Seule aux commandes, jamais seule au travail' },
       { label: 'Travailler ensemble', href: '/studio#ensemble', hint: 'Comment ça se passe' },
     ],
@@ -171,10 +170,10 @@ export const services: Service[] = [
     slug: 'ai-training-optimization',
     num: '06',
     title: 'AI Training & Optimization',
-    short: "L'IA utile au quotidien, pour vos équipes.",
-    promise: 'Des équipes plus autonomes avec les outils d’IA, et du temps gagné sur ce qui se répète.',
+    short: "Former vos équipes et créer vos outils IA sur mesure.",
+    promise: 'Des équipes plus autonomes avec l’IA, des outils pensés pour elles, et du temps gagné sur ce qui se répète.',
     intro:
-      "Former et accompagner les professionnels pour utiliser l'intelligence artificielle efficacement dans leur travail. J'interviens notamment auprès des équipes marketing, commerciales, RH et administratives, avec des ateliers adaptés à leur métier.",
+      "Former et accompagner les professionnels pour utiliser l'intelligence artificielle efficacement dans leur travail, et créer pour eux des outils sur mesure. Je conçois des agents IA pensés pour votre organisation interne, la gestion de votre équipe et le suivi de vos clients. J'interviens auprès des équipes marketing, commerciales, RH et administratives.",
     items: [
       "Formation à l'utilisation de l'intelligence artificielle",
       "Initiation aux outils d'IA générative",
@@ -183,12 +182,14 @@ export const services: Service[] = [
       'Optimisation des processus de travail',
       'Identification des tâches pouvant être automatisées',
       "Accompagnement des équipes dans l'adoption de l'IA",
+      'Création d\'outils sur mesure et d\'agents IA conçus pour votre équipe',
+      'Organisation interne et suivi clients optimisés grâce à ces agents',
     ],
-    highlights: ['Ateliers', 'Prompting', 'Process'],
+    highlights: ['Ateliers', 'Agents IA', 'Outils sur mesure'],
     pillars: ['E'],
     tone: 'taupe',
     img: 'julie-bw',
-    note: 'Formation et conseil uniquement : je ne développe pas de sites ni de logiciels pour mes clients.',
+    note: 'Des outils pensés pour votre façon de travailler, pas des solutions toutes faites. Je ne crée pas de sites web pour mes clients.',
   },
 ];
 

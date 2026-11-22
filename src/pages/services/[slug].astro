@@ -17,7 +17,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 ---
 
 <Base title={`${s.title} | SAGE Creative Studio`} description={`${s.title} : ${s.promise}`}>
-  <section class="sv-hero">
+  <section class="sv-hero" data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--sage" style="width:700px;height:700px;left:-220px;top:-200px;--d:26s"></span>
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-140px;top:80px;--d:30s"></span>
@@ -43,7 +43,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-theme="cream">
     <div class="container sv-body">
       <div class="sv-intro">
         <p class="eyebrow reveal">Le service</p>
@@ -68,7 +68,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 
   {s.slug === 'content-creation' && <Phones />}
 
-  <section class="sv-pillars on-dark">
+  <section class="sv-pillars on-dark" data-theme="sage">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-140px;top:-180px;opacity:.35;--d:26s"></span>
     </div>
@@ -90,7 +90,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-theme="cream">
     <div class="container">
       <div class="sv-head">
         <p class="eyebrow reveal">Comment on travaille ensemble</p>
@@ -111,7 +111,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
     </div>
   </section>
 
-  <section class="section sv-more">
+  <section class="section sv-more" data-theme="cream">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--mist" style="width:640px;height:640px;left:-200px;top:0;--d:26s"></span>
       <span class="orb orb--champagne" style="width:520px;height:520px;right:-160px;bottom:-160px;opacity:.5;--d:30s"></span>
@@ -128,7 +128,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
     </div>
   </section>
 
-  <section class="sv-cta on-dark">
+  <section class="sv-cta on-dark" data-theme="sage">
     <div class="orbs" aria-hidden="true">
       <span class="orb orb--champagne" style="width:520px;height:520px;right:10%;top:-220px;opacity:.35;--d:26s"></span>
     </div>
