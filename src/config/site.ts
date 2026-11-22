@@ -52,6 +52,7 @@ export type Service = {
   tone: 'forest' | 'ivory' | 'ochre' | 'soft' | 'rust' | 'taupe';
   img: string;
   note?: string;
+  groups: { t: string; items: string[] }[];
 };
 
 export const services: Service[] = [
@@ -76,6 +77,11 @@ export const services: Service[] = [
     pillars: ['G', 'S'],
     tone: 'forest',
     img: 'fmt-influence',
+    groups: [
+      { t: 'Planifier', items: ['Calendrier éditorial', 'Programmation'] },
+      { t: 'Animer', items: ['Modération', 'Messages', 'Communauté'] },
+      { t: 'Mesurer', items: ['Veille', 'Reporting'] },
+    ],
   },
   {
     slug: 'content-creation',
@@ -99,6 +105,11 @@ export const services: Service[] = [
     pillars: ['A', 'G'],
     tone: 'ochre',
     img: 'julie-filming',
+    groups: [
+      { t: 'Photo et graphisme', items: ['Shootings', 'Visuels', 'Carrousels'] },
+      { t: 'Vidéo', items: ['Reels', 'TikTok', 'Shorts', 'Vidéo longue'] },
+      { t: 'Sur le terrain', items: ['UGC', 'Événements', 'Campagnes'] },
+    ],
   },
   {
     slug: 'strategy-consulting',
@@ -121,6 +132,11 @@ export const services: Service[] = [
     pillars: ['S'],
     tone: 'ivory',
     img: 'julie-kiehls',
+    groups: [
+      { t: 'Comprendre', items: ['Audit', 'Veille', 'Marché'] },
+      { t: 'Positionner', items: ['Positionnement', 'Storytelling'] },
+      { t: 'Planifier', items: ['Stratégie social media', 'Ligne éditoriale'] },
+    ],
   },
   {
     slug: 'branding-art-direction',
@@ -143,6 +159,11 @@ export const services: Service[] = [
     pillars: ['A', 'S'],
     tone: 'soft',
     img: 'work-welcome-spring',
+    groups: [
+      { t: 'Identité', items: ['Logo', 'Couleurs', 'Typographies'] },
+      { t: 'Direction artistique', items: ['Univers', 'Concepts créatifs'] },
+      { t: 'Outils', items: ['Templates', 'Supports', 'Charte'] },
+    ],
   },
   {
     slug: 'influence-campaigns',
@@ -165,6 +186,11 @@ export const services: Service[] = [
     pillars: ['G', 'S'],
     tone: 'rust',
     img: 'work-rhode',
+    groups: [
+      { t: 'Sélectionner', items: ['Stratégie', 'Créateurs', 'Briefs'] },
+      { t: 'Coordonner', items: ['Collaborations', 'Campagnes UGC'] },
+      { t: 'Mesurer', items: ['Suivi', 'Résultats'] },
+    ],
   },
   {
     slug: 'ai-training-optimization',
@@ -190,6 +216,11 @@ export const services: Service[] = [
     tone: 'taupe',
     img: 'julie-bw',
     note: 'Des outils pensés pour votre façon de travailler, pas des solutions toutes faites. Je ne crée pas de sites web pour mes clients.',
+    groups: [
+      { t: 'Former', items: ['Ateliers métiers', 'Prompting', 'IA générative'] },
+      { t: 'Optimiser', items: ['Processus', 'Automatisations'] },
+      { t: 'Créer', items: ['Agents IA sur mesure', 'Outils internes', 'Suivi clients'] },
+    ],
   },
 ];
 

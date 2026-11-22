@@ -1,0 +1,345 @@
+---
+// Maquettes animées (HTML + CSS) qui illustrent chaque service sur sa page.
+// Une scène vert sapin, des écrans crème qui flottent, un mouvement doux en boucle.
+import Shape from './Shape.astro';
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
+---
+
+<div class={`mock mock--${slug}`} aria-hidden="true">
+  <span class="mock__sh mock__sh--a"><Shape name="leaf" color="var(--sage)" /></span>
+  <span class="mock__sh mock__sh--b"><Shape name="half" color="var(--ochre)" /></span>
+
+  {
+    slug === 'community-management' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Calendrier éditorial</span></div>
+          <div class="cal">
+            {days.map((d) => <span class="cal__d">{d}</span>)}
+            <span class="post p1">Reel</span>
+            <span class="post p2 alt">Carrousel</span>
+            <span class="post p3">Story</span>
+            <span class="post p4 alt">Post</span>
+            <span class="post p5">Reel</span>
+            <span class="post p6 alt">Live</span>
+          </div>
+        </div>
+        <div class="win win--float f1">
+          <p class="notif"><b>12</b> nouveaux commentaires</p>
+          <p class="notif sub">Réponses envoyées</p>
+        </div>
+        <div class="win win--float f2">
+          <p class="kpi__l">Engagement</p>
+          <div class="bars"><i style="--h:40%" /><i style="--h:55%" /><i style="--h:48%" /><i style="--h:72%" /><i style="--h:88%" /></div>
+        </div>
+      </>
+    )
+  }
+
+  {
+    slug === 'content-creation' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Montage</span></div>
+          <div class="edit">
+            <div class="edit__view"><span class="rec">REC</span></div>
+            <div class="tl">
+              <div class="tl__track"><i style="--w:30%" /><i style="--w:22%" class="alt" /><i style="--w:36%" /></div>
+              <div class="tl__track"><i style="--w:18%" class="alt" /><i style="--w:44%" /><i style="--w:20%" class="alt" /></div>
+              <div class="tl__track wave" />
+              <span class="tl__head" />
+            </div>
+          </div>
+        </div>
+        <div class="win win--float f1 vert">
+          <div class="vert__img" />
+          <p>9:16 prêt pour Reels</p>
+        </div>
+      </>
+    )
+  }
+
+  {
+    slug === 'strategy-consulting' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Positionnement</span></div>
+          <div class="map">
+            <span class="map__ax x">Premium</span>
+            <span class="map__ax y">Créatif</span>
+            <i class="dot d1" />
+            <i class="dot d2" />
+            <i class="dot d3" />
+            <i class="dot you" />
+            <span class="map__you">Votre marque</span>
+          </div>
+        </div>
+        <div class="win win--float f1">
+          <p class="kpi__l">Plan d'action</p>
+          <ul class="check">
+            <li>Audit</li>
+            <li>Positionnement</li>
+            <li>Ligne éditoriale</li>
+          </ul>
+        </div>
+      </>
+    )
+  }
+
+  {
+    slug === 'branding-art-direction' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Planche de marque</span></div>
+          <div class="brand">
+            <div class="brand__logo">Aa</div>
+            <div class="sw">
+              <i style="--c:#0c241f" />
+              <i style="--c:#b8965e" />
+              <i style="--c:#7d8c78" />
+              <i style="--c:#f4f1ea" />
+            </div>
+            <div class="type">
+              <span class="type__big">Titre</span>
+              <span class="type__small">Texte courant, lisible partout</span>
+            </div>
+          </div>
+        </div>
+        <div class="win win--float f1 tpl">
+          <div class="tpl__img" />
+          <p>Template post</p>
+        </div>
+      </>
+    )
+  }
+
+  {
+    slug === 'influence-campaigns' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Campagne</span></div>
+          <div class="crea">
+            {[1, 2, 3].map((n) => (
+              <div class={`crea__c c${n}`}>
+                <span class="av" />
+                <span class="crea__h">Créatrice {n}</span>
+                <span class="crea__s">{['24k', '58k', '11k'][n - 1]} abonnés</span>
+              </div>
+            ))}
+          </div>
+          <div class="prog">
+            <span>Campagne en cours</span>
+            <div class="prog__bar"><i /></div>
+          </div>
+        </div>
+        <div class="win win--float f1">
+          <p class="ok">Brief validé</p>
+          <p class="notif sub">3 contenus livrés</p>
+        </div>
+      </>
+    )
+  }
+
+  {
+    slug === 'ai-training-optimization' && (
+      <>
+        <div class="win win--main">
+          <div class="win__bar"><i /><i /><i /><span>Votre agent IA</span></div>
+          <div class="chat">
+            <p class="msg me">Résume les demandes clients de la semaine</p>
+            <p class="msg bot typing"><i /><i /><i /></p>
+            <div class="msg bot reply">
+              <b>8 demandes</b>
+              <span>3 devis à envoyer</span>
+              <span>2 relances prévues</span>
+            </div>
+          </div>
+        </div>
+        <div class="win win--float f1">
+          <p class="kpi__l">Temps gagné</p>
+          <p class="big">6 h <small>par semaine</small></p>
+        </div>
+      </>
+    )
+  }
+</div>
+
+<style>
+  .mock {
+    position: relative;
+    aspect-ratio: 5 / 4.4;
+    border-radius: var(--r-l);
+    background: var(--fir);
+    overflow: hidden;
+    color: #1a1a1a;
+    font-size: clamp(0.62rem, 0.9vw, 0.8rem);
+    box-shadow: 0 40px 80px -40px rgb(12 36 31 / 0.6);
+  }
+  .mock__sh {
+    position: absolute;
+    display: block;
+    opacity: 0.9;
+  }
+  .mock__sh :global(.shape) {
+    width: 100%;
+    height: auto;
+  }
+  .mock__sh--a { width: 28%; left: -6%; bottom: -8%; animation: drift 14s ease-in-out infinite; }
+  .mock__sh--b { width: 22%; right: 6%; top: -4%; animation: drift 12s ease-in-out infinite reverse; }
+  @keyframes drift { 50% { transform: translateY(-10px) rotate(6deg); } }
+
+  .win {
+    position: absolute;
+    background: #f4f1ea;
+    border-radius: 18px;
+    box-shadow: 0 30px 60px -30px rgb(0 0 0 / 0.55);
+  }
+  .win--main {
+    left: 8%;
+    right: 8%;
+    top: 12%;
+    bottom: 14%;
+    padding: 0 4% 4%;
+    display: flex;
+    flex-direction: column;
+    animation: rise 1s var(--ease-out) both;
+  }
+  .win--float {
+    padding: 0.9em 1.1em;
+    border-radius: 16px;
+    background: rgb(255 255 255 / 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    animation: rise 1s var(--ease-out) 0.4s both, bob 7s ease-in-out 1.4s infinite;
+  }
+  .f1 { right: 3%; bottom: 6%; }
+  .f2 { left: 3%; bottom: 8%; animation-delay: 0.6s, 2s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px); } }
+  @keyframes bob { 50% { transform: translateY(-8px); } }
+
+  .win__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    padding: 0.9em 0;
+    font-weight: 600;
+    color: rgb(26 26 26 / 0.55);
+  }
+  .win__bar i { width: 0.6em; height: 0.6em; border-radius: 50%; background: rgb(26 26 26 / 0.15); }
+  .win__bar span { margin-left: 0.6em; }
+
+  /* Community management */
+  .cal { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); grid-template-rows: auto repeat(3, 1fr); gap: 0.5em; }
+  .cal__d { font-weight: 600; color: rgb(26 26 26 / 0.45); }
+  .post { display: grid; place-items: center; border-radius: 10px; background: var(--fir); color: #f4f1ea; font-weight: 600; animation: pop 6s ease-in-out infinite; }
+  .post.alt { background: var(--ochre); color: #1a1a1a; }
+  .p1 { grid-column: 1; grid-row: 2; animation-delay: 0.2s; }
+  .p2 { grid-column: 2; grid-row: 3; animation-delay: 0.6s; }
+  .p3 { grid-column: 3; grid-row: 2; animation-delay: 1s; }
+  .p4 { grid-column: 4; grid-row: 4; animation-delay: 1.4s; }
+  .p5 { grid-column: 5; grid-row: 3; animation-delay: 1.8s; }
+  .p6 { grid-column: 3; grid-row: 4; animation-delay: 2.2s; }
+  @keyframes pop { 0%, 8% { opacity: 0; transform: scale(0.8); } 16%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  .notif { font-weight: 600; }
+  .notif b { color: var(--ochre); }
+  .notif.sub, .kpi__l { color: rgb(26 26 26 / 0.55); font-weight: 500; }
+  .bars { display: flex; align-items: end; gap: 0.35em; height: 3.2em; width: 7em; margin-top: 0.5em; }
+  .bars i { flex: 1; height: var(--h); border-radius: 4px; background: var(--fir); transform-origin: bottom; animation: grow 4s var(--ease-out) infinite; }
+  .bars i:last-child { background: var(--ochre); }
+  @keyframes grow { 0% { transform: scaleY(0.2); } 40%, 100% { transform: none; } }
+
+  /* Content creation */
+  .edit { flex: 1; display: grid; grid-template-rows: 1fr auto; gap: 0.8em; }
+  .edit__view { position: relative; border-radius: 12px; background: linear-gradient(135deg, #7d8c78, #0c241f 60%, #b8965e); background-size: 200% 200%; animation: pan 8s ease-in-out infinite alternate; }
+  @keyframes pan { to { background-position: 100% 100%; } }
+  .rec { position: absolute; left: 0.8em; top: 0.8em; padding: 0.2em 0.6em; border-radius: 999px; background: rgb(0 0 0 / 0.35); color: #fff; font-weight: 600; }
+  .tl { position: relative; display: grid; gap: 0.35em; }
+  .tl__track { display: flex; gap: 0.3em; height: 1.4em; }
+  .tl__track i { width: var(--w); border-radius: 6px; background: var(--fir); }
+  .tl__track i.alt { background: var(--ochre); }
+  .tl__track.wave { background: repeating-linear-gradient(90deg, rgb(12 36 31 / 0.35) 0 2px, transparent 2px 5px); border-radius: 6px; mask: linear-gradient(transparent 20%, #000 20% 80%, transparent 80%); }
+  .tl__head { position: absolute; top: -0.4em; bottom: -0.4em; width: 2px; background: #c0392b; left: 0; animation: play 6s linear infinite; }
+  @keyframes play { to { left: 100%; } }
+  .vert { width: 26%; padding: 0.5em; display: grid; gap: 0.4em; }
+  .vert__img { aspect-ratio: 9 / 16; border-radius: 10px; background: linear-gradient(160deg, #b8965e, #0c241f); }
+  .vert p { font-weight: 600; }
+
+  /* Strategy */
+  .map { position: relative; flex: 1; border-radius: 12px; background: linear-gradient(rgb(26 26 26 / 0.12), rgb(26 26 26 / 0.12)) 50% 0 / 1px 100% no-repeat, linear-gradient(90deg, rgb(26 26 26 / 0.12), rgb(26 26 26 / 0.12)) 0 50% / 100% 1px no-repeat; }
+  .map__ax { position: absolute; color: rgb(26 26 26 / 0.5); font-weight: 600; }
+  .map__ax.x { right: 0.4em; top: calc(50% + 0.4em); }
+  .map__ax.y { left: calc(50% + 0.5em); top: 0.2em; }
+  .dot { position: absolute; width: 0.9em; height: 0.9em; border-radius: 50%; background: rgb(26 26 26 / 0.25); }
+  .d1 { left: 20%; top: 68%; }
+  .d2 { left: 34%; top: 30%; }
+  .d3 { left: 62%; top: 74%; }
+  .you { width: 1.4em; height: 1.4em; background: var(--ochre); box-shadow: 0 0 0 0.5em rgb(184 150 94 / 0.25); animation: move 6s var(--ease-out) infinite; }
+  .map__you { position: absolute; font-weight: 700; animation: move-label 6s var(--ease-out) infinite; }
+  @keyframes move { 0%, 10% { left: 30%; top: 60%; } 50%, 100% { left: 76%; top: 16%; } }
+  @keyframes move-label { 0%, 10% { left: 30%; top: calc(60% + 1.8em); opacity: 0; } 50%, 100% { left: 62%; top: calc(16% + 1.9em); opacity: 1; } }
+  .check { list-style: none; margin: 0.5em 0 0; padding: 0; display: grid; gap: 0.35em; font-weight: 600; }
+  .check li { display: flex; align-items: center; gap: 0.5em; animation: tick 6s infinite; }
+  .check li::before { content: ''; width: 1em; height: 1em; border-radius: 50%; background: var(--fir) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2 5 8l4-4.4' fill='none' stroke='%23f4f1ea' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat; }
+  .check li:nth-child(2) { animation-delay: 0.6s; }
+  .check li:nth-child(3) { animation-delay: 1.2s; }
+  @keyframes tick { 0%, 10% { opacity: 0.25; } 20%, 100% { opacity: 1; } }
+
+  /* Branding */
+  .brand { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr auto; gap: 0.8em; }
+  .brand__logo { display: grid; place-items: center; border-radius: 12px; background: var(--fir); color: #f4f1ea; font: italic 800 3.4em/1 var(--font-letter); animation: rise 1s var(--ease-out) 0.2s both; }
+  .sw { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5em; }
+  .sw i { border-radius: 10px; background: var(--c); box-shadow: inset 0 0 0 1px rgb(26 26 26 / 0.08); animation: swatch 5s var(--ease-out) infinite; }
+  .sw i:nth-child(2) { animation-delay: 0.25s; }
+  .sw i:nth-child(3) { animation-delay: 0.5s; }
+  .sw i:nth-child(4) { animation-delay: 0.75s; }
+  @keyframes swatch { 0% { transform: scale(0.6); opacity: 0; } 20%, 100% { transform: none; opacity: 1; } }
+  .type { grid-column: 1 / -1; display: grid; gap: 0.2em; }
+  .type__big { font: 800 2.2em/1 var(--font-display); }
+  .type__small { color: rgb(26 26 26 / 0.6); }
+  .tpl { width: 24%; padding: 0.5em; display: grid; gap: 0.4em; }
+  .tpl__img { aspect-ratio: 4 / 5; border-radius: 10px; background: linear-gradient(var(--ochre), var(--ochre)) 12% 80% / 60% 10% no-repeat, linear-gradient(var(--fir), var(--fir)); }
+  .tpl p { font-weight: 600; }
+
+  /* Influence */
+  .crea { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6em; }
+  .crea__c { display: grid; align-content: center; justify-items: center; gap: 0.3em; border-radius: 12px; background: #fff; padding: 0.6em; animation: rise 0.9s var(--ease-out) both; }
+  .c2 { animation-delay: 0.2s; transform: translateY(-6%); }
+  .c3 { animation-delay: 0.4s; }
+  .av { width: 2.8em; height: 2.8em; border-radius: 50%; background: linear-gradient(135deg, #7d8c78, #0c241f); }
+  .c2 .av { background: linear-gradient(135deg, #b8965e, #8a6a2e); }
+  .crea__h { font-weight: 700; }
+  .crea__s { color: rgb(26 26 26 / 0.55); }
+  .prog { margin-top: 0.9em; display: grid; gap: 0.4em; font-weight: 600; }
+  .prog__bar { height: 0.6em; border-radius: 999px; background: rgb(26 26 26 / 0.08); overflow: hidden; }
+  .prog__bar i { display: block; height: 100%; border-radius: inherit; background: var(--ochre); animation: fill 5s var(--ease-out) infinite; }
+  @keyframes fill { 0% { width: 8%; } 70%, 100% { width: 82%; } }
+  .ok { display: flex; align-items: center; gap: 0.5em; font-weight: 700; }
+  .ok::before { content: ''; width: 1.1em; height: 1.1em; border-radius: 50%; background: var(--fir) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M3 6.2 5 8l4-4.4' fill='none' stroke='%23f4f1ea' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 80% no-repeat; }
+
+  /* IA */
+  .chat { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 0.6em; }
+  .msg { max-width: 78%; padding: 0.7em 1em; border-radius: 14px; margin: 0; }
+  .me { align-self: flex-end; background: var(--fir); color: #f4f1ea; border-bottom-right-radius: 4px; animation: chat-me 8s infinite; }
+  .bot { align-self: flex-start; background: #fff; border-bottom-left-radius: 4px; }
+  .typing { display: flex; gap: 0.3em; animation: chat-typing 8s infinite; }
+  .typing i { width: 0.5em; height: 0.5em; border-radius: 50%; background: rgb(26 26 26 / 0.35); animation: blink 1s infinite; }
+  .typing i:nth-child(2) { animation-delay: 0.15s; }
+  .typing i:nth-child(3) { animation-delay: 0.3s; }
+  .reply { display: grid; gap: 0.25em; animation: chat-reply 8s infinite; }
+  .reply b { color: var(--fir); }
+  .reply span { color: rgb(26 26 26 / 0.65); }
+  @keyframes blink { 50% { opacity: 0.3; } }
+  @keyframes chat-me { 0% { opacity: 0; transform: translateY(10px); } 6%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  @keyframes chat-typing { 0%, 10% { opacity: 0; height: 0; padding-block: 0; } 14%, 32% { opacity: 1; height: auto; padding-block: 0.7em; } 36%, 100% { opacity: 0; height: 0; padding-block: 0; } }
+  @keyframes chat-reply { 0%, 34% { opacity: 0; transform: translateY(10px); } 40%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+  .big { font: 800 2em/1 var(--font-display); color: var(--fir); margin-top: 0.2em; }
+  .big small { font: 500 0.4em var(--font-ui); color: rgb(26 26 26 / 0.55); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mock *, .mock *::before { animation: none !important; opacity: 1 !important; }
+  }
+</style>

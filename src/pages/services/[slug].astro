@@ -2,6 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import Ticket from '../../components/Ticket.astro';
 import Phones from '../../components/Phones.astro';
+import ServiceMock from '../../components/ServiceMock.astro';
+import Shape from '../../components/Shape.astro';
 import { services, pillars, steps, type Service } from '../../config/site';
 
 export function getStaticPaths() {
@@ -45,23 +47,26 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 
   <section class="section" data-theme="cream">
     <div class="container sv-body">
-      <div class="sv-intro">
-        <p class="eyebrow reveal">Le service</p>
-        <p class="sv-intro__text reveal" style="--rd:.08s">{s.intro}</p>
-        {s.note && <p class="sv-note glass reveal">{s.note}</p>}
+      <div class="sv-stage reveal">
+        <ServiceMock slug={s.slug} />
       </div>
-      <div class="sv-items">
+      <div class="sv-what">
         <p class="eyebrow reveal">Ce que ça comprend</p>
-        <ol class="sv-list">
+        <h2 class="reveal" style="--rd:.06s">Trois choses, <em>bien faites.</em></h2>
+        <div class="sv-groups">
           {
-            s.items.map((it, i) => (
-              <li class="reveal" style={`--rd:${i * 0.05}s`}>
-                <span class="sv-list__n">{String(i + 1).padStart(2, '0')}</span>
-                <span>{it}</span>
-              </li>
+            s.groups.map((g, i) => (
+              <div class="sv-group reveal" style={`--rd:${0.1 + i * 0.08}s`}>
+                <span class="sv-group__ic"><Shape name={(['leaf', 'half', 'circle'] as const)[i % 3]} color={['var(--sage)', 'var(--ochre)', 'var(--clay)'][i % 3]} /></span>
+                <div>
+                  <h3>{g.t}</h3>
+                  <p class="split">{g.items.map((it) => <span>{it}</span>)}</p>
+                </div>
+              </div>
             ))
           }
-        </ol>
+        </div>
+        {s.note && <p class="sv-note bubble reveal">{s.note}</p>}
       </div>
     </div>
   </section>
@@ -140,6 +145,19 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 </Base>
 
 <style>
+  .sv-body { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: clamp(2rem, 6vw, 5.5rem); align-items: center; }
+  .sv-what { display: grid; gap: 1.2rem; align-content: start; }
+  .sv-what h2 { font-size: clamp(2rem, 3.6vw, 3.2rem); }
+  .sv-groups { display: grid; gap: 0.9rem; margin-top: 0.6rem; }
+  .sv-group { display: grid; grid-template-columns: auto 1fr; gap: 1.1rem; align-items: center; padding: 1.1rem 1.3rem; border-radius: 22px; background: rgb(255 255 255 / 0.6); box-shadow: 0 1px 1px rgb(0 0 0 / 0.03), 0 18px 40px -26px rgb(12 36 31 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9); transition: transform 0.5s var(--ease-out), background 0.4s var(--ease); }
+  .sv-group:hover { transform: translateX(6px); background: #fff; }
+  .sv-group__ic { width: 44px; display: block; }
+  .sv-group__ic :global(.shape) { width: 100%; height: auto; }
+  .sv-group h3 { font-size: 1.15rem; margin-bottom: 0.2rem; }
+  .sv-group p { font-size: 0.92rem; color: rgb(26 26 26 / 0.65); column-gap: 0.9em; }
+  .sv-note { justify-self: start; font-size: 0.85rem; padding: 0.7rem 1.1rem; border-radius: 16px; }
+  @media (max-width: 900px) { .sv-body { grid-template-columns: 1fr; } }
+
   .rel { position: relative; z-index: 1; }
   .sv-hero { position: relative; overflow: hidden; background: var(--grad-soft); padding: 150px 0 clamp(70px, 9vw, 120px); }
   .sv-hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
@@ -153,16 +171,6 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
   .sv-tag span { font: italic 700 1.3rem var(--font-display); color: var(--eucalyptus); }
   .sv-tag em { font-style: normal; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-  .sv-body { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(2.5rem, 7vw, 7rem); align-items: start; }
-  .sv-intro { display: grid; gap: 1.4rem; position: sticky; top: 120px; }
-  .sv-intro__text { font: italic 850 clamp(1.4rem, 2.2vw, 1.9rem)/1.35 var(--font-display); }
-  .sv-note { padding: 1.1rem 1.3rem; border-radius: var(--r-s); font-size: 0.92rem; }
-  .sv-items { display: grid; gap: 1.2rem; }
-  .sv-list { list-style: none; margin: 0; padding: 0; }
-  .sv-list li { display: flex; gap: 1.4rem; align-items: baseline; padding-block: 1.15rem; border-top: 1px solid var(--hair); font-size: 1.08rem; transition: padding 0.5s var(--ease-out), color 0.4s var(--ease); }
-  .sv-list li:last-child { border-bottom: 1px solid var(--hair); }
-  .sv-list li:hover { padding-left: 0.6rem; color: var(--moss); }
-  .sv-list__n { font: italic 700 1.15rem var(--font-display); color: var(--eucalyptus); min-width: 2ch; }
 
   .sv-pillars { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: clamp(64px, 8vw, 110px); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
   .sv-pillars__row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-top: 1.8rem; }
@@ -198,7 +206,6 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
   }
   @media (max-width: 800px) {
     .sv-hero__grid, .sv-body { grid-template-columns: 1fr; }
-    .sv-intro { position: static; }
     .sv-hero__visual { max-width: 420px; }
   }
   @media (max-width: 600px) {
