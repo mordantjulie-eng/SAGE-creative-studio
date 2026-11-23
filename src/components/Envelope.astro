@@ -11,6 +11,7 @@ const { href, class: cls = '', style = '' } = Astro.props;
     <span class="env__letter"><span class="env__word">M'écrire</span><span class="env__lines"><i></i><i></i><i></i></span></span>
     <span class="env__front"></span>
     <span class="env__flap"></span>
+    <span class="env__dot"></span>
   </span>
 </a>
 
@@ -44,6 +45,13 @@ const { href, class: cls = '', style = '' } = Astro.props;
     transition: transform 0.5s var(--ease-out) 0.25s, z-index 0s 0.5s, background 0.4s var(--ease) 0.25s;
   }
   .env:hover .env__flap, .env:focus-visible .env__flap { transform: perspective(600px) rotateX(180deg); z-index: 1; background-image: linear-gradient(180deg, #d8cec2, #e6ded4); transition: transform 0.5s var(--ease-out), z-index 0s 0.2s, background 0.4s var(--ease); }
+
+  /* Point qui pulse pour inviter au survol (demande de Julie) */
+  .env__dot { position: absolute; z-index: 5; left: 50%; top: 62%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--rasp); box-shadow: 0 2px 6px rgb(120 0 30 / 0.35); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease-out); }
+  .env__dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--rasp); animation: env-pulse 1.8s var(--ease-out) infinite; }
+  @keyframes env-pulse { from { transform: scale(1); opacity: 0.55; } to { transform: scale(3.2); opacity: 0; } }
+  .env:hover .env__dot, .env:focus-visible .env__dot { opacity: 0; transform: scale(0.4); }
+  @media (hover: none) { .env__dot { display: none; } }
 
   /* La feuille qui sort */
   .env__letter {
