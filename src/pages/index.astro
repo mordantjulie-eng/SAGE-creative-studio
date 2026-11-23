@@ -25,7 +25,6 @@ const tools = [
   { name: 'Mailchimp', path: siMailchimp.path },
   { name: 'Metricool', path: null, word: 'metricool' },
 ];
-const reeds = Array.from({ length: 9 });
 ---
 
 <Base>
@@ -59,7 +58,7 @@ const reeds = Array.from({ length: 9 });
 
         <div class="hero__visual reveal" style="--rd:.3s" aria-hidden="true">
           <span class="organic hero__blob"></span>
-          <div class="hero__photo"><img class="photo" src={m('julie-bw')} alt="" /><span class="reeded hero__reeds">{reeds.map(() => <i />)}</span></div>
+          <div class="hero__photo"><img src={m('julie-bw')} alt="" /></div>
           <p class="hero__hand float" style="--d:7s">Creative<br />thinking.</p>
         </div>
 
@@ -138,8 +137,11 @@ const reeds = Array.from({ length: 9 });
     <div class="container">
       <div class="about__grid">
         <div class="about__visual reveal">
-          <div class="about__photo"><img class="photo" src={m('julie-filming-2')} alt="Julie, fondatrice de SAGE Creative Studio" /><span class="reeded about__reeds" aria-hidden="true">{reeds.slice(0, 6).map(() => <i />)}</span></div>
-          <p class="about__hand" aria-hidden="true">Julie</p>
+          <div class="about__float">
+            <div class="about__photo"><img src={m('julie-filming-2')} alt="Julie, fondatrice de SAGE Creative Studio" /></div>
+            <p class="about__hand" aria-hidden="true">Julie</p>
+          </div>
+          <span class="about__shadow" aria-hidden="true"></span>
         </div>
         <div class="about__text">
           <p class="eyebrow reveal">About the studio</p>
@@ -304,7 +306,6 @@ const reeds = Array.from({ length: 9 });
   .hero__blob { inset: -12% -18% -6% -14%; --ob: 34px; z-index: -1; }
   .hero__photo { position: absolute; inset: 0; border-radius: 50% / 42%; overflow: hidden; box-shadow: var(--shadow); }
   .hero__photo img { width: 100%; height: 100%; object-position: 45% 30%; filter: grayscale(1) contrast(1.05); }
-  .hero__reeds { left: 62%; right: 0; top: 0; bottom: 0; }
   /* Annotation manuscrite, sans cachet */
   .hero__hand { position: absolute; right: -16%; top: 6%; margin: 0; font: 400 clamp(1.9rem, 3vw, 2.8rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-8deg); text-shadow: 0 1px 0 rgb(255 255 255 / 0.4); }
   .hero__side { list-style: none; margin: 0; padding: 0 0 0.5rem; display: grid; gap: 0.2rem; text-align: right; font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; }
@@ -363,11 +364,15 @@ const reeds = Array.from({ length: 9 });
 
   /* ABOUT */
   .about__grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(2.5rem, 7vw, 7rem); align-items: center; }
-  .about__visual { position: relative; }
-  .about__photo { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-l); overflow: hidden; box-shadow: var(--shadow); }
+  /* Photo nette qui part du bord gauche de l'écran et flotte, avec son ombre posée dessous */
+  .about__visual { position: relative; margin-left: calc(-1 * (max(0px, (100vw - var(--container)) / 2) + var(--gutter))); padding-bottom: 46px; }
+  .about__float { position: relative; animation: about-float 7s ease-in-out infinite; }
+  .about__photo { position: relative; aspect-ratio: 4 / 4.6; border-radius: 0 var(--r-l) var(--r-l) 0; overflow: hidden; box-shadow: 0 30px 50px -30px rgb(34 6 12 / 0.35); }
   .about__photo img { width: 100%; height: 100%; object-position: 50% 25%; }
-  .about__reeds { left: 0; width: 30%; top: 0; bottom: 0; }
-  .about__hand { position: absolute; right: -24%; bottom: -5%; text-shadow: 0 1px 0 rgb(255 255 255 / 0.5); margin: 0; font: 400 clamp(3rem, 5vw, 4.4rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-8deg); }
+  .about__shadow { position: absolute; left: 6%; right: 6%; bottom: 0; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgb(34 6 12 / 0.32), transparent); filter: blur(6px); animation: about-shadow 7s ease-in-out infinite; }
+  @keyframes about-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  @keyframes about-shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(0.86); opacity: 0.65; } }
+  .about__hand { position: absolute; right: 8%; bottom: 6%; margin: 0; font: 400 clamp(3.2rem, 5.4vw, 4.8rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: #fff; transform: rotate(-8deg); text-shadow: 0 2px 12px rgb(0 0 0 / 0.35); }
   .about__text { display: grid; gap: 1.6rem; justify-items: start; }
   .about__text h2 { font-size: var(--h2); }
   .crew { display: grid; gap: 0.8rem; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
@@ -417,7 +422,7 @@ const reeds = Array.from({ length: 9 });
     .pil__body { position: static; padding: 0 1.4rem 1.6rem; display: none; }
     .pil.is-on .pil__body { display: grid; }
     .about__grid, .contact__grid { grid-template-columns: 1fr; }
-    .about__visual { max-width: 440px; }
+    .about__visual { max-width: 520px; }
   }
   @media (max-width: 640px) {
     .hero { padding-top: 84px; }
@@ -428,7 +433,7 @@ const reeds = Array.from({ length: 9 });
     .hero__ctas .btn { width: 100%; }
     .row__items { columns: 1; }
     .steps li { grid-template-columns: 1fr; gap: 0.2rem; }
-    .about__hand { right: 2%; font-size: 2.8rem; }
+    .about__hand { right: 6%; font-size: 3rem; }
     .hero__hand { right: -4%; top: 2%; font-size: 1.7rem; }
   }
 </style>

@@ -193,7 +193,7 @@ const {
           if (amp < 0.3 && target === 0 && active) { active.classList.remove('liquid-img'); active = null; }
           if (active || target) requestAnimationFrame(tick); else t0 = 0;
         };
-        document.querySelectorAll<HTMLElement>('img.photo, .st-portrait img, .st-shot__img img').forEach((img) => {
+        document.querySelectorAll<HTMLElement>('img.photo, .st-shot__img img').forEach((img) => {
           img.addEventListener('pointerenter', () => {
             if (active && active !== img) active.classList.remove('liquid-img');
             active = img; img.classList.add('liquid-img'); target = 16;
