@@ -1,6 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
 import { brand, partners, steps } from '../config/site';
+import { siInstagram, siTiktok, siBrevo, siMailchimp, siMeta, siNotion } from 'simple-icons';
+import { canvaPath, openaiPath } from '../assets/extra-icons';
+
+// Les outils du quotidien, qui flottent autour du portrait : x, y en %, taille en px, z = profondeur (-1 derrière et flou, 1 devant)
+const tools = [
+  { n: 'Instagram', p: siInstagram.path, x: -8, y: 8, s: 74, z: 1, c: 'rasp' },
+  { n: 'TikTok', p: siTiktok.path, x: 84, y: 4, s: 58, z: -1, c: 'choco' },
+  { n: 'LinkedIn', w: 'in', x: 92, y: 30, s: 66, z: 1, c: 'butter' },
+  { n: 'Meta', p: siMeta.path, x: -14, y: 40, s: 52, z: -1, c: 'white' },
+  { n: 'Canva', p: canvaPath, x: 88, y: 58, s: 62, z: 1, c: 'rasp' },
+  { n: 'CapCut', w: 'CapCut', x: -10, y: 70, s: 70, z: 1, c: 'choco' },
+  { n: 'Notion', p: siNotion.path, x: 36, y: -6, s: 50, z: -1, c: 'white' },
+  { n: 'ChatGPT', p: openaiPath, x: 80, y: 82, s: 60, z: 1, c: 'white' },
+  { n: 'Brevo', p: siBrevo.path, x: 14, y: 92, s: 48, z: -1, c: 'butter' },
+  { n: 'Mailchimp', p: siMailchimp.path, x: 56, y: 96, s: 54, z: 1, c: 'butter' },
+  { n: 'Metricool', w: 'metricool', x: 62, y: -4, s: 60, z: 1, c: 'choco' },
+];
 
 const traits = [
   { word: 'Créative', text: 'Des idées qui sortent du lot, toujours au service de votre objectif.' },
@@ -40,8 +57,16 @@ const shots = [
       </div>
       <div class="st-hero__visual reveal" style="--rd:.1s">
         <div class="st-portrait arch"><img src="/media/julie-bw.jpg" alt="Portrait de Julie, fondatrice de SAGE Creative Studio" /></div>
-        <div class="st-wink float" style="--d:7s"><img src="/media/julie-wink.jpg" alt="" /></div>
-        <div class="st-quote glass float" style="--d:8s;--delay:-2s"><em>Think. Create.</em><br />Grow. Evolve.</div>
+        <ul class="st-tools" aria-label="Les outils que j'utilise au quotidien">
+          {tools.map((t, i) => (
+            <li class={`st-tool st-tool--${t.c}`} style={`--x:${t.x}%;--y:${t.y}%;--s:${t.s}px;--z:${t.z};--d:${5.5 + (i % 4) * 0.9}s;--delay:${-i * 0.8}s;--r:${((i * 37) % 24) - 12}deg`} title={t.n}>
+              <span class="st-tool__in">
+                {t.p ? <svg viewBox="0 0 24 24" aria-hidden="true"><path d={t.p} fill="currentColor" /></svg> : <span class:list={['st-tool__w', { 'st-tool__w--s': (t.w || '').length > 3 }]} aria-hidden="true">{t.w}</span>}
+                <span class="sr-only">{t.n}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -177,10 +202,18 @@ const shots = [
   .st-hero__visual { position: relative; padding: 0 0 2rem 2rem; }
   .st-portrait { aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
   .st-portrait img { width: 100%; height: 100%; }
-  .st-wink { position: absolute; left: -4%; bottom: 0; width: 36%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; border: 6px solid rgb(255 255 255 / 0.7); box-shadow: var(--shadow); }
-  .st-wink img { width: 100%; height: 100%; object-position: 30% 30%; }
-  .st-quote { position: absolute; right: -4%; top: 18%; font-size: 1.1rem !important; padding: 1rem 1.4rem; border-radius: var(--r-s); font: 300 1.3rem/1.2 var(--font-ui); font-stretch: 125%; letter-spacing: -0.04em; }
-  .st-quote em { color: var(--eucalyptus); }
+  /* Logos des outils qui flottent autour du portrait, devant (nets) et derrière (flous) */
+  .st-tools { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0 0 2rem 2rem; pointer-events: none; }
+  .st-tool { position: absolute; left: var(--x); top: var(--y); width: var(--s); z-index: calc(2 + var(--z)); filter: blur(calc(max(0, -1 * var(--z)) * 2px)) drop-shadow(0 14px 16px rgb(34 6 12 / 0.28)); opacity: calc(1 + min(0, var(--z)) * 0.12); animation: float var(--d) ease-in-out infinite; animation-delay: var(--delay); --fy: -12px; }
+  .st-tool__in { display: grid; place-items: center; width: 100%; aspect-ratio: 1; border-radius: 26%; transform: rotate(var(--r)); box-shadow: inset 0 3px 5px rgb(255 255 255 / 0.35), inset 0 -5px 8px rgb(0 0 0 / 0.22); }
+  .st-tool svg { width: 52%; height: 52%; }
+  .st-tool--rasp .st-tool__in { background: linear-gradient(150deg, #e0405f, #c8193c 55%, #9e0f2c); color: #fff; }
+  .st-tool--choco .st-tool__in { background: linear-gradient(150deg, #7d1a30, #3a0b16 55%, #22060c); color: var(--butter); }
+  .st-tool--butter .st-tool__in { background: linear-gradient(150deg, #e6dcfb, #cdbdf2 55%, #a995dc); color: var(--choco); }
+  .st-tool--white .st-tool__in { background: linear-gradient(150deg, #ffffff, #f4ede4 55%, #ddd2c6); color: var(--choco); }
+  .st-tool__w { font: 800 calc(var(--s) * 0.36)/1 var(--font-ui); letter-spacing: -0.04em; }
+  .st-tool__w--s { font-size: calc(var(--s) * 0.2); }
+  .st-portrait { position: relative; z-index: 2; }
 
   .st-why { display: grid; gap: 1.4rem; }
   .st-big { font: 500 clamp(1.8rem, 3.6vw, 3.3rem)/1.08 var(--font-ui); letter-spacing: -0.05em; max-width: 26ch; }
@@ -235,7 +268,7 @@ const shots = [
   @media (max-width: 560px) {
     .st-traits, .st-steps { grid-template-columns: 1fr; }
     .st-trait { min-height: 0; }
-    .st-quote { right: 0; }
+    .st-tool { --s: 46px !important; }
     .st-cta__btns .btn { width: 100%; }
   }
 </style>
