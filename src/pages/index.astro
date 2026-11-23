@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import '@fontsource/kaushan-script';
+import '@fontsource/nothing-you-could-do';
 import ContactForm from '../components/ContactForm.astro';
 import Veil from '../components/Veil.astro';
 import Timeline from '../components/Timeline.astro';
@@ -268,9 +268,9 @@ const tools = [
   .hero__title { align-self: center; }
   .hero__row { align-self: end; }
   .hero__title {
-    font-size: clamp(3.4rem, 11vw, 12.5rem);
-    line-height: 0.86;
-    letter-spacing: -0.005em;
+    font-size: clamp(3.1rem, 9.6vw, 10.4rem);
+    line-height: 0.88;
+    letter-spacing: -0.065em;
     display: grid;
     filter: blur(var(--hb, 0px));
     transform: translateY(var(--hy, 0px));
@@ -313,7 +313,7 @@ const tools = [
   .row summary::-webkit-details-marker { display: none; }
   .row__t { font-size: clamp(1.8rem, 4.2vw, 4rem); font-weight: 560; letter-spacing: -0.055em; line-height: 0.95; transition: color 0.4s var(--ease), letter-spacing 0.6s var(--ease-out), font-stretch 0.6s var(--ease-out); }
   .row summary:hover .row__t, .row[open] .row__t { color: var(--blush); font-stretch: 112%; }
-  .row__s { color: rgb(245 243 238 / 0.7); max-width: 26rem; }
+  .row__s { color: rgb(246 236 236 / 0.7); max-width: 26rem; }
   .row__plus { position: relative; width: 44px; height: 44px; border-radius: 50%; background: rgb(255 255 255 / 0.08); transition: background 0.4s var(--ease), transform 0.5s var(--ease-out); }
   .row__plus::before, .row__plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); }
   .row__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
@@ -321,7 +321,7 @@ const tools = [
   .row[open] .row__plus { transform: rotate(45deg); background: var(--rasp); }
   .row__body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 44px; gap: 1.5rem; padding-bottom: 2.4rem; animation: unblur 0.8s var(--ease-out); }
   @keyframes unblur { from { opacity: 0; filter: blur(10px); transform: translateY(-8px); } }
-  .row__items { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; font-size: 0.95rem; color: rgb(245 243 238 / 0.82); }
+  .row__items { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; font-size: 0.95rem; color: rgb(246 236 236 / 0.82); }
   .row__items li { break-inside: avoid; padding: 0.35rem 0; }
   .row__side { display: grid; gap: 1.2rem; justify-items: start; align-content: start; }
   .row__tags { font-size: 0.72rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; color: var(--blush); }
@@ -335,7 +335,7 @@ const tools = [
   .mindset { overflow: hidden; }
   .pils { display: flex; gap: 0.8rem; height: clamp(460px, 62vh, 600px); }
   .pil { position: relative; flex: 1; min-width: 0; border-radius: var(--r-l); background: rgb(255 255 255 / 0.32); overflow: hidden; transition: flex 0.9s var(--ease-out), background 0.6s var(--ease), color 0.6s var(--ease); }
-  .pil.is-on { flex: 3.4; background: var(--choco); color: #f5f3ee; }
+  .pil.is-on { flex: 3.4; background: var(--choco); color: #f6ecec; }
   .pil__head { all: unset; box-sizing: border-box; position: absolute; inset: 0 auto auto 0; width: 100%; height: 100%; padding: 1.6rem; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
   .pil.is-on .pil__head { height: auto; pointer-events: none; }
   .pil__head:focus-visible { box-shadow: inset 0 0 0 3px var(--rasp); border-radius: var(--r-l); }
@@ -346,11 +346,11 @@ const tools = [
   .pil__body { position: absolute; left: 1.6rem; right: 1.6rem; bottom: 1.6rem; display: grid; gap: 1rem; justify-items: start; max-width: 34rem; opacity: 0; visibility: hidden; filter: blur(10px); transition: opacity 0.4s var(--ease), filter 0.5s var(--ease), visibility 0s 0.4s; }
   .pil.is-on .pil__body { opacity: 1; visibility: visible; filter: none; transition: opacity 0.7s 0.35s var(--ease-out), filter 0.8s 0.35s var(--ease-out), visibility 0s; }
   .pil__body h3 { font-size: clamp(1.5rem, 2.4vw, 2.2rem); }
-  .pil__body > p { color: rgb(245 243 238 / 0.78); }
+  .pil__body > p { color: rgb(246 236 236 / 0.78); }
   .pil .btn--primary { background: var(--white); color: var(--choco); }
   .pil__in { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-size: 0.88rem; }
   .pil__in span { font-size: 0.68rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; opacity: 0.6; }
-  .pil__in a { text-decoration: none; border-bottom: 1px solid rgb(245 243 238 / 0.35); }
+  .pil__in a { text-decoration: none; border-bottom: 1px solid rgb(246 236 236 / 0.35); }
   .pil__in a:hover { color: var(--blush); }
 
   /* ABOUT */
@@ -358,12 +358,12 @@ const tools = [
   /* Photo nette qui part du bord gauche de l'écran et flotte, avec son ombre posée dessous */
   .about__visual { position: relative; margin-left: calc(-1 * (max(0px, (100vw - var(--container)) / 2) + var(--gutter))); padding-bottom: 46px; }
   .about__float { position: relative; animation: about-float 7s ease-in-out infinite; }
-  .about__photo { position: relative; aspect-ratio: 4 / 4.6; border-radius: 0 var(--r-l) var(--r-l) 0; overflow: hidden; box-shadow: 0 30px 50px -30px rgb(14 18 56 / 0.35); }
+  .about__photo { position: relative; aspect-ratio: 4 / 4.6; border-radius: 0 var(--r-l) var(--r-l) 0; overflow: hidden; box-shadow: 0 30px 50px -30px rgb(34 6 12 / 0.35); }
   .about__photo img { width: 100%; height: 100%; object-position: 50% 25%; }
-  .about__shadow { position: absolute; left: 6%; right: 6%; bottom: 0; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgb(14 18 56 / 0.32), transparent); filter: blur(6px); animation: about-shadow 7s ease-in-out infinite; }
+  .about__shadow { position: absolute; left: 6%; right: 6%; bottom: 0; height: 26px; border-radius: 50%; background: radial-gradient(closest-side, rgb(34 6 12 / 0.32), transparent); filter: blur(6px); animation: about-shadow 7s ease-in-out infinite; }
   @keyframes about-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
   @keyframes about-shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(0.86); opacity: 0.65; } }
-  .about__hand { position: absolute; right: 8%; bottom: 6%; margin: 0; font: 400 clamp(3.2rem, 5.4vw, 4.8rem)/1 'Kaushan Script', 'Brush Script MT', cursive; color: #fff; transform: rotate(-8deg); text-shadow: 0 2px 12px rgb(0 0 0 / 0.35); }
+  .about__hand { position: absolute; right: 8%; bottom: 6%; margin: 0; font: 400 clamp(3.2rem, 5.4vw, 4.8rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: #fff; transform: rotate(-8deg); text-shadow: 0 2px 12px rgb(0 0 0 / 0.35); }
   .about__text { display: grid; gap: 1.6rem; justify-items: start; }
   .about__text h2 { font-size: var(--h2); }
   .crew { display: grid; gap: 0.8rem; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
@@ -375,7 +375,7 @@ const tools = [
   .tools { margin-top: clamp(64px, 8vw, 120px); display: grid; gap: 1rem; }
   .tools__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
   .tool { display: grid; justify-items: start; gap: 1.6rem; padding: 1rem; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); transition: background 0.4s var(--ease), color 0.4s var(--ease); }
-  .tool:hover { background: var(--choco); color: #f5f3ee; }
+  .tool:hover { background: var(--choco); color: #f6ecec; }
   .tool__ic { width: 26px; height: 26px; display: grid; align-items: center; color: var(--choco); transition: color 0.4s var(--ease); }
   .tool:hover .tool__ic { color: var(--blush); }
   .tool__word { font-size: 0.78rem; font-weight: 750; letter-spacing: -0.03em; white-space: nowrap; }
