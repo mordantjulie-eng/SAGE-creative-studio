@@ -3,7 +3,7 @@
 // posé sur une couverture bordeaux imprimée ton sur ton. Au défilement, les quatre rabats s'écartent,
 // le cachet s'efface et le titre des expertises apparaît. La liste des services suit sur le même fond.
 import { services } from '../config/site';
-import WaxSeal from './WaxSeal.astro';
+import PressedLogo from './PressedLogo.astro';
 ---
 
 <section class="scene veil" data-theme="sage" data-scene data-veil aria-label="Six expertises">
@@ -27,7 +27,7 @@ import WaxSeal from './WaxSeal.astro';
       <i class="flap flap--l"></i>
       <i class="flap flap--r"></i>
     </div>
-    <WaxSeal class="veil__seal" />
+    <div class="veil__seal veil__sticker"><PressedLogo /></div>
     <p class="veil__hint eyebrow" aria-hidden="true">Faites défiler pour ouvrir</p>
   </div>
 </section>
@@ -149,12 +149,17 @@ import WaxSeal from './WaxSeal.astro';
     transform: translateX(calc(var(--open) * 62%));
     z-index: 2;
   }
+  /* Étiquette en papier épais, logo tamponné, qui retient le papier de soie */
+  .veil__sticker { width: var(--sw); padding: calc(var(--sw) * 0.1) calc(var(--sw) * 0.09); border-radius: 6px;
+    background-color: #f8f5f0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.33 0 0 0 0 0.3 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"), linear-gradient(160deg, #fffdf9, #efe9e1);
+    box-shadow: 0 1px 0 #fff inset, 0 2px 3px rgb(34 6 12 / 0.1), 0 24px 40px -18px rgb(34 6 12 / 0.4); }
   .veil :global(.veil__seal) {
     position: absolute;
     z-index: 5;
     left: 50%;
     top: 50%;
-    --sw: clamp(220px, 24vw, 330px);
+    --sw: clamp(240px, 26vw, 360px);
     transform: translate(-50%, calc(-50% - var(--open) * 30vh)) scale(calc(1 - var(--open) * 0.4)) rotate(calc(var(--open) * -12deg));
     opacity: calc(1 - var(--open) * 1.6);
     margin: 0;
