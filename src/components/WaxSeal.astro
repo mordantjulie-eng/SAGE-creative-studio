@@ -27,17 +27,17 @@ const lx = 200 - 90, ly = 196 - (575 * s) / 2;
         <feComposite in="lit" in2="specIn" operator="arithmetic" k2="1" k3="0.75" />
       </filter>
       <radialGradient id={`${uid}-press`} cx="58%" cy="60%" r="62%">
-        <stop offset="0" stop-color="#c8193c" />
+        <stop offset="0" stop-color="#d4652a" />
         <stop offset="0.75" stop-color="#b3142f" />
         <stop offset="1" stop-color="#7c0a22" />
       </radialGradient>
       <linearGradient id={`${uid}-rim`} x1="0" y1="0" x2="1" y2="1">
         <stop offset="0" stop-color="#6e0a1e" />
         <stop offset="0.5" stop-color="#a8102f" />
-        <stop offset="1" stop-color="#ff8aa0" />
+        <stop offset="1" stop-color="#ffd2a8" />
       </linearGradient>
       <linearGradient id={`${uid}-lip`} x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#ff9db0" />
+        <stop offset="0" stop-color="#ffd2a8" />
         <stop offset="0.55" stop-color="#d42346" />
         <stop offset="1" stop-color="#5e0818" />
       </linearGradient>
@@ -45,7 +45,7 @@ const lx = 200 - 90, ly = 196 - (575 * s) / 2;
 
     <!-- Cire coulée -->
     <g filter={`url(#${uid}-wax)`}>
-      <g fill="#c8193c">
+      <g fill="#d4652a">
         <circle cx="200" cy="200" r="150" />
         <circle cx="318" cy="248" r="34" />
         <circle cx="96" cy="292" r="28" />
@@ -61,20 +61,20 @@ const lx = 200 - 90, ly = 196 - (575 * s) / 2;
     <circle cx="200" cy="200" r="114" fill={`url(#${uid}-press)`} />
     <circle cx="200" cy="200" r="113" fill="none" stroke={`url(#${uid}-rim)`} stroke-width="4" />
     <circle cx="200" cy="200" r="100" fill="none" stroke="#8f0c27" stroke-width="1.2" opacity="0.7" />
-    <circle cx="200.8" cy="200.8" r="100" fill="none" stroke="#ff8aa0" stroke-width="0.8" opacity="0.5" />
+    <circle cx="200.8" cy="200.8" r="100" fill="none" stroke="#ffd2a8" stroke-width="0.8" opacity="0.5" />
 
     <!-- Logo en creux -->
     <g transform={`translate(${lx} ${ly}) scale(${s})`}>
-      <path d={d} fill="#ff9aae" opacity="0.55" transform="translate(22 22)" />
+      <path d={d} fill="#ffd2a8" opacity="0.55" transform="translate(22 22)" />
       <path d={d} fill="#5e0818" transform="translate(-14 -14)" />
       <path d={d} fill="#a10f2c" />
     </g>
     <text x="200" y="262" text-anchor="middle" font-family="Mona Sans Variable, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3" fill="#6e0a1e" style="font-stretch:125%">CREATIVE STUDIO</text>
-    <text x="200.7" y="262.7" text-anchor="middle" font-family="Mona Sans Variable, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3" fill="#ff9aae" opacity="0.45" style="font-stretch:125%">CREATIVE STUDIO</text>
+    <text x="200.7" y="262.7" text-anchor="middle" font-family="Mona Sans Variable, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3" fill="#ffd2a8" opacity="0.45" style="font-stretch:125%">CREATIVE STUDIO</text>
   </svg>
 </div>
 
 <style>
-  .wax { width: var(--sw, 260px); aspect-ratio: 1; filter: drop-shadow(0 22px 26px rgb(60 0 12 / 0.45)) drop-shadow(0 4px 6px rgb(60 0 12 / 0.3)); }
+  .wax { width: var(--sw, 260px); aspect-ratio: 1; filter: drop-shadow(0 22px 26px rgb(60 30 10 / 0.45)) drop-shadow(0 4px 6px rgb(60 30 10 / 0.3)); }
   .wax svg { width: 100%; height: 100%; overflow: visible; }
 </style>

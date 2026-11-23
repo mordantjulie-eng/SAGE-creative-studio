@@ -4,7 +4,7 @@
 import full from '../assets/logo-full.svg?raw';
 interface Props { class?: string; ink?: string; shade?: string; light?: string; rim?: boolean; raised?: boolean }
 // Par défaut : encre carmin sur papier. Sur un fond coloré : encre blanc cassé, ombre rosée.
-const { class: cls = '', ink = '#c8193c', shade = '#3a0010', light = '#ff9fb1', rim = true, raised = false } = Astro.props;
+const { class: cls = '', ink = '#d4652a', shade = '#4a1e08', light = '#ffd2a8', rim = true, raised = false } = Astro.props;
 // en relief : la lumière et l'ombre s'inversent
 const k = raised ? -1 : 1;
 const d = (full.match(/ d="([^"]+)"/) || [])[1] || '';
