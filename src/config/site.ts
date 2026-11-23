@@ -52,7 +52,7 @@ export type Service = {
   tone: 'forest' | 'ivory' | 'ochre' | 'soft' | 'rust' | 'taupe';
   img: string;
   note?: string;
-  groups: { t: string; items: string[] }[];
+  groups: { t: string; items: string[]; d?: string }[];
 };
 
 export const services: Service[] = [
@@ -78,9 +78,9 @@ export const services: Service[] = [
     tone: 'forest',
     img: 'fmt-influence',
     groups: [
-      { t: 'Planifier', items: ['Calendrier éditorial', 'Programmation'] },
-      { t: 'Animer', items: ['Modération', 'Messages', 'Communauté'] },
-      { t: 'Mesurer', items: ['Veille', 'Reporting'] },
+      { t: 'Planifier', items: ['Calendrier éditorial', 'Programmation'], d: "Décider à l'avance quoi publier, où et quand, pour rester régulier sans courir après le prochain post." },
+      { t: 'Animer', items: ['Modération', 'Messages', 'Communauté'], d: 'Répondre, modérer et faire vivre les échanges, pour que votre communauté se sente écoutée.' },
+      { t: 'Mesurer', items: ['Veille', 'Reporting'], d: 'Suivre ce que font vos concurrents et lire vos chiffres chaque mois, pour savoir ce qui marche vraiment.' },
     ],
   },
   {
@@ -106,9 +106,9 @@ export const services: Service[] = [
     tone: 'ochre',
     img: 'fmt-packshot',
     groups: [
-      { t: 'Photo et graphisme', items: ['Shootings', 'Visuels', 'Carrousels'] },
-      { t: 'Vidéo', items: ['Reels', 'TikTok', 'Shorts', 'Vidéo longue'] },
-      { t: 'Sur le terrain', items: ['UGC', 'Événements', 'Campagnes'] },
+      { t: 'Photo et graphisme', items: ['Shootings', 'Visuels', 'Carrousels'], d: 'Des images soignées et des visuels à votre image : shootings, carrousels et créations pour chaque format.' },
+      { t: 'Vidéo', items: ['Reels', 'TikTok', 'Shorts', 'Vidéo longue'], d: 'Des vidéos courtes qui accrochent dès la première seconde, et des formats plus longs quand le sujet le mérite.' },
+      { t: 'Sur le terrain', items: ['UGC', 'Événements', 'Campagnes'], d: 'Du contenu pris sur le vif : créateurs UGC, coulisses, événements et temps forts de vos campagnes.' },
     ],
   },
   {
@@ -133,9 +133,9 @@ export const services: Service[] = [
     tone: 'ivory',
     img: 'zoom-reseaux',
     groups: [
-      { t: 'Comprendre', items: ['Audit', 'Veille', 'Marché'] },
-      { t: 'Positionner', items: ['Positionnement', 'Storytelling'] },
-      { t: 'Planifier', items: ['Stratégie social media', 'Ligne éditoriale'] },
+      { t: 'Comprendre', items: ['Audit', 'Veille', 'Marché'], d: 'Faire le point sur votre communication, votre public et votre marché avant de décider quoi que ce soit.' },
+      { t: 'Positionner', items: ['Positionnement', 'Storytelling'], d: "Trouver ce qui vous rend unique et le dire clairement, avec une histoire qu'on retient." },
+      { t: 'Planifier', items: ['Stratégie social media', 'Ligne éditoriale'], d: 'Fixer les priorités, les canaux et le ton, dans un plan simple que votre équipe peut suivre.' },
     ],
   },
   {
@@ -160,9 +160,9 @@ export const services: Service[] = [
     tone: 'soft',
     img: 'work-welcome-spring',
     groups: [
-      { t: 'Identité', items: ['Logo', 'Couleurs', 'Typographies'] },
-      { t: 'Direction artistique', items: ['Univers', 'Concepts créatifs'] },
-      { t: 'Outils', items: ['Templates', 'Supports', 'Charte'] },
+      { t: 'Identité', items: ['Logo', 'Couleurs', 'Typographies'], d: "Les éléments qui font qu'on vous reconnaît : logo, couleurs et typographies qui vont ensemble." },
+      { t: 'Direction artistique', items: ['Univers', 'Concepts créatifs'], d: "L'univers visuel de la marque et les idées créatives qui le font vivre, campagne après campagne." },
+      { t: 'Outils', items: ['Templates', 'Supports', 'Charte'], d: "Des templates et une charte prêts à l'emploi, pour rester cohérent au quotidien, même sans moi." },
     ],
   },
   {
@@ -187,9 +187,9 @@ export const services: Service[] = [
     tone: 'rust',
     img: 'work-rhode',
     groups: [
-      { t: 'Sélectionner', items: ['Stratégie', 'Créateurs', 'Briefs'] },
-      { t: 'Coordonner', items: ['Collaborations', 'Campagnes UGC'] },
-      { t: 'Mesurer', items: ['Suivi', 'Résultats'] },
+      { t: 'Sélectionner', items: ['Stratégie', 'Créateurs', 'Briefs'], d: 'Choisir les créateurs qui parlent vraiment à votre public, et leur donner un brief clair qui laisse place à leur créativité.' },
+      { t: 'Coordonner', items: ['Collaborations', 'Campagnes UGC'], d: 'Gérer les échanges, les contrats et le calendrier des collaborations, du premier contact à la publication.' },
+      { t: 'Mesurer', items: ['Suivi', 'Résultats'], d: "Suivre chaque collaboration et mesurer ce qu'elle a apporté : visibilité, engagement, ventes." },
     ],
   },
   {
@@ -217,9 +217,9 @@ export const services: Service[] = [
     img: 'bts-montage',
     note: 'Des outils pensés pour votre façon de travailler, pas des solutions toutes faites. Je ne crée pas de sites web pour mes clients.',
     groups: [
-      { t: 'Former', items: ['Ateliers métiers', 'Prompting', 'IA générative'] },
-      { t: 'Optimiser', items: ['Processus', 'Automatisations'] },
-      { t: 'Créer', items: ['Agents IA sur mesure', 'Outils internes', 'Suivi clients'] },
+      { t: 'Former', items: ['Ateliers métiers', 'Prompting', 'IA générative'], d: "Des ateliers adaptés à chaque métier pour que vos équipes utilisent l'IA avec confiance, sans jargon." },
+      { t: 'Optimiser', items: ['Processus', 'Automatisations'], d: 'Repérer les tâches qui se répètent et les automatiser, pour libérer du temps sur ce qui compte.' },
+      { t: 'Créer', items: ['Agents IA sur mesure', 'Outils internes', 'Suivi clients'], d: 'Des agents IA et des outils pensés pour votre organisation interne et le suivi de vos clients.' },
     ],
   },
 ];
