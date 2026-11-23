@@ -17,16 +17,6 @@ export const nav: NavItem[] = [
   { label: 'Services', href: '/#services', children: [] },
   { label: 'Mindset', href: '/#mindset', children: [] },
   {
-    label: 'Parcours',
-    href: '/#parcours',
-    children: [
-      { label: 'Études et premiers pas', href: '/#parcours-1', hint: 'EPHEC, YourStory Agency' },
-      { label: 'Les agences', href: '/#parcours-2', hint: 'ENEON / Idweaver, Socialsky' },
-      { label: 'Kontnu', href: '/#parcours-3', hint: 'Marketing, contenus, business et équipe' },
-      { label: 'En résumé, puis SAGE', href: '/#parcours-4', hint: 'Ce que j\'apporte, et le studio en 2027' },
-    ],
-  },
-  {
     label: 'Studio',
     href: '/studio',
     children: [
