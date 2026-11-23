@@ -1,0 +1,80 @@
+---
+// Cachet de cire fondue en relief, tamponné du logo SAGE. (SVG : bords coulés + éclairage 3D).
+import word from '../assets/logo-word.svg?raw';
+interface Props { class?: string; style?: string }
+const { class: cls = '', style = '' } = Astro.props;
+const d = (word.match(/ d="([^"]+)"/) || [])[1] || '';
+const uid = `w${Math.random().toString(36).slice(2, 7)}`;
+const s = 180 / 2030; // logo ramené à 180 de large
+const lx = 200 - 90, ly = 196 - (575 * s) / 2;
+---
+
+<div class:list={['wax', cls]} style={style} aria-hidden="true">
+  <svg viewBox="0 0 400 400">
+    <defs>
+      <filter id={`${uid}-wax`} x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="7" result="n" />
+        <feDisplacementMap in="SourceGraphic" in2="n" scale="34" xChannelSelector="R" yChannelSelector="G" result="shape" />
+        <feGaussianBlur in="shape" stdDeviation="9" result="bump" />
+        <feDiffuseLighting in="bump" surfaceScale="6" diffuseConstant="1.15" lighting-color="#ffffff" result="diff">
+          <feDistantLight azimuth="235" elevation="48" />
+        </feDiffuseLighting>
+        <feComposite in="shape" in2="diff" operator="arithmetic" k1="1" result="lit" />
+        <feSpecularLighting in="bump" surfaceScale="6" specularConstant="1.1" specularExponent="28" lighting-color="#ffe3ea" result="spec">
+          <fePointLight x="90" y="60" z="260" />
+        </feSpecularLighting>
+        <feComposite in="spec" in2="shape" operator="in" result="specIn" />
+        <feComposite in="lit" in2="specIn" operator="arithmetic" k2="1" k3="0.75" />
+      </filter>
+      <radialGradient id={`${uid}-press`} cx="58%" cy="60%" r="62%">
+        <stop offset="0" stop-color="#c8193c" />
+        <stop offset="0.75" stop-color="#b3142f" />
+        <stop offset="1" stop-color="#7c0a22" />
+      </radialGradient>
+      <linearGradient id={`${uid}-rim`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6e0a1e" />
+        <stop offset="0.5" stop-color="#a8102f" />
+        <stop offset="1" stop-color="#ff8aa0" />
+      </linearGradient>
+      <linearGradient id={`${uid}-lip`} x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ff9db0" />
+        <stop offset="0.55" stop-color="#d42346" />
+        <stop offset="1" stop-color="#5e0818" />
+      </linearGradient>
+    </defs>
+
+    <!-- Cire coulée -->
+    <g filter={`url(#${uid}-wax)`}>
+      <g fill="#c8193c">
+        <circle cx="200" cy="200" r="150" />
+        <circle cx="318" cy="248" r="34" />
+        <circle cx="96" cy="292" r="28" />
+        <circle cx="258" cy="84" r="26" />
+        <circle cx="92" cy="128" r="22" />
+        <ellipse cx="190" cy="342" rx="40" ry="22" />
+      </g>
+    </g>
+
+    <!-- Bourrelet relevé autour de l'empreinte -->
+    <circle cx="200" cy="200" r="120" fill="none" stroke={`url(#${uid}-lip)`} stroke-width="10" opacity="0.9" />
+    <!-- Empreinte du tampon, enfoncée -->
+    <circle cx="200" cy="200" r="114" fill={`url(#${uid}-press)`} />
+    <circle cx="200" cy="200" r="113" fill="none" stroke={`url(#${uid}-rim)`} stroke-width="4" />
+    <circle cx="200" cy="200" r="100" fill="none" stroke="#8f0c27" stroke-width="1.2" opacity="0.7" />
+    <circle cx="200.8" cy="200.8" r="100" fill="none" stroke="#ff8aa0" stroke-width="0.8" opacity="0.5" />
+
+    <!-- Logo en creux -->
+    <g transform={`translate(${lx} ${ly}) scale(${s})`}>
+      <path d={d} fill="#ff9aae" opacity="0.55" transform="translate(22 22)" />
+      <path d={d} fill="#5e0818" transform="translate(-14 -14)" />
+      <path d={d} fill="#a10f2c" />
+    </g>
+    <text x="200" y="262" text-anchor="middle" font-family="Mona Sans Variable, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3" fill="#6e0a1e" style="font-stretch:125%">CREATIVE STUDIO</text>
+    <text x="200.7" y="262.7" text-anchor="middle" font-family="Mona Sans Variable, sans-serif" font-size="10.5" font-weight="700" letter-spacing="3" fill="#ff9aae" opacity="0.45" style="font-stretch:125%">CREATIVE STUDIO</text>
+  </svg>
+</div>
+
+<style>
+  .wax { width: var(--sw, 260px); aspect-ratio: 1; filter: drop-shadow(0 22px 26px rgb(60 0 12 / 0.45)) drop-shadow(0 4px 6px rgb(60 0 12 / 0.3)); }
+  .wax svg { width: 100%; height: 100%; overflow: visible; }
+</style>

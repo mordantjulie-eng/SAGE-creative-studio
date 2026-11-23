@@ -3,6 +3,7 @@
 // posé sur une couverture bordeaux imprimée ton sur ton. Au défilement, les quatre rabats s'écartent,
 // le cachet s'efface et le titre des expertises apparaît. La liste des services suit sur le même fond.
 import { services } from '../config/site';
+import WaxSeal from './WaxSeal.astro';
 ---
 
 <section class="scene veil" data-theme="sage" data-scene data-veil aria-label="Six expertises">
@@ -26,7 +27,7 @@ import { services } from '../config/site';
       <i class="flap flap--l"></i>
       <i class="flap flap--r"></i>
     </div>
-    <p class="seal veil__seal" aria-hidden="true"><span>Six<br />expertises</span></p>
+    <WaxSeal class="veil__seal" />
     <p class="veil__hint eyebrow" aria-hidden="true">Faites défiler pour ouvrir</p>
   </div>
 </section>
@@ -148,12 +149,12 @@ import { services } from '../config/site';
     transform: translateX(calc(var(--open) * 62%));
     z-index: 2;
   }
-  .veil__seal {
+  .veil :global(.veil__seal) {
     position: absolute;
     z-index: 5;
     left: 50%;
     top: 50%;
-    --sw: clamp(200px, 22vw, 300px);
+    --sw: clamp(220px, 24vw, 330px);
     transform: translate(-50%, calc(-50% - var(--open) * 30vh)) scale(calc(1 - var(--open) * 0.4)) rotate(calc(var(--open) * -12deg));
     opacity: calc(1 - var(--open) * 1.6);
     margin: 0;
@@ -172,7 +173,7 @@ import { services } from '../config/site';
   @media (prefers-reduced-motion: reduce) {
     .veil { height: auto; }
     .veil__sticky { position: relative; height: auto; padding-block: 120px; }
-    .veil__flaps, .veil__seal, .veil__hint { display: none; }
+    .veil__flaps, .veil__hint, .veil :global(.veil__seal) { display: none; }
     .veil__text { opacity: 1; filter: none; transform: none; }
   }
 </style>
