@@ -1,5 +1,5 @@
 ---
-// Formes organiques du brand book : feuille, demi-lune, arche, cercle.
+// Formes : feuille, demi-lune, arche, forme organique douce (circle).
 interface Props {
   name: 'leaf' | 'half' | 'arch' | 'circle';
   color?: string;
@@ -11,11 +11,11 @@ const paths: Record<string, { vb: string; d: string }> = {
   leaf: { vb: '0 0 100 100', d: 'M0 100 C0 42 42 0 100 0 C100 58 58 100 0 100 Z' },
   half: { vb: '0 0 100 50', d: 'M0 0 H100 A50 50 0 0 1 0 0 Z' },
   arch: { vb: '0 0 100 130', d: 'M0 130 V50 A50 50 0 0 1 100 50 V130 Z' },
-  circle: { vb: '0 0 100 100', d: 'M50 0 A50 50 0 1 1 49.99 0 Z' },
+  circle: { vb: '0 0 100 100', d: 'M51 4C70 2 92 14 96 36c4 20-6 30-2 46 3 13-12 18-30 16-18-2-24 2-40-2C9 96 2 82 6 64 9 50 2 38 10 24 17 11 33 5 51 4Z' },
 };
 const p = paths[name];
 ---
 
 <svg class:list={['shape', cls]} viewBox={p.vb} style={`color:${color};${style}`} aria-hidden="true" focusable="false">
-  <path d={p.d} fill="currentColor"></path>
+  <path d={p.d} fill="currentColor" fill-rule="nonzero"></path>
 </svg>
