@@ -180,11 +180,11 @@ const how = [
   .st-portrait img { width: 100%; height: 100%; }
   /* Logos des outils qui flottent autour du portrait, devant (nets) et derrière (flous) */
   .st-tools { list-style: none; margin: 0; padding: 0; position: absolute; inset: 0 0 2rem 2rem; pointer-events: none; }
-  .st-tool { position: absolute; left: var(--x); top: var(--y); width: var(--s); z-index: calc(2 + var(--z)); filter: blur(calc(max(0, -1 * var(--z)) * 2px)) drop-shadow(0 14px 16px rgb(34 6 12 / 0.28)); opacity: calc(1 + min(0, var(--z)) * 0.12); animation: float var(--d) ease-in-out infinite; animation-delay: var(--delay); --fy: -12px; }
+  .st-tool { position: absolute; left: var(--x); top: var(--y); width: var(--s); z-index: calc(2 + var(--z)); filter: blur(calc(max(0, -1 * var(--z)) * 2px)) drop-shadow(0 14px 16px rgb(14 18 56 / 0.28)); opacity: calc(1 + min(0, var(--z)) * 0.12); animation: float var(--d) ease-in-out infinite; animation-delay: var(--delay); --fy: -12px; }
   .st-tool__in { display: grid; place-items: center; width: 100%; aspect-ratio: 1; border-radius: 26%; transform: rotate(var(--r)); box-shadow: inset 0 3px 5px rgb(255 255 255 / 0.35), inset 0 -5px 8px rgb(0 0 0 / 0.22); }
   .st-tool svg { width: 52%; height: 52%; }
-  .st-tool--rasp .st-tool__in { background: linear-gradient(150deg, #e0405f, #c8193c 55%, #9e0f2c); color: #fff; }
-  .st-tool--choco .st-tool__in { background: linear-gradient(150deg, #7d1a30, #3a0b16 55%, #22060c); color: var(--butter); }
+  .st-tool--rasp .st-tool__in { background: linear-gradient(150deg, #ff6a4a, #f2401f 55%, #c42a10); color: #fff; }
+  .st-tool--choco .st-tool__in { background: linear-gradient(150deg, #3a5cf5, #152a9e 55%, #0e1238); color: var(--butter); }
   .st-tool--butter .st-tool__in { background: linear-gradient(150deg, #e6dcfb, #cdbdf2 55%, #a995dc); color: var(--choco); }
   .st-tool--white .st-tool__in { background: linear-gradient(150deg, #ffffff, #f4ede4 55%, #ddd2c6); color: var(--choco); }
   .st-tool__w { font: 800 calc(var(--s) * 0.36)/1 var(--font-ui); letter-spacing: -0.04em; }
@@ -201,7 +201,7 @@ const how = [
   .st-trait { display: grid; gap: 1rem; align-content: space-between; min-height: 230px; padding: 1.8rem; border-radius: var(--r); transition: transform 0.7s var(--ease-out); }
   .st-trait:hover { transform: translateY(-6px); }
   .st-trait__w { font: 300 2.2rem/1 var(--font-ui); font-stretch: 125%; letter-spacing: -0.04em; color: var(--moss); }
-  .st-trait p { color: rgb(22 18 19 / 0.75); }
+  .st-trait p { color: rgb(16 20 58 / 0.75); }
 
 
   .st-crew { position: relative; overflow: hidden; background: var(--grad-dark); color: var(--ink); padding-block: var(--section-y); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
@@ -219,7 +219,7 @@ const how = [
   .st-steps li { display: grid; gap: 0.6rem; align-content: start; padding-top: 1.4rem; border-top: 1px solid var(--hair); }
   .st-steps__n { font: 300 1.4rem var(--font-ui); font-stretch: 125%; letter-spacing: -0.04em; color: var(--eucalyptus); }
   .st-steps h3 { font-size: 1.6rem; font-weight: 560; }
-  .st-steps p { font-size: 0.95rem; color: rgb(22 18 19 / 0.75); }
+  .st-steps p { font-size: 0.95rem; color: rgb(16 20 58 / 0.75); }
 
   .st-cta { position: relative; overflow: hidden; background: var(--grad-soft); padding-block: clamp(100px, 12vw, 170px); }
   .st-cta__inner { display: grid; justify-items: center; text-align: center; gap: 2rem; }

@@ -137,15 +137,15 @@ const sc = scenes[slug] ?? scenes['content-creation'];
   .s3__blob { inset: 8% 4% 4% 6%; --ob: 30px; z-index: 0; opacity: 0.85; }
   .o { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform-style: preserve-3d;
     transform: translate3d(calc(var(--px, 0) * (var(--z) + 1.4) * -3cqw), calc(var(--py, 0) * (var(--z) + 1.4) * -3cqw), 0) scale(calc(1 + var(--z) * 0.06));
-    filter: blur(calc(max(0, -1 * var(--z)) * 2.4px)) drop-shadow(0 4cqw 4cqw rgb(34 6 12 / 0.28));
+    filter: blur(calc(max(0, -1 * var(--z)) * 2.4px)) drop-shadow(0 4cqw 4cqw rgb(14 18 56 / 0.28));
     opacity: calc(1 + min(0, var(--z)) * 0.15); }
   .o__float { animation: float var(--d, 7s) ease-in-out infinite; animation-delay: var(--delay, 0s); transform-style: preserve-3d; }
   .dev { position: relative; transform-style: preserve-3d; }
 
   /* Téléphone de dos */
-  .dev--phone { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; background: linear-gradient(140deg, #7d1a30 0%, #3a0b16 38%, #22060c 70%, #6e1628 100%);
+  .dev--phone { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; background: linear-gradient(140deg, #3a5cf5 0%, #152a9e 38%, #0e1238 70%, #2e50f0 100%);
     box-shadow: inset 0 0 0 0.25cqw rgb(255 255 255 / 0.18), inset 0.6cqw 0.6cqw 1.2cqw rgb(255 255 255 / 0.12), inset -0.8cqw -0.8cqw 1.6cqw rgb(0 0 0 / 0.3); }
-  .ph__bump { position: absolute; left: 7%; top: 3.5%; width: 52%; aspect-ratio: 1; border-radius: 26%; background: linear-gradient(140deg, #7d1a30, #470b18);
+  .ph__bump { position: absolute; left: 7%; top: 3.5%; width: 52%; aspect-ratio: 1; border-radius: 26%; background: linear-gradient(140deg, #3a5cf5, #1530b8);
     box-shadow: inset 0 0 0 0.2cqw rgb(255 255 255 / 0.15), 0 0.6cqw 1cqw rgb(0 0 0 / 0.35); }
   .ph__bump i { position: absolute; width: 40%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #7c88b5 0 8%, #141018 22%, #050405 50%, #3b2f2a 54% 62%, #120c0a 66%); box-shadow: 0 0.3cqw 0.5cqw rgb(0 0 0 / 0.4); }
   .ph__bump i:nth-child(1) { left: 6%; top: 6%; }
@@ -155,28 +155,28 @@ const sc = scenes[slug] ?? scenes['content-creation'];
   .ph__mark { position: absolute; left: 0; right: 0; top: 52%; text-align: center; font: italic 900 6cqw/1 var(--font-ui); color: rgb(205 189 242 / 0.5); }
 
   /* Téléphone de face (publication, notification) */
-  .dev--phoneFront { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; padding: 4%; background: #161213; box-shadow: inset 0 0 0 0.3cqw #7d1a30; }
+  .dev--phoneFront { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; padding: 4%; background: #10143a; box-shadow: inset 0 0 0 0.3cqw #3a5cf5; }
   .ph__screen { position: relative; display: grid; align-content: start; gap: 4%; height: 100%; padding: 22% 8% 0; border-radius: 13% / 6%; overflow: hidden; background: var(--white); }
-  .ph__isl { position: absolute; left: 32%; right: 32%; top: 3%; height: 3.4%; border-radius: 99px; background: #161213; }
+  .ph__isl { position: absolute; left: 32%; right: 32%; top: 3%; height: 3.4%; border-radius: 99px; background: #10143a; }
   .ph__post { aspect-ratio: 4 / 5; border-radius: 6%; background: radial-gradient(70% 60% at 30% 30%, var(--rasp-soft), transparent 70%), radial-gradient(60% 60% at 70% 70%, var(--butter), transparent 70%), var(--peach); }
   .ph__notif { position: absolute; left: 10%; right: 10%; top: 40%; padding: 3.5% 6%; border-radius: 99px; background: rgb(255 255 255 / 0.85); backdrop-filter: blur(6px); font: 700 2.6cqw/1 var(--font-ui); color: var(--ink); box-shadow: 0 1cqw 2cqw rgb(0 0 0 / 0.15); }
   .ph__notif b { color: var(--rasp); }
-  .ph__bar { height: 2.2cqw; border-radius: 99px; background: rgb(22 18 19 / 0.12); }
+  .ph__bar { height: 2.2cqw; border-radius: 99px; background: rgb(16 20 58 / 0.12); }
   .ph__bar--s { width: 60%; }
 
   /* Appareil photo */
-  .dev--camera { aspect-ratio: 1.55; border-radius: 9%; background: linear-gradient(160deg, #6e1628, #22060c 60%, #3a0b16);
+  .dev--camera { aspect-ratio: 1.55; border-radius: 9%; background: linear-gradient(160deg, #2e50f0, #0e1238 60%, #152a9e);
     box-shadow: inset 0 0 0 0.25cqw rgb(255 255 255 / 0.12), inset 0 1.2cqw 1cqw -0.6cqw rgb(255 255 255 / 0.12); }
-  .cam__top { position: absolute; left: 12%; top: -12%; width: 30%; height: 16%; border-radius: 18% 18% 0 0; background: linear-gradient(#7d1a30, #470b18); }
+  .cam__top { position: absolute; left: 12%; top: -12%; width: 30%; height: 16%; border-radius: 18% 18% 0 0; background: linear-gradient(#3a5cf5, #1530b8); }
   .cam__btn { position: absolute; right: 16%; top: -7%; width: 13%; height: 9%; border-radius: 30% 30% 0 0; background: var(--rasp); }
-  .cam__grip { position: absolute; left: 0; top: 0; bottom: 0; width: 24%; border-radius: 30% 0 0 30%; background: repeating-linear-gradient(0deg, #2a0710 0 2px, #3a0b16 2px 4px); }
+  .cam__grip { position: absolute; left: 0; top: 0; bottom: 0; width: 24%; border-radius: 30% 0 0 30%; background: repeating-linear-gradient(0deg, #0e1238 0 2px, #152a9e 2px 4px); }
   .cam__flash { position: absolute; right: 9%; top: 12%; width: 13%; height: 11%; border-radius: 4px; background: linear-gradient(135deg, #fff8e6, var(--butter)); }
-  .cam__lens { position: absolute; left: 32%; top: 12%; width: 52%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #160a0d 52%, #6e1628 54% 60%, #22060c 62% 74%, #7d1a30 76% 80%, #161213 82%); box-shadow: 0 1cqw 2cqw rgb(0 0 0 / 0.45); }
+  .cam__lens { position: absolute; left: 32%; top: 12%; width: 52%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #160a0d 52%, #2e50f0 54% 60%, #0e1238 62% 74%, #3a5cf5 76% 80%, #10143a 82%); box-shadow: 0 1cqw 2cqw rgb(0 0 0 / 0.45); }
   .cam__lens i { position: absolute; inset: 22%; border-radius: 50%; background: radial-gradient(circle at 36% 32%, #c9b6ff 0 6%, #3c3070 14%, #0a0710 46%, #000 70%); }
 
   /* Ordinateur portable */
   .dev--laptop { transform-origin: 50% 100%; }
-  .lp__screen { display: block; aspect-ratio: 16 / 10.4; padding: 2.6%; border-radius: 4% / 6%; background: #161213; box-shadow: inset 0 0 0 0.25cqw #6e1628; }
+  .lp__screen { display: block; aspect-ratio: 16 / 10.4; padding: 2.6%; border-radius: 4% / 6%; background: #10143a; box-shadow: inset 0 0 0 0.25cqw #2e50f0; }
   .lp__ui { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4%; height: 100%; padding: 6% 5% 18%; border-radius: 2%; background: linear-gradient(160deg, var(--white), var(--paper-2)); overflow: hidden; }
   .lp__ui i { border-radius: 6%; background: var(--paper-2); }
   .lp__ui i:nth-child(1) { background: var(--rasp); }
@@ -190,7 +190,7 @@ const sc = scenes[slug] ?? scenes['content-creation'];
   .lp__base { display: block; height: 4cqw; margin: 0 -8%; clip-path: polygon(4% 0, 96% 0, 100% 70%, 98% 100%, 2% 100%, 0 70%); background: linear-gradient(#e9e0d6, #b9a99b 70%, #8e7d70); }
 
   /* Tablette */
-  .dev--tablet { aspect-ratio: 3 / 4; padding: 4%; border-radius: 7%; background: #161213; box-shadow: inset 0 0 0 0.3cqw #6e1628; }
+  .dev--tablet { aspect-ratio: 3 / 4; padding: 4%; border-radius: 7%; background: #10143a; box-shadow: inset 0 0 0 0.3cqw #2e50f0; }
   .tb__screen { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6%; height: 100%; padding: 10%; border-radius: 4%; background: var(--white); }
   .tb__screen i { border-radius: 8%; background: var(--rasp); }
   .tb__screen i:nth-child(2) { background: var(--butter); }
@@ -200,8 +200,8 @@ const sc = scenes[slug] ?? scenes['content-creation'];
 
   /* Micro */
   .dev--mic { display: grid; justify-items: center; }
-  .mic__head { width: 100%; aspect-ratio: 1 / 1.15; border-radius: 50% 50% 42% 42%; background: radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.5), transparent 40%), repeating-radial-gradient(circle at 50% 50%, #7d1a30 0 1px, #3a0b16 1px 3px); box-shadow: inset 0 -1cqw 2cqw rgb(0 0 0 / 0.4); }
-  .mic__body { width: 58%; aspect-ratio: 1 / 2.4; margin-top: -4%; border-radius: 10% 10% 40% 40%; background: linear-gradient(90deg, #470b18, #7d1a30 40%, #22060c); }
+  .mic__head { width: 100%; aspect-ratio: 1 / 1.15; border-radius: 50% 50% 42% 42%; background: radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.5), transparent 40%), repeating-radial-gradient(circle at 50% 50%, #3a5cf5 0 1px, #152a9e 1px 3px); box-shadow: inset 0 -1cqw 2cqw rgb(0 0 0 / 0.4); }
+  .mic__body { width: 58%; aspect-ratio: 1 / 2.4; margin-top: -4%; border-radius: 10% 10% 40% 40%; background: linear-gradient(90deg, #1530b8, #3a5cf5 40%, #0e1238); }
 
   /* Cartes */
   .card { display: grid; gap: 1.4cqw; padding: 2.4cqw; border-radius: 2.6cqw; background: rgb(249 245 239 / 0.92); box-shadow: inset 0 0.2cqw 0 rgb(255 255 255 / 0.9); }
@@ -228,8 +228,8 @@ const sc = scenes[slug] ?? scenes['content-creation'];
   .tile { display: grid; place-items: center; width: 100%; aspect-ratio: 1; border-radius: 26%;
     box-shadow: inset 0 0.5cqw 0.8cqw rgb(255 255 255 / 0.35), inset 0 -0.8cqw 1.2cqw rgb(0 0 0 / 0.22); }
   .tile svg { width: 54%; height: 54%; }
-  .tile--rasp { background: linear-gradient(150deg, #e0405f, #c81f5a 55%, #9e0f2c); color: #fff; }
-  .tile--choco { background: linear-gradient(150deg, #7d1a30, #3a0b16 55%, #22060c); color: var(--butter); }
+  .tile--rasp { background: linear-gradient(150deg, #ff6a4a, #c81f5a 55%, #c42a10); color: #fff; }
+  .tile--choco { background: linear-gradient(150deg, #3a5cf5, #152a9e 55%, #0e1238); color: var(--butter); }
   .tile--butter { background: linear-gradient(150deg, #e6dcfb, #cdbdf2 55%, #a995dc); color: var(--choco); }
   .tile--white { background: linear-gradient(150deg, #ffffff, #f4ede4 55%, #ddd2c6); color: var(--choco); }
   .tile__w { font: 800 calc(var(--w) * 0.34)/1 var(--font-ui); letter-spacing: -0.04em; }

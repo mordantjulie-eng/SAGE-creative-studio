@@ -98,8 +98,8 @@ const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
           <div class="brand">
             <div class="brand__logo">Aa</div>
             <div class="sw">
-              <i style="--c:#5a0f1f" />
-              <i style="--c:#f3b6c8" />
+              <i style="--c:#1f3fe0" />
+              <i style="--c:#f08be0" />
               <i style="--c:#cdbdf2" />
               <i style="--c:#f4f1ea" />
             </div>
@@ -177,7 +177,7 @@ const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
     overflow: hidden;
     color: #1a1a1a;
     font-size: clamp(0.62rem, 0.9vw, 0.8rem);
-    box-shadow: 0 40px 80px -40px rgb(34 6 12 / 0.6);
+    box-shadow: 0 40px 80px -40px rgb(14 18 56 / 0.6);
   }
   .mock__sh {
     position: absolute;
@@ -254,18 +254,18 @@ const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
 
   /* Content creation */
   .edit { flex: 1; display: grid; grid-template-rows: 1fr auto; gap: 0.8em; }
-  .edit__view { position: relative; border-radius: 12px; background: linear-gradient(135deg, #cdbdf2, #5a0f1f 60%, #f3b6c8); background-size: 200% 200%; animation: pan 8s ease-in-out infinite alternate; }
+  .edit__view { position: relative; border-radius: 12px; background: linear-gradient(135deg, #cdbdf2, #1f3fe0 60%, #f08be0); background-size: 200% 200%; animation: pan 8s ease-in-out infinite alternate; }
   @keyframes pan { to { background-position: 100% 100%; } }
   .rec { position: absolute; left: 0.8em; top: 0.8em; padding: 0.2em 0.6em; border-radius: 999px; background: rgb(0 0 0 / 0.35); color: #fff; font-weight: 600; }
   .tl { position: relative; display: grid; gap: 0.35em; }
   .tl__track { display: flex; gap: 0.3em; height: 1.4em; }
   .tl__track i { width: var(--w); border-radius: 6px; background: var(--fir); }
   .tl__track i.alt { background: var(--ochre); }
-  .tl__track.wave { background: repeating-linear-gradient(90deg, rgb(34 6 12 / 0.35) 0 2px, transparent 2px 5px); border-radius: 6px; mask: linear-gradient(transparent 20%, #000 20% 80%, transparent 80%); }
+  .tl__track.wave { background: repeating-linear-gradient(90deg, rgb(14 18 56 / 0.35) 0 2px, transparent 2px 5px); border-radius: 6px; mask: linear-gradient(transparent 20%, #000 20% 80%, transparent 80%); }
   .tl__head { position: absolute; top: -0.4em; bottom: -0.4em; width: 2px; background: #c0392b; left: 0; animation: play 6s linear infinite; }
   @keyframes play { to { left: 100%; } }
   .vert { width: 26%; padding: 0.5em; display: grid; gap: 0.4em; }
-  .vert__img { aspect-ratio: 9 / 16; border-radius: 10px; background: linear-gradient(160deg, #f3b6c8, #5a0f1f); }
+  .vert__img { aspect-ratio: 9 / 16; border-radius: 10px; background: linear-gradient(160deg, #f08be0, #1f3fe0); }
   .vert p { font-weight: 600; }
 
   /* Strategy */
@@ -277,7 +277,7 @@ const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
   .d1 { left: 20%; top: 68%; }
   .d2 { left: 34%; top: 30%; }
   .d3 { left: 62%; top: 74%; }
-  .you { width: 1.4em; height: 1.4em; background: var(--ochre); box-shadow: 0 0 0 0.5em rgb(200 25 60 / 0.25); animation: move 6s var(--ease-out) infinite; }
+  .you { width: 1.4em; height: 1.4em; background: var(--ochre); box-shadow: 0 0 0 0.5em rgb(242 64 31 / 0.25); animation: move 6s var(--ease-out) infinite; }
   .map__you { position: absolute; font-weight: 700; animation: move-label 6s var(--ease-out) infinite; }
   @keyframes move { 0%, 10% { left: 30%; top: 60%; } 50%, 100% { left: 76%; top: 16%; } }
   @keyframes move-label { 0%, 10% { left: 30%; top: calc(60% + 1.8em); opacity: 0; } 50%, 100% { left: 62%; top: calc(16% + 1.9em); opacity: 1; } }
@@ -309,8 +309,8 @@ const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven'];
   .crea__c { display: grid; align-content: center; justify-items: center; gap: 0.3em; border-radius: 12px; background: #fff; padding: 0.6em; animation: rise 0.9s var(--ease-out) both; }
   .c2 { animation-delay: 0.2s; transform: translateY(-6%); }
   .c3 { animation-delay: 0.4s; }
-  .av { width: 2.8em; height: 2.8em; border-radius: 50%; background: linear-gradient(135deg, #cdbdf2, #5a0f1f); }
-  .c2 .av { background: linear-gradient(135deg, #f3b6c8, #c8193c); }
+  .av { width: 2.8em; height: 2.8em; border-radius: 50%; background: linear-gradient(135deg, #cdbdf2, #1f3fe0); }
+  .c2 .av { background: linear-gradient(135deg, #f08be0, #f2401f); }
   .crea__h { font-weight: 700; }
   .crea__s { color: rgb(26 26 26 / 0.55); }
   .prog { margin-top: 0.9em; display: grid; gap: 0.4em; font-weight: 600; }

@@ -8,24 +8,24 @@
    ========================================================= */
 :root {
   /* Palette */
-  --paper: #eceae6; /* papier gris clair, fond principal */
+  --paper: #eceae6; /* papier gris, fond principal */
   --paper-2: #e1ddd7; /* papier plus soutenu */
   --white: #f8f6f3;
-  --ink: #161213; /* encre */
-  --ink-soft: rgb(22 18 19 / 0.66);
-  --choco: #5a0f1f; /* bordeaux profond, sections foncées (nom gardé pour tester d'autres palettes) */
-  --choco-2: #6e1628; /* bordeaux plus clair, ton sur ton */
-  --choco-deep: #22060c; /* pied de page */
-  --rasp: #c8193c; /* carmin, mot-clé sur fond clair, cachet */
-  --rasp-soft: #e0405f; /* carmin lumineux */
+  --ink: #10143a; /* encre marine */
+  --ink-soft: rgb(16 20 58 / 0.66);
+  --choco: #1f3fe0; /* bleu cobalt, sections foncées (nom gardé pour tester d'autres palettes) */
+  --choco-2: #2e50f0; /* cobalt plus clair, ton sur ton */
+  --choco-deep: #0e1238; /* marine, pied de page */
+  --rasp: #f2401f; /* vermillon, mot-clé sur fond clair, boutons */
+  --rasp-soft: #ff6a4a; /* vermillon lumineux */
   --butter: #cdbdf2; /* lilas, Mindset */
-  --blush: #f3b6c8; /* rose, mots-clés sur fond foncé */
+  --blush: #f08be0; /* rose orchidée, mots-clés sur fond cobalt */
   --peach: #f6b38e;
   --orchid: #e07ac8;
-  --hair: rgb(22 18 19 / 0.16);
+  --hair: rgb(16 20 58 / 0.16);
 
   --font-ui: 'Mona Sans Variable', 'Mona Sans', 'Helvetica Neue', Arial, sans-serif;
-  --font-display: var(--font-ui);
+  --font-display: 'Anton', 'Impact', 'Arial Narrow', sans-serif; /* titres en capitales condensées, façon affiche */
   
   --container: 1360px;
   --gutter: clamp(16px, 3.4vw, 44px);
@@ -41,8 +41,8 @@
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow: 0 40px 80px -40px rgb(34 6 12 / 0.45);
-  --shadow-s: 0 18px 40px -26px rgb(34 6 12 / 0.4);
+  --shadow: 0 40px 80px -40px rgb(14 18 56 / 0.45);
+  --shadow-s: 0 18px 40px -26px rgb(14 18 56 / 0.4);
 
   /* Anciens noms, redirigés pour les pages secondaires */
   --cream: var(--paper);
@@ -129,19 +129,25 @@ h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 560;
-  font-stretch: 100%;
-  line-height: 0.94;
-  letter-spacing: -0.055em;
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
   text-wrap: balance;
+  font-synthesis: none;
 }
 h3 {
+  font-family: var(--font-ui);
   font-weight: 600;
   letter-spacing: -0.03em;
   line-height: 1.05;
+  text-transform: none;
 }
 h1 em,
-h2 em,
+h2 em {
+  font-style: normal;
+  color: var(--rasp);
+}
 h3 em {
   font-style: normal;
   font-stretch: 125%;
@@ -152,7 +158,7 @@ h3 em {
 
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgb(200 25 60 / 0.32);
+  box-shadow: 0 0 0 4px rgb(242 64 31 / 0.32);
   border-radius: 6px;
 }
 
@@ -231,7 +237,7 @@ h3 em {
   background: rgb(255 255 255 / 0.55);
   backdrop-filter: blur(18px) saturate(1.6);
   -webkit-backdrop-filter: blur(18px) saturate(1.6);
-  box-shadow: 0 10px 24px -16px rgb(34 6 12 / 0.4), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
+  box-shadow: 0 10px 24px -16px rgb(14 18 56 / 0.4), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
 }
 
 /* Verre (pages secondaires) : papier de soie plutôt que verre */
@@ -274,7 +280,7 @@ h3 em {
   background: rgb(255 255 255 / 0.5);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: inset 0 0 0 1px rgb(22 18 19 / 0.14);
+  box-shadow: inset 0 0 0 1px rgb(16 20 58 / 0.14);
 }
 .btn--rasp {
   background: var(--rasp);
@@ -315,9 +321,9 @@ h3 em {
   width: var(--sw, 220px);
   aspect-ratio: 1.55;
   border-radius: 50%;
-  background: radial-gradient(120% 90% at 35% 25%, #e0405f 0%, var(--rasp) 45%, #9e0f2c 100%);
-  color: #2a0710;
-  box-shadow: inset 0 2px 3px rgb(255 255 255 / 0.25), inset 0 -6px 14px rgb(60 0 12 / 0.35), 0 18px 34px -16px rgb(60 0 12 / 0.6);
+  background: radial-gradient(120% 90% at 35% 25%, #ff6a4a 0%, var(--rasp) 45%, #c42a10 100%);
+  color: #0e1238;
+  box-shadow: inset 0 2px 3px rgb(255 255 255 / 0.25), inset 0 -6px 14px rgb(10 16 60 / 0.35), 0 18px 34px -16px rgb(10 16 60 / 0.6);
   text-align: center;
   text-decoration: none;
 }
@@ -331,13 +337,13 @@ h3 em {
   transform: rotate(-6deg);
   padding: 0 0.5em;
   text-shadow:
-    0 1px 0 #f3b6c8,
-    1px 2px 0 #b01434,
-    2px 3px 0 #9a1030,
-    3px 4px 0 #850d2a,
-    4px 5px 0 #6f0b24,
-    5px 6px 0 #5a0f1f,
-    6px 10px 12px rgb(40 2 10 / 0.45);
+    0 1px 0 #f08be0,
+    1px 2px 0 #d0361a,
+    2px 3px 0 #b42e14,
+    3px 4px 0 #962610,
+    4px 5px 0 #781e0c,
+    5px 6px 0 #1f3fe0,
+    6px 10px 12px rgb(10 14 50 / 0.45);
 }
 
 /* Matière organique : dégradé rose, pêche, lilas, avec grain */
@@ -449,11 +455,11 @@ h3 em {
 }
 :not(body)[data-theme='sage'],
 .on-dark {
-  --ink: #f6ecec;
-  --ink-soft: rgb(246 236 236 / 0.7);
-  --hair: rgb(246 236 236 / 0.18);
+  --ink: #f5f3ee;
+  --ink-soft: rgb(245 243 238 / 0.7);
+  --hair: rgb(245 243 238 / 0.18);
   background-color: var(--choco);
-  color: #f6ecec;
+  color: #f5f3ee;
 }
 :not(body)[data-theme='sage'] h1 em,
 :not(body)[data-theme='sage'] h2 em,
@@ -470,7 +476,7 @@ h3 em {
 }
 :not(body)[data-theme='sage'] .btn--glass,
 .on-dark .btn--glass {
-  color: #f6ecec;
+  color: #f5f3ee;
   background: rgb(255 255 255 / 0.08);
   box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
 }
@@ -481,14 +487,14 @@ h3 em {
 }
 :not(body)[data-theme='sage'] .bubble {
   background: rgb(255 255 255 / 0.1);
-  color: #f6ecec;
+  color: #f5f3ee;
 }
 :not(body)[data-theme='taupe'] {
   background-color: var(--butter);
-  --ink: #1c1430;
+  --ink: #1b1440;
   --ink-soft: rgb(28 20 48 / 0.7);
   --hair: rgb(28 20 48 / 0.18);
-  color: #1c1430;
+  color: #1b1440;
 }
 :not(body)[data-theme='taupe'] h2 em,
 :not(body)[data-theme='taupe'] h3 em {
@@ -496,9 +502,9 @@ h3 em {
 }
 :not(body)[data-theme='charcoal'] {
   background-color: var(--choco-deep);
-  color: #f6ecec;
-  --ink: #f6ecec;
-  --ink-soft: rgb(246 236 236 / 0.7);
+  color: #f5f3ee;
+  --ink: #f5f3ee;
+  --ink-soft: rgb(245 243 238 / 0.7);
 }
 body[data-theme='cream'] {
   background-color: var(--paper);

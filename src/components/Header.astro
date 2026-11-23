@@ -112,13 +112,13 @@ import { nav } from '../config/site';
   /* Sur les sections foncées, la goutte se teinte */
   :global(body[data-theme='sage']) .header,
   :global(body[data-theme='charcoal']) .header {
-    color: #f6ecec;
+    color: #f5f3ee;
   }
   :global(body[data-theme='sage']) .header__bar.glassdrop {
-    background: rgb(90 15 31 / 0.74) !important;
+    background: rgb(31 63 224 / 0.74) !important;
   }
   :global(body[data-theme='charcoal']) .header__bar.glassdrop {
-    background: rgb(34 6 12 / 0.74) !important;
+    background: rgb(14 18 56 / 0.74) !important;
   }
   :global(body[data-theme='sage']) .header__bar.glassdrop,
   :global(body[data-theme='charcoal']) .header__bar.glassdrop {
@@ -193,7 +193,7 @@ import { nav } from '../config/site';
     padding: 0.5rem;
     border-radius: var(--r);
     background: var(--white);
-    box-shadow: 0 40px 70px -30px rgb(34 6 12 / 0.45), 0 0 0 1px rgb(22 18 19 / 0.06);
+    box-shadow: 0 40px 70px -30px rgb(14 18 56 / 0.45), 0 0 0 1px rgb(16 20 58 / 0.06);
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -6px);
@@ -230,7 +230,7 @@ import { nav } from '../config/site';
   }
   .header__nav .sub a:hover {
     background: var(--choco);
-    color: #f6ecec;
+    color: #f5f3ee;
   }
   .sub__l {
     font-weight: 600;
@@ -279,7 +279,7 @@ import { nav } from '../config/site';
       -webkit-backdrop-filter: blur(22px) saturate(1.6);
       color: var(--ink);
       z-index: 60;
-      box-shadow: 0 30px 50px -30px rgb(34 6 12 / 0.4);
+      box-shadow: 0 30px 50px -30px rgb(14 18 56 / 0.4);
       opacity: 0;
       transform: translateY(-8px);
       pointer-events: none;
@@ -319,7 +319,7 @@ import { nav } from '../config/site';
       height: 44px;
       place-content: center;
       border-radius: 50%;
-      background: rgb(22 18 19 / 0.06);
+      background: rgb(16 20 58 / 0.06);
       border: 0;
       color: inherit;
       cursor: pointer;

@@ -84,7 +84,7 @@ import PressedLogo from './PressedLogo.astro';
   }
   .veil__print span:nth-child(2),
   .veil__print span:nth-child(4) {
-    color: #7d1a30;
+    color: #3a5cf5;
   }
 
   /* Titre révélé */
@@ -102,11 +102,11 @@ import PressedLogo from './PressedLogo.astro';
   }
   .veil__text h2 {
     font-size: clamp(3.6rem, 11vw, 11rem);
-    color: #f6ecec;
+    color: #f5f3ee;
   }
   .veil__lead {
     max-width: 30rem;
-    color: rgb(246 236 236 / 0.78);
+    color: rgb(245 243 238 / 0.78);
   }
 
   /* Papier de soie : quatre rabats translucides qui se rejoignent au centre */
@@ -120,7 +120,7 @@ import PressedLogo from './PressedLogo.astro';
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(var(--g, 180deg), rgb(255 251 244 / 0.84), rgb(246 236 236 / 0.72) 70%, rgb(226 214 200 / 0.68));
+      linear-gradient(var(--g, 180deg), rgb(255 251 244 / 0.84), rgb(245 243 238 / 0.72) 70%, rgb(226 214 200 / 0.68));
     opacity: calc(1.6 - var(--open) * 1.6);
     backdrop-filter: blur(7px) saturate(0.8);
     -webkit-backdrop-filter: blur(7px) saturate(0.8);
@@ -153,7 +153,7 @@ import PressedLogo from './PressedLogo.astro';
   .veil__sticker { width: var(--sw); padding: calc(var(--sw) * 0.1) calc(var(--sw) * 0.09); border-radius: 6px;
     background-color: #f8f5f0;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.4 0 0 0 0 0.33 0 0 0 0 0.3 0 0 0 0.1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E"), linear-gradient(160deg, #fffdf9, #efe9e1);
-    box-shadow: 0 1px 0 #fff inset, 0 2px 3px rgb(34 6 12 / 0.1), 0 24px 40px -18px rgb(34 6 12 / 0.4); }
+    box-shadow: 0 1px 0 #fff inset, 0 2px 3px rgb(14 18 56 / 0.1), 0 24px 40px -18px rgb(14 18 56 / 0.4); }
   .veil :global(.veil__seal) {
     position: absolute;
     z-index: 5;
@@ -170,7 +170,7 @@ import PressedLogo from './PressedLogo.astro';
     bottom: 28px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgb(90 15 31 / 0.7);
+    color: rgb(31 63 224 / 0.7);
     opacity: calc(1 - var(--open) * 3);
     white-space: nowrap;
   }
