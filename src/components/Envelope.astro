@@ -17,7 +17,7 @@ const { href, class: cls = '', style = '' } = Astro.props;
 
 <style>
   .env { --w: 250px; display: inline-block; width: var(--w); padding-top: calc(var(--w) * 0.42); text-decoration: none; perspective: 900px; outline: none; }
-  .env__body { position: relative; display: block; width: 100%; aspect-ratio: 1.6; transform: rotateZ(-3deg); transition: transform 0.7s var(--ease-out); filter: drop-shadow(0 22px 26px rgb(34 6 12 / 0.22)) drop-shadow(0 3px 5px rgb(34 6 12 / 0.12)); }
+  .env__body { position: relative; display: block; width: 100%; aspect-ratio: 1.6; transform: rotateZ(-3deg); transition: transform 0.7s var(--ease-out); filter: drop-shadow(0 22px 26px rgb(46 29 20 / 0.22)) drop-shadow(0 3px 5px rgb(46 29 20 / 0.12)); }
   .env:hover .env__body, .env:focus-visible .env__body { transform: rotateZ(0deg) translateY(4px); }
 
   /* Papier : légère texture et ombres de pliure */
@@ -47,7 +47,7 @@ const { href, class: cls = '', style = '' } = Astro.props;
   .env:hover .env__flap, .env:focus-visible .env__flap { transform: perspective(600px) rotateX(180deg); z-index: 1; background-image: linear-gradient(180deg, #d8cec2, #e6ded4); transition: transform 0.5s var(--ease-out), z-index 0s 0.2s, background 0.4s var(--ease); }
 
   /* Point qui pulse pour inviter au survol (demande de Julie) */
-  .env__dot { position: absolute; z-index: 5; left: 50%; top: 62%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--rasp); box-shadow: 0 2px 6px rgb(120 0 30 / 0.35); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease-out); }
+  .env__dot { position: absolute; z-index: 5; left: 50%; top: 62%; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; background: var(--rasp); box-shadow: 0 2px 6px rgb(90 60 40 / 0.35); transition: opacity 0.3s var(--ease), transform 0.4s var(--ease-out); }
   .env__dot::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: var(--rasp); animation: env-pulse 1.8s var(--ease-out) infinite; }
   @keyframes env-pulse { from { transform: scale(1); opacity: 0.55; } to { transform: scale(3.2); opacity: 0; } }
   .env:hover .env__dot, .env:focus-visible .env__dot { opacity: 0; transform: scale(0.4); }
@@ -58,15 +58,15 @@ const { href, class: cls = '', style = '' } = Astro.props;
     position: absolute; z-index: 2; left: 7%; right: 7%; top: 8%; bottom: 6%;
     display: grid; align-content: start; gap: 6%; padding: 9% 9% 0;
     border-radius: 3px; background: #fffdf9;
-    box-shadow: 0 2px 6px rgb(34 6 12 / 0.12);
+    box-shadow: 0 2px 6px rgb(46 29 20 / 0.12);
     transform: translateY(0); transition: transform 0.5s var(--ease-out) 0s;
   }
   .env:hover .env__letter, .env:focus-visible .env__letter { transform: translateY(-62%); transition: transform 0.7s var(--ease-out) 0.35s; }
   .env__word { font: 400 calc(var(--w) * 0.15) / 1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-4deg); white-space: nowrap; }
   .env__lines { display: grid; gap: calc(var(--w) * 0.035); margin-top: 4%; }
-  .env__lines i { height: 1px; background: rgb(22 18 19 / 0.14); }
+  .env__lines i { height: 1px; background: rgb(23 18 14 / 0.14); }
   .env__lines i:last-child { width: 60%; }
-  .env:focus-visible .env__body { outline: 3px solid rgb(200 25 60 / 0.35); outline-offset: 6px; border-radius: 8px; }
+  .env:focus-visible .env__body { outline: 3px solid rgb(107 67 41 / 0.35); outline-offset: 6px; border-radius: 8px; }
 
   /* Écran tactile : la feuille dépasse déjà un peu pour inviter au geste */
   @media (hover: none) {
