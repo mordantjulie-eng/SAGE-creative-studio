@@ -30,12 +30,6 @@ const how = [
   { t: 'Je dirige', d: 'Je garde la stratégie et la direction artistique de bout en bout.' },
   { t: 'Je coordonne', d: 'Un seul interlocuteur, un seul planning, une seule facture.' },
 ];
-const shots = [
-  { img: 'bts-tournage', alt: 'Appareil photo levé vers le ciel pendant un tournage', cap: 'En tournage' },
-  { img: 'bts-montage', alt: 'Timeline de montage vidéo sur un écran', cap: 'Au montage' },
-  { img: 'bts-da', alt: 'Nuanciers de couleurs pour une direction artistique', cap: 'Direction artistique' },
-  { img: 'bts-partenaires', alt: "Une petite équipe qui travaille ensemble autour d'ordinateurs", cap: 'Avec mes partenaires' },
-];
 ---
 
 <Base title="Le studio | SAGE Creative Studio" description="SAGE Creative Studio, c'est Julie : un studio créatif indépendant en Belgique, entouré de partenaires de confiance.">
@@ -79,24 +73,6 @@ const shots = [
         rien. <em>SAGE existe pour relier les deux</em>&nbsp;: une vraie réflexion, une image forte, et une présence
         qui sert vos objectifs.
       </p>
-    </div>
-  </section>
-
-  <section id="coulisses" class="st-bts" data-theme="cream" aria-label="Dans les coulisses">
-    <div class="container">
-      <p class="eyebrow reveal">Dans les coulisses</p>
-      <div class="st-bts__row">
-        {
-          shots.map((s, i) => (
-            <figure class="st-shot reveal" style={`--rd:${i * 0.08}s`}>
-              <div class="st-shot__img">
-                <img src={`/media/${s.img}.jpg`} alt={s.alt} />
-              </div>
-              <figcaption class="glass">{s.cap}</figcaption>
-            </figure>
-          ))
-        }
-      </div>
     </div>
   </section>
 
@@ -219,14 +195,6 @@ const shots = [
   .st-big { font: 500 clamp(1.8rem, 3.6vw, 3.3rem)/1.08 var(--font-ui); letter-spacing: -0.05em; max-width: 26ch; }
   .st-big em { font-style: normal; font-stretch: 125%; font-weight: 300; color: var(--rasp) !important; }
 
-  .st-bts { padding-bottom: clamp(72px, 9vw, 120px); }
-  .st-bts__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-top: 1.8rem; }
-  .st-shot { position: relative; margin: 0; }
-  .st-shot:nth-child(even) { margin-top: 48px; }
-  .st-shot__img { aspect-ratio: 3 / 4; border-radius: var(--r); overflow: hidden; box-shadow: var(--shadow); }
-  .st-shot__img img { width: 100%; height: 100%; transition: transform 1.4s var(--ease-out); }
-  .st-shot:hover img { transform: scale(1.05); }
-  .st-shot figcaption { position: absolute; left: 12px; bottom: 12px; padding: 0.45rem 0.9rem; border-radius: var(--pill); font-size: 0.82rem; }
 
   .st-traits-wrap { overflow: hidden; background: var(--grad-soft); border-radius: var(--r-l); margin-inline: clamp(0px, 1.5vw, 20px); }
   .st-traits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
@@ -259,7 +227,7 @@ const shots = [
   .st-cta__btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
 
   @media (max-width: 1000px) {
-    .st-traits, .st-steps, .st-bts__row { grid-template-columns: 1fr 1fr; }
+    .st-traits, .st-steps { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 800px) {
     .st-hero__grid, .st-crew__grid { grid-template-columns: 1fr; }

@@ -31,7 +31,6 @@ export const nav: NavItem[] = [
     href: '/studio',
     children: [
       { label: 'Pourquoi SAGE', href: '/studio#pourquoi', hint: "L'envie qui a lancé le studio" },
-      { label: 'Dans les coulisses', href: '/studio#coulisses', hint: 'Tournages, shootings, terrain' },
       { label: 'Ma façon de travailler', href: '/studio#methode', hint: 'Quatre mots qui me résument' },
       { label: 'Le réseau', href: '/studio#reseau', hint: 'Seule aux commandes, jamais seule au travail' },
       { label: 'Travailler ensemble', href: '/studio#ensemble', hint: 'Comment ça se passe' },
