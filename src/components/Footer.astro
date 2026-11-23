@@ -4,28 +4,29 @@ import { brand, nav } from '../config/site';
 const year = new Date().getFullYear();
 ---
 
-<footer class="footer on-dark">
-  <div class="orbs" aria-hidden="true">
-    <span class="orb orb--champagne" style="width:520px;height:520px;right:-120px;top:-160px;opacity:.35;--d:26s"></span>
-    <span class="orb orb--mist" style="width:600px;height:600px;left:-200px;bottom:-260px;opacity:.25;--d:30s"></span>
-  </div>
-  <div class="container footer__top">
-    <p class="footer__claim">Creative thinking.<br /><em>Digital impact.</em></p>
-    <div class="footer__cols">
+<footer class="footer" data-theme="charcoal">
+  <div class="container">
+    <div class="meta footer__meta" style="--cols:4">
+      <p><b>{brand.name} {brand.descriptor}</b><span>Studio créatif et digital</span></p>
+      <p><b>{brand.location}</b><span>Lancement 2027</span></p>
+      <p><b>Écrire</b><a href={`mailto:${brand.email}`}>{brand.email}</a></p>
+      <p><b>Philosophie</b><span class="split"><span>Think.</span><span>Create.</span><span>Grow.</span><span>Evolve.</span></span></p>
+    </div>
+
+    <div class="footer__mid">
+      <p class="footer__claim">Creative thinking.<br /><em>Digital impact.</em></p>
       <ul class="footer__nav">
         {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         <li><a href="/#contact">Contact</a></li>
       </ul>
-      <div class="footer__meta">
-        <a href={`mailto:${brand.email}`}>{brand.email}</a>
-        <span>{brand.location}</span>
-      </div>
     </div>
   </div>
-  <div class="footer__logo"><Logo size="xl" withDescriptor orbit /></div>
+
+  <div class="footer__logo" aria-hidden="true"><Logo size="xl" withDescriptor /></div>
+
   <div class="container footer__bottom">
     <span>© {year} {brand.name} {brand.descriptor}</span>
-    <span>Think. Create. Grow. Evolve.</span>
+    <a href="#top">Retour en haut</a>
     <!-- À ajouter avant mise en ligne : mentions légales (n° BCE), confidentialité, cookies -->
   </div>
 </footer>
@@ -34,67 +35,80 @@ const year = new Date().getFullYear();
   .footer {
     position: relative;
     overflow: hidden;
-    background: var(--fir-deep);
-    color: #f4f1ea;
-    padding-top: clamp(72px, 9vw, 120px);
-    border-radius: var(--r-l) var(--r-l) 0 0;
+    background: var(--wine-deep);
+    color: #f6ecec;
+    padding-top: clamp(56px, 7vw, 96px);
   }
-  .footer > :not(.orbs) {
-    position: relative;
-    z-index: 1;
+  .footer__meta {
+    color: rgb(246 236 236 / 0.85);
+    border-color: rgb(246 236 236 / 0.25);
   }
-  .footer__top {
+  .footer__meta a {
+    text-decoration: none;
+    opacity: 0.7;
+  }
+  .footer__mid {
     display: flex;
     justify-content: space-between;
+    align-items: end;
     flex-wrap: wrap;
     gap: 3rem;
+    padding-top: clamp(56px, 8vw, 110px);
   }
   .footer__claim {
-    font: italic 400 clamp(2.4rem, 4.6vw, 3.8rem) / 1.05 var(--font-display);
-    letter-spacing: -0.02em;
+    font-size: clamp(2.4rem, 5vw, 4.6rem);
+    font-weight: 560;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
   }
   .footer__claim em {
-    color: var(--ochre);
-  }
-  .footer__cols {
-    display: flex;
-    gap: clamp(2rem, 6vw, 6rem);
+    font-style: normal;
+    font-stretch: 125%;
+    font-weight: 300;
+    color: var(--blush);
   }
   .footer__nav {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
-    gap: 0.4rem;
+    gap: 0.3rem;
+    text-align: right;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-stretch: 118%;
+    text-transform: uppercase;
   }
   .footer a {
     text-decoration: none;
-    opacity: 0.85;
-    transition: opacity 0.3s var(--ease);
+    transition: color 0.3s var(--ease);
   }
-  .footer a:hover {
-    opacity: 1;
-  }
-  .footer__meta {
-    display: grid;
-    gap: 0.4rem;
-    align-content: start;
-    opacity: 0.85;
+  .footer__nav a:hover {
+    color: var(--carmine-soft);
   }
   .footer__logo {
+    padding: clamp(48px, 7vw, 96px) var(--gutter) 0;
+    color: var(--carmine);
     display: flex;
     justify-content: center;
-    padding-block: clamp(56px, 8vw, 110px) clamp(32px, 4vw, 56px);
-    color: var(--cream);
+    margin-bottom: -1.4vw;
+  }
+  .footer__logo :global(.logo--xl) {
+    width: min(100%, 1360px);
   }
   .footer__bottom {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 1rem;
-    padding-block: 1.6rem;
-    border-top: 1px solid rgb(255 255 255 / 0.14);
-    font-size: 0.8rem;
-    opacity: 0.65;
+    padding-block: 1.4rem;
+    border-top: 1px solid rgb(246 236 236 / 0.16);
+    font-size: 0.74rem;
+    font-stretch: 112%;
+    opacity: 0.7;
+    position: relative;
+  }
+  @media (max-width: 700px) {
+    .footer__nav { text-align: left; }
   }
 </style>

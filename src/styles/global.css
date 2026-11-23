@@ -1,59 +1,75 @@
-/* SAGE, design system V3 « soft premium » : verre dépoli, dégradés, éléments flottants. */
+/* =========================================================
+   SAGE, DA « Saveurs » (branche da-saveurs)
+   Le mariage du premium et du créatif :
+   rigueur d'affiche suisse (papier gris, grille fine, grotesque serrée)
+   + matière d'édition de luxe (bordeaux ton sur ton, carmin, papier de soie, cachet)
+   + une seule respiration organique (dégradé rose, pêche, lilas, grain).
+   Typo : Mona Sans (largeur variable 75 à 125 %) + Pinyon Script (cachet uniquement).
+   ========================================================= */
 :root {
   /* Palette */
-  --ink: #1a1a1a; /* charbon */
-  --moss: #1a1a1a; /* boutons et textes forts : charbon (plus de vert foncé) */
-  --eucalyptus: #5e6f63; /* vert gris, petits textes */
-  --sage: #7d8c78; /* sauge profond (formes) */
-  --mist: #e3e6dc; /* brume */
-  --sage-light: #d6dccd; /* sauge très clair */
-  --cream: #f4f1ea; /* blanc cassé (validé) */
-  --sand: #ebe3d8; /* sable */
-  --ochre: #b8965e; /* ocre doré antique (jamais orange) */
-  --fir: #0c241f; /* vert sapin très foncé */
-  --fir-deep: #071814; /* sapin profond */
-  --champagne: var(--ochre);
-  --blush: #ece4d4; /* crème */
-  --clay: #8a6a2e; /* ocre foncé */
-  --terracotta: var(--ochre); /* plus de terracotta : redirigée vers l'ocre */
-  --taupe: #b6ada1; /* taupe (formes) */
-  --sage: #7d8c78;
+  --paper: #eceae6; /* papier gris clair, fond principal */
+  --paper-2: #e1ddd7; /* papier plus soutenu */
+  --white: #f8f6f3;
+  --ink: #161213; /* encre */
+  --ink-soft: rgb(22 18 19 / 0.66);
+  --wine: #5a0f1f; /* bordeaux profond, sections foncées */
+  --wine-2: #6e1628; /* bordeaux plus clair, ton sur ton */
+  --wine-deep: #22060c; /* pied de page */
+  --carmine: #c8193c; /* carmin, mot-clé sur fond clair, cachet */
+  --carmine-soft: #e0405f; /* carmin lumineux, ton sur ton */
+  --lilac: #cdbdf2; /* lilas, Mindset */
+  --lilac-deep: #3a2a6b; /* encre lilas */
+  --blush: #f3b6c8;
+  --peach: #f6b38e;
+  --orchid: #e07ac8;
+  --hair: rgb(22 18 19 / 0.16);
 
-  /* Accents vifs : uniquement pour les infos importantes */
-  --pers: #8a6a2e; /* ocre foncé (pastille lancement) */
-  --cobalt: #b8965e; /* ocre (plus de bleu) */
-  --vermilion: #8a6a2e; /* ocre foncé */
+  --font-ui: 'Mona Sans Variable', 'Mona Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: var(--font-ui);
+  --font-script: 'Pinyon Script', 'Snell Roundhand', cursive;
 
-  --glass: rgb(255 255 255 / 0.42);
-  --glass-strong: rgb(255 255 255 / 0.62);
-  --glass-dark: rgb(255 255 255 / 0.08);
-  --glass-line: rgb(255 255 255 / 0.65);
-  --hair: rgb(26 26 26 / 0.12);
-
-  --grad-dark: linear-gradient(150deg, #13322b 0%, #0c241f 55%, #09201b 100%); /* sapin */
-  --grad-soft: linear-gradient(160deg, #f4f1ea 0%, #ebe9df 45%, #efe5d6 100%);
-
-  --font-ui: 'Funnel Sans Variable', 'Funnel Sans', system-ui, sans-serif;
-  --font-display: 'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, sans-serif;
-  --font-serif: var(--font-display);
-  --font-letter: 'Newsreader Variable', 'Newsreader', Georgia, serif;
-
-  --container: 1280px;
-  --gutter: clamp(18px, 4vw, 48px);
-  --r-s: 14px;
-  --r: 24px;
-  --r-l: 36px;
+  --container: 1360px;
+  --gutter: clamp(16px, 3.4vw, 44px);
+  --r-s: 10px;
+  --r: 18px;
+  --r-l: 28px;
   --pill: 999px;
-  --section-y: clamp(84px, 11vw, 160px);
+  --section-y: clamp(88px, 11vw, 168px);
 
-  --h1: clamp(3rem, 7vw, 6.6rem);
-  --h2: clamp(2.4rem, 5vw, 4.4rem);
-  --h3: clamp(1.45rem, 2vw, 1.9rem);
+  --h1: clamp(3.2rem, 8.4vw, 8.6rem);
+  --h2: clamp(2.5rem, 5.4vw, 5.4rem);
+  --h3: clamp(1.3rem, 1.8vw, 1.7rem);
 
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow: 0 30px 70px -35px rgb(43 52 47 / 0.35);
-  --shadow-s: 0 14px 40px -24px rgb(43 52 47 / 0.35);
+  --shadow: 0 40px 80px -40px rgb(34 6 12 / 0.45);
+  --shadow-s: 0 18px 40px -26px rgb(34 6 12 / 0.4);
+
+  /* Anciens noms, redirigés pour les pages secondaires */
+  --cream: var(--paper);
+  --fir: var(--wine);
+  --fir-deep: var(--wine-deep);
+  --ochre: var(--carmine);
+  --clay: var(--orchid);
+  --sage: var(--lilac);
+  --sage-light: var(--blush);
+  --taupe: var(--peach);
+  --eucalyptus: var(--ink-soft);
+  --moss: var(--ink);
+  --champagne: var(--blush);
+  --terracotta: var(--blush);
+  --sand: var(--blush);
+  --linen: var(--paper-2);
+  --orange: var(--carmine);
+  --font-letter: var(--font-ui);
+  --font-serif: var(--font-ui);
+  --grad-soft: var(--paper);
+  --grad-dark: var(--wine);
+  --glass-strong: rgb(255 255 255 / 0.7);
+  --organic: radial-gradient(60% 55% at 35% 40%, var(--orchid) 0%, transparent 70%),
+    radial-gradient(55% 60% at 70% 30%, var(--peach) 0%, transparent 70%),
+    radial-gradient(60% 60% at 55% 75%, var(--lilac) 0%, transparent 72%), var(--blush);
 }
 
 *,
@@ -63,93 +79,83 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 100px;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--cream);
-  transition: background-color 0.8s var(--ease), color 0.8s var(--ease);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-ui);
   font-weight: 400;
-  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
-  line-height: 1.65;
+  font-stretch: 100%;
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+  transition: background-color 0.8s var(--ease);
+}
+
+/* Grain très léger sur toute la page, façon papier d'impression */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 img,
-svg {
+svg,
+video {
   display: block;
   max-width: 100%;
 }
 img {
   object-fit: cover;
 }
-.photo {
-  filter: saturate(0.85) contrast(0.98);
-}
-
 a {
   color: inherit;
 }
+p {
+  margin: 0;
+}
 
+/* Titres : grotesque serrée façon affiche ; le mot-clé passe en large et léger */
 h1,
 h2,
 h3 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 800;
-  font-style: normal;
-  line-height: 0.95;
-  letter-spacing: -0.045em;
+  font-weight: 560;
+  font-stretch: 100%;
+  line-height: 0.94;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
 }
 h3 {
-  font-weight: 750;
-  font-style: normal;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
 }
 h1 em,
 h2 em,
 h3 em {
-  font-family: var(--font-letter);
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--ochre);
-}
-.on-dark h1 em,
-.on-dark h2 em,
-.on-dark h3 em {
-  color: var(--terracotta);
-}
-
-p {
-  margin: 0;
+  font-style: normal;
+  font-stretch: 125%;
+  font-weight: 300;
+  letter-spacing: -0.045em;
+  color: var(--carmine);
 }
 
 :focus-visible {
   outline: none;
-  box-shadow: 0 0 0 4px rgb(184 150 94 / 0.35);
-}
-
-/* Bulles façon Apple : matière translucide, pas de contour */
-.bubble {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.55em 1.1em;
-  border-radius: var(--pill);
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  text-decoration: none;
-  background: rgb(255 255 255 / 0.62); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); border: 0; box-shadow: 0 1px 1px rgb(0 0 0 / 0.03), 0 10px 24px -14px rgb(43 52 47 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
-  transition: background 0.3s var(--ease), transform 0.4s var(--ease-out);
-}
-.on-dark .bubble {
-  background: rgb(255 255 255 / 0.5); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
+  box-shadow: 0 0 0 4px rgb(200 25 60 / 0.32);
+  border-radius: 6px;
 }
 
 .container {
@@ -162,108 +168,98 @@ p {
   padding-block: var(--section-y);
   position: relative;
 }
+.rel {
+  position: relative;
+  z-index: 1;
+}
 
+/* Petits intitulés : capitales larges, comme les mentions d'une affiche */
 .eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.7rem;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.18em;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-stretch: 125%;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--eucalyptus);
+  color: var(--ink-soft);
 }
 .split {
   display: inline-flex;
   flex-wrap: wrap;
   column-gap: 1.1em;
 }
-.on-dark .eyebrow {
-  color: rgb(244 241 234 / 0.7);
-}
-
 .lead {
-  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
-  color: rgb(43 52 47 / 0.78);
+  font-size: clamp(1.04rem, 1.25vw, 1.18rem);
+  line-height: 1.55;
+  color: var(--ink-soft);
   max-width: 36rem;
 }
-.on-dark .lead {
-  color: rgb(26 26 26 / 0.72);
+
+/* Grille de mentions façon affiche : colonnes séparées par un filet */
+.meta {
+  display: grid;
+  grid-template-columns: repeat(var(--cols, 4), minmax(0, 1fr));
+  gap: 0 1.2rem;
+  padding-block: 0.8rem;
+  border-block: 1px solid currentColor;
+  font-size: 0.72rem;
+  line-height: 1.3;
+  font-stretch: 112%;
+}
+.meta b {
+  display: block;
+  font-weight: 650;
+}
+.meta span {
+  opacity: 0.7;
+}
+@media (max-width: 700px) {
+  .meta {
+    --cols: 2 !important;
+    row-gap: 0.8rem;
+  }
 }
 
-/* Verre dépoli */
+/* Bulles façon Apple : matière translucide pleine, pas de contour */
+.bubble {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55em 1.1em;
+  border-radius: var(--pill);
+  font-weight: 500;
+  text-decoration: none;
+  background: rgb(255 255 255 / 0.55);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow: 0 10px 24px -16px rgb(34 6 12 / 0.4), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
+}
+
+/* Verre (pages secondaires) : papier de soie plutôt que verre */
 .glass {
-  background: var(--glass);
-  border: 1px solid var(--glass-line);
-  backdrop-filter: blur(22px) saturate(1.3);
-  -webkit-backdrop-filter: blur(22px) saturate(1.3);
-  box-shadow: var(--shadow-s), inset 0 1px 0 rgb(255 255 255 / 0.7);
-}
-.on-dark .glass,
-.glass--dark {
-  background: rgb(255 255 255 / 0.38);
-  border-color: rgb(255 255 255 / 0.55);
-  box-shadow: 0 30px 60px -35px rgb(0 0 0 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.18);
+  background: rgb(248 246 243 / 0.72);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  box-shadow: var(--shadow-s), inset 0 0.5px 0 rgb(255 255 255 / 0.8);
 }
 
-/* Halos de couleur (dégradés flottants) */
-.orbs {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  opacity: 0.75;
-  animation: drift var(--d, 22s) ease-in-out infinite alternate;
-}
-.orb--sage {
-  background: radial-gradient(circle, #b9c8b6 0%, transparent 70%);
-}
-.orb--mist {
-  background: radial-gradient(circle, #d6e2d6 0%, transparent 70%);
-}
-.orb--champagne {
-  background: radial-gradient(circle, #ead6b4 0%, transparent 70%);
-}
-.orb--blush {
-  background: radial-gradient(circle, #e6dcc4 0%, transparent 70%);
-}
-.orb--deep {
-  background: radial-gradient(circle, #7f9483 0%, transparent 70%);
-}
-@keyframes drift {
-  from {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    transform: translate3d(var(--dx, 40px), var(--dy, -30px), 0) scale(1.12);
-  }
-}
-
-/* Boutons */
+/* Boutons : pilule d'encre ; au survol le carmin monte depuis le curseur */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75em;
+  gap: 0.8em;
   min-height: 54px;
-  padding: 0 1.8rem;
+  padding: 0 1.7rem;
   border-radius: var(--pill);
-  border: 1px solid transparent;
-  font: 500 0.95rem/1 var(--font-ui);
-  letter-spacing: 0.01em;
+  border: 0;
+  font: 560 0.92rem/1 var(--font-ui);
+  font-stretch: 112%;
+  letter-spacing: 0.005em;
   text-decoration: none;
   cursor: pointer;
-  transition:
-    background 0.4s var(--ease),
-    color 0.4s var(--ease),
-    box-shadow 0.4s var(--ease),
-    transform 0.4s var(--ease-out);
+  transition: background 0.4s var(--ease), color 0.4s var(--ease), transform 0.4s var(--ease-out);
 }
 .btn span[aria-hidden] {
   transition: transform 0.4s var(--ease-out);
@@ -272,49 +268,102 @@ p {
   transform: translateX(4px);
 }
 .btn--primary {
-  background: var(--moss);
-  color: var(--cream);
-  box-shadow: 0 16px 34px -18px rgb(43 52 47 / 0.6);
-}
-.btn--primary:hover {
   background: var(--ink);
-  transform: translateY(-2px);
+  color: var(--white);
 }
 .btn--glass {
   color: var(--ink);
-  background: rgb(255 255 255 / 0.62); backdrop-filter: blur(20px) saturate(1.8); -webkit-backdrop-filter: blur(20px) saturate(1.8); border: 0; box-shadow: 0 1px 1px rgb(0 0 0 / 0.03), 0 10px 24px -14px rgb(43 52 47 / 0.35), inset 0 0.5px 0 rgb(255 255 255 / 0.9);
+  background: rgb(255 255 255 / 0.5);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: inset 0 0 0 1px rgb(22 18 19 / 0.14);
 }
-.btn--glass:hover {
-  background: var(--glass-strong);
-  transform: translateY(-2px);
-}
-.on-dark .btn--primary {
-  background: var(--ink);
-  color: var(--cream);
-}
-.on-dark .btn--primary:hover {
-  background: #000;
-}
-.on-dark .btn--glass {
-  color: var(--cream);
-  background: rgb(255 255 255 / 0.14); backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6); border: 0; box-shadow: 0 10px 24px -16px rgb(0 0 0 / 0.55), inset 0 0.5px 0 rgb(255 255 255 / 0.35);
-}
-.on-dark .btn--glass:hover {
-  background: rgb(255 255 255 / 0.18);
+.btn--carmine {
+  background: var(--carmine);
+  color: var(--white);
 }
 
 .link {
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  font-weight: 500;
+  font-weight: 550;
   text-decoration: none;
   background: linear-gradient(currentColor, currentColor) left bottom / 100% 1px no-repeat;
   padding-bottom: 3px;
   transition: background-size 0.4s var(--ease);
 }
 .link:hover {
-  background-size: 40% 1px;
+  background-size: 35% 1px;
+}
+
+/* Pastille d'info importante */
+.flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.9rem;
+  border-radius: var(--pill);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-stretch: 115%;
+  color: var(--white);
+  background: var(--carmine);
+}
+
+/* Cachet ovale façon sceau de cire, écriture calligraphiée */
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: var(--sw, 220px);
+  aspect-ratio: 1.55;
+  border-radius: 50%;
+  background: radial-gradient(120% 90% at 35% 25%, #e0304f 0%, var(--carmine) 45%, #9e0f2c 100%);
+  color: #2a0710;
+  box-shadow: inset 0 2px 3px rgb(255 255 255 / 0.25), inset 0 -6px 14px rgb(60 0 12 / 0.35), 0 18px 34px -16px rgb(60 0 12 / 0.6);
+  text-align: center;
+  text-decoration: none;
+}
+.seal span {
+  font: 400 calc(var(--sw, 220px) * 0.17) / 0.95 var(--font-script);
+  transform: rotate(-8deg);
+  padding: 0 0.6em;
+}
+
+/* Matière organique : dégradé rose, pêche, lilas, avec grain */
+.organic {
+  position: absolute;
+  background: var(--organic);
+  border-radius: 46% 54% 58% 42% / 52% 40% 60% 48%;
+  filter: blur(var(--ob, 28px));
+  animation: morph 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+@keyframes morph {
+  0% {
+    border-radius: 46% 54% 58% 42% / 52% 40% 60% 48%;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 60% 40% 36% 64% / 42% 62% 38% 58%;
+    transform: rotate(12deg) scale(1.06);
+  }
+  100% {
+    border-radius: 38% 62% 54% 46% / 60% 36% 64% 40%;
+    transform: rotate(-8deg) scale(0.97);
+  }
+}
+
+/* Verre cannelé : bandes verticales qui déforment ce qui passe derrière */
+.reeded {
+  position: absolute;
+  display: flex;
+  pointer-events: none;
+}
+.reeded i {
+  flex: 1;
+  backdrop-filter: blur(10px) saturate(1.15);
+  -webkit-backdrop-filter: blur(10px) saturate(1.15);
+  background: linear-gradient(90deg, rgb(255 255 255 / 0.22), rgb(255 255 255 / 0) 40%, rgb(0 0 0 / 0.05) 85%, rgb(255 255 255 / 0.16));
 }
 
 /* Flottement doux */
@@ -324,7 +373,7 @@ p {
     transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(0, var(--fy, -12px), 0);
+    transform: translate3d(0, var(--fy, -10px), 0);
   }
 }
 .float {
@@ -332,15 +381,12 @@ p {
   animation-delay: var(--delay, 0s);
 }
 
-/* Apparition au défilement */
+/* Apparition au défilement : sortie du flou (le fil rouge de la DA) */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  filter: blur(6px);
-  transition:
-    opacity 1s var(--ease-out),
-    transform 1.1s var(--ease-out),
-    filter 1s var(--ease-out);
+  transform: translateY(24px);
+  filter: blur(10px);
+  transition: opacity 1s var(--ease-out), transform 1.1s var(--ease-out), filter 1.1s var(--ease-out);
   transition-delay: var(--rd, 0s);
 }
 .reveal.is-in {
@@ -349,25 +395,31 @@ p {
   filter: none;
 }
 
-/* Accent vif (infos importantes uniquement) */
-.flag {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4rem 0.9rem;
-  border-radius: var(--pill);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: #fff;
-  background: var(--pers);
+/* Titres mot par mot, chaque mot sort du flou */
+.w {
+  display: inline-block;
+  vertical-align: top;
+}
+.w > span {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(14px);
+  transform: translateY(0.18em);
+  transition: opacity 1s var(--ease-out), filter 1.2s var(--ease-out), transform 1.1s var(--ease-out);
+  transition-delay: calc(var(--rd, 0s) + var(--wi, 0) * 0.07s);
+}
+.is-in .w > span,
+.w.is-in > span {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}
+.split-done.reveal {
+  opacity: 1;
+  filter: none;
+  transform: none;
 }
 
-.flag--cobalt {
-  background: var(--cobalt);
-}
-.flag--vermilion {
-  background: var(--vermilion);
-}
 /* Scènes pilotées par le défilement : --p va de 0 à 1 */
 .scene {
   position: relative;
@@ -380,17 +432,148 @@ p {
   overflow: hidden;
 }
 
-/* Cadre en arche */
+/* Thèmes de section (chaque section peint son fond) */
+:not(body)[data-theme='cream'] {
+  background-color: var(--paper);
+}
+:not(body)[data-theme='sage'],
+.on-dark {
+  --ink: #f6ecec;
+  --ink-soft: rgb(246 236 236 / 0.7);
+  --hair: rgb(246 236 236 / 0.18);
+  background-color: var(--wine);
+  color: #f6ecec;
+}
+:not(body)[data-theme='sage'] h1 em,
+:not(body)[data-theme='sage'] h2 em,
+:not(body)[data-theme='sage'] h3 em,
+.on-dark h1 em,
+.on-dark h2 em,
+.on-dark h3 em {
+  color: var(--blush);
+}
+:not(body)[data-theme='sage'] .btn--primary,
+.on-dark .btn--primary {
+  background: var(--white);
+  color: var(--wine);
+}
+:not(body)[data-theme='sage'] .btn--glass,
+.on-dark .btn--glass {
+  color: #f6ecec;
+  background: rgb(255 255 255 / 0.08);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.22);
+}
+:not(body)[data-theme='sage'] .glass,
+.on-dark .glass {
+  background: rgb(255 255 255 / 0.07);
+  box-shadow: inset 0 0.5px 0 rgb(255 255 255 / 0.15);
+}
+:not(body)[data-theme='sage'] .bubble {
+  background: rgb(255 255 255 / 0.1);
+  color: #f6ecec;
+}
+:not(body)[data-theme='taupe'] {
+  background-color: var(--lilac);
+  --ink: #1c1430;
+  --ink-soft: rgb(28 20 48 / 0.7);
+  --hair: rgb(28 20 48 / 0.18);
+  color: #1c1430;
+}
+:not(body)[data-theme='taupe'] h2 em,
+:not(body)[data-theme='taupe'] h3 em {
+  color: var(--wine);
+}
+:not(body)[data-theme='charcoal'] {
+  background-color: var(--wine-deep);
+  color: #f6ecec;
+  --ink: #f6ecec;
+  --ink-soft: rgb(246 236 236 / 0.7);
+}
+body[data-theme='cream'] {
+  background-color: var(--paper);
+}
+body[data-theme='sage'] {
+  background-color: var(--wine);
+}
+body[data-theme='taupe'] {
+  background-color: var(--lilac);
+}
+body[data-theme='charcoal'] {
+  background-color: var(--wine-deep);
+}
+
+/* Les halos de l'ancienne DA ne s'affichent plus */
+.orbs,
+.orb {
+  display: none;
+}
 .arch {
-  border-radius: 999px 999px var(--r) var(--r);
+  border-radius: var(--r);
   overflow: hidden;
 }
 
+/* Survol : bouton liquide (le carmin part du curseur) */
+.liquid {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.liquid::before {
+  content: '';
+  position: absolute;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--liquid, var(--carmine));
+  transform: translate(-50%, -50%);
+  transition: width 0.55s var(--ease-out), height 0.55s var(--ease-out);
+  z-index: -1;
+}
+.liquid:hover::before {
+  width: 260%;
+  height: 600%;
+}
+.liquid:hover {
+  color: var(--white) !important;
+}
+.btn--carmine.liquid,
+.header__cta.liquid {
+  --liquid: var(--wine);
+}
+.link.liquid {
+  overflow: visible;
+}
+.link.liquid::before {
+  display: none;
+}
+.link.liquid:hover {
+  color: inherit !important;
+}
+
+/* Survol : loupe sur les visuels */
+.loupe {
+  overflow: hidden;
+}
+.loupe img,
+.loupe video {
+  transition: transform 0.7s var(--ease-out);
+  transform-origin: var(--lx, 50%) var(--ly, 50%);
+}
+.loupe:hover img,
+.loupe:hover video {
+  transform: scale(1.12);
+}
+
+/* Effet d'eau sur les photos au survol */
+.liquid-img {
+  filter: url(#water);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .reveal {
+  .reveal,
+  .w > span {
     opacity: 1;
     transform: none;
     filter: none;
@@ -411,168 +594,3 @@ p {
   clip: rect(0 0 0 0);
   white-space: nowrap;
 }
-
-/* Fond de page qui change de couleur selon la section visible (piloté par Base.astro) */
-body[data-theme='cream'] { background-color: var(--cream); }
-body[data-theme='sage'] { background-color: var(--fir); }
-body[data-theme='taupe'] { background-color: #e6ded3; }
-body[data-theme='charcoal'] { background-color: var(--fir-deep); }
-/* Sections vert sapin : texte crème, accents ocre */
-:not(body)[data-theme='sage'] {
-  --ink: #f4f1ea;
-  --eucalyptus: #d8c49c;
-  --hair: rgb(244 241 234 / 0.16);
-  color: #f4f1ea;
-}
-:not(body)[data-theme='sage'] .lead { color: rgb(244 241 234 / 0.78); }
-:not(body)[data-theme='sage'] .btn--primary { background: #f4f1ea; color: var(--fir); }
-:not(body)[data-theme='sage'] .btn--primary:hover { background: #fff; }
-:not(body)[data-theme='sage'] .glass { background: rgb(255 255 255 / 0.07); border-color: rgb(255 255 255 / 0.14); }
-:not(body)[data-theme='sage'] .bubble { background: rgb(255 255 255 / 0.12); color: #f4f1ea; }
-
-/* Aplats francs : plus de halos flous */
-.orb { display: none; }
-
-/* Titres qui apparaissent mot par mot */
-.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
-.w > span { display: inline-block; transform: translateY(105%); transition: transform 0.9s var(--ease-out); transition-delay: calc(var(--rd, 0s) + var(--wi, 0) * 0.05s); }
-.is-in .w > span, .w.is-in > span { transform: none; }
-.split-done.reveal { opacity: 1; filter: none; transform: none; }
-@media (prefers-reduced-motion: reduce) { .w > span { transform: none; } }
-
-[data-theme='sage'] .form .btn--primary { background: var(--fir); color: #f4f1ea; }
-[data-theme='sage'] .form .need span { color: #1a1a1a; }
-:not(body)[data-theme='sage'] .form.glass { background: rgb(244 241 234 / 0.95); border-color: rgb(255 255 255 / 0.6); color: #1a1a1a; }
-
-/* Chaque section peint sa propre couleur : jamais de texte clair sur fond clair */
-:not(body)[data-theme='sage'] { background-color: var(--fir); }
-:not(body)[data-theme='charcoal'] { background-color: var(--fir-deep); }
-:not(body)[data-theme='taupe'] { background-color: #e6ded3; }
-:not(body)[data-theme='cream'] { background-color: var(--cream); }
-
-/* Survol : bouton liquide (remplissage qui part du curseur, couleurs inversées) */
-.liquid { position: relative; overflow: hidden; isolation: isolate; }
-.liquid::before {
-  content: '';
-  position: absolute;
-  left: var(--mx, 50%);
-  top: var(--my, 50%);
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: var(--liquid, var(--ochre));
-  transform: translate(-50%, -50%);
-  transition: width 0.55s var(--ease-out), height 0.55s var(--ease-out);
-  z-index: -1;
-}
-.liquid:hover::before { width: 260%; height: 600%; }
-.liquid:hover { color: #1a1a1a !important; }
-.btn.liquid:hover, .header__cta.liquid:hover { box-shadow: 0 18px 40px -18px rgb(184 150 94 / 0.8); }
-
-/* Survol : effet loupe sur les visuels */
-.loupe { overflow: hidden; }
-.loupe img, .loupe video { transition: transform 0.6s var(--ease-out); transform-origin: var(--lx, 50%) var(--ly, 50%); }
-.loupe:hover img, .loupe:hover video { transform: scale(1.18); }
-
-/* Survol : halo lumineux qui suit le curseur sur les cartes */
-.glow { position: relative; }
-.glow::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: radial-gradient(260px circle at var(--gx, 50%) var(--gy, 50%), rgb(255 255 255 / 0.16), transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s var(--ease);
-  pointer-events: none;
-}
-.glow:hover::after { opacity: 1; }
-
-.round-cta.liquid { --liquid: #f4f1ea; }
-.link.liquid, .card__flip.liquid { overflow: visible; }
-.link.liquid::before, .card__flip.liquid::before { display: none; }
-.link.liquid:hover, .card__flip.liquid:hover { color: inherit !important; }
-
-/* =========================================================
-   DA « maison » (branche da-moodboard) : premium éditorial, 90 % calme, 10 % créatif
-   Typos : Instrument Serif (titres, italique pour le mot-clé), Inter Tight (texte)
-   Palette : lin, crème, chocolat, bordeaux brun, olive velours ; orange lampe en accent unique
-   ========================================================= */
-:root {
-  --paper: #f4eee4;
-  --cream: #f4eee4;
-  --linen: #e8ddcd;
-  --ink: #2b1d17;
-  --moss: #2b1d17;
-  --choco: #3b2a21;
-  --choco-deep: #22160f;
-  --wine: #3b1428;
-  --olive: #2747b8;
-  --orange: #d9472b;
-  --sand: #f1d88f;
-  --caramel: #b98d63;
-  /* anciens noms redirigés */
-  --cherry: var(--wine);
-  --rose: var(--sand);
-  --blush: var(--linen);
-  --tomato: var(--wine);
-  --cobalt: var(--wine);
-  --navy: var(--choco-deep);
-  --butter: var(--sand);
-  --oak: var(--caramel);
-
-  --fir: var(--wine);
-  --fir-deep: var(--choco-deep);
-  --ochre: var(--wine);
-  --terracotta: var(--sand);
-  --champagne: var(--sand);
-  --clay: var(--caramel);
-  --sage: #c9b8e0;
-  --sage-light: #ddd0bd;
-  --taupe: var(--caramel);
-  --eucalyptus: #7b6556;
-  --pers: var(--wine);
-  --vermilion: var(--wine);
-
-  --font-ui: 'Inter Tight Variable', 'Inter Tight', system-ui, sans-serif;
-  --font-display: 'Instrument Serif', 'Times New Roman', serif;
-  --font-letter: 'Instrument Serif', 'Times New Roman', serif;
-  --font-serif: var(--font-display);
-
-  --h1: clamp(3.6rem, 8vw, 7.6rem);
-  --h2: clamp(2.8rem, 5.6vw, 5.2rem);
-}
-
-h1, h2 { font-family: var(--font-display); font-weight: 400 !important; font-synthesis: none; text-transform: none; letter-spacing: -0.015em; line-height: 0.98; }
-h3 { font-family: var(--font-ui); font-weight: 600; letter-spacing: -0.015em; }
-h1 em, h2 em, h3 em { font-family: var(--font-letter); font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--orange); }
-h3 em { font-family: var(--font-ui); }
-:not(body)[data-theme='sage'], :not(body)[data-theme='charcoal'], .on-dark { --ochre: var(--sand); --terracotta: var(--sand); }
-:not(body)[data-theme='sage'] h1 em, :not(body)[data-theme='sage'] h2 em, :not(body)[data-theme='sage'] h3 em,
-.on-dark h1 em, .on-dark h2 em, .on-dark h3 em, :not(body)[data-theme='charcoal'] h2 em { color: var(--sand); }
-:not(body)[data-theme='taupe'], body[data-theme='taupe'] { background-color: var(--linen); }
-#mindset { background-color: var(--olive); }
-
-.eyebrow { font-family: var(--font-ui); font-weight: 600; font-size: 0.72rem; letter-spacing: 0.22em; }
-
-/* Grain papier très léger */
-body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: 200; pointer-events: none;
-  opacity: 0.035; mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-/* Titres qui sortent du flou */
-.w > span { filter: blur(12px); opacity: 0; transition: transform 1.1s var(--ease-out), filter 1.2s var(--ease-out), opacity 1s var(--ease-out); transition-delay: calc(var(--rd, 0s) + var(--wi, 0) * 0.06s); }
-.is-in .w > span, .w.is-in > span { filter: none; opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .w > span { filter: none; opacity: 1; } }
-.w { padding-top: 0.12em; margin-top: -0.12em; }
-
-/* Boutons : sobres, l'orange réservé à l'action principale */
-.btn--primary { background: var(--ink); color: var(--paper); }
-:not(body)[data-theme='sage'] .btn--primary { background: var(--paper); color: var(--wine); }
-.header__cta { background: var(--orange) !important; color: #fff !important; }
-
-/* Effet d'eau sur les photos au survol */
-.liquid-img { filter: url(#water); }

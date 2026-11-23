@@ -1,0 +1,178 @@
+---
+// Ouverture des expertises : un papier de soie plié en enveloppe, fermé par un cachet,
+// posé sur une couverture bordeaux imprimée ton sur ton. Au défilement, les quatre rabats s'écartent,
+// le cachet s'efface et le titre des expertises apparaît. La liste des services suit sur le même fond.
+import { services } from '../config/site';
+---
+
+<section class="scene veil" data-theme="sage" data-scene data-veil aria-label="Six expertises">
+  <div class="scene__sticky veil__sticky">
+    <div class="veil__print" aria-hidden="true">
+      <span>Creative</span>
+      <span>thinking.</span>
+      <span>Digital</span>
+      <span>impact.</span>
+    </div>
+
+    <div class="veil__text">
+      <p class="flag">{services.length} expertises, 1 interlocutrice</p>
+      <h2>Six <em>expertises</em></h2>
+      <p class="veil__lead">En mission ponctuelle ou en accompagnement mensuel. Ouvrez une ligne pour voir ce qu'elle contient.</p>
+    </div>
+
+    <div class="veil__flaps" aria-hidden="true">
+      <i class="flap flap--t"></i>
+      <i class="flap flap--b"></i>
+      <i class="flap flap--l"></i>
+      <i class="flap flap--r"></i>
+    </div>
+    <p class="seal veil__seal" aria-hidden="true"><span>Six<br />expertises</span></p>
+    <p class="veil__hint eyebrow" aria-hidden="true">Faites défiler pour ouvrir</p>
+  </div>
+</section>
+
+<script>
+  const scene = document.querySelector<HTMLElement>('[data-veil]');
+  if (scene) {
+    const clamp = (x: number) => Math.min(1, Math.max(0, x));
+    const ease = (x: number) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    const render = (p: number) => {
+      const open = ease(clamp((p - 0.1) / 0.5)); // rabats
+      const text = clamp((p - 0.45) / 0.3); // titre
+      scene.style.setProperty('--open', open.toFixed(4));
+      scene.style.setProperty('--txt', text.toFixed(4));
+    };
+    render(0);
+    scene.addEventListener('scene', (e) => render((e as CustomEvent<number>).detail));
+  }
+</script>
+
+<style>
+  .veil {
+    height: 280vh;
+    --open: 0;
+    --txt: 0;
+    background: var(--wine);
+  }
+  .veil__sticky {
+    display: grid;
+    place-items: center;
+  }
+
+  /* Couverture imprimée ton sur ton, comme un livre gaufré */
+  .veil__print {
+    position: absolute;
+    inset: -2vh -4vw;
+    display: grid;
+    align-content: center;
+    font-weight: 850;
+    font-stretch: 75%;
+    font-size: clamp(7.5rem, 22vw, 24rem);
+    line-height: 0.78;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    color: var(--wine-2);
+    text-shadow: 0 1px 0 rgb(255 255 255 / 0.04), 0 -1px 0 rgb(0 0 0 / 0.25);
+    transform: scale(calc(1.08 - var(--open) * 0.08));
+    filter: blur(calc((1 - var(--open)) * 0px + var(--txt) * 3px));
+    opacity: calc(1 - var(--txt) * 0.35);
+    user-select: none;
+  }
+  .veil__print span:nth-child(even) {
+    text-align: right;
+  }
+  .veil__print span:nth-child(2),
+  .veil__print span:nth-child(4) {
+    color: #7d1a30;
+  }
+
+  /* Titre révélé */
+  .veil__text {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    justify-items: center;
+    gap: 1.4rem;
+    text-align: center;
+    padding-inline: var(--gutter);
+    opacity: var(--txt);
+    filter: blur(calc((1 - var(--txt)) * 16px));
+    transform: translateY(calc((1 - var(--txt)) * 30px));
+  }
+  .veil__text h2 {
+    font-size: clamp(3.6rem, 11vw, 11rem);
+    color: #f6ecec;
+  }
+  .veil__lead {
+    max-width: 30rem;
+    color: rgb(246 236 236 / 0.78);
+  }
+
+  /* Papier de soie : quatre rabats translucides qui se rejoignent au centre */
+  .veil__flaps {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .flap {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(var(--g, 180deg), rgb(255 250 250 / 0.82), rgb(246 236 238 / 0.7) 70%, rgb(226 210 214 / 0.66));
+    opacity: calc(1.6 - var(--open) * 1.6);
+    backdrop-filter: blur(7px) saturate(0.8);
+    -webkit-backdrop-filter: blur(7px) saturate(0.8);
+    transition: none;
+  }
+  .flap--t {
+    clip-path: polygon(0 0, 100% 0, 50% 52%);
+    transform: translateY(calc(var(--open) * -62%));
+    z-index: 3;
+  }
+  .flap--b {
+    --g: 0deg;
+    clip-path: polygon(0 100%, 100% 100%, 50% 48%);
+    transform: translateY(calc(var(--open) * 62%));
+    z-index: 4;
+  }
+  .flap--l {
+    --g: 90deg;
+    clip-path: polygon(0 0, 0 100%, 53% 50%);
+    transform: translateX(calc(var(--open) * -62%));
+    z-index: 1;
+  }
+  .flap--r {
+    --g: 270deg;
+    clip-path: polygon(100% 0, 100% 100%, 47% 50%);
+    transform: translateX(calc(var(--open) * 62%));
+    z-index: 2;
+  }
+  .veil__seal {
+    position: absolute;
+    z-index: 5;
+    left: 50%;
+    top: 50%;
+    --sw: clamp(200px, 22vw, 300px);
+    transform: translate(-50%, calc(-50% - var(--open) * 30vh)) scale(calc(1 - var(--open) * 0.4)) rotate(calc(var(--open) * -12deg));
+    opacity: calc(1 - var(--open) * 1.6);
+    margin: 0;
+  }
+  .veil__hint {
+    position: absolute;
+    z-index: 5;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgb(90 15 31 / 0.7);
+    opacity: calc(1 - var(--open) * 3);
+    white-space: nowrap;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .veil { height: auto; }
+    .veil__sticky { position: relative; height: auto; padding-block: 120px; }
+    .veil__flaps, .veil__seal, .veil__hint { display: none; }
+    .veil__text { opacity: 1; filter: none; transform: none; }
+  }
+</style>
