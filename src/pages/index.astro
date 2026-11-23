@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import '@fontsource/nothing-you-could-do';
 import ContactForm from '../components/ContactForm.astro';
 import Veil from '../components/Veil.astro';
 import Timeline from '../components/Timeline.astro';
@@ -57,7 +58,7 @@ const reeds = Array.from({ length: 9 });
         <div class="hero__visual reveal" style="--rd:.3s" aria-hidden="true">
           <span class="organic hero__blob"></span>
           <div class="hero__photo"><img class="photo" src={m('julie-bw')} alt="" /><span class="reeded hero__reeds">{reeds.map(() => <i />)}</span></div>
-          <p class="seal hero__seal float" style="--d:7s"><span>Creative<br />thinking.</span></p>
+          <p class="hero__hand float" style="--d:7s">Creative<br />thinking.</p>
         </div>
 
         <ul class="hero__side reveal" style="--rd:.7s" aria-label="Les expertises en bref">
@@ -347,7 +348,8 @@ const reeds = Array.from({ length: 9 });
   .hero__photo { position: absolute; inset: 0; border-radius: 50% / 42%; overflow: hidden; box-shadow: var(--shadow); }
   .hero__photo img { width: 100%; height: 100%; object-position: 45% 30%; filter: grayscale(1) contrast(1.05); }
   .hero__reeds { left: 62%; right: 0; top: 0; bottom: 0; }
-  .hero__seal { position: absolute; right: -14%; top: 8%; --sw: clamp(150px, 13vw, 190px); }
+  /* Annotation manuscrite, sans cachet */
+  .hero__hand { position: absolute; right: -16%; top: 6%; margin: 0; font: 400 clamp(1.9rem, 3vw, 2.8rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-8deg); text-shadow: 0 1px 0 rgb(255 255 255 / 0.4); }
   .hero__side { list-style: none; margin: 0; padding: 0 0 0.5rem; display: grid; gap: 0.2rem; text-align: right; font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; }
   .hero__side li:nth-child(odd) { color: var(--rasp); }
 
@@ -469,6 +471,6 @@ const reeds = Array.from({ length: 9 });
     .row__items { columns: 1; }
     .steps li { grid-template-columns: 1fr; gap: 0.2rem; }
     .about__seal { right: 0; --sw: 130px; }
-    .hero__seal { right: -6%; }
+    .hero__hand { right: -4%; top: 2%; font-size: 1.7rem; }
   }
 </style>
