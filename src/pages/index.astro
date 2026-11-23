@@ -30,22 +30,7 @@ const tools = [
 <Base>
   <!-- HERO : une affiche -->
   <section class="hero" data-theme="cream" data-hero>
-    <svg class="felt" viewBox="0 0 1440 900" preserveAspectRatio="none" aria-hidden="true">
-      <defs>
-        <filter id="felt-tex" x="-5%" y="-5%" width="110%" height="110%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.035 0.6" numOctaves="2" seed="11" result="n" />
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="3" xChannelSelector="R" yChannelSelector="G" result="d" />
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="3" result="g" />
-          <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.6 1.25" result="ga" />
-          <feComposite in="d" in2="ga" operator="in" />
-        </filter>
-      </defs>
-      <g filter="url(#felt-tex)" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path class="felt__l felt__l--1" pathLength="1" d="M930 -40 C980 200 1040 420 1090 640 S1160 900 1180 960" />
-        <path class="felt__l felt__l--2" pathLength="1" d="M985 -40 C1032 210 1096 430 1142 650 S1210 900 1232 960" />
-        <path class="felt__l felt__l--3" pathLength="1" d="M1052 -40 C1094 196 1156 418 1204 636 S1268 892 1290 960" />
-      </g>
-    </svg>
+    <div class="hero__bg" aria-hidden="true"><img src={m('julie-bw')} alt="" /></div>
     <div class="container hero__in">
       <h1 class="hero__title" data-hero-title>
         <span class="hl">Le studio créatif</span>
@@ -270,15 +255,13 @@ const tools = [
   .head .lead { max-width: 24rem; }
 
   /* HERO */
-  /* Traits de feutre qui traversent le hero en fond, tracés à l'ouverture du site */
-  .felt { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
-  .felt__l { vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; animation: felt-draw 1.4s cubic-bezier(0.6, 0, 0.2, 1) forwards; }
-  .felt__l { stroke: #161213; mix-blend-mode: multiply; }
-  .felt__l--1 { stroke-width: 18px; opacity: 0.16; animation-delay: 0.2s; }
-  .felt__l--2 { stroke-width: 11px; opacity: 0.22; animation-delay: 0.42s; animation-duration: 1.2s; }
-  .felt__l--3 { stroke-width: 24px; opacity: 0.12; animation-delay: 0.62s; animation-duration: 1.1s; }
-  @keyframes felt-draw { to { stroke-dashoffset: 0; } }
-  @media (prefers-reduced-motion: reduce) { .felt__l { stroke-dashoffset: 0; animation: none; } }
+  /* Portrait N&B de Julie en fond, peu opaque, fondu côté gauche */
+  .hero__bg { position: absolute; top: 0; right: 0; bottom: 0; width: min(62%, 980px); z-index: 0; pointer-events: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 45%), linear-gradient(0deg, transparent 0%, #000 18%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 45%), linear-gradient(0deg, transparent 0%, #000 18%);
+    -webkit-mask-composite: source-in; mask-composite: intersect; }
+  .hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 25%; filter: grayscale(1) contrast(1.05); opacity: 0.22; mix-blend-mode: multiply; }
+  @media (max-width: 640px) { .hero__bg { width: 100%; } .hero__bg img { opacity: 0.14; object-position: 45% 20%; } }
   .hero__in { position: relative; z-index: 1; }
   .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; padding: clamp(110px, 13vh, 150px) 0 clamp(36px, 6vh, 64px); }
   .hero__in { display: grid; grid-template-rows: 1fr auto; gap: clamp(32px, 6vh, 72px); align-items: center; }
