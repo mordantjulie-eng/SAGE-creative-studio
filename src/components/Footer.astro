@@ -39,9 +39,10 @@ const year = new Date().getFullYear();
     color: #f5f1ea;
     padding-top: clamp(56px, 7vw, 96px);
   }
+  /* Petits textes du pied de page en bleu ciel */
   .footer__meta {
-    color: rgb(245 241 234 / 0.85);
-    border-color: rgb(245 241 234 / 0.25);
+    color: var(--sky);
+    border-color: rgb(201 221 238 / 0.3);
   }
   .footer__meta a {
     text-decoration: none;
@@ -78,13 +79,15 @@ const year = new Date().getFullYear();
     font-weight: 600;
     font-stretch: 118%;
     text-transform: uppercase;
+    color: var(--sky);
   }
   .footer a {
     text-decoration: none;
     transition: color 0.3s var(--ease);
   }
-  .footer__nav a:hover {
-    color: var(--rasp-soft);
+  .footer__nav a:hover,
+  .footer__bottom a:hover {
+    color: var(--blush);
   }
   .footer__logo {
     padding: clamp(48px, 7vw, 96px) var(--gutter) 0;
@@ -102,10 +105,10 @@ const year = new Date().getFullYear();
     flex-wrap: wrap;
     gap: 1rem;
     padding-block: 1.4rem;
-    border-top: 1px solid rgb(245 241 234 / 0.16);
+    border-top: 1px solid rgb(201 221 238 / 0.2);
     font-size: 0.74rem;
     font-stretch: 112%;
-    opacity: 0.7;
+    color: var(--sky);
     position: relative;
   }
   @media (max-width: 700px) {

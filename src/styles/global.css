@@ -524,7 +524,7 @@ body[data-theme='charcoal'] {
   overflow: hidden;
 }
 
-/* Survol : bouton liquide (le carmin part du curseur) */
+/* Survol : bouton liquide (le bleu ciel ou le jaune beurre part du curseur) */
 .liquid {
   position: relative;
   overflow: hidden;
@@ -538,7 +538,7 @@ body[data-theme='charcoal'] {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: var(--liquid, var(--rasp));
+  background: var(--liquid, var(--sky));
   transform: translate(-50%, -50%);
   transition: width 0.55s var(--ease-out), height 0.55s var(--ease-out);
   z-index: -1;
@@ -548,11 +548,24 @@ body[data-theme='charcoal'] {
   height: 600%;
 }
 .liquid:hover {
-  color: var(--white) !important;
+  color: #17120e !important;
 }
-.btn--rasp.liquid,
-.header__cta.liquid {
-  --liquid: var(--choco);
+/* Sur le noyer, et pour le bouton de la barre : jaune beurre */
+.header__cta.liquid,
+:not(body)[data-theme='sage'] .liquid,
+:not(body)[data-theme='charcoal'] .liquid,
+.on-dark .liquid {
+  --liquid: var(--blush);
+}
+/* Écran tactile : même changement de couleur au toucher */
+.btn:active,
+.header__cta:active {
+  background: var(--sky) !important;
+  color: #17120e !important;
+}
+:not(body)[data-theme='sage'] .btn:active,
+:not(body)[data-theme='charcoal'] .btn:active {
+  background: var(--blush) !important;
 }
 .link.liquid {
   overflow: visible;
