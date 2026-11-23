@@ -13,22 +13,20 @@
   --white: #f8f6f3;
   --ink: #161213; /* encre */
   --ink-soft: rgb(22 18 19 / 0.66);
-  --wine: #5a0f1f; /* bordeaux profond, sections foncées */
-  --wine-2: #6e1628; /* bordeaux plus clair, ton sur ton */
-  --wine-deep: #22060c; /* pied de page */
-  --carmine: #c8193c; /* carmin, mot-clé sur fond clair, cachet */
-  --carmine-soft: #e0405f; /* carmin lumineux, ton sur ton */
-  --lilac: #cdbdf2; /* lilas, Mindset */
-  --lilac-deep: #3a2a6b; /* encre lilas */
-  --blush: #f3b6c8;
+  --choco: #5a0f1f; /* bordeaux profond, sections foncées (nom gardé pour tester d'autres palettes) */
+  --choco-2: #6e1628; /* bordeaux plus clair, ton sur ton */
+  --choco-deep: #22060c; /* pied de page */
+  --rasp: #c8193c; /* carmin, mot-clé sur fond clair, cachet */
+  --rasp-soft: #e0405f; /* carmin lumineux */
+  --butter: #cdbdf2; /* lilas, Mindset */
+  --blush: #f3b6c8; /* rose, mots-clés sur fond foncé */
   --peach: #f6b38e;
   --orchid: #e07ac8;
   --hair: rgb(22 18 19 / 0.16);
 
   --font-ui: 'Mona Sans Variable', 'Mona Sans', 'Helvetica Neue', Arial, sans-serif;
   --font-display: var(--font-ui);
-  --font-script: 'Pinyon Script', 'Snell Roundhand', cursive;
-
+  
   --container: 1360px;
   --gutter: clamp(16px, 3.4vw, 44px);
   --r-s: 10px;
@@ -48,11 +46,11 @@
 
   /* Anciens noms, redirigés pour les pages secondaires */
   --cream: var(--paper);
-  --fir: var(--wine);
-  --fir-deep: var(--wine-deep);
-  --ochre: var(--carmine);
+  --fir: var(--choco);
+  --fir-deep: var(--choco-deep);
+  --ochre: var(--rasp);
   --clay: var(--orchid);
-  --sage: var(--lilac);
+  --sage: var(--butter);
   --sage-light: var(--blush);
   --taupe: var(--peach);
   --eucalyptus: var(--ink-soft);
@@ -61,15 +59,15 @@
   --terracotta: var(--blush);
   --sand: var(--blush);
   --linen: var(--paper-2);
-  --orange: var(--carmine);
+  --orange: var(--rasp);
   --font-letter: var(--font-ui);
   --font-serif: var(--font-ui);
   --grad-soft: var(--paper);
-  --grad-dark: var(--wine);
+  --grad-dark: var(--choco);
   --glass-strong: rgb(255 255 255 / 0.7);
   --organic: radial-gradient(60% 55% at 35% 40%, var(--orchid) 0%, transparent 70%),
     radial-gradient(55% 60% at 70% 30%, var(--peach) 0%, transparent 70%),
-    radial-gradient(60% 60% at 55% 75%, var(--lilac) 0%, transparent 72%), var(--blush);
+    radial-gradient(60% 60% at 55% 75%, var(--butter) 0%, transparent 72%), var(--blush);
 }
 
 *,
@@ -149,7 +147,7 @@ h3 em {
   font-stretch: 125%;
   font-weight: 300;
   letter-spacing: -0.045em;
-  color: var(--carmine);
+  color: var(--rasp);
 }
 
 :focus-visible {
@@ -278,8 +276,8 @@ h3 em {
   -webkit-backdrop-filter: blur(18px);
   box-shadow: inset 0 0 0 1px rgb(22 18 19 / 0.14);
 }
-.btn--carmine {
-  background: var(--carmine);
+.btn--rasp {
+  background: var(--rasp);
   color: var(--white);
 }
 
@@ -307,7 +305,7 @@ h3 em {
   font-weight: 600;
   font-stretch: 115%;
   color: var(--white);
-  background: var(--carmine);
+  background: var(--rasp);
 }
 
 /* Cachet ovale façon sceau de cire, écriture calligraphiée */
@@ -317,16 +315,29 @@ h3 em {
   width: var(--sw, 220px);
   aspect-ratio: 1.55;
   border-radius: 50%;
-  background: radial-gradient(120% 90% at 35% 25%, #e0304f 0%, var(--carmine) 45%, #9e0f2c 100%);
+  background: radial-gradient(120% 90% at 35% 25%, #e0405f 0%, var(--rasp) 45%, #9e0f2c 100%);
   color: #2a0710;
   box-shadow: inset 0 2px 3px rgb(255 255 255 / 0.25), inset 0 -6px 14px rgb(60 0 12 / 0.35), 0 18px 34px -16px rgb(60 0 12 / 0.6);
   text-align: center;
   text-decoration: none;
 }
 .seal span {
-  font: 400 calc(var(--sw, 220px) * 0.17) / 0.95 var(--font-script);
-  transform: rotate(-8deg);
-  padding: 0 0.6em;
+  /* Lettrage en relief, dans l'esprit du logo SAGE. : capitales grasses penchées */
+  font: italic 900 calc(var(--sw, 220px) * 0.13) / 0.92 var(--font-ui);
+  font-stretch: 112%;
+  letter-spacing: -0.035em;
+  text-transform: uppercase;
+  color: #fff3f5;
+  transform: rotate(-6deg);
+  padding: 0 0.5em;
+  text-shadow:
+    0 1px 0 #f3b6c8,
+    1px 2px 0 #b01434,
+    2px 3px 0 #9a1030,
+    3px 4px 0 #850d2a,
+    4px 5px 0 #6f0b24,
+    5px 6px 0 #5a0f1f,
+    6px 10px 12px rgb(40 2 10 / 0.45);
 }
 
 /* Matière organique : dégradé rose, pêche, lilas, avec grain */
@@ -441,7 +452,7 @@ h3 em {
   --ink: #f6ecec;
   --ink-soft: rgb(246 236 236 / 0.7);
   --hair: rgb(246 236 236 / 0.18);
-  background-color: var(--wine);
+  background-color: var(--choco);
   color: #f6ecec;
 }
 :not(body)[data-theme='sage'] h1 em,
@@ -455,7 +466,7 @@ h3 em {
 :not(body)[data-theme='sage'] .btn--primary,
 .on-dark .btn--primary {
   background: var(--white);
-  color: var(--wine);
+  color: var(--choco);
 }
 :not(body)[data-theme='sage'] .btn--glass,
 .on-dark .btn--glass {
@@ -473,7 +484,7 @@ h3 em {
   color: #f6ecec;
 }
 :not(body)[data-theme='taupe'] {
-  background-color: var(--lilac);
+  background-color: var(--butter);
   --ink: #1c1430;
   --ink-soft: rgb(28 20 48 / 0.7);
   --hair: rgb(28 20 48 / 0.18);
@@ -481,10 +492,10 @@ h3 em {
 }
 :not(body)[data-theme='taupe'] h2 em,
 :not(body)[data-theme='taupe'] h3 em {
-  color: var(--wine);
+  color: var(--choco);
 }
 :not(body)[data-theme='charcoal'] {
-  background-color: var(--wine-deep);
+  background-color: var(--choco-deep);
   color: #f6ecec;
   --ink: #f6ecec;
   --ink-soft: rgb(246 236 236 / 0.7);
@@ -493,13 +504,13 @@ body[data-theme='cream'] {
   background-color: var(--paper);
 }
 body[data-theme='sage'] {
-  background-color: var(--wine);
+  background-color: var(--choco);
 }
 body[data-theme='taupe'] {
-  background-color: var(--lilac);
+  background-color: var(--butter);
 }
 body[data-theme='charcoal'] {
-  background-color: var(--wine-deep);
+  background-color: var(--choco-deep);
 }
 
 /* Les halos de l'ancienne DA ne s'affichent plus */
@@ -526,7 +537,7 @@ body[data-theme='charcoal'] {
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: var(--liquid, var(--carmine));
+  background: var(--liquid, var(--rasp));
   transform: translate(-50%, -50%);
   transition: width 0.55s var(--ease-out), height 0.55s var(--ease-out);
   z-index: -1;
@@ -538,9 +549,9 @@ body[data-theme='charcoal'] {
 .liquid:hover {
   color: var(--white) !important;
 }
-.btn--carmine.liquid,
+.btn--rasp.liquid,
 .header__cta.liquid {
-  --liquid: var(--wine);
+  --liquid: var(--choco);
 }
 .link.liquid {
   overflow: visible;

@@ -104,7 +104,7 @@ export const services: Service[] = [
     highlights: ['Reels & TikTok', 'Photo', 'UGC'],
     pillars: ['A', 'G'],
     tone: 'ochre',
-    img: 'julie-filming',
+    img: 'fmt-packshot',
     groups: [
       { t: 'Photo et graphisme', items: ['Shootings', 'Visuels', 'Carrousels'] },
       { t: 'Vidéo', items: ['Reels', 'TikTok', 'Shorts', 'Vidéo longue'] },
@@ -131,7 +131,7 @@ export const services: Service[] = [
     highlights: ['Audit', 'Positionnement', 'Ligne éditoriale'],
     pillars: ['S'],
     tone: 'ivory',
-    img: 'julie-kiehls',
+    img: 'zoom-reseaux',
     groups: [
       { t: 'Comprendre', items: ['Audit', 'Veille', 'Marché'] },
       { t: 'Positionner', items: ['Positionnement', 'Storytelling'] },
@@ -214,7 +214,7 @@ export const services: Service[] = [
     highlights: ['Ateliers', 'Agents IA', 'Outils sur mesure'],
     pillars: ['E'],
     tone: 'taupe',
-    img: 'julie-bw',
+    img: 'bts-montage',
     note: 'Des outils pensés pour votre façon de travailler, pas des solutions toutes faites. Je ne crée pas de sites web pour mes clients.',
     groups: [
       { t: 'Former', items: ['Ateliers métiers', 'Prompting', 'IA générative'] },

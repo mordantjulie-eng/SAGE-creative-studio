@@ -4,6 +4,7 @@ import Ticket from '../../components/Ticket.astro';
 import Phones from '../../components/Phones.astro';
 import ServiceMock from '../../components/ServiceMock.astro';
 import Shape from '../../components/Shape.astro';
+import Scene3D from '../../components/Scene3D.astro';
 import { services, pillars, steps, type Service } from '../../config/site';
 
 export function getStaticPaths() {
@@ -36,11 +37,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
         </div>
       </div>
       <div class="sv-hero__visual reveal" style="--rd:.1s">
-        <div class="sv-photo arch"><img class="photo" src={`/media/${s.img}.jpg`} alt="" /></div>
-        <div class="sv-tag glass float" style="--d:8s">
-          <span>N° {s.num}</span>
-          <em class="split">{s.highlights.map((h) => <span>{h}</span>)}</em>
-        </div>
+        <Scene3D slug={s.slug} />
       </div>
     </div>
   </section>
@@ -160,11 +157,11 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
 
   .rel { position: relative; z-index: 1; }
   .sv-hero { position: relative; overflow: hidden; background: var(--grad-soft); padding: 150px 0 clamp(70px, 9vw, 120px); }
-  .sv-hero__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
+  .sv-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 6rem); align-items: center; }
   .sv-hero__text { display: grid; gap: 1.5rem; justify-items: start; }
   .sv-back { font-size: 0.88rem; color: rgb(22 18 19 / 0.7); }
   .sv-hero h1 { font-size: clamp(3rem, 6.6vw, 6rem); font-weight: 560; }
-  .sv-hero__visual { position: relative; padding-left: 2rem; }
+  .sv-hero__visual { position: relative; }
   .sv-photo { aspect-ratio: 4 / 5; box-shadow: var(--shadow); }
   .sv-photo img { width: 100%; height: 100%; }
   .sv-tag { position: absolute; left: 0; bottom: 10%; display: grid; gap: 0.2rem; padding: 1rem 1.3rem; border-radius: var(--r-s); }
@@ -206,7 +203,7 @@ const others = [1, 2, 3].map((k) => services[(idx + k) % services.length]);
   }
   @media (max-width: 800px) {
     .sv-hero__grid, .sv-body { grid-template-columns: 1fr; }
-    .sv-hero__visual { max-width: 420px; }
+    .sv-hero__visual { max-width: 520px; width: 100%; margin-inline: auto; }
   }
   @media (max-width: 600px) {
     .sv-others, .sv-steps { grid-template-columns: 1fr; }

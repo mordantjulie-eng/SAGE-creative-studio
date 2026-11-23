@@ -1,0 +1,237 @@
+---
+// Visuel 3D des pages services, dessiné en CSS (aucune image à licencier) :
+// des appareils qui flottent en perspective et les logos des outils devant et derrière,
+// avec profondeur de champ (l'arrière-plan est flou) et parallaxe à la souris.
+import {
+  siInstagram, siTiktok, siMeta, siWhatsapp, siYoutube, siDavinciresolve, siNotion, siGoogleanalytics,
+  siFigma, siPinterest, siFramer, siClaude, siGooglegemini, siPerplexity, siMake, siZapier, siTrello, siMailchimp, siBrevo,
+} from 'simple-icons';
+import { canvaPath, openaiPath } from '../assets/extra-icons';
+
+interface Props { slug: string }
+const { slug } = Astro.props;
+
+type Dev = { k: 'phone' | 'phoneFront' | 'camera' | 'laptop' | 'tablet' | 'mic' | 'chart' | 'chat' | 'calendar' | 'palette'; x: number; y: number; w: number; r?: string; z: number };
+type Logo = { n: string; p?: string; word?: string; x: number; y: number; s: number; z: number; c: 'rasp' | 'choco' | 'butter' | 'white' };
+const L = {
+  ig: { n: 'Instagram', p: siInstagram.path }, tt: { n: 'TikTok', p: siTiktok.path }, meta: { n: 'Meta', p: siMeta.path },
+  wa: { n: 'WhatsApp', p: siWhatsapp.path }, yt: { n: 'YouTube', p: siYoutube.path }, dv: { n: 'DaVinci Resolve', p: siDavinciresolve.path },
+  canva: { n: 'Canva', p: canvaPath }, gpt: { n: 'ChatGPT', p: openaiPath }, notion: { n: 'Notion', p: siNotion.path },
+  ga: { n: 'Google Analytics', p: siGoogleanalytics.path }, figma: { n: 'Figma', p: siFigma.path }, pin: { n: 'Pinterest', p: siPinterest.path },
+  framer: { n: 'Framer', p: siFramer.path }, claude: { n: 'Claude', p: siClaude.path }, gemini: { n: 'Gemini', p: siGooglegemini.path },
+  plx: { n: 'Perplexity', p: siPerplexity.path }, make: { n: 'Make', p: siMake.path }, zap: { n: 'Zapier', p: siZapier.path },
+  trello: { n: 'Trello', p: siTrello.path }, mc: { n: 'Mailchimp', p: siMailchimp.path }, brevo: { n: 'Brevo', p: siBrevo.path },
+  li: { n: 'LinkedIn', word: 'in' }, capcut: { n: 'CapCut', word: 'CapCut' }, lr: { n: 'Lightroom', word: 'Lr' }, metri: { n: 'Metricool', word: 'metricool' },
+};
+const at = (l: { n: string; p?: string; word?: string }, x: number, y: number, s: number, z: number, c: Logo['c']): Logo => ({ ...l, x, y, s, z, c });
+
+const scenes: Record<string, { devs: Dev[]; logos: Logo[] }> = {
+  'community-management': {
+    devs: [
+      { k: 'laptop', x: 6, y: 34, w: 62, r: 'rotateY(18deg) rotateX(6deg)', z: 0 },
+      { k: 'phoneFront', x: 58, y: 16, w: 28, r: 'rotateY(-16deg) rotateZ(6deg)', z: 1 },
+      { k: 'calendar', x: 4, y: 8, w: 36, r: 'rotateY(14deg) rotateZ(-5deg)', z: -1 },
+    ],
+    logos: [at(L.ig, 82, 66, 14, 1, 'rasp'), at(L.tt, 44, 6, 11, -1, 'choco'), at(L.li, 8, 76, 13, 1, 'butter'), at(L.meta, 90, 10, 9, -1, 'white'), at(L.metri, 48, 82, 12, 1, 'white'), at(L.wa, 30, 2, 8, -1, 'butter')],
+  },
+  'content-creation': {
+    devs: [
+      { k: 'laptop', x: 4, y: 42, w: 60, r: 'rotateY(20deg) rotateX(8deg)', z: 0 },
+      { k: 'phone', x: 56, y: 8, w: 27, r: 'rotateY(-24deg) rotateZ(8deg)', z: 1 },
+      { k: 'camera', x: 10, y: 6, w: 40, r: 'rotateY(22deg) rotateZ(-8deg)', z: 0 },
+    ],
+    logos: [at(L.capcut, 74, 70, 16, 1, 'choco'), at(L.lr, 52, 46, 12, 1, 'rasp'), at(L.dv, 2, 78, 10, -1, 'white'), at(L.canva, 46, 2, 9, -1, 'butter'), at(L.tt, 88, 6, 10, -1, 'choco'), at(L.ig, 36, 84, 12, 1, 'butter'), at(L.yt, 86, 44, 9, -1, 'white')],
+  },
+  'strategy-consulting': {
+    devs: [
+      { k: 'laptop', x: 8, y: 38, w: 62, r: 'rotateY(18deg) rotateX(6deg)', z: 0 },
+      { k: 'chart', x: 54, y: 10, w: 40, r: 'rotateY(-18deg) rotateZ(5deg)', z: 1 },
+      { k: 'tablet', x: 2, y: 4, w: 30, r: 'rotateY(20deg) rotateZ(-7deg)', z: -1 },
+    ],
+    logos: [at(L.notion, 80, 68, 14, 1, 'white'), at(L.ga, 40, 4, 10, -1, 'butter'), at(L.trello, 8, 78, 11, 1, 'rasp'), at(L.meta, 90, 2, 8, -1, 'choco'), at(L.figma, 50, 84, 10, 1, 'choco')],
+  },
+  'branding-art-direction': {
+    devs: [
+      { k: 'tablet', x: 8, y: 20, w: 44, r: 'rotateY(22deg) rotateZ(-6deg)', z: 0 },
+      { k: 'palette', x: 50, y: 8, w: 40, r: 'rotateY(-18deg) rotateZ(7deg)', z: -1 },
+      { k: 'phone', x: 58, y: 40, w: 26, r: 'rotateY(-22deg) rotateZ(-6deg)', z: 1 },
+    ],
+    logos: [at(L.figma, 10, 76, 14, 1, 'choco'), at(L.canva, 86, 70, 12, 1, 'rasp'), at(L.pin, 40, 2, 9, -1, 'white'), at(L.framer, 88, 4, 9, -1, 'butter'), at(L.lr, 40, 84, 11, 1, 'butter')],
+  },
+  'influence-campaigns': {
+    devs: [
+      { k: 'phoneFront', x: 32, y: 10, w: 32, r: 'rotateY(-12deg) rotateZ(4deg)', z: 0 },
+      { k: 'mic', x: 4, y: 30, w: 18, r: 'rotateZ(-14deg)', z: 1 },
+      { k: 'camera', x: 62, y: 46, w: 34, r: 'rotateY(-24deg) rotateZ(6deg)', z: 1 },
+      { k: 'chart', x: 62, y: 4, w: 32, r: 'rotateY(-18deg) rotateZ(6deg)', z: -1 },
+    ],
+    logos: [at(L.ig, 16, 72, 14, 1, 'rasp'), at(L.tt, 6, 6, 11, -1, 'choco'), at(L.yt, 48, 84, 11, 1, 'white'), at(L.mc, 90, 34, 8, -1, 'butter'), at(L.brevo, 28, 2, 8, -1, 'white')],
+  },
+  'ai-training-optimization': {
+    devs: [
+      { k: 'laptop', x: 6, y: 36, w: 62, r: 'rotateY(18deg) rotateX(6deg)', z: 0 },
+      { k: 'chat', x: 54, y: 8, w: 40, r: 'rotateY(-16deg) rotateZ(5deg)', z: 1 },
+      { k: 'phone', x: 2, y: 2, w: 22, r: 'rotateY(26deg) rotateZ(-10deg)', z: -1 },
+    ],
+    logos: [at(L.gpt, 80, 66, 14, 1, 'choco'), at(L.claude, 46, 84, 12, 1, 'rasp'), at(L.gemini, 34, 4, 9, -1, 'white'), at(L.make, 8, 78, 11, 1, 'butter'), at(L.zap, 90, 4, 8, -1, 'rasp'), at(L.notion, 30, 24, 7, -1, 'white'), at(L.plx, 92, 44, 8, -1, 'white')],
+  },
+};
+const sc = scenes[slug] ?? scenes['content-creation'];
+---
+
+<div class="s3" data-s3 aria-hidden="true">
+  <span class="organic s3__blob"></span>
+  {
+    sc.devs.map((d, i) => (
+      <div class="o" style={`--x:${d.x}%;--y:${d.y}%;--w:${d.w}cqw;--z:${d.z};z-index:${(d.z + 2) * 10 + i}`}>
+        <div class="o__float" style={`--d:${7 + i * 1.3}s;--delay:${-i * 1.7}s`}>
+          <div class={`dev dev--${d.k}`} style={`transform:${d.r ?? 'none'}`}>
+            {d.k === 'phone' && (<><span class="ph__bump"><i /><i /><i /><b /></span><span class="ph__mark">S.</span></>)}
+            {d.k === 'phoneFront' && (<span class="ph__screen"><span class="ph__isl" /><span class="ph__post" /><span class="ph__notif"><b>♥</b> 2,4 k</span><span class="ph__bar" /><span class="ph__bar ph__bar--s" /></span>)}
+            {d.k === 'camera' && (<><span class="cam__top" /><span class="cam__btn" /><span class="cam__grip" /><span class="cam__lens"><i /></span><span class="cam__flash" /></>)}
+            {d.k === 'laptop' && (<><span class="lp__screen"><span class="lp__ui"><i /><i /><i /><i /><i /><i /></span><span class="lp__tl"><b /><b /><b /></span></span><span class="lp__base" /></>)}
+            {d.k === 'tablet' && (<span class="tb__screen"><i /><i /><i /><i /><span>Aa</span></span>)}
+            {d.k === 'mic' && (<><span class="mic__head" /><span class="mic__body" /></>)}
+            {d.k === 'chart' && (<span class="card"><span class="card__t">Visibilité</span><span class="bars"><i style="--h:35%" /><i style="--h:52%" /><i style="--h:44%" /><i style="--h:70%" /><i style="--h:88%" /></span></span>)}
+            {d.k === 'chat' && (<span class="card card--chat"><span class="bub">Prépare le suivi client de la semaine</span><span class="bub bub--me">C'est fait : 12 relances prêtes.</span><span class="bub bub--dots"><i /><i /><i /></span></span>)}
+            {d.k === 'calendar' && (<span class="card card--cal"><span class="card__t">Novembre</span><span class="cal">{Array.from({ length: 21 }).map((_, k) => <i class={[2, 6, 9, 13, 17].includes(k) ? 'on' : [4, 11].includes(k) ? 'on2' : ''} />)}</span></span>)}
+            {d.k === 'palette' && (<span class="card card--pal"><i style="--c:var(--choco)" /><i style="--c:var(--rasp)" /><i style="--c:var(--butter)" /><i style="--c:var(--paper-2)" /><span>SAGE.</span></span>)}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+  {
+    sc.logos.map((l, i) => (
+      <div class="o" style={`--x:${l.x}%;--y:${l.y}%;--w:${l.s}cqw;--z:${l.z};z-index:${(l.z + 2) * 10 + 5 + i}`} title={l.n}>
+        <div class="o__float" style={`--d:${5.5 + (i % 4)}s;--delay:${-i * 1.1}s;--fy:${-8 - (i % 3) * 4}px`}>
+          <span class={`tile tile--${l.c}`} style={`transform:rotate(${((i * 37) % 24) - 12}deg)`}>
+            {l.p ? <svg viewBox="0 0 24 24"><path d={l.p} fill="currentColor" /></svg> : <span class:list={['tile__w', { 'tile__w--s': (l.word || '').length > 3 }]}>{l.word}</span>}
+          </span>
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<script>
+  // Parallaxe : chaque objet bouge selon sa profondeur
+  const fine = window.matchMedia('(pointer: fine)').matches;
+  const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-s3]').forEach((el) => {
+    if (!fine || calm) return;
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    window.addEventListener('pointermove', (e) => { tx = e.clientX / innerWidth - 0.5; ty = e.clientY / innerHeight - 0.5; }, { passive: true });
+    const loop = () => {
+      cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
+      el.style.setProperty('--px', cx.toFixed(4));
+      el.style.setProperty('--py', cy.toFixed(4));
+      requestAnimationFrame(loop);
+    };
+    loop();
+  });
+</script>
+
+<style>
+  .s3 { position: relative; width: 100%; aspect-ratio: 1 / 1.02; container-type: inline-size; perspective: 1400px; isolation: isolate; }
+  .s3__blob { inset: 8% 4% 4% 6%; --ob: 30px; z-index: 0; opacity: 0.85; }
+  .o { position: absolute; left: var(--x); top: var(--y); width: var(--w); transform-style: preserve-3d;
+    transform: translate3d(calc(var(--px, 0) * (var(--z) + 1.4) * -3cqw), calc(var(--py, 0) * (var(--z) + 1.4) * -3cqw), 0) scale(calc(1 + var(--z) * 0.06));
+    filter: blur(calc(max(0, -1 * var(--z)) * 2.4px)) drop-shadow(0 4cqw 4cqw rgb(34 6 12 / 0.28));
+    opacity: calc(1 + min(0, var(--z)) * 0.15); }
+  .o__float { animation: float var(--d, 7s) ease-in-out infinite; animation-delay: var(--delay, 0s); transform-style: preserve-3d; }
+  .dev { position: relative; transform-style: preserve-3d; }
+
+  /* Téléphone de dos */
+  .dev--phone { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; background: linear-gradient(140deg, #7d1a30 0%, #3a0b16 38%, #22060c 70%, #6e1628 100%);
+    box-shadow: inset 0 0 0 0.25cqw rgb(255 255 255 / 0.18), inset 0.6cqw 0.6cqw 1.2cqw rgb(255 255 255 / 0.12), inset -0.8cqw -0.8cqw 1.6cqw rgb(0 0 0 / 0.3); }
+  .ph__bump { position: absolute; left: 7%; top: 3.5%; width: 52%; aspect-ratio: 1; border-radius: 26%; background: linear-gradient(140deg, #7d1a30, #470b18);
+    box-shadow: inset 0 0 0 0.2cqw rgb(255 255 255 / 0.15), 0 0.6cqw 1cqw rgb(0 0 0 / 0.35); }
+  .ph__bump i { position: absolute; width: 40%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 38% 34%, #7c88b5 0 8%, #141018 22%, #050405 50%, #3b2f2a 54% 62%, #120c0a 66%); box-shadow: 0 0.3cqw 0.5cqw rgb(0 0 0 / 0.4); }
+  .ph__bump i:nth-child(1) { left: 6%; top: 6%; }
+  .ph__bump i:nth-child(2) { left: 6%; bottom: 6%; }
+  .ph__bump i:nth-child(3) { right: 6%; top: 30%; }
+  .ph__bump b { position: absolute; right: 14%; top: 10%; width: 12%; aspect-ratio: 1; border-radius: 50%; background: var(--butter); }
+  .ph__mark { position: absolute; left: 0; right: 0; top: 52%; text-align: center; font: italic 900 6cqw/1 var(--font-ui); color: rgb(205 189 242 / 0.5); }
+
+  /* Téléphone de face (publication, notification) */
+  .dev--phoneFront { aspect-ratio: 9 / 19; border-radius: 16% / 7.6%; padding: 4%; background: #161213; box-shadow: inset 0 0 0 0.3cqw #7d1a30; }
+  .ph__screen { position: relative; display: grid; align-content: start; gap: 4%; height: 100%; padding: 22% 8% 0; border-radius: 13% / 6%; overflow: hidden; background: var(--white); }
+  .ph__isl { position: absolute; left: 32%; right: 32%; top: 3%; height: 3.4%; border-radius: 99px; background: #161213; }
+  .ph__post { aspect-ratio: 4 / 5; border-radius: 6%; background: radial-gradient(70% 60% at 30% 30%, var(--rasp-soft), transparent 70%), radial-gradient(60% 60% at 70% 70%, var(--butter), transparent 70%), var(--peach); }
+  .ph__notif { position: absolute; left: 10%; right: 10%; top: 40%; padding: 3.5% 6%; border-radius: 99px; background: rgb(255 255 255 / 0.85); backdrop-filter: blur(6px); font: 700 2.6cqw/1 var(--font-ui); color: var(--ink); box-shadow: 0 1cqw 2cqw rgb(0 0 0 / 0.15); }
+  .ph__notif b { color: var(--rasp); }
+  .ph__bar { height: 2.2cqw; border-radius: 99px; background: rgb(22 18 19 / 0.12); }
+  .ph__bar--s { width: 60%; }
+
+  /* Appareil photo */
+  .dev--camera { aspect-ratio: 1.55; border-radius: 9%; background: linear-gradient(160deg, #6e1628, #22060c 60%, #3a0b16);
+    box-shadow: inset 0 0 0 0.25cqw rgb(255 255 255 / 0.12), inset 0 1.2cqw 1cqw -0.6cqw rgb(255 255 255 / 0.12); }
+  .cam__top { position: absolute; left: 12%; top: -12%; width: 30%; height: 16%; border-radius: 18% 18% 0 0; background: linear-gradient(#7d1a30, #470b18); }
+  .cam__btn { position: absolute; right: 16%; top: -7%; width: 13%; height: 9%; border-radius: 30% 30% 0 0; background: var(--rasp); }
+  .cam__grip { position: absolute; left: 0; top: 0; bottom: 0; width: 24%; border-radius: 30% 0 0 30%; background: repeating-linear-gradient(0deg, #2a0710 0 2px, #3a0b16 2px 4px); }
+  .cam__flash { position: absolute; right: 9%; top: 12%; width: 13%; height: 11%; border-radius: 4px; background: linear-gradient(135deg, #fff8e6, var(--butter)); }
+  .cam__lens { position: absolute; left: 32%; top: 12%; width: 52%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #160a0d 52%, #6e1628 54% 60%, #22060c 62% 74%, #7d1a30 76% 80%, #161213 82%); box-shadow: 0 1cqw 2cqw rgb(0 0 0 / 0.45); }
+  .cam__lens i { position: absolute; inset: 22%; border-radius: 50%; background: radial-gradient(circle at 36% 32%, #c9b6ff 0 6%, #3c3070 14%, #0a0710 46%, #000 70%); }
+
+  /* Ordinateur portable */
+  .dev--laptop { transform-origin: 50% 100%; }
+  .lp__screen { display: block; aspect-ratio: 16 / 10.4; padding: 2.6%; border-radius: 4% / 6%; background: #161213; box-shadow: inset 0 0 0 0.25cqw #6e1628; }
+  .lp__ui { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4%; height: 100%; padding: 6% 5% 18%; border-radius: 2%; background: linear-gradient(160deg, var(--white), var(--paper-2)); overflow: hidden; }
+  .lp__ui i { border-radius: 6%; background: var(--paper-2); }
+  .lp__ui i:nth-child(1) { background: var(--rasp); }
+  .lp__ui i:nth-child(2) { background: var(--butter); }
+  .lp__ui i:nth-child(3) { background: var(--choco); }
+  .lp__ui i:nth-child(5) { background: radial-gradient(70% 70% at 40% 40%, var(--rasp-soft), var(--peach)); }
+  .lp__tl { position: absolute; left: 7%; right: 7%; bottom: 8%; display: flex; gap: 2%; }
+  .lp__tl b { height: 2.2cqw; flex: 1; border-radius: 2px; background: var(--rasp); opacity: 0.85; }
+  .lp__tl b:nth-child(2) { background: var(--choco); flex: 2; }
+  .lp__tl b:nth-child(3) { background: var(--butter); }
+  .lp__base { display: block; height: 4cqw; margin: 0 -8%; clip-path: polygon(4% 0, 96% 0, 100% 70%, 98% 100%, 2% 100%, 0 70%); background: linear-gradient(#e9e0d6, #b9a99b 70%, #8e7d70); }
+
+  /* Tablette */
+  .dev--tablet { aspect-ratio: 3 / 4; padding: 4%; border-radius: 7%; background: #161213; box-shadow: inset 0 0 0 0.3cqw #6e1628; }
+  .tb__screen { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 6%; height: 100%; padding: 10%; border-radius: 4%; background: var(--white); }
+  .tb__screen i { border-radius: 8%; background: var(--rasp); }
+  .tb__screen i:nth-child(2) { background: var(--butter); }
+  .tb__screen i:nth-child(3) { background: var(--choco); }
+  .tb__screen i:nth-child(4) { background: var(--peach); }
+  .tb__screen span { grid-column: span 2; font: 300 9cqw/1 var(--font-ui); font-stretch: 125%; color: var(--ink); }
+
+  /* Micro */
+  .dev--mic { display: grid; justify-items: center; }
+  .mic__head { width: 100%; aspect-ratio: 1 / 1.15; border-radius: 50% 50% 42% 42%; background: radial-gradient(circle at 35% 30%, rgb(255 255 255 / 0.5), transparent 40%), repeating-radial-gradient(circle at 50% 50%, #7d1a30 0 1px, #3a0b16 1px 3px); box-shadow: inset 0 -1cqw 2cqw rgb(0 0 0 / 0.4); }
+  .mic__body { width: 58%; aspect-ratio: 1 / 2.4; margin-top: -4%; border-radius: 10% 10% 40% 40%; background: linear-gradient(90deg, #470b18, #7d1a30 40%, #22060c); }
+
+  /* Cartes */
+  .card { display: grid; gap: 1.4cqw; padding: 2.4cqw; border-radius: 2.6cqw; background: rgb(249 245 239 / 0.92); box-shadow: inset 0 0.2cqw 0 rgb(255 255 255 / 0.9); }
+  .card__t { font: 650 2.4cqw/1 var(--font-ui); font-stretch: 125%; text-transform: uppercase; color: var(--ink); }
+  .bars { display: flex; align-items: flex-end; gap: 1.4cqw; height: 18cqw; }
+  .bars i { flex: 1; height: var(--h); border-radius: 0.8cqw 0.8cqw 0.3cqw 0.3cqw; background: var(--choco); }
+  .bars i:last-child { background: var(--rasp); }
+  .card--chat { gap: 1.2cqw; }
+  .bub { justify-self: start; max-width: 86%; padding: 1.4cqw 2cqw; border-radius: 2cqw 2cqw 2cqw 0.6cqw; background: var(--paper-2); font: 500 2.2cqw/1.3 var(--font-ui); color: var(--ink); }
+  .bub--me { justify-self: end; border-radius: 2cqw 2cqw 0.6cqw 2cqw; background: var(--choco); color: var(--butter); }
+  .bub--dots { display: flex; gap: 0.8cqw; }
+  .bub--dots i { width: 1.2cqw; aspect-ratio: 1; border-radius: 50%; background: var(--rasp); animation: float 1.2s ease-in-out infinite; --fy: -3px; }
+  .bub--dots i:nth-child(2) { animation-delay: 0.15s; }
+  .bub--dots i:nth-child(3) { animation-delay: 0.3s; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.9cqw; }
+  .cal i { aspect-ratio: 1; border-radius: 0.8cqw; background: var(--paper-2); }
+  .cal i.on { background: var(--rasp); }
+  .cal i.on2 { background: var(--butter); }
+  .card--pal { grid-template-columns: repeat(4, 1fr); gap: 1.2cqw; }
+  .card--pal i { aspect-ratio: 1 / 1.4; border-radius: 1.2cqw; background: var(--c); }
+  .card--pal span { grid-column: span 4; font: italic 900 6cqw/1 var(--font-ui); color: var(--choco); }
+
+  /* Icônes d'outils, comme des pastilles d'application en relief */
+  .tile { display: grid; place-items: center; width: 100%; aspect-ratio: 1; border-radius: 26%;
+    box-shadow: inset 0 0.5cqw 0.8cqw rgb(255 255 255 / 0.35), inset 0 -0.8cqw 1.2cqw rgb(0 0 0 / 0.22); }
+  .tile svg { width: 54%; height: 54%; }
+  .tile--rasp { background: linear-gradient(150deg, #e0405f, #c81f5a 55%, #9e0f2c); color: #fff; }
+  .tile--choco { background: linear-gradient(150deg, #7d1a30, #3a0b16 55%, #22060c); color: var(--butter); }
+  .tile--butter { background: linear-gradient(150deg, #e6dcfb, #cdbdf2 55%, #a995dc); color: var(--choco); }
+  .tile--white { background: linear-gradient(150deg, #ffffff, #f4ede4 55%, #ddd2c6); color: var(--choco); }
+  .tile__w { font: 800 calc(var(--w) * 0.34)/1 var(--font-ui); letter-spacing: -0.04em; }
+  .tile__w--s { font-size: calc(var(--w) * 0.19); }
+</style>

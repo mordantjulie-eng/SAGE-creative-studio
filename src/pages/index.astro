@@ -2,7 +2,7 @@
 import Base from '../layouts/Base.astro';
 import ContactForm from '../components/ContactForm.astro';
 import Veil from '../components/Veil.astro';
-import Book from '../components/Book.astro';
+import Timeline from '../components/Timeline.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -57,7 +57,7 @@ const reeds = Array.from({ length: 9 });
         <div class="hero__visual reveal" style="--rd:.3s" aria-hidden="true">
           <span class="organic hero__blob"></span>
           <div class="hero__photo"><img class="photo" src={m('julie-bw')} alt="" /><span class="reeded hero__reeds">{reeds.map(() => <i />)}</span></div>
-          <p class="seal hero__seal float" style="--d:7s"><span>Creative<br />thinking</span></p>
+          <p class="seal hero__seal float" style="--d:7s"><span>Creative<br />thinking.</span></p>
         </div>
 
         <ul class="hero__side reveal" style="--rd:.7s" aria-label="Les expertises en bref">
@@ -148,7 +148,7 @@ const reeds = Array.from({ length: 9 });
     </div>
   </section>
 
-  <Book />
+  <Timeline />
 
   <!-- ABOUT -->
   <section id="studio" class="section about" data-theme="cream">
@@ -330,7 +330,7 @@ const reeds = Array.from({ length: 9 });
     position: absolute;
     left: 0.06em;
     top: 0;
-    color: var(--carmine);
+    color: var(--rasp);
     filter: blur(10px);
     opacity: 0.45;
     transform: translateX(0.12em);
@@ -349,7 +349,7 @@ const reeds = Array.from({ length: 9 });
   .hero__reeds { left: 62%; right: 0; top: 0; bottom: 0; }
   .hero__seal { position: absolute; right: -14%; top: 8%; --sw: clamp(150px, 13vw, 190px); }
   .hero__side { list-style: none; margin: 0; padding: 0 0 0.5rem; display: grid; gap: 0.2rem; text-align: right; font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; }
-  .hero__side li:nth-child(odd) { color: var(--carmine); }
+  .hero__side li:nth-child(odd) { color: var(--rasp); }
 
   /* SERVICES */
   .svc { position: relative; padding: 0 0 var(--section-y); }
@@ -363,8 +363,8 @@ const reeds = Array.from({ length: 9 });
   .row__plus { position: relative; width: 44px; height: 44px; border-radius: 50%; background: rgb(255 255 255 / 0.08); transition: background 0.4s var(--ease), transform 0.5s var(--ease-out); }
   .row__plus::before, .row__plus::after { content: ''; position: absolute; left: 50%; top: 50%; width: 14px; height: 1.5px; background: currentColor; transform: translate(-50%, -50%); }
   .row__plus::after { transform: translate(-50%, -50%) rotate(90deg); }
-  .row summary:hover .row__plus { background: var(--carmine); }
-  .row[open] .row__plus { transform: rotate(45deg); background: var(--carmine); }
+  .row summary:hover .row__plus { background: var(--rasp); }
+  .row[open] .row__plus { transform: rotate(45deg); background: var(--rasp); }
   .row__body { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 44px; gap: 1.5rem; padding-bottom: 2.4rem; animation: unblur 0.8s var(--ease-out); }
   @keyframes unblur { from { opacity: 0; filter: blur(10px); transform: translateY(-8px); } }
   .row__items { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 2rem; font-size: 0.95rem; color: rgb(246 236 236 / 0.82); }
@@ -381,10 +381,10 @@ const reeds = Array.from({ length: 9 });
   .mindset { overflow: hidden; }
   .pils { display: flex; gap: 0.8rem; height: clamp(460px, 62vh, 600px); }
   .pil { position: relative; flex: 1; min-width: 0; border-radius: var(--r-l); background: rgb(255 255 255 / 0.32); overflow: hidden; transition: flex 0.9s var(--ease-out), background 0.6s var(--ease), color 0.6s var(--ease); }
-  .pil.is-on { flex: 3.4; background: var(--wine); color: #f6ecec; }
+  .pil.is-on { flex: 3.4; background: var(--choco); color: #f6ecec; }
   .pil__head { all: unset; box-sizing: border-box; position: absolute; inset: 0 auto auto 0; width: 100%; height: 100%; padding: 1.6rem; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; }
   .pil.is-on .pil__head { height: auto; pointer-events: none; }
-  .pil__head:focus-visible { box-shadow: inset 0 0 0 3px var(--carmine); border-radius: var(--r-l); }
+  .pil__head:focus-visible { box-shadow: inset 0 0 0 3px var(--rasp); border-radius: var(--r-l); }
   .pil__letter { font-size: clamp(5rem, 9vw, 9rem); font-weight: 300; font-stretch: 125%; line-height: 0.8; letter-spacing: -0.06em; transition: color 0.6s var(--ease); }
   .pil.is-on .pil__letter { color: var(--blush); }
   .pil__name { font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; writing-mode: vertical-rl; transform: rotate(180deg); }
@@ -393,7 +393,7 @@ const reeds = Array.from({ length: 9 });
   .pil.is-on .pil__body { opacity: 1; visibility: visible; filter: none; transition: opacity 0.7s 0.35s var(--ease-out), filter 0.8s 0.35s var(--ease-out), visibility 0s; }
   .pil__body h3 { font-size: clamp(1.5rem, 2.4vw, 2.2rem); }
   .pil__body > p { color: rgb(246 236 236 / 0.78); }
-  .pil .btn--primary { background: var(--white); color: var(--wine); }
+  .pil .btn--primary { background: var(--white); color: var(--choco); }
   .pil__in { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 1rem; font-size: 0.88rem; }
   .pil__in span { font-size: 0.68rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; opacity: 0.6; }
   .pil__in a { text-decoration: none; border-bottom: 1px solid rgb(246 236 236 / 0.35); }
@@ -417,8 +417,8 @@ const reeds = Array.from({ length: 9 });
   .tools { margin-top: clamp(64px, 8vw, 120px); display: grid; gap: 1rem; }
   .tools__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
   .tool { display: grid; justify-items: start; gap: 1.6rem; padding: 1rem; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); transition: background 0.4s var(--ease), color 0.4s var(--ease); }
-  .tool:hover { background: var(--wine); color: #f6ecec; }
-  .tool__ic { width: 26px; height: 26px; display: grid; align-items: center; color: var(--wine); transition: color 0.4s var(--ease); }
+  .tool:hover { background: var(--choco); color: #f6ecec; }
+  .tool__ic { width: 26px; height: 26px; display: grid; align-items: center; color: var(--choco); transition: color 0.4s var(--ease); }
   .tool:hover .tool__ic { color: var(--blush); }
   .tool__word { font-size: 0.78rem; font-weight: 750; letter-spacing: -0.03em; white-space: nowrap; }
   .tool__n { font-size: 0.7rem; font-weight: 600; font-stretch: 118%; text-transform: uppercase; }

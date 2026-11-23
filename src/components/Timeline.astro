@@ -1,0 +1,263 @@
+---
+// « Mon parcours » : une ligne du temps qu'on fait glisser.
+// L'étape au centre s'agrandit et se complète ; le passé (à gauche) et la suite (à droite) restent en petit.
+type Entry = { when: string; title: string; where: string; text?: string; points?: string[] };
+const entries: Entry[] = [
+  { when: '2020 à 2024', title: 'Bachelier en Marketing', where: 'EPHEC, option International Business', text: 'Marketing digital, communication, UX/UI et business international.' },
+  {
+    when: '2023', title: 'YourStory Agency', where: 'Stage en social media',
+    points: [
+      "Création de contenu pour les réseaux sociaux, de l'idée à la publication.",
+      'Production vidéo : tournage et montage de formats courts.',
+      'Community management : animation et modération des communautés.',
+    ],
+  },
+  {
+    when: 'Waterloo', title: 'ENEON / Idweaver', where: 'Marketing Officer',
+    points: [
+      'Personal branding de dirigeants, notamment sur LinkedIn.',
+      'Newsletters et campagnes emailing.',
+      'Production de contenus pour des podcasts.',
+      "Marque employeur : valoriser les équipes et la culture d'entreprise.",
+      'Pour des PME et des groupes internationaux.',
+    ],
+  },
+  {
+    when: '2024 à 2025', title: 'Socialsky', where: 'Community Manager Gen Z à Bruxelles, CDD puis CDI',
+    points: [
+      'Stratégie social media et angles éditoriaux adaptés à chaque marque.',
+      'Calendriers de contenu et temps forts.',
+      'Rédaction et vidéos courtes, du tournage au montage.',
+      'Animation, modération, commentaires et messages.',
+      'Pour des enseignes nationales et des groupes internationaux.',
+    ],
+  },
+  {
+    when: '2025 à 2027', title: 'Kontnu', where: 'Business Development puis Digital Marketing Manager',
+    points: [
+      'Acquisition de commerçants et de créateurs en Belgique et en France.',
+      'Calendrier éditorial Instagram, TikTok et LinkedIn, en FR, EN et NL.',
+      'Reels et TikToks : conception, tournage, montage.',
+      'Campagnes Meta : ciblage et répartition du budget.',
+      'Influence : créateurs ambassadeurs, briefs et suivi.',
+    ],
+  },
+  {
+    when: 'Kontnu, suite', title: 'Business et équipe', where: 'Du terrain au reporting',
+    points: [
+      'Prospection, rendez-vous, signature et onboarding des commerçants.',
+      'Communautés de commerçants et de créateurs sur Instagram et WhatsApp.',
+      'Événement des 15 000 collaborations, puis suivi des retombées et des leads.',
+      "Recrutement et encadrement d'un stagiaire.",
+      'IA générative et vibe coding pour produire plus vite et prototyper des outils.',
+    ],
+  },
+  {
+    when: 'En résumé', title: "Ce que j'apporte", where: 'Agence, startup et terrain',
+    points: [
+      'Stratégie social media et acquisition',
+      'Création de contenu et vidéo courte',
+      'Community management',
+      "Campagnes Meta et marketing d'influence",
+      'Business development et CRM',
+      'IA et optimisation du travail',
+    ],
+  },
+  { when: '2027', title: 'SAGE Creative Studio', where: 'Le studio, en Belgique', text: "Et la prochaine page, on l'écrit ensemble." },
+];
+// Liens du menu « Parcours » : /#parcours-1 à 4 ouvrent ces étapes
+const anchors = { 1: 0, 2: 2, 3: 4, 4: 6 };
+---
+
+<section id="parcours" class="section tl-sec" data-theme="cream" aria-label="Mon parcours" data-anchors={JSON.stringify(anchors)}>
+  <div class="container tl-head">
+    <div>
+      <p class="eyebrow reveal">Mon parcours</p>
+      <h2 class="reveal" style="--rd:.08s">Des agences <em>à l'entrepreneuriat</em></h2>
+    </div>
+    <div class="tl-ctrl reveal" style="--rd:.16s">
+      <p class="tl-count" aria-live="polite"><b data-tl-n>1</b> sur {entries.length}</p>
+      <button class="tl-btn" type="button" data-tl-dir="-1" aria-label="Étape précédente">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M12.5 4.5 7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+      <button class="tl-btn" type="button" data-tl-dir="1" aria-label="Étape suivante">
+        <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M7.5 4.5 13 10l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="tl" data-tl tabindex="0" aria-roledescription="ligne du temps" aria-label="Faites glisser ou utilisez les flèches pour parcourir les étapes">
+    <ol class="tl__track" data-tl-track>
+      {
+        entries.map((e, i) => (
+          <li class:list={['tl__item', { 'is-on': i === 0 }]} data-tl-item>
+            <button class="tl__head" type="button" tabindex="-1">
+              <span class="tl__when" data-when={e.when}>{e.when}</span>
+              <span class="tl__title">{e.title}</span>
+            </button>
+            <div class="tl__body">
+              <p class="tl__where">{e.where}</p>
+              {e.text && <p class="tl__text">{e.text}</p>}
+              {e.points && <ul class="tl__list">{e.points.map((pt) => <li>{pt}</li>)}</ul>}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <div class="container tl-hint" aria-hidden="true"><p class="eyebrow">Faites glisser la ligne du temps</p></div>
+</section>
+
+<script>
+  const sec = document.querySelector<HTMLElement>('#parcours');
+  const tl = sec?.querySelector<HTMLElement>('[data-tl]');
+  const track = sec?.querySelector<HTMLElement>('[data-tl-track]');
+  if (sec && tl && track) {
+    const items = [...track.querySelectorAll<HTMLElement>('[data-tl-item]')];
+    const nOut = sec.querySelector<HTMLElement>('[data-tl-n]')!;
+    const anchors: Record<string, number> = JSON.parse(sec.dataset.anchors || '{}');
+    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let a = 0, drag = 0;
+    const dims = () => {
+      const w = tl.clientWidth;
+      const small = w < 700;
+      return { S: small ? 132 : 220, L: Math.min(small ? w * 0.84 : 600, w - 32), G: small ? 14 : 28, w };
+    };
+    const layout = (animate = true) => {
+      const { S, L, G, w } = dims();
+      track.style.setProperty('--L', `${L}px`);
+      items.forEach((it, i) => {
+        it.style.width = `${i === a ? L : S}px`;
+        it.classList.toggle('is-on', i === a);
+        it.classList.toggle('is-past', i < a);
+        it.classList.toggle('is-next', i > a);
+      });
+      const center = a * (S + G) + L / 2;
+      track.style.transition = animate ? '' : 'none';
+      track.style.transform = `translateX(${w / 2 - center + drag}px)`;
+      nOut.textContent = String(a + 1);
+    };
+    // Les années du centre se comptent jusqu'à leur valeur
+    const count = (el: HTMLElement) => {
+      const src = el.dataset.when || '';
+      if (calm || !/\d{4}/.test(src)) { el.textContent = src; return; }
+      const t0 = performance.now();
+      const step = (t: number) => {
+        const k = Math.min(1, (t - t0) / 900);
+        const e = 1 - Math.pow(1 - k, 3);
+        el.textContent = src.replace(/\d{4}/g, (y) => String(Math.round(Number(y) - 12 * (1 - e))));
+        if (k < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const go = (i: number) => {
+      const next = Math.max(0, Math.min(items.length - 1, i));
+      const changed = next !== a;
+      a = next; drag = 0;
+      layout();
+      if (changed) count(items[a].querySelector<HTMLElement>('.tl__when')!);
+    };
+    layout(false);
+    window.addEventListener('resize', () => layout(false));
+
+    sec.querySelectorAll<HTMLButtonElement>('[data-tl-dir]').forEach((b) => b.addEventListener('click', () => go(a + Number(b.dataset.tlDir))));
+    items.forEach((it, i) => it.querySelector('.tl__head')!.addEventListener('click', () => { if (Math.abs(moved) < 6) go(i); }));
+    tl.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(a + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(a - 1); }
+    });
+
+    // Glisser à la souris ou au doigt
+    let x0 = 0, moved = 0, down = false;
+    tl.addEventListener('pointerdown', (e) => { down = true; moved = 0; x0 = e.clientX; tl.setPointerCapture(e.pointerId); tl.classList.add('is-drag'); });
+    tl.addEventListener('pointermove', (e) => {
+      if (!down) return;
+      moved = e.clientX - x0;
+      drag = moved * 0.9;
+      layout(false);
+    });
+    const end = () => {
+      if (!down) return;
+      down = false; tl.classList.remove('is-drag');
+      const { S, G } = dims();
+      const steps = Math.round(-moved / ((S + G) * 0.7));
+      drag = 0;
+      go(a + steps);
+      setTimeout(() => (moved = 0), 0);
+    };
+    tl.addEventListener('pointerup', end);
+    tl.addEventListener('pointercancel', end);
+
+    // Défilement horizontal (pavé tactile)
+    let acc = 0, lock = 0;
+    tl.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      acc += e.deltaX;
+      const now = performance.now();
+      if (Math.abs(acc) > 60 && now - lock > 380) { go(a + Math.sign(acc)); acc = 0; lock = now; }
+    }, { passive: false });
+
+    // Liens du menu « /#parcours-N »
+    const fromHash = (h: string) => { const m = /^#parcours-(\d)$/.exec(h); return m && m[1] in anchors ? anchors[m[1]] : -1; };
+    const open = (k: number, smooth = true) => {
+      const lenis = (window as any).__lenis;
+      if (lenis) lenis.scrollTo(sec, { offset: -40, immediate: !smooth });
+      else sec.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto' });
+      go(k);
+    };
+    document.addEventListener('click', (e) => {
+      const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="#parcours-"]');
+      if (!link || link.pathname !== location.pathname) return;
+      const k = fromHash(link.hash);
+      if (k < 0) return;
+      e.preventDefault();
+      history.replaceState(null, '', link.hash);
+      open(k);
+    });
+    const k0 = fromHash(location.hash);
+    if (k0 >= 0) window.addEventListener('load', () => setTimeout(() => open(k0, false), 60));
+  }
+</script>
+
+<style>
+  .tl-sec { overflow: hidden; }
+  .tl-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 1.5rem 3rem; margin-bottom: clamp(40px, 5vw, 72px); }
+  .tl-head > div:first-child { display: grid; gap: 1.2rem; }
+  .tl-head h2 { font-size: var(--h2); max-width: 16ch; }
+  .tl-ctrl { display: flex; align-items: center; gap: 0.5rem; }
+  .tl-count { margin-right: 0.8rem; font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+  .tl-count b { color: var(--rasp); font-weight: 650; }
+  .tl-btn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--ink); color: var(--white); cursor: pointer; transition: background 0.3s var(--ease), transform 0.4s var(--ease-out); }
+  .tl-btn:hover { background: var(--rasp); transform: scale(1.06); }
+
+  .tl { position: relative; cursor: grab; touch-action: pan-y; user-select: none; outline: none; }
+  .tl.is-drag { cursor: grabbing; }
+  .tl:focus-visible { box-shadow: inset 0 0 0 3px rgb(200 25 60 / 0.3); }
+  .tl__track { list-style: none; margin: 0; padding: 0; display: flex; align-items: flex-start; gap: 28px; width: max-content; transition: transform 0.8s var(--ease-out); }
+  .tl.is-drag .tl__track { transition: none !important; }
+  /* La ligne */
+  .tl__track::before { content: ''; position: absolute; left: -100vw; right: -100vw; top: 3.1rem; height: 1px; background: var(--hair); }
+
+  .tl__item { position: relative; flex: none; overflow: hidden; transition: width 0.8s var(--ease-out); }
+  .tl__item::before { content: ''; position: absolute; left: 0; top: calc(3.1rem - 1px); height: 3px; width: 40px; background: var(--ink); opacity: 0.25; transition: width 0.8s var(--ease-out), background 0.4s var(--ease), opacity 0.4s var(--ease); }
+  .tl__item.is-on::before { width: 100%; background: var(--rasp); opacity: 1; }
+  @media (max-width: 699px) { .tl__track { gap: 14px; } }
+
+  .tl__head { all: unset; box-sizing: border-box; display: grid; grid-template-rows: 3.1rem auto; width: var(--L); cursor: pointer; }
+  .tl__when { align-self: end; padding-bottom: 0.7rem; font-size: 0.72rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.02em; color: var(--ink-soft); white-space: nowrap; font-variant-numeric: tabular-nums; transition: font-size 0.6s var(--ease-out), color 0.4s var(--ease); }
+  .tl__title { display: block; max-width: 190px; padding-top: 1rem; font-size: 1.05rem; font-weight: 560; letter-spacing: -0.03em; line-height: 1.1; opacity: 0.55; transition: font-size 0.7s var(--ease-out), opacity 0.4s var(--ease), max-width 0.7s var(--ease-out); }
+  .tl__item:not(.is-on):hover .tl__title { opacity: 1; }
+  .tl__item.is-on .tl__when { font-size: clamp(1.1rem, 2vw, 1.6rem); font-weight: 300; letter-spacing: -0.04em; text-transform: none; color: var(--rasp); padding-bottom: 0.5rem; }
+  .tl__item.is-on .tl__title { max-width: 100%; font-size: clamp(2rem, 4vw, 3.4rem); letter-spacing: -0.055em; line-height: 0.95; opacity: 1; }
+  @media (max-width: 699px) { .tl__title { max-width: 116px; font-size: 0.92rem; } }
+
+  .tl__body { width: var(--L); padding-top: 1.1rem; display: grid; gap: 0.8rem; opacity: 0; filter: blur(8px); transform: translateY(8px); visibility: hidden; transition: opacity 0.3s var(--ease), filter 0.3s var(--ease), visibility 0s 0.3s; }
+  .tl__item.is-on .tl__body { opacity: 1; filter: none; transform: none; visibility: visible; transition: opacity 0.7s 0.3s var(--ease-out), filter 0.8s 0.3s var(--ease-out), transform 0.8s 0.3s var(--ease-out), visibility 0s; }
+  .tl__where { font-weight: 600; }
+  .tl__text { color: var(--ink-soft); max-width: 34rem; }
+  .tl__list { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--hair); }
+  .tl__list li { padding: 0.55rem 0; border-bottom: 1px solid var(--hair); font-size: 0.94rem; color: var(--ink-soft); }
+  .tl-hint { margin-top: 2rem; }
+  @media (prefers-reduced-motion: reduce) { .tl__body { filter: none; } }
+</style>
