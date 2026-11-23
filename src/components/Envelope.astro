@@ -1,0 +1,72 @@
+---
+// Lien « M'écrire » : une enveloppe en papier, en 3D. Au survol (ou au focus), le rabat s'ouvre
+// et une feuille sort, avec « M'écrire » écrit à la main.
+interface Props { href: string; class?: string; style?: string }
+const { href, class: cls = '', style = '' } = Astro.props;
+---
+
+<a class:list={['env', cls]} style={style} href={href} aria-label="M'écrire un e-mail">
+  <span class="env__body" aria-hidden="true">
+    <span class="env__back"></span>
+    <span class="env__letter"><span class="env__word">M'écrire</span><span class="env__lines"><i></i><i></i><i></i></span></span>
+    <span class="env__front"></span>
+    <span class="env__flap"></span>
+  </span>
+</a>
+
+<style>
+  .env { --w: 250px; display: inline-block; width: var(--w); padding-top: calc(var(--w) * 0.42); text-decoration: none; perspective: 900px; outline: none; }
+  .env__body { position: relative; display: block; width: 100%; aspect-ratio: 1.6; transform: rotateZ(-3deg); transition: transform 0.7s var(--ease-out); filter: drop-shadow(0 22px 26px rgb(34 6 12 / 0.22)) drop-shadow(0 3px 5px rgb(34 6 12 / 0.12)); }
+  .env:hover .env__body, .env:focus-visible .env__body { transform: rotateZ(0deg) translateY(4px); }
+
+  /* Papier : légère texture et ombres de pliure */
+  .env__back, .env__front, .env__flap {
+    position: absolute; inset: 0;
+    background-color: #f3eee7;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.28 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+  }
+  .env__back { border-radius: 6px; background-color: #e3dbd1; }
+  .env__front {
+    z-index: 3; border-radius: 0 0 6px 6px;
+    clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+    background-image:
+      linear-gradient(to bottom right, rgb(0 0 0 / 0) 49.4%, rgb(120 100 90 / 0.14) 50%, rgb(0 0 0 / 0) 51.5%),
+      linear-gradient(to bottom left, rgb(0 0 0 / 0) 49.4%, rgb(120 100 90 / 0.14) 50%, rgb(0 0 0 / 0) 51.5%),
+      linear-gradient(180deg, #f6f2ec, #ece5db),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.35 0 0 0 0 0.3 0 0 0 0 0.28 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)'/%3E%3C/svg%3E");
+    background-blend-mode: normal, normal, multiply, normal;
+  }
+  .env__flap {
+    z-index: 4; transform-origin: 50% 0; height: 62%; transform: perspective(600px) rotateX(0deg);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    background-image: linear-gradient(180deg, #ebe3d8, #f8f4ee 85%);
+    transition: transform 0.5s var(--ease-out) 0.25s, z-index 0s 0.5s, background 0.4s var(--ease) 0.25s;
+  }
+  .env:hover .env__flap, .env:focus-visible .env__flap { transform: perspective(600px) rotateX(180deg); z-index: 1; background-image: linear-gradient(180deg, #d8cec2, #e6ded4); transition: transform 0.5s var(--ease-out), z-index 0s 0.2s, background 0.4s var(--ease); }
+
+  /* La feuille qui sort */
+  .env__letter {
+    position: absolute; z-index: 2; left: 7%; right: 7%; top: 8%; bottom: 6%;
+    display: grid; align-content: start; gap: 6%; padding: 9% 9% 0;
+    border-radius: 3px; background: #fffdf9;
+    box-shadow: 0 2px 6px rgb(34 6 12 / 0.12);
+    transform: translateY(0); transition: transform 0.5s var(--ease-out) 0s;
+  }
+  .env:hover .env__letter, .env:focus-visible .env__letter { transform: translateY(-62%); transition: transform 0.7s var(--ease-out) 0.35s; }
+  .env__word { font: 400 calc(var(--w) * 0.15) / 1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-4deg); white-space: nowrap; }
+  .env__lines { display: grid; gap: calc(var(--w) * 0.035); margin-top: 4%; }
+  .env__lines i { height: 1px; background: rgb(22 18 19 / 0.14); }
+  .env__lines i:last-child { width: 60%; }
+  .env:focus-visible .env__body { outline: 3px solid rgb(200 25 60 / 0.35); outline-offset: 6px; border-radius: 8px; }
+
+  /* Écran tactile : la feuille dépasse déjà un peu pour inviter au geste */
+  @media (hover: none) {
+    .env__flap { transform: perspective(600px) rotateX(180deg); z-index: 1; background-image: linear-gradient(180deg, #d8cec2, #e6ded4); }
+    .env__letter { transform: translateY(-45%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .env__flap { transform: perspective(600px) rotateX(180deg); z-index: 1; }
+    .env__letter { transform: translateY(-45%); }
+  }
+</style>

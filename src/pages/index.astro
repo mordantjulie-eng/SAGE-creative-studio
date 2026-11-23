@@ -5,6 +5,7 @@ import ContactForm from '../components/ContactForm.astro';
 import Veil from '../components/Veil.astro';
 import Timeline from '../components/Timeline.astro';
 import FlipCard from '../components/FlipCard.astro';
+import Envelope from '../components/Envelope.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -205,7 +206,7 @@ const reeds = Array.from({ length: 9 });
           Un projet, une marque à clarifier, une idée encore floue&nbsp;: racontez-moi en quelques lignes. Je vous
           réponds sous 48&nbsp;h ouvrées.
         </p>
-        <a class="seal contact__seal reveal" style="--rd:.2s" href={`mailto:${brand.email}`}><span>M'écrire</span></a>
+        <div class="reveal" style="--rd:.2s"><Envelope href={`mailto:${brand.email}`} /></div>
         <ol class="steps">
           {
             steps.map((s, i) => (
@@ -392,8 +393,6 @@ const reeds = Array.from({ length: 9 });
   .contact__grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: start; }
   .contact__intro { display: grid; gap: 1.4rem; justify-items: start; }
   .contact__intro h2 { font-size: var(--h2); }
-  .contact__seal { --sw: 200px; transition: transform 0.6s var(--ease-out); }
-  .contact__seal:hover { transform: rotate(-6deg) scale(1.05); }
   .steps { list-style: none; margin: 0.6rem 0 0; padding: 0; display: grid; width: 100%; border-top: 1px solid var(--hair); }
   .steps li { display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--hair); font-size: 0.92rem; }
   .steps strong { font-weight: 650; }
