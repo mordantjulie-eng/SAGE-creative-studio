@@ -14,3 +14,14 @@ Elles servent à visualiser la maquette ; elles seront remplacées par de vraies
 `zoom-monde.jpg` 1470229722913-7c0e2dbbafd3, `zoom-reseaux.jpg` 1611162616305-c69b3fa7fbe0.
 
 `public/media/bts-*.jpg` (page Studio, coulisses, Unsplash) : tournage 1554048612-b6a482bc67e5, montage 1574717024653-61fd2cf4d44d, direction artistique 1561070791-2526d30994b5, partenaires 1522202176988-66273c2fd55f.
+
+## Formats vidéo (page Content Creation), remplacés le 2026-11-23
+Photos Unsplash (licence Unsplash), animées en boucle avec ffmpeg :
+- UGC : photo-1529139574466-a303027c1d8b
+- Influence : photo-1524504388940-b1c1722653e1
+- Face cam : photo-1534528741775-53994a69daeb
+- Trend : photo-1469334031218-e382a71b716b
+- Micro trottoir : photo-1544531586-fde5298cdd40
+- Packshot : photo-1608571423902-eed4a5ad8108
+- Aftermovie : photo-1470229722913-7c0e2dbbafd3
+- Vidéo éducative : photo-1540575467063-178a50c2df87
