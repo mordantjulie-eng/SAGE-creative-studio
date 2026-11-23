@@ -1,0 +1,68 @@
+---
+// Carte service à retourner (accueil) : recto = la promesse, verso = toutes les prestations.
+import type { Service } from '../config/site';
+interface Props { service: Service; delay?: number }
+const { service: s, delay = 0 } = Astro.props;
+---
+
+<article class="fc reveal" style={`--rd:${delay}s`} data-flipcard>
+  <div class="fc__inner">
+    <div class="fc__face fc__front" data-face="front">
+      <p class="fc__tags split">{s.highlights.map((h) => <span>{h}</span>)}</p>
+      <h3 class="fc__title"><a href={`/services/${s.slug}`}>{s.title}</a></h3>
+      <p class="fc__short">{s.short}</p>
+      <button type="button" class="fc__btn" data-flip aria-label={`Voir les prestations ${s.title}`}>
+        Voir les prestations <span aria-hidden="true">+</span>
+      </button>
+    </div>
+    <div class="fc__face fc__back" data-face="back" inert>
+      <div class="fc__top">
+        <span class="fc__name">{s.title}</span>
+        <button type="button" class="fc__close" data-flip aria-label="Revenir au recto">×</button>
+      </div>
+      <ul class="fc__list">{s.items.map((i) => <li>{i}</li>)}</ul>
+      <a class="fc__go" href={`/services/${s.slug}`}>Découvrir le service <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-flipcard]').forEach((c) => {
+    const front = c.querySelector<HTMLElement>('[data-face="front"]')!;
+    const back = c.querySelector<HTMLElement>('[data-face="back"]')!;
+    c.querySelectorAll<HTMLButtonElement>('[data-flip]').forEach((b) =>
+      b.addEventListener('click', () => {
+        const on = c.classList.toggle('is-flipped');
+        front.inert = on;
+        back.inert = !on;
+        (on ? back : front).querySelector<HTMLElement>('[data-flip]')?.focus({ preventScroll: true });
+      }),
+    );
+  });
+</script>
+
+<style>
+  .fc { perspective: 1600px; min-height: 420px; }
+  .fc__inner { position: relative; height: 100%; min-height: inherit; transform-style: preserve-3d; transition: transform 1s var(--ease-out); }
+  .fc.is-flipped .fc__inner { transform: rotateY(180deg); }
+  .fc__face { position: absolute; inset: 0; display: grid; padding: 1.7rem; border-radius: var(--r-l); backface-visibility: hidden; -webkit-backface-visibility: hidden; overflow: hidden; }
+  .fc__front { grid-template-rows: auto 1fr auto auto; gap: 1.2rem; background: var(--white); color: #161213; box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.55); transition: transform 0.6s var(--ease-out); }
+  .fc:not(.is-flipped):hover .fc__front { transform: translateY(-6px); }
+  .fc__tags { font-size: 0.66rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; color: var(--rasp); padding-bottom: 0.9rem; border-bottom: 1px solid currentColor; }
+  .fc__title { align-self: end; font-size: clamp(2rem, 2.8vw, 2.7rem); font-weight: 560; letter-spacing: -0.055em; line-height: 0.95; }
+  .fc__title a { text-decoration: none; }
+  .fc__title a:hover { color: var(--rasp); }
+  .fc__short { color: rgb(22 18 19 / 0.68); font-size: 0.95rem; max-width: 22rem; }
+  .fc__btn { justify-self: start; display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.8rem 1.2rem; border: 0; border-radius: var(--pill); background: var(--choco); color: #f6ecec; font: 600 0.82rem var(--font-ui); font-stretch: 112%; cursor: pointer; transition: background 0.3s var(--ease); }
+  .fc__btn:hover { background: var(--rasp); }
+  .fc__btn span { font-size: 1.1rem; line-height: 1; }
+  .fc__back { transform: rotateY(180deg); grid-template-rows: auto 1fr auto; gap: 1rem; background: var(--rasp); color: #fff; box-shadow: 0 40px 70px -40px rgb(0 0 0 / 0.55); }
+  .fc__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .fc__name { font-size: 0.7rem; font-weight: 650; font-stretch: 125%; text-transform: uppercase; }
+  .fc__close { width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 0.18); color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+  .fc__close:hover { background: rgb(255 255 255 / 0.3); }
+  .fc__list { list-style: none; margin: 0; padding: 0; align-self: start; display: grid; }
+  .fc__list li { padding: 0.5rem 0; border-bottom: 1px solid rgb(255 255 255 / 0.28); font-size: 0.92rem; line-height: 1.35; }
+  .fc__go { justify-self: start; color: #fff; font-weight: 600; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 2px; }
+  @media (prefers-reduced-motion: reduce) { .fc__inner { transition: none; } }
+</style>

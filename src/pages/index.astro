@@ -4,6 +4,7 @@ import '@fontsource/nothing-you-could-do';
 import ContactForm from '../components/ContactForm.astro';
 import Veil from '../components/Veil.astro';
 import Timeline from '../components/Timeline.astro';
+import FlipCard from '../components/FlipCard.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -78,34 +79,14 @@ const reeds = Array.from({ length: 9 });
   <!-- SERVICES : un index, comme le sommaire d'un livre -->
   <section id="services" class="svc" data-theme="sage" aria-label="Les six expertises">
     <div class="container">
-      <ul class="svc__list">
-        {
-          services.map((s, i) => (
-            <li class="svc__item reveal" style={`--rd:${i * 0.05}s`}>
-              <details class="row" data-img={m(s.img)}>
-                <summary>
-                  <span class="row__t">{s.title}</span>
-                  <span class="row__s">{s.short}</span>
-                  <span class="row__plus" aria-hidden="true" />
-                </summary>
-                <div class="row__body">
-                  <ul class="row__items">{s.items.map((it) => <li>{it}</li>)}</ul>
-                  <div class="row__side">
-                    <p class="row__tags split">{s.highlights.map((h) => <span>{h}</span>)}</p>
-                    <a class="btn btn--primary" href={`/services/${s.slug}`}>Découvrir le service <span aria-hidden="true">→</span></a>
-                  </div>
-                </div>
-              </details>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="svc__grid">
+        {services.map((s, i) => <FlipCard service={s} delay={(i % 3) * 0.08} />)}
+      </div>
       <div class="svc__end reveal">
         <p>Un besoin qui touche à plusieurs expertises&nbsp;?</p>
         <a class="btn btn--primary" href="#contact">Composons sur mesure <span aria-hidden="true">→</span></a>
       </div>
     </div>
-    <div class="peek" aria-hidden="true"><img alt="" /></div>
   </section>
 
   <!-- MINDSET : quatre volets qui s'ouvrent -->
@@ -262,31 +243,6 @@ const reeds = Array.from({ length: 9 });
     }
   }
 
-  // Services : une seule ligne ouverte à la fois, et l'image du service qui suit le curseur
-  const rows = [...document.querySelectorAll<HTMLDetailsElement>('.svc details')];
-  rows.forEach((d) => d.addEventListener('toggle', () => { if (d.open) rows.forEach((o) => { if (o !== d) o.open = false; }); }));
-  const peek = document.querySelector<HTMLElement>('.peek');
-  if (peek && fine && !reduce) {
-    const img = peek.querySelector('img')!;
-    let x = 0, y = 0, cx = 0, cy = 0, on = false, raf = 0;
-    const loop = () => {
-      cx += (x - cx) * 0.14; cy += (y - cy) * 0.14;
-      peek.style.transform = `translate3d(${cx}px, ${cy}px, 0) rotate(${(x - cx) * 0.04}deg)`;
-      raf = on || Math.abs(x - cx) > 0.5 ? requestAnimationFrame(loop) : 0;
-    };
-    rows.forEach((d) => {
-      const sum = d.querySelector('summary')!;
-      sum.addEventListener('pointerenter', (e) => {
-        img.src = d.dataset.img!;
-        if (!on) { cx = x = e.clientX; cy = y = e.clientY; }
-        on = true; peek.classList.add('is-on');
-        if (!raf) raf = requestAnimationFrame(loop);
-      });
-      sum.addEventListener('pointermove', (e) => { x = e.clientX; y = e.clientY; });
-      sum.addEventListener('pointerleave', () => { on = false; peek.classList.remove('is-on'); });
-    });
-  }
-
   // Mindset : un volet ouvert à la fois (clic, clavier, ou survol à la souris)
   const pils = [...document.querySelectorAll<HTMLElement>('.pil')];
   const open = (el: HTMLElement) =>
@@ -355,6 +311,9 @@ const reeds = Array.from({ length: 9 });
 
   /* SERVICES */
   .svc { position: relative; padding: 0 0 var(--section-y); }
+  .svc__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+  @media (max-width: 1000px) { .svc__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .svc__grid { grid-template-columns: 1fr; } }
   .svc__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--hair); }
   .svc__item { border-bottom: 1px solid var(--hair); }
   .row summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 44px; gap: 1.5rem; align-items: center; padding: clamp(1.4rem, 2.6vw, 2.4rem) 0; cursor: pointer; }
