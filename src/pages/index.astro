@@ -38,6 +38,10 @@ const tools = [
     <div class="container hero__grid">
       <div class="hero__text">
         <p class="hero__flags reveal"><span class="flag">Lancement 2027</span><span class="eyebrow split"><span>Creative studio</span><span>{brand.location}</span></span></p>
+        <div class="hero__deco" aria-hidden="true">
+          <svg class="hero__blob" viewBox="0 0 600 420"><path d="M84 92C150 10 282 -14 372 40c76 46 92 120 170 132 54 9 66 92 18 150-60 72-190 104-300 86C160 392 58 340 26 262-8 182 34 154 84 92Z" fill="var(--tomato)" /></svg>
+          <span class="hero__dot"></span>
+        </div>
         <h1 class="hero__title reveal" style="--rd:.08s">Le studio créatif qui fait <em>grandir</em> les marques.</h1>
         <p class="lead reveal" style="--rd:.16s">
           Stratégie, contenu, social media, branding, influence et formation à l'IA&nbsp;: tout ce qu'il faut pour
@@ -304,7 +308,12 @@ const tools = [
   /* HERO */
   .hero { position: relative; overflow: hidden; }
   .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; min-height: max(100svh, 760px); padding-block: 140px 90px; }
-  .hero__text { display: grid; gap: 1.7rem; justify-items: start; }
+  .hero__text { position: relative; display: grid; gap: 1.7rem; justify-items: start; isolation: isolate; }
+  .hero__deco { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .hero__blob { position: absolute; width: min(560px, 80%); left: -8%; top: 12%; opacity: 0.9; animation: blob 18s ease-in-out infinite alternate; }
+  .hero__dot { position: absolute; width: clamp(140px, 16vw, 230px); aspect-ratio: 1; border-radius: 50%; background: var(--rose); right: 4%; top: 34%; animation: blob 14s ease-in-out infinite alternate-reverse; }
+  @keyframes blob { to { transform: translate(18px, -14px) rotate(6deg) scale(1.04); } }
+  @media (prefers-reduced-motion: reduce) { .hero__blob, .hero__dot { animation: none; } }
   .hero__title { font-size: var(--h1); font-weight: 850; }
   .hero__flags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
