@@ -40,9 +40,8 @@ const tools = [
       <div class="hero__text">
         <p class="hero__flags reveal"><span class="flag">Lancement 2027</span><span class="eyebrow split"><span>Creative studio</span><span>{brand.location}</span></span></p>
         <div class="hero__deco" aria-hidden="true">
-          <svg class="hero__blob" viewBox="0 0 600 420"><path d="M84 92C150 10 282 -14 372 40c76 46 92 120 170 132 54 9 66 92 18 150-60 72-190 104-300 86C160 392 58 340 26 262-8 182 34 154 84 92Z" fill="var(--blush)" /></svg>
-          <span class="hero__dot"></span>
-          <span class="hero__daisy"><Shape name="leaf" color="var(--orange)" /></span>
+          <svg class="hero__blob" viewBox="0 0 600 420"><path d="M84 92C150 10 282 -14 372 40c76 46 92 120 170 132 54 9 66 92 18 150-60 72-190 104-300 86C160 392 58 340 26 262-8 182 34 154 84 92Z" fill="var(--linen)" /></svg>
+          
         </div>
         <h1 class="hero__title reveal" style="--rd:.08s">Le studio créatif qui fait <em>grandir</em> les marques.</h1>
         <p class="lead reveal" style="--rd:.16s">
@@ -164,7 +163,6 @@ const tools = [
     </div>
     <div class="container about__grid rel">
       <div class="about__visual reveal">
-        <svg class="about__sun" viewBox="-260 -260 520 280" aria-hidden="true"><g fill="none" stroke-width="26" stroke-linecap="round"><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-90.0)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-76.2)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-62.3)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-48.5)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-34.6)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-20.8)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(-6.9)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(6.9)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(20.8)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(34.6)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(48.5)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(62.3)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(76.2)" /><path d="M0 0 C 40 -60, -40 -140, 0 -230" transform="rotate(90.0)" /></g><circle r="70" fill="var(--tomato)" /></svg>
 
         <div class="about__photo arch"><img src={m('julie-filming-2')} style="object-position: 50% 25%" alt="Julie, fondatrice de SAGE Creative Studio" /></div>
         <ul class="tools" aria-label="Quelques outils du quotidien">
@@ -305,12 +303,9 @@ const tools = [
 <style>
   .hero__credits { position: absolute; left: 0; right: 0; bottom: 28px; z-index: 2; display: flex; justify-content: space-between; gap: 1rem; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: rgb(31 26 28 / 0.6); }
   .hero__credits b { color: var(--ink); margin-right: 0.5em; }
-  .about__sun { position: absolute; z-index: -1; width: 130%; left: -15%; top: -18%; }
-  .about__sun g { stroke: var(--rose); }
-  .about__sun g path:nth-child(odd) { stroke: var(--tomato); opacity: 0.85; }
   .about__visual { isolation: isolate; }
-  .round-cta { background: repeating-linear-gradient(90deg, var(--tomato) 0 14px, var(--blush) 14px 28px) !important; }
-  .round-cta span { background: var(--paper); color: var(--choco); font-family: var(--font-letter); font-style: normal; padding: 0.35em 0.8em; border-radius: 999px; font-size: 1.1rem; }
+  .round-cta { background: var(--orange) !important; color: #fff !important; }
+  .round-cta span { font-family: var(--font-letter); font-style: italic; font-size: 1.5rem !important; }
   @media (max-width: 760px) { .hero__credits { display: none; } }
 
   .rel { position: relative; z-index: 1; }
@@ -323,14 +318,10 @@ const tools = [
   .hero { position: relative; overflow: hidden; }
   .hero__grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 3rem; align-items: center; min-height: max(100svh, 760px); padding-block: 140px 90px; }
   .hero__text { position: relative; display: grid; gap: 1.7rem; justify-items: start; isolation: isolate; }
-  .hero__daisy { position: absolute; width: clamp(70px, 8vw, 110px); left: 66%; top: -4%; animation: spin 30s linear infinite; }
-  .hero__daisy :global(.shape) { width: 100%; height: auto; }
-  @keyframes spin { to { transform: rotate(360deg); } }
   .hero__deco { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
   .hero__blob { position: absolute; width: min(560px, 80%); left: -8%; top: 12%; opacity: 0.9; animation: blob 18s ease-in-out infinite alternate; }
-  .hero__dot { position: absolute; width: clamp(140px, 16vw, 230px); aspect-ratio: 1; border-radius: 50%; background: var(--butter); right: 4%; top: 34%; animation: blob 14s ease-in-out infinite alternate-reverse; }
   @keyframes blob { to { transform: translate(18px, -14px) rotate(6deg) scale(1.04); } }
-  @media (prefers-reduced-motion: reduce) { .hero__blob, .hero__dot { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .hero__blob { animation: none; } }
   .hero__title { font-size: var(--h1); font-weight: 850; }
   .hero__flags { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem 1.2rem; }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.4rem; }
