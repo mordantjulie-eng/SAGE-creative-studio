@@ -279,8 +279,10 @@ const tools = [
   @keyframes felt-draw { to { stroke-dashoffset: 0; } }
   @media (prefers-reduced-motion: reduce) { .felt__l { stroke-dashoffset: 0; animation: none; } }
   .hero__in { position: relative; z-index: 1; }
-  .hero { position: relative; overflow: hidden; padding: 96px 0 clamp(56px, 7vw, 96px); }
-  .hero__in { display: grid; gap: clamp(28px, 4vw, 56px); }
+  .hero { position: relative; overflow: hidden; min-height: 100svh; display: flex; padding: clamp(110px, 13vh, 150px) 0 clamp(36px, 6vh, 64px); }
+  .hero__in { display: grid; grid-template-rows: 1fr auto; gap: clamp(32px, 6vh, 72px); align-items: center; }
+  .hero__title { align-self: center; }
+  .hero__row { align-self: end; }
   .hero__title {
     font-size: clamp(3.1rem, 9.6vw, 10.4rem);
     line-height: 0.88;
@@ -429,7 +431,8 @@ const tools = [
     .about__visual { max-width: 520px; }
   }
   @media (max-width: 640px) {
-    .hero { padding-top: 84px; }
+    .hero { padding-top: 100px; }
+    .hero__title { font-size: 14.5vw; line-height: 0.92; }
     .hero__row { grid-template-columns: 1fr; }
       .hl:nth-child(2) { padding-left: 0; }
     .hl:nth-child(3) { text-align: left; }
