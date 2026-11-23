@@ -506,10 +506,10 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
   --moss: #2b1d17;
   --choco: #3b2a21;
   --choco-deep: #22160f;
-  --wine: #5a1f22;
-  --olive: #4a5230;
-  --orange: #e2782f;
-  --sand: #e3c9a6;
+  --wine: #3b1428;
+  --olive: #2747b8;
+  --orange: #d9472b;
+  --sand: #f1d88f;
   --caramel: #b98d63;
   /* anciens noms redirigés */
   --cherry: var(--wine);
@@ -527,7 +527,7 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
   --terracotta: var(--sand);
   --champagne: var(--sand);
   --clay: var(--caramel);
-  --sage: #9c8a70;
+  --sage: #c9b8e0;
   --sage-light: #ddd0bd;
   --taupe: var(--caramel);
   --eucalyptus: #7b6556;
@@ -545,7 +545,7 @@ body[data-theme='charcoal'] { background-color: var(--fir-deep); }
 
 h1, h2 { font-family: var(--font-display); font-weight: 400 !important; font-synthesis: none; text-transform: none; letter-spacing: -0.015em; line-height: 0.98; }
 h3 { font-family: var(--font-ui); font-weight: 600; letter-spacing: -0.015em; }
-h1 em, h2 em, h3 em { font-family: var(--font-letter); font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--wine); }
+h1 em, h2 em, h3 em { font-family: var(--font-letter); font-style: italic; font-weight: 400; letter-spacing: -0.01em; color: var(--orange); }
 h3 em { font-family: var(--font-ui); }
 :not(body)[data-theme='sage'], :not(body)[data-theme='charcoal'], .on-dark { --ochre: var(--sand); --terracotta: var(--sand); }
 :not(body)[data-theme='sage'] h1 em, :not(body)[data-theme='sage'] h2 em, :not(body)[data-theme='sage'] h3 em,
