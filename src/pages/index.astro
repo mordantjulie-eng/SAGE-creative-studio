@@ -6,7 +6,6 @@ import Veil from '../components/Veil.astro';
 import Timeline from '../components/Timeline.astro';
 import FlipCard from '../components/FlipCard.astro';
 import Envelope from '../components/Envelope.astro';
-import PressedLogo from '../components/PressedLogo.astro';
 import { brand, services, pillars, steps, partners } from '../config/site';
 
 const m = (n: string) => `/media/${n}.jpg`;
@@ -54,14 +53,6 @@ const tools = [
           <div class="hero__ctas reveal" style="--rd:.6s">
             <a href="#services" class="btn btn--primary">Découvrir les services <span aria-hidden="true">→</span></a>
             <a href="#contact" class="btn btn--glass">Parlons de votre projet</a>
-          </div>
-        </div>
-
-        <div class="hero__visual reveal" style="--rd:.3s" aria-hidden="true">
-          <span class="organic hero__blob"></span>
-          <div class="hero__stamp float" style="--d:8s">
-            <PressedLogo class="hero__logo" ink="#f6f1ea" shade="#7a1f3d" light="#ffffff" rim={false} />
-            <p class="hero__hand">Creative<br />thinking.</p>
           </div>
         </div>
 
@@ -300,18 +291,11 @@ const tools = [
     pointer-events: none;
   }
 
-  .hero__row { display: grid; grid-template-columns: 1fr minmax(260px, 0.8fr) auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
+  .hero__row { display: grid; grid-template-columns: 1fr auto; gap: clamp(1.5rem, 4vw, 4rem); align-items: end; }
   .hero__copy { display: grid; gap: 1.6rem; align-content: end; padding-bottom: 0.5rem; }
   .hero .lead { color: #4a4345; }
   .hero__ctas { display: flex; flex-wrap: wrap; gap: 0.7rem; }
-  .hero__visual { position: relative; aspect-ratio: 4 / 5; isolation: isolate; }
-  .hero__title { position: relative; z-index: 2; }
-  .hero__blob { inset: -4% -14% -4% -14%; --ob: 34px; z-index: -1; }
-  /* Logo tamponné en blanc cassé directement dans le dégradé, sans cadre */
-  .hero__stamp { position: absolute; inset: 0; display: grid; place-items: center; padding: 0 2%; --fy: -8px; }
-  .hero__stamp :global(.hero__logo) { width: 100%; filter: drop-shadow(0 1px 0 rgb(255 255 255 / 0.35)); }
   /* Annotation manuscrite, sans cachet */
-  .hero__hand { position: absolute; right: -6%; top: 22%; margin: 0; font: 400 clamp(1.7rem, 2.6vw, 2.5rem)/1 'Nothing You Could Do', 'Segoe Script', cursive; color: var(--rasp); transform: rotate(-8deg); }
   .hero__side { list-style: none; margin: 0; padding: 0 0 0.5rem; display: grid; gap: 0.2rem; text-align: right; font-size: 0.74rem; font-weight: 600; font-stretch: 125%; text-transform: uppercase; letter-spacing: 0.04em; }
   .hero__side li:nth-child(odd) { color: var(--rasp); }
 
@@ -409,7 +393,6 @@ const tools = [
 
   /* RESPONSIVE */
   @media (max-width: 1000px) {
-    .hero__row { grid-template-columns: 1fr 1fr; }
     .hero__side { display: none; }
     .row summary, .row__body { grid-template-columns: 1fr 44px; }
     .row__s { grid-column: 1; grid-row: 2; }
@@ -431,13 +414,11 @@ const tools = [
   @media (max-width: 640px) {
     .hero { padding-top: 84px; }
     .hero__row { grid-template-columns: 1fr; }
-    .hero__visual { order: -1; margin: 0 auto; width: 78%; }
-    .hl:nth-child(2) { padding-left: 0; }
+      .hl:nth-child(2) { padding-left: 0; }
     .hl:nth-child(3) { text-align: left; }
     .hero__ctas .btn { width: 100%; }
     .row__items { columns: 1; }
     .steps li { grid-template-columns: 1fr; gap: 0.2rem; }
     .about__hand { right: 6%; font-size: 3rem; }
-    .hero__hand { right: -2%; top: 4%; font-size: 1.5rem; }
-  }
+    }
 </style>

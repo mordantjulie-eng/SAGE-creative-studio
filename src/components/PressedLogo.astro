@@ -2,9 +2,11 @@
 // Logo SAGE. imprimé en typographie (letterpress) : le tampon a enfoncé le papier
 // et déposé l'encre carmin. Ombre intérieure en haut à gauche, lumière en bas à droite.
 import full from '../assets/logo-full.svg?raw';
-interface Props { class?: string; ink?: string; shade?: string; light?: string; rim?: boolean }
+interface Props { class?: string; ink?: string; shade?: string; light?: string; rim?: boolean; raised?: boolean }
 // Par défaut : encre carmin sur papier. Sur un fond coloré : encre blanc cassé, ombre rosée.
-const { class: cls = '', ink = '#c8193c', shade = '#3a0010', light = '#ff9fb1', rim = true } = Astro.props;
+const { class: cls = '', ink = '#c8193c', shade = '#3a0010', light = '#ff9fb1', rim = true, raised = false } = Astro.props;
+// en relief : la lumière et l'ombre s'inversent
+const k = raised ? -1 : 1;
 const d = (full.match(/ d="([^"]+)"/) || [])[1] || '';
 const uid = `p${Math.random().toString(36).slice(2, 7)}`;
 ---
@@ -18,18 +20,20 @@ const uid = `p${Math.random().toString(36).slice(2, 7)}`;
         <feColorMatrix in="grain" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -0.45 1.2" result="grainA" />
         <feComposite in="SourceGraphic" in2="grainA" operator="in" result="ink" />
         <!-- ombre intérieure (le papier descend) -->
-        <feOffset in="SourceAlpha" dx="6" dy="7" result="off" />
+        <feOffset in="SourceAlpha" dx={6 * k} dy={7 * k} result="off" />
         <feGaussianBlur in="off" stdDeviation="3" result="offb" />
         <feComposite in="SourceAlpha" in2="offb" operator="out" result="innerEdge" />
         <feFlood flood-color={shade} flood-opacity="0.6" />
         <feComposite in2="innerEdge" operator="in" result="innerShadow" />
         <!-- reflet sur le bord opposé -->
-        <feOffset in="SourceAlpha" dx="-4" dy="-5" result="off2" />
+        <feOffset in="SourceAlpha" dx={-4 * k} dy={-5 * k} result="off2" />
         <feGaussianBlur in="off2" stdDeviation="2" result="off2b" />
         <feComposite in="SourceAlpha" in2="off2b" operator="out" result="innerLight" />
         <feFlood flood-color={light} flood-opacity="0.55" />
         <feComposite in2="innerLight" operator="in" result="innerHi" />
+        <feDropShadow dx={raised ? 8 : 0} dy={raised ? 12 : 0} stdDeviation={raised ? 9 : 0} flood-color="#000" flood-opacity={raised ? 0.55 : 0} in="SourceAlpha" result="drop" />
         <feMerge>
+          <feMergeNode in="drop" />
           <feMergeNode in="ink" />
           <feMergeNode in="innerShadow" />
           <feMergeNode in="innerHi" />

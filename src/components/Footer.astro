@@ -1,5 +1,5 @@
 ---
-import Logo from './Logo.astro';
+import PressedLogo from './PressedLogo.astro';
 import { brand, nav } from '../config/site';
 const year = new Date().getFullYear();
 ---
@@ -22,7 +22,7 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="footer__logo" aria-hidden="true"><Logo size="xl" withDescriptor /></div>
+  <div class="footer__logo" aria-hidden="true"><PressedLogo class="footer__emboss" ink="#c8193c" shade="#4a0414" light="#ff9fb1" rim={false} raised /></div>
 
   <div class="container footer__bottom">
     <span>© {year} {brand.name} {brand.descriptor}</span>
@@ -93,7 +93,7 @@ const year = new Date().getFullYear();
     justify-content: center;
     margin-bottom: -1.4vw;
   }
-  .footer__logo :global(.logo--xl) {
+  .footer__logo :global(.footer__emboss) {
     width: min(100%, 1360px);
   }
   .footer__bottom {
