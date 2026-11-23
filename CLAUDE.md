@@ -164,3 +164,4 @@ Palette :
 - 2026-11-23 : DA « Saveurs » v2 : frise chronologique à la place du livre, cachets en relief 3D façon logo, scènes 3D sur les pages services. Palette chocolat, beurre, framboise testée puis abandonnée, retour au bordeaux, carmin, lilas.
 - 2026-11-23 : **« Saveurs » devient la version officielle** : poussée sur `main` ; l'ancienne `main` (vert sapin) est gardée dans la branche `archive/vert-sapin`, la DA « maison » reste sur `da-moodboard`.
 - 2026-11-23 : Hero : la photo de Julie est remplacée par le logo SAGE. tamponné sur papier. Page Studio : section **« Dans les coulisses » supprimée** (et retirée du menu) le temps que Julie se fasse un nom et de l'expérience ; images `bts-*` gardées dans `public/media` pour plus tard.
+- 2026-11-23 : **« Parcours » retiré de la barre de navigation** (et du menu du pied de page) à la demande de Julie ; la ligne du temps reste sur l'accueil.
